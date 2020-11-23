@@ -1,0 +1,47 @@
+image: makeitlv/php:7.4.12
+
+stages:
+    - build
+    - test
+    - deploy
+
+variables:
+    DOCKER_DRIVER: overlay2
+
+cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+        - vendor/
+        - bin/.phpunit
+
+.before:
+    before_script:
+        - cp .env.example .env
+        - sed -i "s/ThisTokenIsNotSecretChangeIt/$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)/g" .env
+
+build:
+    extends: .before
+    stage: build
+    script:
+        - composer install
+
+codestyle:
+    stage: test
+    script:
+        - php -d memory_limit=-1 ./vendor/bin/phpcs --standard=phpcs.xml
+        - php -d memory_limit=-1 ./vendor/bin/phpcpd --fuzzy src/
+        - php -d memory_limit=-1 ./vendor/bin/phpstan analyse
+
+test:
+    extends: .before
+    stage: test
+    script:
+        - php -d memory_limit=-1 ./bin/phpunit
+
+deploy:
+    stage: deploy
+    script:
+        - echo "Deploy to prod"
+    only:
+        - prod
+
