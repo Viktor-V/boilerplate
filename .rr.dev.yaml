@@ -1,0 +1,16 @@
+include:
+    - .rr.yaml
+
+http:
+    workers:
+        pool:
+            numWorkers: 1
+
+reload:
+    enabled: true
+    interval: 1s
+    patterns: [".php"]
+    services:
+        http:
+            dirs: ["."]
+            recursive: true
