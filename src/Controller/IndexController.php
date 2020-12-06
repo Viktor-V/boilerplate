@@ -10,9 +10,7 @@ use App\Kernel;
 
 class IndexController
 {
-    /**
-     * @Route("/")
-     */
+    #[Route("/")]
     public function index(): JsonResponse
     {
         return new JsonResponse(['php' => phpversion(), 'symfony' => Kernel::VERSION]);
