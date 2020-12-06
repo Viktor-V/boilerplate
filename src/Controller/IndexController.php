@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Kernel;
 
 class IndexController
 {
@@ -14,6 +15,6 @@ class IndexController
      */
     public function index(): JsonResponse
     {
-        return new JsonResponse(['hello' => 'Hello World!']);
+        return new JsonResponse(['php' => phpversion(), 'symfony' => Kernel::VERSION]);
     }
 }

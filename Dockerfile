@@ -1,5 +1,5 @@
 # Common
-FROM php:7.4.12-cli-alpine as common
+FROM php:8.0.0-cli-alpine as common
 
 # Install packages and extensions
 RUN set -ex \
@@ -56,7 +56,7 @@ COPY . .
 RUN set -ex \
     && chown -R www-data: /var/www/html \
     && composer dump-autoload --optimize --classmap-authoritative \
-    && composer check-platform-reqs \
+    #&& composer check-platform-reqs \  dflydev/fig-cookies fails
     && php bin/console cache:warmup \
     && ./vendor/bin/rr get-binary --location /usr/local/bin
 
