@@ -24,7 +24,7 @@ build:
     extends: .before
     stage: build
     script:
-        - composer install --ignore-platform-reqs --no-ansi --no-autoloader --no-interaction --no-scripts
+        - composer install --ignore-platform-reqs --no-ansi --no-interaction --no-scripts
 
 codestyle:
     extends: .before
