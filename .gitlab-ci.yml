@@ -13,6 +13,7 @@ cache:
     paths:
         - vendor/
         - bin/.phpunit
+        - var/cache
 
 .before:
     before_script:
@@ -26,17 +27,21 @@ build:
         - composer install
 
 codestyle:
+    extends: .before
     stage: test
     script:
+        - php -d memory_limit=-1 ./bin/console cache:warmup --env=dev
         - php -d memory_limit=-1 ./vendor/bin/phpcs --standard=phpcs.xml
-        - php -d memory_limit=-1 ./vendor/bin/phpcpd --fuzzy src/
-        - php -d memory_limit=-1 ./vendor/bin/phpstan analyse
+        - php -d memory_limit=-1 ./vendor/bin/phpcpd --fuzzy src/ tests/
+        - php -d memory_limit=-1 ./vendor/bin/phpstan analyse -c phpstan.neon --no-progress
 
 test:
     extends: .before
     stage: test
     script:
+        - php -d memory_limit=-1 ./bin/console cache:warmup --env=test
         - php -d memory_limit=-1 ./bin/phpunit
+        - php -d memory_limit=-1 ./vendor/bin/phpstan analyse -c phpstan-tests.neon --no-progress
 
 deploy:
     stage: deploy
