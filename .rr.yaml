@@ -1,5 +1,5 @@
 http:
-    address: "0.0.0.0:1070"
+    address: 0.0.0.0:80
 
     uploads:
         forbid: [".php", ".exe", ".bat"]

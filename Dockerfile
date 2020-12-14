@@ -60,5 +60,4 @@ RUN set -ex \
     && php bin/console cache:warmup \
     && ./vendor/bin/rr get-binary --location /usr/local/bin
 
-EXPOSE 1070
 CMD ["rr", "serve", "-v", "-d", "-c", ".rr.dev.yaml"]
