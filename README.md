@@ -17,7 +17,7 @@ done
 
 #### Step 3 - run image
 ```bash
-docker run -v ${PWD}:/var/www/html --publish 80:1070 --publish 443:443 --detach skeleton:latest
+docker run -v ${PWD}:/var/www/html --publish 80:80 --publish 443:443 --detach skeleton:latest
 ```
 
 ### Step 4 - run command
