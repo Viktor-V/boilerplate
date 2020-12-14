@@ -5,7 +5,7 @@
 ### Dev development
 #### Step 1 - build docker image
 ```bash
-docker build --tag skeleton:latest . --target dev --no-cache
+docker-compose build --no-cache
 ```
 
 #### Step 2 - copy generated files (.env, vendor and var) from image to host
@@ -17,10 +17,26 @@ done
 
 #### Step 3 - run image
 ```bash
-docker run -v ${PWD}:/var/www/html --publish 80:80 --publish 443:443 --detach skeleton:latest
+docker-compose up -d
 ```
 
-### Step 4 - run command
+#### Step 4 - run command
 ```bash
-docker run --rm --interactive --tty --volume ${PWD}:/var/www/html -w /var/www/html skeleton:latest command
+docker exec web command 
 ```
+
+### Utils
+Reset PHP workers in the container (to reload your PHP source code)
+```bash
+docker exec web rr -c .rr.dev.yaml http:reset
+```
+Show PHP workers' status
+```bash
+docker exec web rr -c .rr.dev.yaml http:workers -i
+```
+
+### Auto-Reloading
+Auto reloading is enabled by default. RoadRunner detects PHP file changes and reload connected services.
+To turn off this feature, remove the `reload` section in .rr.dev.yaml.
+
+see: [Roadrunner : Auto-Reloading](https://roadrunner.dev/docs/beep-beep-reload)

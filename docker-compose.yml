@@ -1,0 +1,12 @@
+version: "3.3"
+
+services:
+    web:
+        image: skeleton:latest
+        build: .
+        container_name: web
+        ports:
+            - ${HTTP:-80}:80
+            - ${HTTPS:-443}:443
+        volumes:
+            - ./:/var/www/html
