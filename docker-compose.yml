@@ -1,12 +1,9 @@
-version: "3.3"
+version: "3.4"
 
 services:
     web:
         image: skeleton:latest
-        build: .
+        build:
+            context: .
+            target: dev
         container_name: web
-        ports:
-            - ${HTTP:-80}:80
-            - ${HTTPS:-443}:443
-        volumes:
-            - ./:/var/www/html

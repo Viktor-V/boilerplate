@@ -23,22 +23,6 @@ RUN set -ex \
 FROM common as dev
 WORKDIR /var/www/html
 
-RUN set -ex \
-    && apk add --update --no-cache --virtual .build-dependencies openssl \
-    && apk del --purge .build-dependencies
-
-RUN set -ex \
-    && mkdir -p /etc/roadrunner/ssl/private \
-    && chmod 755 /etc/roadrunner/ssl \
-    && chmod 710 /etc/roadrunner/ssl \
-    && chown -R root:root /etc/roadrunner
-
-RUN openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:4096 -keyout /etc/roadrunner/ssl/private/server.key -out /etc/roadrunner/ssl/server.crt -subj "/CN=localhost/O=makeit.lv/C=LV"
-
-RUN set -ex \
-    && chmod 644 /etc/roadrunner/ssl/server.crt \
-    && chmod 640 /etc/roadrunner/ssl/private/server.key
-
 COPY .env.example /var/www/html/.env
 RUN sed -i "s/ThisTokenIsNotSecretChangeIt/$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)/g" .env
 
@@ -61,3 +45,39 @@ RUN set -ex \
     && ./vendor/bin/rr get-binary --location /usr/local/bin
 
 CMD ["rr", "serve", "-v", "-d", "-c", ".rr.dev.yaml"]
+
+# Prod environment
+FROM common as prod
+WORKDIR /var/www/html
+
+RUN echo "APP_SECRET=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)" >> .env
+
+COPY --from=composer:2.0.7 /usr/bin/composer /usr/bin/composer
+COPY composer.json composer.lock /var/www/html/
+RUN composer install \
+    --ignore-platform-reqs \
+    --no-ansi \
+    --no-dev \
+    --no-autoloader \
+    --no-interaction \
+    --no-scripts
+
+COPY ./bin/console /var/www/html/bin/console
+COPY ./config/ /var/www/html/config/
+COPY ./public/ /var/www/html/public/
+COPY ./src/ /var/www/html/src/
+
+RUN sed -i "s/ThisTokenIsNotSecretChangeIt/$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)/g" .env
+COPY ./.rr.yaml /var/www/html/.rr.yaml
+
+RUN set -ex \
+    && chown -R www-data: /var/www/html \
+    && composer dump-autoload --optimize --classmap-authoritative \
+    #&& composer check-platform-reqs \  dflydev/fig-cookies fails
+    && php bin/console cache:warmup \
+    && ./vendor/bin/rr get-binary --location /usr/local/bin
+
+RUN rm composer.json composer.lock
+
+CMD ["rr", "serve", "-v", "-d", "-c", ".rr.yaml"]
+EXPOSE 80

@@ -5,6 +5,7 @@ http:
     workers:
         pool:
             numWorkers: 1
+            maxJobs: 1
 
 reload:
     enabled: true

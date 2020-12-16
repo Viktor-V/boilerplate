@@ -7,13 +7,8 @@ http:
     workers:
         command: "php bin/console baldinof:roadrunner:worker"
         relay: "unix://var/roadrunner.sock"
-
-    ssl:
-        redirect: true
-        port: 443
-
-        cert: /etc/roadrunner/ssl/server.crt
-        key: /etc/roadrunner/ssl/private/server.key
+        pool:
+            numWorkers: 1
 
 static:
     dir:   "public"

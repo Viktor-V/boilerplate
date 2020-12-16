@@ -44,9 +44,13 @@ test:
         - php -d memory_limit=-1 ./vendor/bin/phpstan analyse -c phpstan-tests.neon --no-progress
 
 deploy:
+    image: docker/compose
+    services:
+        - docker:dind
     stage: deploy
     script:
-        - echo "Deploy to prod"
+        - docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
     only:
-        - prod
+        - master
+    when: manual
 
