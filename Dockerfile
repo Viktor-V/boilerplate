@@ -66,8 +66,6 @@ COPY ./bin/console /var/www/html/bin/console
 COPY ./config/ /var/www/html/config/
 COPY ./public/ /var/www/html/public/
 COPY ./src/ /var/www/html/src/
-
-RUN sed -i "s/ThisTokenIsNotSecretChangeIt/$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)/g" .env
 COPY ./.rr.yaml /var/www/html/.rr.yaml
 
 RUN set -ex \

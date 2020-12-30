@@ -3,7 +3,11 @@ version: "3.4"
 services:
     web:
         image: skeleton:latest
+        container_name: web
         build:
             context: .
             target: dev
-        container_name: web
+        volumes:
+            - ./:/var/www/html
+        ports:
+            - 80:80

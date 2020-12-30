@@ -18,7 +18,7 @@ class IndexControllerTest extends WebTestCase
 
         $response = json_decode((string) $client->getResponse()->getContent());
 
-        Assert::assertEquals('8.0.0', $response->php);
-        Assert::assertEquals('5.2.0', $response->symfony);
+        Assert::assertEquals(PHP_VERSION, $response->php);
+        Assert::assertTrue(version_compare($response->symfony, '5.2.0', '>='));
     }
 }

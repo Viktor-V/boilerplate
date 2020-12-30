@@ -2,6 +2,8 @@ version: "3.4"
 
 services:
     web:
+        image: skeleton:latest
+        container_name: web
         build:
             context: .
             target: prod

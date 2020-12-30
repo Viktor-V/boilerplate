@@ -13,11 +13,6 @@ class IndexController
     #[Route("/")]
     public function index(): JsonResponse
     {
-        return new JsonResponse([
-            'php' => PHP_VERSION,
-            'symfony' => Kernel::VERSION,
-            'env' => $_SERVER['APP_ENV'],
-            'rand' => random_int(0, 100)
-        ]);
+        return new JsonResponse(['php' => PHP_VERSION, 'symfony' => Kernel::VERSION, 'env' => $_SERVER['APP_ENV']]);
     }
 }
