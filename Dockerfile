@@ -1,5 +1,5 @@
 # Common
-FROM php:8.0.0-cli-alpine as common
+FROM php:8.0.1-cli-alpine as common
 
 # Install packages and extensions
 RUN set -ex \
@@ -26,7 +26,7 @@ WORKDIR /var/www/html
 COPY .env.example /var/www/html/.env
 RUN sed -i "s/ThisTokenIsNotSecretChangeIt/$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)/g" .env
 
-COPY --from=composer:2.0.7 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.0.8 /usr/bin/composer /usr/bin/composer
 COPY composer.json composer.lock /var/www/html/
 RUN composer install \
     --ignore-platform-reqs \
@@ -52,7 +52,7 @@ WORKDIR /var/www/html
 
 RUN echo "APP_SECRET=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)" >> .env
 
-COPY --from=composer:2.0.7 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.0.8 /usr/bin/composer /usr/bin/composer
 COPY composer.json composer.lock /var/www/html/
 RUN composer install \
     --ignore-platform-reqs \
