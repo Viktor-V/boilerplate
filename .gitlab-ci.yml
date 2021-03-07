@@ -1,4 +1,4 @@
-image: makeitlv/php:8.0.1
+image: php:8.0.3-cli-alpine
 
 stages:
     - build
@@ -21,6 +21,7 @@ cache:
         - sed -i "s/ThisTokenIsNotSecretChangeIt/$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)/g" .env
 
 build:
+    image: composer:2.0.11
     extends: .before
     stage: build
     script:
@@ -36,6 +37,7 @@ codestyle:
         - php -d memory_limit=-1 ./vendor/bin/phpstan analyse -c phpstan.neon --no-progress
 
 test:
+    image: composer:2.0.11
     extends: .before
     stage: test
     script:

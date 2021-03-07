@@ -1,4 +1,6 @@
 {
+    "name": "makeitlv/skeleton",
+    "description": "Project skeleton",
     "type": "project",
     "license": "proprietary",
     "require": {
