@@ -1,0 +1,11 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\Core\:
+        resource: '../../src/Core/'
+
+    App\Core\Infrastructure\Controller\:
+        resource: '../../src/Core/Infrastructure/Controller/'
+        tags: ['controller.service_arguments']

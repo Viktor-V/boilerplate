@@ -1,6 +1,6 @@
 {
-    "name": "makeitlv/skeleton",
-    "description": "Project skeleton",
+    "name": "makeitlv/boilerplate",
+    "description": "Project boilerplate",
     "type": "project",
     "license": "proprietary",
     "require": {
@@ -35,7 +35,8 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "App\\": "src/",
+            "App\\Core\\": "src/Core"
         }
     },
     "autoload-dev": {

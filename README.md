@@ -15,7 +15,7 @@ docker-compose build
 #### Step 2 - copy generated files (.env, vendor and var) from image to host
 ```bash
 for FILE in {.env,vendor,var};
-  do docker cp $(docker create --rm skeleton:latest):/var/www/html/${FILE} ${PWD}/${FILE}
+  do docker cp $(docker create --rm boilerplate:latest):/var/www/html/${FILE} ${PWD}/${FILE}
 done
 ```
 
@@ -37,7 +37,7 @@ docker exec web composer install
 
 Execute command without running image
 ```bash
-docker run --rm --interactive --tty --volume ${PWD}:/var/www/html -w /var/www/html skeleton:latest command
+docker run --rm --interactive --tty --volume ${PWD}:/var/www/html -w /var/www/html boilerplate:latest command
 ```
 
 ### Utils
@@ -185,7 +185,7 @@ git push origin prod
 ```
 2. Go to https://gitlab.com/username/repository/-/pipelines 
 3. Click on deploy manual
-4. Set DOMAIN variable - skeleton.example.com
+4. Set DOMAIN variable - boilerplate.example.com
 ![Deploy manual](screenshots/gitlab-deploy-manual.png)
 
 ## Troubleshooting

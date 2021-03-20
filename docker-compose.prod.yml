@@ -2,6 +2,7 @@ version: "3.4"
 
 services:
     web:
+        image: boilerplate:latest
         container_name: web
         build:
             context: .

@@ -5,17 +5,26 @@ declare(strict_types=1);
 namespace App;
 
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
+use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
-use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 
 class Kernel extends BaseKernel
 {
     use MicroKernelTrait;
 
-    public function getProjectDir()
+    private const DOMAINS = ['core'];
+    private const EXCLUDE_DOMAINS = [];
+
+    private ?string $projectDir = null;
+
+    public function getProjectDir(): string
     {
-        return dirname(__DIR__);
+        if ($this->projectDir === null) {
+            $this->projectDir = dirname(__DIR__);
+        }
+
+        return $this->projectDir;
     }
 
     protected function configureContainer(ContainerConfigurator $container): void
@@ -23,11 +32,18 @@ class Kernel extends BaseKernel
         $container->import('../config/{packages}/*.yaml');
         $container->import('../config/{packages}/' . $this->environment . '/*.yaml');
 
-        if (is_file(\dirname(__DIR__) . '/config/services.yaml')) {
-            $container->import('../config/services.yaml');
-            $container->import('../config/{services}_' . $this->environment . '.yaml');
-        } elseif (is_file($path = \dirname(__DIR__) . '/config/services.php')) {
-            (require $path)($container->withPath($path), $this);
+        $container->import('../config/services.yaml');
+        $container->import('../config/{services}_' . $this->environment . '.yaml');
+
+        foreach (self::DOMAINS as $domain) {
+            if (in_array($domain, self::EXCLUDE_DOMAINS, true)) {
+                continue;
+            }
+
+            $container->import('../config/domain/' . $domain . '.yaml');
+            if (is_file($path = '../config/domain/' . $this->environment . '/' . $domain . '.yaml')) {
+                $container->import($path);
+            }
         }
     }
 
@@ -36,10 +52,14 @@ class Kernel extends BaseKernel
         $routes->import('../config/{routes}/' . $this->environment . '/*.yaml');
         $routes->import('../config/{routes}/*.yaml');
 
-        if (is_file(\dirname(__DIR__) . '/config/routes.yaml')) {
-            $routes->import('../config/routes.yaml');
-        } elseif (is_file($path = \dirname(__DIR__) . '/config/routes.php')) {
-            (require $path)($routes->withPath($path), $this);
+        $routes->import('../config/routes.yaml');
+
+        foreach (self::DOMAINS as $domain) {
+            if (in_array($domain, self::EXCLUDE_DOMAINS, true)) {
+                continue;
+            }
+
+            $routes->import('../config/domain/routes/' . $domain . '.yaml');
         }
     }
 }
