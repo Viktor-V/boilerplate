@@ -32,7 +32,7 @@ class Kernel extends BaseKernel
         $container->import('../config/services.yaml');
         $container->import('../config/{services}_' . $this->environment . '.yaml');
 
-        foreach ($this->getEnabledModules() as $module) {
+        foreach ($this->enabledModules() as $module) {
             $container->import('../config/module/' . $module . '.yaml');
             if (is_file($path = '../config/module/' . $this->environment . '/' . $module . '.yaml')) {
                 $container->import($path);
@@ -47,7 +47,7 @@ class Kernel extends BaseKernel
 
         $routes->import('../config/routes.yaml');
 
-        foreach ($this->getEnabledModules() as $module) {
+        foreach ($this->enabledModules() as $module) {
             $routes->import('../config/module/routes/' . $module . '.yaml');
         }
     }
@@ -55,7 +55,7 @@ class Kernel extends BaseKernel
     /**
      * @return array<string>
      */
-    private function getEnabledModules(): array
+    private function enabledModules(): array
     {
         $contents = require $this->getProjectDir() . '/config/modules.php';
 
