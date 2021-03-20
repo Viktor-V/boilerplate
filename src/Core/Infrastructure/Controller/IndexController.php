@@ -12,7 +12,8 @@ class IndexController
 {
     public function __construct(
         private ProjectInfo $projectInfo
-    ) {}
+    ) {
+    }
 
     #[Route("/")]
     public function index(): JsonResponse
