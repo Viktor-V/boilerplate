@@ -13,8 +13,6 @@ class Kernel extends BaseKernel
 {
     use MicroKernelTrait;
 
-    private const DOMAINS = ['core'];
-
     private ?string $projectDir = null;
 
     public function getProjectDir(): string
@@ -34,9 +32,9 @@ class Kernel extends BaseKernel
         $container->import('../config/services.yaml');
         $container->import('../config/{services}_' . $this->environment . '.yaml');
 
-        foreach (self::DOMAINS as $domain) {
-            $container->import('../config/domain/' . $domain . '.yaml');
-            if (is_file($path = '../config/domain/' . $this->environment . '/' . $domain . '.yaml')) {
+        foreach ($this->getEnabledModules() as $module) {
+            $container->import('../config/module/' . $module . '.yaml');
+            if (is_file($path = '../config/module/' . $this->environment . '/' . $module . '.yaml')) {
                 $container->import($path);
             }
         }
@@ -49,8 +47,27 @@ class Kernel extends BaseKernel
 
         $routes->import('../config/routes.yaml');
 
-        foreach (self::DOMAINS as $domain) {
-            $routes->import('../config/domain/routes/' . $domain . '.yaml');
+        foreach ($this->getEnabledModules() as $module) {
+            $routes->import('../config/module/routes/' . $module . '.yaml');
         }
+    }
+
+    /**
+     * @return array<string>
+     */
+    private function getEnabledModules(): array
+    {
+        $contents = require $this->getProjectDir() . '/config/modules.php';
+
+        $modules = [];
+        foreach ($contents as $class) {
+            /** @var ModuleInterface $module */
+            $module = new $class();
+            if ($module->enabled()) {
+                $modules[] = $module->name();
+            }
+        }
+
+        return $modules;
     }
 }
