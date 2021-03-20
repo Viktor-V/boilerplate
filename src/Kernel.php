@@ -14,7 +14,6 @@ class Kernel extends BaseKernel
     use MicroKernelTrait;
 
     private const DOMAINS = ['core'];
-    private const EXCLUDE_DOMAINS = [];
 
     private ?string $projectDir = null;
 
@@ -36,10 +35,6 @@ class Kernel extends BaseKernel
         $container->import('../config/{services}_' . $this->environment . '.yaml');
 
         foreach (self::DOMAINS as $domain) {
-            if (in_array($domain, self::EXCLUDE_DOMAINS, true)) {
-                continue;
-            }
-
             $container->import('../config/domain/' . $domain . '.yaml');
             if (is_file($path = '../config/domain/' . $this->environment . '/' . $domain . '.yaml')) {
                 $container->import($path);
@@ -55,10 +50,6 @@ class Kernel extends BaseKernel
         $routes->import('../config/routes.yaml');
 
         foreach (self::DOMAINS as $domain) {
-            if (in_array($domain, self::EXCLUDE_DOMAINS, true)) {
-                continue;
-            }
-
             $routes->import('../config/domain/routes/' . $domain . '.yaml');
         }
     }

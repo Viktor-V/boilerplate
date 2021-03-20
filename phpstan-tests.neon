@@ -1,7 +1,7 @@
 includes:
     - vendor/phpstan/phpstan-strict-rules/rules.neon
     - vendor/phpstan/phpstan-symfony/extension.neon
-    - vendor/phpstan/phpstan-doctrine/extension.neon
+    #- vendor/phpstan/phpstan-doctrine/extension.neon
     - phar://phpstan.phar/conf/bleedingEdge.neon
 
 parameters:
@@ -15,7 +15,7 @@ parameters:
         container_xml_path: var/cache/test/App_KernelTestDebugContainer.xml
         console_application_loader: build/phpstan/console-loader.php
 
-    doctrine:
-        objectManagerLoader: build/phpstan/doctrine-bootstrap.php
+    #doctrine:
+    #    objectManagerLoader: build/phpstan/doctrine-bootstrap.php
 
     level: 7
