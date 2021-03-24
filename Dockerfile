@@ -26,11 +26,9 @@ RUN composer install \
 COPY . .
 
 RUN set -ex \
-    && chown -R www-data: /var/www/html \
     && composer dump-autoload --optimize --classmap-authoritative \
     && composer check-platform-reqs \
-    && php bin/console cache:warmup \
-    && ./vendor/bin/rr get-binary --location /usr/local/bin
+    && php bin/console cache:warmup
 
 # Prod environment
 FROM common as prod
@@ -55,13 +53,10 @@ COPY ./src/ /var/www/html/src/
 COPY ./.rr.yaml /var/www/html/.rr.yaml
 
 RUN set -ex \
-    && chown -R www-data: /var/www/html \
     && composer dump-autoload --optimize --classmap-authoritative \
     && composer check-platform-reqs \
-    && php bin/console cache:warmup \
-    && ./vendor/bin/rr get-binary --location /usr/local/bin
+    && php bin/console cache:warmup
 
 RUN rm composer.json composer.lock
 
-CMD ["rr", "serve", "-v", "-d", "-c", ".rr.yaml"]
 EXPOSE 80
