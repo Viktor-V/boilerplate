@@ -1,9 +1,15 @@
 # Common
 FROM docker.io/nginx/unit:1.22.0-php8.0 as common
 
+ENV COMMON_PACKAGES \
+    apt-utils \
+    zip \
+    unzip
+
 RUN set -xe \
-    && apt-get -y update \
-    && apt-get -y install --no-install-recommends apt-utils zip unzip
+    && apt-get update -qq \
+    && apt-get install --no-install-recommends -y ${COMMON_PACKAGES} \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY .unit.conf.json /docker-entrypoint.d/.unit.conf.json
 
