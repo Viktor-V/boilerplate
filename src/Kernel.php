@@ -26,15 +26,15 @@ class Kernel extends BaseKernel
 
     protected function configureContainer(ContainerConfigurator $container): void
     {
-        $container->import('../config/{packages}/*.yaml');
-        $container->import('../config/{packages}/' . $this->environment . '/*.yaml');
+        $container->import('../config/{packages}/*.php');
+        $container->import('../config/{packages}/' . $this->environment . '/*.php');
 
-        $container->import('../config/services.yaml');
-        $container->import('../config/{services}_' . $this->environment . '.yaml');
+        $container->import('../config/services.php');
+        $container->import('../config/{services}_' . $this->environment . '.php');
 
         foreach ($this->enabledModules() as $module) {
-            $container->import('../config/module/' . $module . '.yaml');
-            if (is_file($path = '../config/module/' . $this->environment . '/' . $module . '.yaml')) {
+            $container->import('../config/module/' . $module . '.php');
+            if (is_file($path = '../config/module/' . $this->environment . '/' . $module . '.php')) {
                 $container->import($path);
             }
         }
@@ -42,13 +42,13 @@ class Kernel extends BaseKernel
 
     protected function configureRoutes(RoutingConfigurator $routes): void
     {
-        $routes->import('../config/{routes}/' . $this->environment . '/*.yaml');
-        $routes->import('../config/{routes}/*.yaml');
+        $routes->import('../config/{routes}/' . $this->environment . '/*.php');
+        $routes->import('../config/{routes}/*.php');
 
-        $routes->import('../config/routes.yaml');
+        $routes->import('../config/routes.php');
 
         foreach ($this->enabledModules() as $module) {
-            $routes->import('../config/module/routes/' . $module . '.yaml');
+            $routes->import('../config/module/routes/' . $module . '.php');
         }
     }
 
