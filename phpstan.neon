@@ -7,6 +7,7 @@ includes:
 parameters:
     paths:
         - src
+        - config
 
     symfony:
         container_xml_path: var/cache/dev/App_KernelDevDebugContainer.xml
