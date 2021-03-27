@@ -18,4 +18,4 @@ parameters:
     #doctrine:
     #    objectManagerLoader: build/phpstan/doctrine-bootstrap.php
 
-    level: 7
+    level: max

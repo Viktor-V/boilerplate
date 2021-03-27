@@ -6,7 +6,7 @@ namespace App\Core;
 
 use App\ModuleInterface;
 
-class CoreModule implements ModuleInterface
+final class CoreModule implements ModuleInterface
 {
     private const MODULE_NAME = 'core';
 

@@ -10,7 +10,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services
         ->defaults()
         ->autowire()
-        ->autoconfigure();
+        ->autoconfigure()
+        ->public();
 
     $services->load('App\Core\\', __DIR__ . '/../../src/Core/');
 

@@ -7,21 +7,15 @@ namespace App;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
-use Symfony\Component\HttpKernel\Kernel as BaseKernel;
+use Symfony\Component\HttpKernel\Kernel;
 
-class Kernel extends BaseKernel
+final class BaseKernel extends Kernel
 {
     use MicroKernelTrait;
 
-    private ?string $projectDir = null;
-
     public function getProjectDir(): string
     {
-        if ($this->projectDir === null) {
-            $this->projectDir = dirname(__DIR__);
-        }
-
-        return $this->projectDir;
+        return dirname(__DIR__);
     }
 
     protected function configureContainer(ContainerConfigurator $container): void
@@ -34,7 +28,9 @@ class Kernel extends BaseKernel
 
         foreach ($this->enabledModules() as $module) {
             $container->import('../config/module/' . $module . '.php');
-            if (is_file($path = '../config/module/' . $this->environment . '/' . $module . '.php')) {
+
+            $path = '../config/module/' . $this->environment . '/' . $module . '.php';
+            if (is_file($path)) {
                 $container->import($path);
             }
         }

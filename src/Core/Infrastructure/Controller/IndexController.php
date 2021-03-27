@@ -4,20 +4,16 @@ declare(strict_types=1);
 
 namespace App\Core\Infrastructure\Controller;
 
-use App\Core\Adapter\Service\ProjectInfo;
+use App\BaseKernel;
+use App\Core\RouteName;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
 class IndexController
 {
-    public function __construct(
-        private ProjectInfo $projectInfo
-    ) {
-    }
-
-    #[Route("/")]
-    public function index(): JsonResponse
+    #[Route(path: '/', name: RouteName::HOMEPAGE)]
+    public function __invoke(): JsonResponse
     {
-        return new JsonResponse($this->projectInfo->info());
+        return new JsonResponse(['php' => PHP_VERSION, 'symfony' => BaseKernel::VERSION, 'env' => $_SERVER['APP_ENV']]);
     }
 }

@@ -1,6 +1,7 @@
 includes:
     - vendor/phpstan/phpstan-strict-rules/rules.neon
     - vendor/phpstan/phpstan-symfony/extension.neon
+    - vendor/symplify/phpstan-rules/config/symplify-rules.neon
     #- vendor/phpstan/phpstan-doctrine/extension.neon
     - phar://phpstan.phar/conf/bleedingEdge.neon
 
@@ -16,4 +17,8 @@ parameters:
     #doctrine:
     #    objectManagerLoader: build/phpstan/doctrine-bootstrap.php
 
-    level: 7
+    level: max
+
+    excludePaths:
+    		- config/bundles.php
+    		- src/ModuleInterface.php
