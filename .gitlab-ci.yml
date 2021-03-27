@@ -26,12 +26,14 @@ build:
     stage: build
     script:
         - composer install --ignore-platform-reqs --no-ansi --no-interaction --no-scripts
+        - composer dumpautoload
 
 codestyle:
     extends: .before
     stage: test
     script:
         - php -d memory_limit=-1 ./bin/console cache:warmup --env=dev
+        - ls -la ./var/
         - php -d memory_limit=-1 ./vendor/bin/phpcs --standard=phpcs.xml
         - php -d memory_limit=-1 ./vendor/bin/phpcpd --fuzzy src/ tests/ config/
         - php -d memory_limit=-1 ./vendor/bin/phpstan analyse -c phpstan.neon --no-progress
