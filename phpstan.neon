@@ -11,7 +11,7 @@ parameters:
         - config
 
     symfony:
-        container_xml_path: var/cache/dev/App_KernelDevDebugContainer.xml
+        container_xml_path: var/cache/dev/App_BaseKernelDevDebugContainer.xml
         console_application_loader: build/phpstan/console-loader.php
 
     #doctrine:

@@ -12,7 +12,7 @@ parameters:
         - bin/.phpunit/phpunit-9.5-0/vendor/autoload.php
 
     symfony:
-        container_xml_path: var/cache/test/App_KernelTestDebugContainer.xml
+        container_xml_path: var/cache/test/App_BaseKernelTestDebugContainer.xml
         console_application_loader: build/phpstan/console-loader.php
 
     #doctrine:
