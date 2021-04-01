@@ -1,20 +1,4 @@
-# Composer build
-FROM composer:2.0.11 as vendor
-
-ARG ENVIRONMENT
-
-COPY src /app/src/
-COPY composer.json composer.lock /app/
-
-RUN set -ex \
-    && if [ "${ENVIRONMENT}" = "prod" ]; \
-        then composer install --ignore-platform-reqs --no-ansi --no-autoloader --no-interaction --no-scripts --no-dev; \
-        else composer install --ignore-platform-reqs --no-ansi --no-autoloader --no-interaction --no-scripts; \
-    fi \
-    && composer dump-autoload --optimize --classmap-authoritative \
-    && composer check-platform-reqs
-
-# Nginx + php build
+# Build php and nginx unit
 FROM alpine:edge as build
 
 ENV UNIT_VERSION 1.22.0
@@ -67,8 +51,24 @@ RUN set -xe \
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 CMD ["unitd", "--no-daemon", "--control", "unix:/var/run/control.unit.sock"]
 
-# Common
-FROM build as common
+# Install composer packages
+FROM composer:2.0.11 as vendor
+
+ARG ENVIRONMENT
+
+COPY src /app/src/
+COPY composer.json composer.lock /app/
+
+RUN set -ex \
+    && if [ "${ENVIRONMENT}" = "prod" ]; \
+        then composer install --ignore-platform-reqs --no-ansi --no-autoloader --no-interaction --no-scripts --no-dev; \
+        else composer install --ignore-platform-reqs --no-ansi --no-autoloader --no-interaction --no-scripts; \
+    fi \
+    && composer dump-autoload --optimize --classmap-authoritative \
+    && composer check-platform-reqs
+
+# Dev environment
+FROM build as dev
 
 ARG ENVIRONMENT
 
@@ -86,5 +86,5 @@ RUN set -ex \
     && php bin/console cache:warmup --env=${ENVIRONMENT}
 
 # Prod environment
-FROM common as prod
+FROM dev as prod
 EXPOSE 80

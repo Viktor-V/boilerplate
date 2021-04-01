@@ -17,8 +17,7 @@ cache:
 
 .before:
     before_script:
-        - cp .env.example .env
-        - sed -i "s/ThisTokenIsNotSecretChangeIt/$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)/g" .env
+        - echo "APP_SECRET=$(tr -dc A-Za-z0-9 < /dev/urandom | head -c 32)" >> .env
 
 build:
     image: composer:2.0.11

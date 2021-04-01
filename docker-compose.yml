@@ -6,7 +6,7 @@ services:
         container_name: web
         build:
             context: .
-            target: common
+            target: dev
             args:
                 - ENVIRONMENT=dev
         volumes:
