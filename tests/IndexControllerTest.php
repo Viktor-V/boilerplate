@@ -14,10 +14,10 @@ class IndexControllerTest extends WebTestCase
         $client = static::createClient();
         $client->request('GET', '/');
 
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        self::assertEquals(200, $client->getResponse()->getStatusCode());
 
-        $this->assertSelectorTextContains('li:nth-child(1)', PHP_VERSION);
-        $this->assertSelectorTextContains('li:nth-child(2)', BaseKernel::VERSION);
-        $this->assertSelectorTextContains('li:nth-child(3)', $_SERVER['APP_ENV']);
+        self::assertSelectorTextContains('li:nth-child(1)', PHP_VERSION);
+        self::assertSelectorTextContains('li:nth-child(2)', BaseKernel::VERSION);
+        self::assertSelectorTextContains('li:nth-child(3)', $_SERVER['APP_ENV']);
     }
 }
