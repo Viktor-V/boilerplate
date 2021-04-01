@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests;
 
+use App\BaseKernel;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use PHPUnit\Framework\Assert;
 
 class IndexControllerTest extends WebTestCase
 {
@@ -14,11 +14,10 @@ class IndexControllerTest extends WebTestCase
         $client = static::createClient();
         $client->request('GET', '/');
 
-        Assert::assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
-        $response = json_decode((string) $client->getResponse()->getContent());
-
-        Assert::assertEquals(PHP_VERSION, $response->php);
-        Assert::assertTrue(version_compare($response->symfony, '5.2.0', '>='));
+        $this->assertSelectorTextContains('li:nth-child(1)', PHP_VERSION);
+        $this->assertSelectorTextContains('li:nth-child(2)', BaseKernel::VERSION);
+        $this->assertSelectorTextContains('li:nth-child(3)', $_SERVER['APP_ENV']);
     }
 }
