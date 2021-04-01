@@ -6,14 +6,19 @@ namespace App\Core\Infrastructure\Controller;
 
 use App\BaseKernel;
 use App\Core\RouteName;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class IndexController
+class IndexController extends AbstractController
 {
     #[Route(path: '/', name: RouteName::HOMEPAGE)]
-    public function __invoke(): JsonResponse
+    public function __invoke(): Response
     {
-        return new JsonResponse(['php' => PHP_VERSION, 'symfony' => BaseKernel::VERSION, 'env' => $_SERVER['APP_ENV']]);
+        return $this->render('base.html.twig', [
+            'php' => PHP_VERSION,
+            'symfony' => BaseKernel::VERSION,
+            'env' => $_SERVER['APP_ENV']
+        ]);
     }
 }
