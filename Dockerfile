@@ -44,8 +44,7 @@ ENV COMMON_PACKAGES \
     curl=7.76.0-r0 \
     gcc=10.2.1_git20210328-r0 \
     musl-dev=1.2.2-r2 \
-    make=4.3-r0 \
-    util-linux
+    make=4.3-r0
 
 WORKDIR /tmp/unit-${UNIT_VERSION}
 
@@ -75,7 +74,7 @@ ARG ENVIRONMENT
 
 WORKDIR /var/www/html
 
-COPY .unit.conf.json /docker-entrypoint.d/.unit.conf.json
+COPY unit.conf.json /docker-entrypoint.d/unit.conf.json
 COPY --from=vendor /app/vendor/ vendor
 COPY . .
 
