@@ -6,7 +6,9 @@ services:
         container_name: web
         build:
             context: .
-            target: dev
+            target: common
+            args:
+                - ENVIRONMENT=dev
         volumes:
             - ./:/var/www/html
         ports:

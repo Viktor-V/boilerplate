@@ -7,8 +7,8 @@ services:
         build:
             context: .
             target: prod
-        environment:
-            - APP_ENV=prod
+            args:
+                - ENVIRONMENT=prod
         restart: always
         labels:
             - "traefik.enable=true"

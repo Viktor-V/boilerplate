@@ -1,68 +1,36 @@
+# Build
+FROM composer:2.0.11 as build
+
+ARG ENVIRONMENT
+
+COPY src /app/src/
+COPY composer.json composer.lock /app/
+
+RUN set -ex \
+    && if [ "${ENVIRONMENT}" = "prod" ]; \
+        then composer install --ignore-platform-reqs --no-ansi --no-autoloader --no-interaction --no-scripts --no-dev; \
+        else composer install --ignore-platform-reqs --no-ansi --no-autoloader --no-interaction --no-scripts; \
+    fi \
+    && composer dump-autoload --optimize --classmap-authoritative \
+    && composer check-platform-reqs
+
 # Common
 FROM docker.io/nginx/unit:1.22.0-php8.0 as common
 
-ENV COMMON_PACKAGES \
-    apt-utils \
-    zip \
-    unzip
+ARG ENVIRONMENT
 
-RUN set -xe \
-    && apt-get update -qq \
-    && apt-get install --no-install-recommends -y ${COMMON_PACKAGES} \
-    && rm -rf /var/lib/apt/lists/*
-
-COPY .unit.conf.json /docker-entrypoint.d/.unit.conf.json
-
-# Development environment
-FROM common as dev
 WORKDIR /var/www/html
 
-COPY .env.example /var/www/html/.env
-RUN sed -i "s/ThisTokenIsNotSecretChangeIt/$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)/g" .env
-
-COPY --from=composer:2.0.11 /usr/bin/composer /usr/bin/composer
-COPY composer.json composer.lock /var/www/html/
-RUN composer install \
-    --ignore-platform-reqs \
-    --no-ansi \
-    --no-autoloader \
-    --no-interaction \
-    --no-scripts
-
+COPY .unit.conf.json /docker-entrypoint.d/.unit.conf.json
+COPY --from=build /app/vendor/ vendor
 COPY . .
 
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN set -ex \
-    && composer dump-autoload --optimize --classmap-authoritative \
-    && composer check-platform-reqs \
-    && php bin/console cache:warmup
+    && echo "APP_SECRET=$(tr -dc A-Za-z0-9 < /dev/urandom | head -c 32)" >> .env \
+    && echo "APP_ENV=${ENVIRONMENT}" >> .env \
+    && php bin/console cache:warmup --env=${ENVIRONMENT}
 
 # Prod environment
 FROM common as prod
-WORKDIR /var/www/html
-
-RUN echo "APP_SECRET=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)" >> .env
-
-COPY --from=composer:2.0.11 /usr/bin/composer /usr/bin/composer
-COPY composer.json composer.lock /var/www/html/
-RUN composer install \
-    --ignore-platform-reqs \
-    --no-ansi \
-    --no-dev \
-    --no-autoloader \
-    --no-interaction \
-    --no-scripts
-
-COPY ./bin/console /var/www/html/bin/console
-COPY ./config/ /var/www/html/config/
-COPY ./public/ /var/www/html/public/
-COPY ./src/ /var/www/html/src/
-COPY ./.rr.yaml /var/www/html/.rr.yaml
-
-RUN set -ex \
-    && composer dump-autoload --optimize --classmap-authoritative \
-    && composer check-platform-reqs \
-    && php bin/console cache:warmup
-
-RUN rm composer.json composer.lock
-
 EXPOSE 80

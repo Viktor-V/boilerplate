@@ -14,7 +14,7 @@ docker-compose build
 
 #### Step 2 - copy generated files (.env, vendor and var) from image to host
 ```bash
-for FILE in {.env,vendor,var};
+for FILE in {.env,vendor,var/cache};
   do docker cp $(docker create --rm boilerplate:latest):/var/www/html/${FILE} ${PWD}/${FILE}
 done
 ```
