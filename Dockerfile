@@ -6,6 +6,7 @@ ENV COMMON_PACKAGES \
     php8=8.0.3-r0 \
     php8-dev=8.0.3-r0 \
     php8-embed=8.0.3-r0 \
+    php8-pear=8.0.3-r0 \
     php8-bcmath=8.0.3-r0 \
     php8-dom=8.0.3-r0 \
     php8-ctype=8.0.3-r0 \
@@ -38,12 +39,15 @@ SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 RUN set -xe \
     && apk update \
     && apk add --no-cache --update ${COMMON_PACKAGES} \
+    && pecl8 install apcu \
+    && echo 'extension=apcu.so' >> /etc/php8/php.ini \
     && ln /usr/bin/php8 /usr/bin/php \
     && chmod +x /usr/local/bin/docker-entrypoint.sh \
     && wget -P /tmp -qO- "http://unit.nginx.org/download/unit-${UNIT_VERSION}.tar.gz" | tar xvz -C /tmp \
     && ./configure --prefix=/usr --modules=/usr/lib/unit/modules --control="unix:/var/run/control.unit.sock" --log=/dev/stdout --pid=/var/run/unit.pid \
     && ./configure php --module=php --config=/usr/bin/php-config8 --lib-path=/usr/lib/php8 \
     && make install \
+    && pecl8 clear-cache \
     && rm -rf /var/cache/apk/* /tmp/* /var/tmp/* \
     && addgroup -g 82 -S www-data \
     && adduser -u 82 -D -S -G www-data www-data
