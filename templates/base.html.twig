@@ -6,6 +6,14 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
 </head>
 <body>
     <ul>
@@ -13,5 +21,7 @@
         <li><b>symfony:</b> {{ symfony }}</li>
         <li><b>env:</b> {{ env }}</li>
     </ul>
+
+    <div data-controller="hello"></div>
 </body>
 </html>
