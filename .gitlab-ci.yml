@@ -14,12 +14,13 @@ cache:
         - vendor/
         - bin/.phpunit
         - var/cache
+        - public/build
 
 .before:
     before_script:
         - echo "APP_SECRET=$(tr -dc A-Za-z0-9 < /dev/urandom | head -c 32)" >> .env
 
-build:
+build-php:
     image: composer:2.0.11
     extends: .before
     stage: build
@@ -28,9 +29,17 @@ build:
         - composer dump-autoload --optimize --classmap-authoritative
         - composer check-platform-reqs
 
-codestyle:
+build-js:
+    image: node:15.11.0-alpine3.13
     extends: .before
+    stage: build
+    script:
+        - yarn install
+        - yarn build
+
+codestyle:
     stage: test
+    extends: .before
     script:
         - php -d memory_limit=-1 ./bin/console cache:warmup --env=dev
         - php -d memory_limit=-1 ./vendor/bin/phpcs --standard=phpcs.xml
