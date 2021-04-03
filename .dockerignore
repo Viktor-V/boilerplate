@@ -5,6 +5,8 @@ var/
 vendor/
 .git/
 .idea/
+node_modules/
+public/build/
 bin/phpunit
 .dockerignore
 .editorconfig

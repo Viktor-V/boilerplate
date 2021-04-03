@@ -1,16 +1,48 @@
 {
     "listeners": {
         "*:80": {
-            "application": "symfony"
+            "pass": "routes/symfony"
         }
     },
+
+    "routes": {
+        "symfony": [
+            {
+                "match": {
+                    "uri": [
+                        "*.php",
+                        "*.php/*"
+                    ]
+                },
+
+                "action": {
+                    "pass": "applications/symfony/direct"
+                }
+            },
+            {
+                "action": {
+                    "share": "/var/www/html/public/",
+                    "fallback": {
+                        "pass": "applications/symfony/index"
+                    }
+                }
+            }
+        ]
+    },
+
     "applications": {
         "symfony": {
             "type": "php",
-            "root": "/var/www/html/public/",
-            "script": "index.php",
-            "user": "www-data",
-            "group": "www-data"
+            "targets": {
+                "direct": {
+                    "root": "/var/www/html/public/"
+                },
+
+                "index": {
+                    "root": "/var/www/html/public/",
+                    "script": "index.php"
+                }
+            }
         }
     }
 }

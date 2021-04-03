@@ -71,6 +71,15 @@ RUN set -ex \
     && composer dump-autoload --optimize --classmap-authoritative \
     && composer check-platform-reqs
 
+# Install node modules
+FROM node:15.11.0-alpine3.13 as node
+
+WORKDIR /home/node/app
+
+COPY assets /home/node/app/assets
+COPY yarn.lock webpack.config.js package.json /home/node/app/
+RUN yarn install && yarn build
+
 # Dev environment
 FROM build as dev
 
@@ -80,6 +89,7 @@ WORKDIR /var/www/html
 
 COPY unit.conf.json /docker-entrypoint.d/unit.conf.json
 COPY --from=vendor /app/vendor/ vendor
+COPY --from=node /home/node/app/public/build/ public/build
 COPY . .
 
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
@@ -91,4 +101,7 @@ RUN set -ex \
 
 # Prod environment
 FROM dev as prod
+
+RUN rm -rf webpack.config.js package.json yarn.lock assets
+
 EXPOSE 80
