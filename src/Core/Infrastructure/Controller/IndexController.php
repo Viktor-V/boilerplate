@@ -15,7 +15,7 @@ class IndexController extends AbstractController
     #[Route(path: '/', name: RouteName::HOMEPAGE)]
     public function __invoke(): Response
     {
-        return $this->render('base.html.twig', [
+        return $this->render('core/home.html.twig', [
             'php' => PHP_VERSION,
             'symfony' => BaseKernel::VERSION,
             'env' => $_SERVER['APP_ENV']
