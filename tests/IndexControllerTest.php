@@ -16,8 +16,8 @@ class IndexControllerTest extends WebTestCase
 
         self::assertEquals(200, $client->getResponse()->getStatusCode());
 
-        self::assertSelectorTextContains('li:nth-child(1)', PHP_VERSION);
-        self::assertSelectorTextContains('li:nth-child(2)', BaseKernel::VERSION);
-        self::assertSelectorTextContains('li:nth-child(3)', $_SERVER['APP_ENV']);
+        self::assertSelectorTextContains('#php', PHP_VERSION);
+        self::assertSelectorTextContains('#symfony', BaseKernel::VERSION);
+        self::assertSelectorTextContains('#env', $_SERVER['APP_ENV']);
     }
 }
