@@ -12,11 +12,11 @@ class TranslationExtension extends AbstractExtension
     public function getFunctions()
     {
         return [
-            new TwigFunction('_', static function (string $message) {
+            new TwigFunction('_', static function (string $message): string {
                 return _($message);
             }),
 
-            new TwigFunction('__', static function (string $message, mixed ...$values) {
+            new TwigFunction('__', static function (string $message, mixed ...$values): string {
                 return __($message, $values);
             }),
         ];
