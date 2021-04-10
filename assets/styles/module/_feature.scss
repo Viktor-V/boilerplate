@@ -1,0 +1,27 @@
+.feature-list {
+    .row {
+        @extend .pt-4;
+        @extend .pb-4;
+    }
+
+    .feature {
+        @extend .col-md-4;
+        @extend .mt-3;
+        @extend .d-flex;
+
+        .feature-icon {
+            @extend .icon-square;
+            @extend .bg-primary;
+            @extend .bg-gradient;
+            @extend .text-white;
+            @extend .flex-shrink-0;
+            @extend .me-3;
+        }
+
+        h3 {
+            @extend .mt-2;
+            @extend .mb-2;
+            @extend .text-uppercase;
+        }
+    }
+}

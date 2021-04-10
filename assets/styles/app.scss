@@ -1,1 +1,13 @@
 @import "~bootstrap";
+
+@import "component/noscript";
+@import "component/header";
+@import "component/footer";
+
+@import "module/icon";
+@import "module/feature";
+
+main {
+    @extend .container;
+    @extend .py-4;
+}

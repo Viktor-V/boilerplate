@@ -1,0 +1,21 @@
+header {
+    @extend .pb-3;
+    @extend .mb-4;
+    @extend .border-bottom;
+
+    .brand {
+        @extend .d-flex;
+        @extend .m-0;
+
+        .link {
+            @extend .d-flex;
+            @extend .align-items-center;
+            @extend .text-dark;
+            @extend .text-decoration-none;
+
+            strong {
+                @extend .fs-4;
+            }
+        }
+    }
+}
