@@ -2,24 +2,50 @@
 
 {% block title %}Symfony {{ symfony }}{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+
+    <style>
+        .icon-square {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 3rem;
+            height: 3rem;
+            font-size: 1.5rem;
+            border-radius: .75rem;
+        }
+    </style>
+{% endblock %}
+
 {% block main %}
-    <div class="p-5 mb-4 bg-gray border">
-        <div class="container-fluid py-5">
-            <h1 id="symfony" class="display-5 fw-bold text-uppercase text-center">Symfony {{ symfony }}</h1>
-        </div>
-    </div>
-
-    <div class="row align-items-md-stretch">
-        <div class="col-lg-6 mb-4">
-            <div class="h-100 p-5 text-white bg-dark">
-                <h2 id="php" class="text-uppercase text-center">Php {{ php }}</h2>
-            </div>
+    <div class="row pb-4 pt-4">
+        <div class="col-12">
+            <h2 class="text-bold">{{ _('The coolest boilerplate built with best practices!') }}</h2>
         </div>
 
-        <div class="col-lg-6 mb-4">
-            <div class="h-100 p-5 bg-light border">
-                <h2 id="env" class="text-uppercase text-center">Environment {{ env }}</h2>
+        <div class="col-md-4 d-flex mt-3">
+            <div class="icon-square bg-primary bg-gradient text-white flex-shrink-0 me-3">
+                <i class="fab fa-symfony"></i>
             </div>
+
+            <h3 id="symfony" class="mt-2">{{ symfony }}</h3>
+        </div>
+
+        <div class="col-md-4 d-flex mt-3">
+            <div class="icon-square bg-primary bg-gradient text-white flex-shrink-0 me-3">
+                <i class="fab fa-php"></i>
+            </div>
+
+            <h3 id="php" class="mt-2">{{ php }}</h3>
+        </div>
+
+        <div class="col-md-4 d-flex mt-3">
+            <div class="icon-square bg-primary bg-gradient text-white flex-shrink-0 me-3">
+                <i class="fas fa-wrench"></i>
+            </div>
+
+            <h3 id="env" class="mt-2">{{ env }}</h3>
         </div>
     </div>
 {% endblock %}
