@@ -8,15 +8,6 @@ use App\ModuleInterface;
 
 final class CoreModule implements ModuleInterface
 {
-    private const MODULE_NAME = 'core';
-
-    public function name(): string
-    {
-        return self::MODULE_NAME;
-    }
-
-    public function enabled(): bool
-    {
-        return true;
-    }
+    public const NAME = 'core';
+    public const ENABLED = true;
 }

@@ -56,11 +56,10 @@ final class BaseKernel extends Kernel
         $contents = require $this->getProjectDir() . '/config/modules.php';
 
         $modules = [];
-        foreach ($contents as $class) {
-            /** @var ModuleInterface $module */
-            $module = new $class();
-            if ($module->enabled()) {
-                $modules[] = $module->name();
+        /** @var ModuleInterface $module */
+        foreach ($contents as $module) {
+            if ($module::ENABLED) {
+                $modules[] = $module::NAME;
             }
         }
 
