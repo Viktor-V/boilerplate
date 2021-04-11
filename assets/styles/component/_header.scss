@@ -2,14 +2,18 @@ header {
     @extend .pb-3;
     @extend .mb-4;
     @extend .border-bottom;
+    @extend .d-flex;
+    @extend .flex-column;
+    @extend .flex-md-row;
+    @extend .align-items-sm-center;
 
     .brand {
-        @extend .d-flex;
         @extend .m-0;
+        @extend .d-flex;
+        @extend .align-items-center;
 
         .link {
             @extend .d-flex;
-            @extend .align-items-center;
             @extend .text-dark;
             @extend .text-decoration-none;
 
@@ -17,5 +21,31 @@ header {
                 @extend .fs-4;
             }
         }
+    }
+
+    .menu {
+        @extend .mt-2;
+        @extend .mt-md-0;
+        @extend .ms-md-auto;
+        @extend .d-sm-inline-flex;
+        @extend .nav;
+        @extend .nav-pills;
+
+        .menu-item {
+            width: 100%;
+            @extend .nav-item;
+            @extend .d-block;
+            @extend .d-sm-inline;
+
+            .menu-link {
+                @extend .nav-link;
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    .menu .menu-item {
+        width: auto !important;
     }
 }
