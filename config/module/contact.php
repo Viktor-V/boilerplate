@@ -15,6 +15,10 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $services->load('App\Contact\\', __DIR__ . '/../../src/Contact/');
 
-    $services->load('App\Contact\Infrastructure\Controller\\', __DIR__ . '/../../src/Contact/Infrastructure/Controller/')
+    $services
+        ->load(
+            'App\Contact\Infrastructure\Controller\\',
+            __DIR__ . '/../../src/Contact/Infrastructure/Controller/'
+        )
         ->tag('controller.service_arguments');
 };
