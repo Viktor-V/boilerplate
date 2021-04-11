@@ -6,4 +6,6 @@ namespace App;
 
 interface ModuleInterface
 {
+    public function name(): string;
+    public function enabled(): bool;
 }

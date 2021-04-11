@@ -21,6 +21,7 @@ parameters:
 
     excludePaths:
     		- config/bundles.php
+    		- config/modules.php
     		- src/ModuleInterface.php
     		- src/Core/Infrastructure/Twig/TranslationExtension.php
     		- src/helpers.php
