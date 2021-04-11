@@ -1,4 +1,4 @@
-image: composer:2.0.11
+image: php:8.0.3-cli-alpine3.12
 
 stages:
     - build
@@ -12,20 +12,22 @@ cache:
     key: ${CI_COMMIT_REF_SLUG}
     paths:
         - .env
+        - composer.phar
         - vendor/
         - bin/.phpunit
         - var/cache
         - public/build
 
 before_script:
-    - composer install --ignore-platform-reqs --no-ansi --no-interaction --no-scripts
+    - curl --show-error --silent "https://getcomposer.org/installer" | php
+    - php composer.phar install --ignore-platform-reqs --no-ansi --no-interaction --no-scripts
     - echo "APP_SECRET=$(tr -dc A-Za-z0-9 < /dev/urandom | head -c 32)" >> .env
 
 build-php:
     stage: build
     script:
-        - composer dump-autoload --optimize --classmap-authoritative
-        - composer check-platform-reqs
+        - php composer.phar dump-autoload --optimize --classmap-authoritative
+        - php composer.phar check-platform-reqs
 
 build-js:
     image: node:15.11.0-alpine3.13
