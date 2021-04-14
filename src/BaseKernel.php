@@ -44,7 +44,10 @@ final class BaseKernel extends Kernel
         $routes->import('../config/routes.php');
 
         foreach ($this->enabledModules() as $module) {
-            $routes->import('../config/module/routes/' . $module . '.php');
+            $path = '../config/module/routes/' . $module . '.php';
+            if (is_file($path)) {
+                $routes->import($path);
+            }
         }
     }
 
