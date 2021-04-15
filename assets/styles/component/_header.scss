@@ -42,10 +42,44 @@ header {
             }
         }
     }
+
+    .dropdown-group {
+        width: 100%;
+        @extend .btn-group;
+        @extend .mt-2;
+        @extend .mt-sm-0;
+        @extend .ms-sm-2;
+
+        .dropdown-label {
+            width: 50%;
+            @extend .btn;
+            @extend .btn-outline-primary;
+        }
+
+        .dropdown-btn {
+            width: 50%;
+            @extend .btn;
+            @extend .btn-primary;
+        }
+
+        .dropdown-menu {
+            width: 100%;
+            right: 0;
+            @extend .mt-1;
+            @extend .dropdown-menu;
+        }
+    }
 }
 
 @include media-breakpoint-up(sm) {
-    .menu .menu-item {
+    header .menu .menu-item {
+        width: auto !important;
+    }
+
+    header .dropdown-group,
+    header .dropdown-group .dropdown-label,
+    header .dropdown-group .dropdown-btn,
+    header .dropdown-group .dropdown-menu {
         width: auto !important;
     }
 }

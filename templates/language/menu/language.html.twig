@@ -1,0 +1,19 @@
+{% if constant('App\\Language\\LanguageModule::ENABLED') %}
+    <div class="dropdown-group" data-controller="dropdown">
+        <button type="button" class="dropdown-label" disabled>
+            {{ currentLanguageName(app.request) }}
+        </button>
+
+        <button type="button" class="dropdown-btn dropdown-toggle dropdown-toggle-split" data-action="click->dropdown#toggle">
+            <span class="visually-hidden">{{ _('Toggle Dropdown') }}</span>
+        </button>
+
+        <ul class="dropdown-menu" data-dropdown-target="toggleable">
+            {% for code, locale in languageData() %}
+                <li>
+                    <a class="dropdown-item" href="{{ languagePath(app.request, code) }}">{{ locale['native'] }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}

@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Language\Infrastructure\Twig\LanguageExtension;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
@@ -30,4 +31,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->public();
 
     $services->load('App\Language\\', __DIR__ . '/../../src/Language/');
+    $services
+        ->set(LanguageExtension::class)
+        ->arg('$languageData', '%language.data%');
 };

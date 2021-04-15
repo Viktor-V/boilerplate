@@ -49,8 +49,8 @@ test:
     stage: test
     script:
         - php -d memory_limit=-1 ./bin/console cache:warmup --env=test
+        - php -d memory_limit=-1 ./vendor/bin/phpcpd --fuzzy src/ tests/ config/
         - php -d memory_limit=-1 ./bin/phpunit
-        - php -d memory_limit=-1 ./vendor/bin/phpstan analyse -c phpstan-tests.neon --no-progress
 
 deploy:
     image: docker/compose

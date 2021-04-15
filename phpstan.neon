@@ -20,8 +20,7 @@ parameters:
     level: max
 
     excludePaths:
-    		- config/bundles.php
-    		- config/modules.php
+    		- config
     		- src/ModuleInterface.php
     		- src/Core/Infrastructure/Twig/TranslationExtension.php
     		- src/helpers.php
