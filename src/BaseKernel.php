@@ -21,16 +21,16 @@ final class BaseKernel extends Kernel
 
     protected function configureContainer(ContainerConfigurator $container): void
     {
-        $container->import('../config/{packages}/*.php');
-        $container->import('../config/{packages}/' . $this->environment . '/*.php');
+        $container->import($this->getProjectDir() . '/config/{packages}/*.php');
+        $container->import($this->getProjectDir() . '/config/{packages}/' . $this->environment . '/*.php');
 
-        $container->import('../config/services.php');
-        $container->import('../config/{services}_' . $this->environment . '.php');
+        $container->import($this->getProjectDir() . '/config/services.php');
+        $container->import($this->getProjectDir() . '/config/{services}_' . $this->environment . '.php');
 
         foreach ($this->enabledModules() as $module) {
-            $container->import('../config/module/' . $module . '.php');
+            $container->import($this->getProjectDir() . '/config/module/' . $module . '.php');
 
-            $path = '../config/module/' . $this->environment . '/' . $module . '.php';
+            $path = $this->getProjectDir() . '/config/module/' . $this->environment . '/' . $module . '.php';
             if (is_file($path)) {
                 $container->import($path);
             }
@@ -39,14 +39,17 @@ final class BaseKernel extends Kernel
 
     protected function configureRoutes(RoutingConfigurator $routes): void
     {
-        $routes->import('../config/{routes}/' . $this->environment . '/*.php');
-        $routes->import('../config/{routes}/*.php');
+        $routes->import($this->getProjectDir() . '/config/{routes}/' . $this->environment . '/*.php');
+        $routes->import($this->getProjectDir() . '/config/{routes}/*.php');
 
-        $routes->import('../config/routes.php');
+        $routes->import($this->getProjectDir() . '/config/routes.php');
 
         foreach ($this->enabledModules() as $module) {
-            $path = '../config/module/routes/' . $module . '.php';
-            $routes->import($path);
+            $path = $this->getProjectDir() . '/config/module/routes/' . $module . '.php';
+
+            if (is_file($path)) {
+                $routes->import($path);
+            }
         }
     }
 
