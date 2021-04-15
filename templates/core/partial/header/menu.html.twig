@@ -17,5 +17,7 @@
         </li>
     {% endif %}
 
-    {% include 'language/menu/language.html.twig' %}
+    {% if constant('App\\Language\\LanguageModule::ENABLED') %}
+        {% include 'language/menu/language.html.twig' %}
+    {% endif %}
 </ul>

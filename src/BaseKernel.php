@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpKernel\Kernel;
+use Throwable;
 
 final class BaseKernel extends Kernel
 {
@@ -45,9 +46,7 @@ final class BaseKernel extends Kernel
 
         foreach ($this->enabledModules() as $module) {
             $path = '../config/module/routes/' . $module . '.php';
-            if (is_file($path)) {
-                $routes->import($path);
-            }
+            $routes->import($path);
         }
     }
 

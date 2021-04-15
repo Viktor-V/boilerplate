@@ -12,7 +12,7 @@ class IndexControllerTest extends WebTestCase
     public function testIndex(): void
     {
         $client = static::createClient();
-        $client->request('GET', '/');
+        $client->request('GET', '/' . $client->getContainer()->getParameter('language.default') . '/');
 
         self::assertEquals(200, $client->getResponse()->getStatusCode());
 
