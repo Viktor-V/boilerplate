@@ -14,6 +14,7 @@ services:
             - "traefik.enable=true"
             - "traefik.http.routers.web.entryPoints=websecure"
             - "traefik.http.routers.web.rule=Host(`${DOMAIN}`)"
+            - "traefik.http.routers.web.middlewares=basic-auth@file" # dont forget remove this after app will be ready for prod
         networks:
             - proxy
 
