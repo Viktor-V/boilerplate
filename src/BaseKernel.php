@@ -8,7 +8,6 @@ use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpKernel\Kernel;
-use Throwable;
 
 final class BaseKernel extends Kernel
 {
@@ -28,9 +27,9 @@ final class BaseKernel extends Kernel
         $container->import($this->getProjectDir() . '/config/{services}_' . $this->environment . '.php');
 
         foreach ($this->enabledModules() as $module) {
-            $container->import($this->getProjectDir() . '/config/module/' . $module . '.php');
+            $container->import($this->getProjectDir() . '/config/modules/' . $module . '.php');
 
-            $path = $this->getProjectDir() . '/config/module/' . $this->environment . '/' . $module . '.php';
+            $path = $this->getProjectDir() . '/config/modules/' . $this->environment . '/' . $module . '.php';
             if (is_file($path)) {
                 $container->import($path);
             }
@@ -45,7 +44,7 @@ final class BaseKernel extends Kernel
         $routes->import($this->getProjectDir() . '/config/routes.php');
 
         foreach ($this->enabledModules() as $module) {
-            $path = $this->getProjectDir() . '/config/module/routes/' . $module . '.php';
+            $path = $this->getProjectDir() . '/config/modules/routes/' . $module . '.php';
 
             if (is_file($path)) {
                 $routes->import($path);

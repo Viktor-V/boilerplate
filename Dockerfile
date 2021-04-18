@@ -46,9 +46,13 @@ ARG ENVIRONMENT
 
 WORKDIR /var/www/html
 
+COPY bin/console bin/console
+COPY config config
+COPY public public
+COPY src src
+COPY templates templates
 COPY --from=vendor /app/vendor/ vendor
 COPY --from=node /home/node/app/public/build/ public/build
-COPY . .
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN set -ex \
@@ -60,6 +64,14 @@ RUN set -ex \
 # Prod environment
 FROM dev as prod
 
-RUN rm -rf webpack.config.js package.json yarn.lock assets
+RUN rm -rf \
+    config/packages/dev \
+    config/packages/test \
+    config/routes/dev \
+    config/routes/test \
+    config/modules/dev \
+    config/modules/test \
+    config/modules/routes/dev \
+    config/modules/routes/test
 
 EXPOSE 80
