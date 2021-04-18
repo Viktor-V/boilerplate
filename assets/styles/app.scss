@@ -9,6 +9,6 @@
 @import "module/feature";
 
 main {
-    @extend .container;
+    @extend .container-xl;
     @extend .py-4;
 }
