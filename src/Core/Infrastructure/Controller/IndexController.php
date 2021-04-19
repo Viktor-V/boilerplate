@@ -12,7 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class IndexController extends AbstractController
 {
-    #[Route(path: '/', name: RouteName::HOMEPAGE)]
+    #[Route(path: null, name: RouteName::HOMEPAGE)]
     public function __invoke(): Response
     {
         return $this->render('core/home.html.twig', [

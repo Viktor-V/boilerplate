@@ -7,6 +7,10 @@
         </a>
     </li>
 
+    {% if constant('App\\Blog\\BlogModule::ENABLED') %}
+        {% include 'blog/menu/link.html.twig' %}
+    {% endif %}
+
     {% if constant('App\\Contact\\ContactModule::ENABLED') %}
         {% include 'contact/menu/link.html.twig' %}
     {% endif %}
