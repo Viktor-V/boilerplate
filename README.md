@@ -24,37 +24,7 @@ done
 docker-compose up -d
 ```
 
-You are done and ready to create your best application.
-
-### Running command
-```bash
-docker exec web command
-```
-e.g.
-```bash
-docker exec web composer install
-```
-
-Execute command without running image
-```bash
-docker run --rm --interactive --tty --volume ${PWD}:/var/www/html -w /var/www/html boilerplate:latest command
-```
-
-### Utils
-Reset PHP workers in the container (to reload your PHP source code)
-```bash
-docker exec web rr -c .rr.dev.yaml http:reset
-```
-Show PHP workers' status
-```bash
-docker exec web rr -c .rr.dev.yaml http:workers -i
-```
-
-### Auto-Reloading
-Auto reloading is enabled by default. RoadRunner detects PHP file changes and reload connected services.
-To turn off this feature, remove the `reload` section in .rr.dev.yaml.
-
-See: [Roadrunner: Auto-Reloading](https://roadrunner.dev/docs/beep-beep-reload)
+You are done and ready to create your best application. Visit [http://localhost](http://localhost)
 
 ## Prod environment
 
@@ -62,18 +32,12 @@ See: [Roadrunner: Auto-Reloading](https://roadrunner.dev/docs/beep-beep-reload)
 
 #### Step 2 - Bind a domain name with an ip
 
-#### Step 3 - Get gitlab runner registration token
-1. Go to https://gitlab.com/username/repository/-/settings/ci_cd
-2. Expand runners
-3. Copy registration token
-   ![Registration token](screenshots/gitlab-registration-token.png)
-
-#### Step 4 - SHH into your server
+#### Step 3 - SHH into your server
 ```bash
 ssh username@server-ip
 ```
 
-#### Step 5 - Install docker using the repository
+#### Step 4 - Install docker
 Update the apt package index and install packages to allow apt to use a repository over HTTPS:
 ```bash
 sudo apt-get update
@@ -111,13 +75,13 @@ sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io
 ```
 
-#### Step 6 - Install docker-compose
+#### Step 5 - Install docker-compose
 ```bash
 sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 ```
 
-#### Step 7 - Manage Docker as a non-root user
+#### Step 6 - Manage Docker as a non-root user
 Create the docker group
 ```bash
 sudo groupadd docker
@@ -131,7 +95,7 @@ Log out and log back in so that your group membership is re-evaluated. Or you ca
 newgrp docker
 ```
 
-#### Step 8 - Install GitLab Runner
+#### Step 7 - Install GitLab Runner
 ```bash
 curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh | sudo bash
 sudo apt-get install gitlab-runner
@@ -142,6 +106,12 @@ Add gitlab-runner user to docker group:
 sudo usermod -aG docker gitlab-runner
 ```
 
+#### Step 8 - Get gitlab runner registration token
+1. Go to https://gitlab.com/username/repository/-/settings/ci_cd
+2. Expand runners
+3. Copy registration token
+   ![Registration token](screenshots/gitlab-registration-token.png)
+
 #### Step 9 - Register a pipeline
 To register a pipeline, run the following command (where **REGISTRATION_TOKEN** paste token from step 1):
 ```bash
@@ -149,33 +119,18 @@ sudo gitlab-runner register -n \
   --url https://gitlab.com/ \
   --registration-token REGISTRATION_TOKEN \
   --executor docker \
-  --docker-image makeitlv/php:8.0.0 \
+  --docker-image alpine:latest \
   --docker-volumes "/var/run/docker.sock:/var/run/docker.sock" "/cache"
 ```
 
-#### Step 10 - Check CPU threads
-```bash
- echo "$(grep -c processor /proc/cpuinfo)"
-```
-
-#### Step 11 - Change numWorkers to count of CPU threads
-```yaml
-http:
-    ...
-    workers:
-        ...
-        pool:
-            numWorkers: COUNT_OF_CPU_THREADS
-```
-
-#### Step 12 - Clone reverse-proxy and run it
+#### Step 10 - Clone reverse-proxy and run it
 ```bash
 git clone git@gitlab.com:makeitlv/reverse-proxy.git
 docker network create proxy
 DOMAIN=monitor.example.com EMAIL=your@email.com docker-compose -f ./reverse-proxy/docker-compose.yml up -d
 ```
 
-#### Step 13 - Deploy changes to prod
+#### Step 11 - Deploy changes to prod
 1. Commit and push changes
 ```bash
 git checkout master
@@ -183,12 +138,12 @@ git add .
 git commit -m "Prod"
 git push origin prod
 ```
-2. Go to https://gitlab.com/username/repository/-/pipelines 
+2. Go to https://gitlab.com/username/repository/-/pipelines
 3. Click on deploy manual
 4. Set DOMAIN variable - boilerplate.example.com
 ![Deploy manual](screenshots/gitlab-deploy-manual.png)
 
-## Troubleshooting
+### Troubleshooting
 If website is not started check that application and traefik are running:
 ```bash
 docker ps
@@ -196,6 +151,7 @@ docker ps
 
 If they are running check logs:
 ```bash
+docker logs web
 docker logs traefik
 ```
 
@@ -203,4 +159,17 @@ If there are no errors, the most key may be that need to restart traefik:
 ```bash
 docker stop traefik
 DOMAIN=monitor.example.com EMAIL=your@email.com docker-compose -f ./reverse-proxy/docker-compose.yml up -d
+```
+
+## Helpful
+Create aliases to be able to run commands as `php`, `composer`, `node`, etc.
+
+```bash
+alias php='docker run -it --rm -v $(pwd):/directory -w /directory -u $(id -u):$(id -g) php:8.0.3-cli-alpine3.13 php'
+alias composer='docker run -it --rm -v $(pwd):/directory -w /directory -u $(id -u):$(id -g) composer:2.0.11 composer'
+alias phpunit='docker run -it --rm -v $(pwd):/directory -w /directory -u $(id -u):$(id -g) composer:2.0.11 php bin/phpunit'
+
+alias node='docker run -it --rm -v $(pwd):/directory -w /directory -u $(id -u):$(id -g) node:15.11.0-alpine3.13 node'
+alias npm='docker run -it --rm -v $(pwd):/directory -w /directory -u $(id -u):$(id -g) node:15.11.0-alpine3.13 npm'
+alias yarn='docker run -it --rm -v $(pwd):/directory -w /directory -u $(id -u):$(id -g) node:15.11.0-alpine3.13 yarn'
 ```
