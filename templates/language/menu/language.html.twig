@@ -1,5 +1,5 @@
 <li class="menu-language-item">
-    {% for code, locale in languageData() %}
+    {% for code, locale in languages() %}
         <a class="menu-link" href="{{ languagePath(app.request, code) }}">{{ code }}</a>
     {% endfor %}
 </li>

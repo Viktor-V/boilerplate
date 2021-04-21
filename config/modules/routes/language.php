@@ -22,7 +22,7 @@ return static function (RoutingConfigurator $routingConfigurator): void {
                     'annotation'
                 )
                 ->prefix('/{_locale}')
-                ->requirements(['_locale' => '%language.locale%'])
+                ->requirements(['_locale' => '%language.locales%'])
                 ->defaults(['_locale' => '%language.default%']);
         }
     }

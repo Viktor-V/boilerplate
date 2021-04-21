@@ -12,11 +12,11 @@ use Twig\TwigFunction;
 class LanguageExtension extends AbstractExtension
 {
     /**
-     * @param array<string, mixed> $languageData
+     * @param array<string, mixed> $languages
      */
     public function __construct(
         private UrlGeneratorInterface $generator,
-        private array $languageData
+        private array $languages,
     ) {
     }
 
@@ -25,7 +25,7 @@ class LanguageExtension extends AbstractExtension
         return [
             new TwigFunction('languagePath', [$this, 'languagePath']),
             new TwigFunction('currentLanguageName', [$this, 'currentLanguageName']),
-            new TwigFunction('languageData', [$this, 'languageData']),
+            new TwigFunction('languages', [$this, 'languages']),
         ];
     }
 
@@ -45,14 +45,14 @@ class LanguageExtension extends AbstractExtension
 
     public function currentLanguageName(Request $request): string
     {
-        return $this->languageData[$request->getLocale()]['native'];
+        return $this->languages[$request->getLocale()]['native'];
     }
 
     /**
      * @return array<string, mixed> $languageData
      */
-    public function languageData(): array
+    public function languages(): array
     {
-        return $this->languageData;
+        return $this->languages;
     }
 }
