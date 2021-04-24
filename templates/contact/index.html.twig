@@ -4,4 +4,8 @@
 
 {% block main %}
     <h4>{{ block('title') }}</h4>
+
+    {{ form_start(form) }}
+        <button type="submit" class="button">{{ _('Send Message') }}</button>
+    {{ form_end(form) }}
 {% endblock %}

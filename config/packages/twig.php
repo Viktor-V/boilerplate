@@ -9,6 +9,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         'default_path' => '%kernel.project_dir%/templates',
         'globals' => [
             'project' => '%project%'
-        ]
+        ],
+        'form_themes' => ['bootstrap_4_layout.html.twig']
     ]);
 };
