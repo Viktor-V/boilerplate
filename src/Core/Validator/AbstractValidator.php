@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Core\Validator;
 
+use App\Core\Validator\Contract\RuleInterface;
+use App\Core\Validator\Contract\ValidatorInterface;
 use Symfony\Component\Validator\Validation;
 
 abstract class AbstractValidator implements ValidatorInterface, RuleInterface
@@ -12,7 +14,7 @@ abstract class AbstractValidator implements ValidatorInterface, RuleInterface
     {
         $messages = Validation::createValidator()->validate($value, static::rules());
 
-        if ($messages->count()) {
+        if ($messages->count() !== 0) {
             throw ValidatorException::throwException($messages);
         }
 

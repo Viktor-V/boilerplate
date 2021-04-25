@@ -1,0 +1,27 @@
+.form-group {
+    @extend .mb-2;
+
+    label.required {
+        &:after {
+            @extend .ms-1;
+            content: '*';
+            color: $danger;
+        }
+    }
+
+    .invalid-feedback {
+        @extend .mt-1;
+
+        .form-error-icon {
+            @extend .me-1;
+        }
+    }
+
+    textarea.form-control {
+        min-height: 150px;
+    }
+
+    &:last-of-type {
+        @extend .mb-3;
+    }
+}

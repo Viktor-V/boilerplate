@@ -10,6 +10,9 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         'globals' => [
             'project' => '%project%'
         ],
-        'form_themes' => ['bootstrap_4_layout.html.twig']
+        'form_themes' => [
+            'bootstrap_4_layout.html.twig',
+            'core/form/bootstrap.html.twig'
+        ]
     ]);
 };

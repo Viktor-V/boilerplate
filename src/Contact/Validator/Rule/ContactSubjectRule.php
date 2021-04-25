@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Contact\Validator\Rule;
 
-use App\Core\Validator\RuleInterface;
+use App\Core\Validator\Contract\RuleInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 final class ContactSubjectRule implements RuleInterface
