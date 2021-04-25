@@ -2,12 +2,40 @@
 
 {% block title %}{{ _('Contact') }}{% endblock %}
 
+{%- block page_id -%}
+    {{ block('title')|lower }}
+{%- endblock -%}
+
 {% block main %}
-    <h4>{{ block('title') }}</h4>
+    <div class="row">
+        <div class="column-left">
+            <h2>{{ block('title') }}</h2>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
+            <h3>
+                <small class="text-muted">{{ _('Our team is happy to answer your questions. Fill out the form and we\'ll be in touch as soon as possible.') }}</small>
+            </h3>
 
-        <button type="submit" class="btn btn-primary">{{ _('Send Message') }}</button>
-    {{ form_end(form) }}
+            <div class="social">
+                <a href="{{ social.facebook }}" target="_blank" class="icon">
+                    <i class="fab fa-facebook-square"></i>
+                </a>
+
+                <a href="{{ social.instagram }}" target="_blank" class="icon">
+                    <i class="fab fa-instagram"></i>
+                </a>
+
+                <a href="{{ social.twitter }}" target="_blank" class="icon">
+                    <i class="fab fa-twitter"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="column-right">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+
+            <button type="submit" class="btn btn-primary">{{ _('Send Message') }}</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
 {% endblock %}

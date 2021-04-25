@@ -5,8 +5,20 @@ declare(strict_types=1);
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
-    $services = $containerConfigurator->services();
+    $parameters = $containerConfigurator->parameters();
+    $parameters->set('contact.social', [
+        'facebook' => 'https://facebook.com',
+        'instagram' => 'https://instagram.com',
+        'twitter' => 'https://twitter.com'
+    ]);
 
+    $containerConfigurator->extension('twig', [
+        'globals' => [
+            'social' => '%contact.social%'
+        ],
+    ]);
+
+    $services = $containerConfigurator->services();
     $services
         ->defaults()
         ->autowire()
@@ -14,7 +26,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->public();
 
     $services->load('App\Contact\\', __DIR__ . '/../../src/Contact/');
-
     $services
         ->load(
             'App\Contact\Infrastructure\Controller\\',
