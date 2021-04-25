@@ -40,10 +40,10 @@ final class ContactForm extends AbstractType
             'constraints' => ContactSubjectRule::rules()
         ]);
 
-       $builder->add('message', TextareaType::class, [
-           'label' => _('Message'),
-           'required' => true,
-           'constraints' => ContactMessageRule::rules()
-       ]);
+        $builder->add('message', TextareaType::class, [
+            'label' => _('Message'),
+            'required' => true,
+            'constraints' => ContactMessageRule::rules()
+        ]);
     }
 }
