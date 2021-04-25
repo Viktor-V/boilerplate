@@ -30,5 +30,6 @@ return static function (RoutingConfigurator $routingConfigurator): void {
     $routingConfigurator
         ->add('nolocale', '/')
         ->controller('Symfony\Bundle\FrameworkBundle\Controller\RedirectController::urlRedirectAction')
-        ->defaults(['path' => '/%language.default%']);
+        ->defaults(['path' => '/%language.default%'])
+        ->methods(['GET']);
 };

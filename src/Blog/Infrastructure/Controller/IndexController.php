@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class IndexController extends AbstractController
 {
-    #[Route(path: 'blog', name: RouteName::BLOG)]
+    #[Route(path: 'blog', name: RouteName::BLOG, methods: ['GET'])]
     public function __invoke(): Response
     {
         return $this->render('blog/index.html.twig');
