@@ -8,10 +8,12 @@ use App\Contact\Validator\Rule\ContactEmailRule;
 use App\Contact\Validator\Rule\ContactMessageRule;
 use App\Contact\Validator\Rule\ContactNameRule;
 use App\Contact\Validator\Rule\ContactSubjectRule;
+use App\Contact\ValueObject\ContactRequestData;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class ContactForm extends AbstractType
 {
@@ -22,10 +24,7 @@ final class ContactForm extends AbstractType
         $builder->add('name', TextType::class, [
             'label' => _('Name'),
             'required' => true,
-            'constraints' => ContactNameRule::rules(),
-            'attr' => [
-                'autofocus' => 'autofocus'
-            ]
+            'constraints' => ContactNameRule::rules()
         ]);
 
         $builder->add('email', TextType::class, [
@@ -44,6 +43,13 @@ final class ContactForm extends AbstractType
             'label' => _('Message'),
             'required' => true,
             'constraints' => ContactMessageRule::rules()
+        ]);
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' => ContactRequestData::class
         ]);
     }
 }

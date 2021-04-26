@@ -4,7 +4,12 @@ declare(strict_types=1);
 
 namespace App\Core\Validator\Contract;
 
+use Symfony\Component\Validator\Constraint;
+
 interface ValidatorInterface
 {
-    public static function validate(mixed $value): bool;
+    /**
+     * @param array<Constraint> $rules
+     */
+    public static function validate(mixed $value, array $rules): bool;
 }

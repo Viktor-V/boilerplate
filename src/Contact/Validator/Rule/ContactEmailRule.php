@@ -12,9 +12,14 @@ final class ContactEmailRule implements RuleInterface
 {
     public static function rules(): array
     {
+        $labelName = _('Email');
         return [
-            new NotBlank(),
-            new Email()
+            new NotBlank([
+                'message' => __('%s is a required value.', $labelName)
+            ]),
+            new Email([
+                'message' => __('%s is not a valid email address.', $labelName)
+            ])
         ];
     }
 }

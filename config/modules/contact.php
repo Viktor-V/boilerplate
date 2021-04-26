@@ -25,7 +25,9 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->autoconfigure()
         ->public();
 
-    $services->load('App\Contact\\', __DIR__ . '/../../src/Contact/');
+    $services
+        ->load('App\Contact\\', __DIR__ . '/../../src/Contact/')
+        ->exclude(__DIR__ . '/../../src/Contact/{Domain}');
     $services
         ->load(
             'App\Contact\Infrastructure\Controller\\',

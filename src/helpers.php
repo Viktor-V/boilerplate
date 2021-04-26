@@ -10,7 +10,7 @@ if (!function_exists('_')) {
 }
 
 if (!function_exists('__')) {
-    function __(string $message, array $values): string
+    function __(string $message, mixed ...$values): string
     {
         return sprintf($message, ...$values);
     }
