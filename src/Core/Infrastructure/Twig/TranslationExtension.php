@@ -17,7 +17,7 @@ class TranslationExtension extends AbstractExtension
             }),
 
             new TwigFunction('__', static function (string $message, mixed ...$values): string {
-                return __($message, $values);
+                return __($message, ...$values);
             }),
         ];
     }

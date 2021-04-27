@@ -13,9 +13,19 @@ use App\Contact\ValueObject\ContactRequestData;
 use App\Core\Adapter\Contract\HandlerInterface;
 use App\Core\Validator\ValidatorException;
 use App\Core\ValueObject\Contract\RequestDataInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
+use Symfony\Component\Mime\Email;
 
 final class ContactHandler implements HandlerInterface
 {
+    public function __construct(
+        private MailerInterface $mailer,
+        private string $support
+    ) {
+    }
+
     /**
      * @throws ValidatorException
      */
@@ -28,5 +38,20 @@ final class ContactHandler implements HandlerInterface
             new ContactSubjectField($requestData->subject),
             new ContactMessageField($requestData->message),
         );
+
+        $email = (new Email())
+            ->from(new Address((string) $contact->getEmail(), (string) $contact->getName()))
+            ->to($this->support)
+            ->subject((string) $contact->getSubject())
+            ->text((string) $contact->getMessage());
+
+        $confirmationEmail = (new TemplatedEmail())
+            ->to((string) $contact->getEmail())
+            ->subject(_('Request received'))
+            ->htmlTemplate('contact/mail/confirmation.html.twig')
+            ->context(['contact' => $contact]);
+
+        $this->mailer->send($email);
+        $this->mailer->send($confirmationEmail);
     }
 }

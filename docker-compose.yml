@@ -13,3 +13,9 @@ services:
             - ./:/var/www/html
         ports:
             - 80:80
+
+    mailhog:
+        image: mailhog/mailhog
+        ports:
+            - '1025:1025' # smtp server
+            - '8025:8025' # web ui

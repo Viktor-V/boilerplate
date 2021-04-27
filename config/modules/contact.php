@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Contact\Adapter\ContactHandler;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
@@ -34,4 +35,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             __DIR__ . '/../../src/Contact/Infrastructure/Controller/'
         )
         ->tag('controller.service_arguments');
+
+    $services->set(ContactHandler::class)
+        ->arg('$support', '%core.mailer.email%');
 };
