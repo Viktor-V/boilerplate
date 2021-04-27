@@ -39,17 +39,20 @@ final class ContactHandler implements HandlerInterface
             new ContactMessageField($requestData->message),
         );
 
-        $email = (new Email())
-            ->from(new Address((string) $contact->getEmail(), (string) $contact->getName()))
-            ->to($this->support)
-            ->subject((string) $contact->getSubject())
-            ->text((string) $contact->getMessage());
+        $email = new Email();
+        $email->from(new Address((string) $contact->getEmail(), (string) $contact->getName()));
+        $email->to($this->support);
+        $email->subject((string) $contact->getSubject());
+        $email->text((string) $contact->getMessage());
 
-        $confirmationEmail = (new TemplatedEmail())
-            ->to((string) $contact->getEmail())
-            ->subject(_('Request received'))
-            ->htmlTemplate('contact/mail/confirmation.html.twig')
-            ->context(['contact' => $contact]);
+        $confirmationEmail = new TemplatedEmail();
+        $confirmationEmail->to((string) $contact->getEmail());
+
+        $subject = _('Request received');
+        $confirmationEmail->subject($subject);
+
+        $confirmationEmail->htmlTemplate('contact/mail/confirmation.html.twig');
+        $confirmationEmail->context(['contact' => $contact]);
 
         $this->mailer->send($email);
         $this->mailer->send($confirmationEmail);
