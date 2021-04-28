@@ -17,6 +17,9 @@ services:
             - "traefik.http.routers.web.middlewares=basic-auth@file" # dont forget remove this after app will be ready for prod
         networks:
             - proxy
+        environment:
+            - CORE_MAILER_DSN=${CORE_MAILER_DSN}
+            - CORE_MAILER_EMAIL=${CORE_MAILER_EMAIL}
 
 networks:
     proxy:
