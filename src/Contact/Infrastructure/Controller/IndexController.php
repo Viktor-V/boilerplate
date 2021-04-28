@@ -9,15 +9,23 @@ use App\Contact\RouteName;
 use App\Contact\Infrastructure\Form\ContactForm;
 use App\Contact\ValueObject\ContactRequestData;
 use App\Core\Validator\ValidatorException;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class IndexController extends AbstractController
 {
+    public function __construct(
+        private ContactHandler $handler,
+        private LoggerInterface $logger
+    ) {
+    }
+
     #[Route(path: 'contact', name: RouteName::CONTACT, methods: ['GET', 'POST'])]
-    public function __invoke(Request $request, ContactHandler $handler): Response
+    public function __invoke(Request $request): Response
     {
         $contactRequest = new ContactRequestData();
 
@@ -26,7 +34,7 @@ class IndexController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                $handler->handle($contactRequest);
+                $this->handler->handle($contactRequest);
 
                 $successMessage = _('We received your email and respond as soon as possible.');
 
@@ -35,6 +43,10 @@ class IndexController extends AbstractController
                 return $this->redirectToRoute(RouteName::CONTACT);
             } catch (ValidatorException $exception) {
                 $this->addFlash('danger', $exception->getMessage());
+            } catch (TransportExceptionInterface $e) {
+                $this->logger->error('System cannot send email. Reason: ' . $e->getMessage());
+
+                $this->addFlash('danger', _('For some reason email cannot be sent. Please, try again later.'));
             }
         }
 
