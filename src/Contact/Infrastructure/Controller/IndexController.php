@@ -43,10 +43,12 @@ class IndexController extends AbstractController
                 return $this->redirectToRoute(RouteName::CONTACT);
             } catch (ValidatorException $exception) {
                 $this->addFlash('danger', $exception->getMessage());
-            } catch (TransportExceptionInterface $e) {
-                $this->logger->error('System cannot send email. Reason: ' . $e->getMessage());
+            } catch (TransportExceptionInterface $exception) {
+                $this->logger->error('System cannot send email. Reason: ' . $exception->getMessage());
 
-                $this->addFlash('danger', _('For some reason email cannot be sent. Please, try again later.'));
+                $errorMessage = _('For some reason email cannot be sent. Please, try again later.');
+
+                $this->addFlash('danger', $errorMessage);
             }
         }
 
