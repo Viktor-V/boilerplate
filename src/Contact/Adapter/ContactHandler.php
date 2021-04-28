@@ -46,6 +46,7 @@ final class ContactHandler implements HandlerInterface
         $email->text((string) $contact->getMessage());
 
         $confirmationEmail = new TemplatedEmail();
+        $confirmationEmail->from($this->support);
         $confirmationEmail->to((string) $contact->getEmail());
 
         $subject = _('Request received');
