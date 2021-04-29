@@ -40,13 +40,12 @@ final class ContactHandler implements HandlerInterface
         );
 
         $email = new Email();
-        $email->from(new Address((string) $contact->getEmail(), (string) $contact->getName()));
+        $email->replyTo(new Address((string) $contact->getEmail(), (string) $contact->getName()));
         $email->to($this->support);
         $email->subject((string) $contact->getSubject());
         $email->text((string) $contact->getMessage());
 
         $confirmationEmail = new TemplatedEmail();
-        $confirmationEmail->from($this->support);
         $confirmationEmail->to((string) $contact->getEmail());
 
         $subject = _('Request received');

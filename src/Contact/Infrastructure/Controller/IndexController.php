@@ -36,7 +36,7 @@ class IndexController extends AbstractController
             try {
                 $this->handler->handle($contactRequest);
 
-                $successMessage = _('We received your email and respond as soon as possible.');
+                $successMessage = _('We received your email and will respond as soon as possible.');
 
                 $this->addFlash('success', $successMessage);
 
