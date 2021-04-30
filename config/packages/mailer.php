@@ -9,7 +9,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         'mailer' => [
             'dsn' => '%core.mailer.dsn%',
             'headers' => [
-                'from' => 'Support <%core.mailer.email%>',
+                'from' => '%project% ' . _('Support') . '<%core.mailer.email%>',
             ],
         ]
     ]);
