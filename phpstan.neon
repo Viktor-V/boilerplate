@@ -1,7 +1,23 @@
 includes:
     - vendor/phpstan/phpstan-strict-rules/rules.neon
     - vendor/phpstan/phpstan-symfony/extension.neon
-    - vendor/symplify/phpstan-rules/config/symplify-rules.neon
+
+    - vendor/symplify/phpstan-rules/config/static-rules.neon
+    - vendor/symplify/phpstan-rules/config/nette-rules.neon
+    - vendor/symplify/phpstan-rules/config/generic-rules.neon
+    - vendor/symplify/phpstan-rules/config/array-rules.neon
+    - vendor/symplify/phpstan-rules/config/forbidden-static-rules.neon
+    - vendor/symplify/phpstan-rules/config/doctrine-rules.neon
+    - vendor/symplify/phpstan-rules/config/size-rules.neon
+    - vendor/symplify/phpstan-rules/config/regex-rules.neon
+    - vendor/symplify/phpstan-rules/config/symfony-rules.neon
+    - vendor/symplify/phpstan-rules/config/test-rules.neon
+    - vendor/symplify/phpstan-rules/config/services-rules.neon
+    - vendor/symplify/phpstan-rules/config/naming-rules.neon
+    - vendor/symplify/phpstan-rules/config/string-to-constant-rules.neon
+    - vendor/symplify/phpstan-rules/config/configurable-rules.neon
+    - vendor/symplify/phpstan-rules/config/services/services.neon
+
     #- vendor/phpstan/phpstan-doctrine/extension.neon
     - phar://phpstan.phar/conf/bleedingEdge.neon
 
@@ -20,7 +36,11 @@ parameters:
     level: max
 
     excludePaths:
-    		- config
-    		- src/ModuleInterface.php
-    		- src/Core/Infrastructure/Twig/TranslationExtension.php
-    		- src/helpers.php
+        - config
+        - src/ModuleInterface.php
+        - src/Core/Infrastructure/Twig/TranslationExtension.php
+        - src/helpers.php
+
+    ignoreErrors:
+        - '#Method call on new expression is not allowed#'
+        - '#Use separate function calls with readable variable names#'

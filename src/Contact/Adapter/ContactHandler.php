@@ -14,6 +14,7 @@ use App\Core\Adapter\Contract\HandlerInterface;
 use App\Core\Validator\ValidatorException;
 use App\Core\ValueObject\Contract\RequestDataInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Mime\Email;
@@ -27,7 +28,7 @@ final class ContactHandler implements HandlerInterface
     }
 
     /**
-     * @throws ValidatorException
+     * @throws ValidatorException|TransportExceptionInterface
      */
     public function handle(RequestDataInterface $requestData): void
     {
@@ -39,22 +40,18 @@ final class ContactHandler implements HandlerInterface
             new ContactMessageField($requestData->message),
         );
 
-        $email = new Email();
-        $email->replyTo(new Address((string) $contact->getEmail(), (string) $contact->getName()));
-        $email->to($this->support);
-        $email->subject((string) $contact->getSubject());
-        $email->text((string) $contact->getMessage());
-
-        $confirmationEmail = new TemplatedEmail();
-        $confirmationEmail->to((string) $contact->getEmail());
-
-        $subject = _('Request received');
-        $confirmationEmail->subject($subject);
-
-        $confirmationEmail->htmlTemplate('contact/mail/confirmation.html.twig');
-        $confirmationEmail->context(['contact' => $contact]);
-
+        $email = (new Email())
+            ->replyTo(new Address((string) $contact->getEmail(), (string) $contact->getName()))
+            ->to($this->support)
+            ->subject((string) $contact->getSubject())
+            ->text((string) $contact->getMessage());
         $this->mailer->send($email);
+
+        $confirmationEmail = (new TemplatedEmail())
+            ->to((string) $contact->getEmail())
+            ->subject(_('Request received'))
+            ->htmlTemplate('contact/mail/confirmation.html.twig')
+            ->context(['contact' => $contact]);
         $this->mailer->send($confirmationEmail);
     }
 }

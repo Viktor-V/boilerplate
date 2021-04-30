@@ -6,9 +6,11 @@ namespace App\Contact\Domain\Field;
 
 use App\Contact\Validator\Rule\ContactEmailRule;
 use App\Core\Validator\Validator;
+use App\Core\Validator\ValidatorException;
 
 final class ContactEmailField
 {
+    /** @throws ValidatorException */
     public function __construct(
         private string|null $email
     ) {

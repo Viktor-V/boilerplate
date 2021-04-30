@@ -6,9 +6,11 @@ namespace App\Contact\Domain\Field;
 
 use App\Contact\Validator\Rule\ContactMessageRule;
 use App\Core\Validator\Validator;
+use App\Core\Validator\ValidatorException;
 
 final class ContactMessageField
 {
+    /** @throws ValidatorException */
     public function __construct(
         private string|null $message
     ) {

@@ -10,18 +10,21 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 final class ContactNameRule implements RuleInterface
 {
+    private const MIN_NAME_LENGTH = 2;
+
     public static function rules(): array
     {
-        $minLength = 2;
-
-        $labelName = _('Name');
         return [
             new NotBlank([
-                'message' => __('%s is a required value.', $labelName)
+                'message' => __('%s is a required value.', _('Name'))
             ]),
             new Length([
-                'min' => $minLength,
-                'minMessage' => __('%s is too short. It should have %s characters or more.', $labelName, $minLength)
+                'min' => self::MIN_NAME_LENGTH,
+                'minMessage' => __(
+                    '%s is too short. It should have %s characters or more.',
+                    _('Name'),
+                    self::MIN_NAME_LENGTH
+                )
             ])
         ];
     }
