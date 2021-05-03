@@ -54,11 +54,7 @@ test:
 
 deploy:
     image: docker/compose
-    before_script:
-        - >
-            if [ "$(docker ps -q -f name=consume)" ]; then
-                docker exec consume php bin/console messenger:stop-workers
-            fi
+    before_script: []
     services:
         - docker:dind
     stage: deploy

@@ -13,6 +13,9 @@ services:
             - ./:/var/www/html
         ports:
             - 80:80
+        depends_on:
+            - consume
+            - rabbitmq
 
     consume:
         image: boilerplate:latest

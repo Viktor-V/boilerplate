@@ -22,6 +22,7 @@ services:
             - CORE_MAILER_EMAIL=${CORE_MAILER_EMAIL}
             - CORE_TRANSPORT_DSN=${CORE_TRANSPORT_DSN}
         depends_on:
+            - consume
             - rabbitmq
 
     consume:
