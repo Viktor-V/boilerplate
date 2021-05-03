@@ -54,15 +54,15 @@ test:
 
 deploy:
     image: docker/compose
-    before_script: []
-    services:
-        - docker:dind
-    stage: deploy
-    script:
+    before_script:
         - >
             if [ "$(docker ps -q -f name=consume)" ]; then
                 docker exec consume php bin/console messenger:stop-workers
             fi
+    services:
+        - docker:dind
+    stage: deploy
+    script:
         - docker-compose -f docker-compose.prod.yml up -d --build
     only:
         - master
