@@ -1,16 +1,12 @@
+# PHP extension installer
+FROM mlocati/php-extension-installer:1.2.24 as extension-installer
+
 # Build php and nginx unit
 FROM docker.io/nginx/unit:1.22.0-php8.0 as build
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-RUN set -ex \
-    && apt-get update -qq \
-    && apt-get install --no-install-recommends -y libicu-dev=63.1-6+deb10u1 \
-    && rm -rf /var/lib/apt/lists/* \
-    && docker-php-ext-install opcache \
-    && pecl install apcu \
-    && docker-php-ext-enable apcu \
-    && docker-php-ext-configure intl \
-    && docker-php-ext-install intl
+COPY --from=extension-installer /usr/bin/install-php-extensions /usr/local/bin/
+RUN install-php-extensions opcache apcu intl amqp
 
 COPY unit.conf.json /docker-entrypoint.d/unit.conf.json
 

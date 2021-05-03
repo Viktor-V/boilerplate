@@ -20,6 +20,25 @@ services:
         environment:
             - CORE_MAILER_DSN=${CORE_MAILER_DSN}
             - CORE_MAILER_EMAIL=${CORE_MAILER_EMAIL}
+            - CORE_TRANSPORT_DSN=${CORE_TRANSPORT_DSN}
+        depends_on:
+            - rabbitmq
+
+    consume:
+        image: boilerplate:latest
+        container_name: consume
+        restart: always
+        entrypoint: php bin/console messenger:consume --limit=10 -vv
+
+    rabbitmq:
+        image: rabbitmq:3.8-management
+        container_name: rabbitmq
+        restart: always
+        environment:
+            - RABBITMQ_DEFAULT_USER=${TRANSPORT_USERNAME}
+            - RABBITMQ_DEFAULT_PASS=${TRANSPORT_PASSWORD}
+        ports:
+            - 5672:5672
 
 networks:
     proxy:
