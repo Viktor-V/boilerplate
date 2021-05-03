@@ -59,7 +59,10 @@ deploy:
         - docker:dind
     stage: deploy
     script:
-        - docker exec consume php bin/console messenger:stop-workers > /dev/null 2>&1
+        - >
+            if [ "$(docker ps -q -f name=consume)" ]; then
+                docker exec consume php bin/console messenger:stop-workers > /dev/null 2>&1
+            fi
         - docker-compose -f docker-compose.prod.yml up -d --build
     only:
         - master
