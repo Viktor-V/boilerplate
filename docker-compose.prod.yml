@@ -33,7 +33,9 @@ services:
     rabbitmq:
         image: rabbitmq:3.8-management
         container_name: rabbitmq
-        restart: always
+        volumes:
+            - ./.docker/rabbitmq/data/:/var/lib/rabbitmq/
+            - ./.docker/rabbitmq/logs/:/var/log/rabbitmq/
         environment:
             - RABBITMQ_DEFAULT_USER=${TRANSPORT_USERNAME}
             - RABBITMQ_DEFAULT_PASS=${TRANSPORT_PASSWORD}
