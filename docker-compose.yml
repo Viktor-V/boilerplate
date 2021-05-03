@@ -19,6 +19,7 @@ services:
 
     consume:
         image: boilerplate:latest
+        restart: always
         container_name: consume
         entrypoint: php bin/console messenger:consume --limit=10 -vv
 
