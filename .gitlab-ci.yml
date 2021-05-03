@@ -61,7 +61,7 @@ deploy:
     script:
         - >
             if [ "$(docker ps -q -f name=consume)" ]; then
-                docker exec consume php bin/console messenger:stop-workers > /dev/null 2>&1
+                docker exec consume php bin/console messenger:stop-workers
             fi
         - docker-compose -f docker-compose.prod.yml up -d --build
     only:
