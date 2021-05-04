@@ -18,11 +18,13 @@ use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Mime\Email;
+use Psr\Log\LoggerInterface;
 
 final class ContactHandler implements HandlerInterface
 {
     public function __construct(
         private MailerInterface $mailer,
+        private LoggerInterface $logger,
         private string $support
     ) {
     }
@@ -45,13 +47,27 @@ final class ContactHandler implements HandlerInterface
             ->to($this->support)
             ->subject((string) $contact->getSubject())
             ->text((string) $contact->getMessage());
-        $this->mailer->send($email);
+        try {
+            $this->mailer->send($email);
+        } catch (TransportExceptionInterface $exception) {
+            $this->logger->error('Cannot send email to support. Reason: ' . $exception->getMessage());
+
+            throw $exception;
+        }
 
         $confirmationEmail = (new TemplatedEmail())
             ->to((string) $contact->getEmail())
             ->subject(_('Request received'))
             ->htmlTemplate('contact/mail/confirmation.html.twig')
             ->context(['contact' => $contact]);
-        $this->mailer->send($confirmationEmail);
+        try {
+            $this->mailer->send($confirmationEmail);
+        } catch (TransportExceptionInterface $exception) {
+            $this->logger->error(
+                'Cannot send confirmation email to sender of mail. Reason: ' . $exception->getMessage()
+            );
+
+            throw $exception;
+        }
     }
 }
