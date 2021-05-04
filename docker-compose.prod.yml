@@ -29,6 +29,8 @@ services:
         restart: always
         entrypoint: php bin/console messenger:consume --limit=10 -vv
         environment:
+            - CORE_MAILER_DSN=${CORE_MAILER_DSN}
+            - CORE_MAILER_EMAIL=${CORE_MAILER_EMAIL}
             - CORE_TRANSPORT_DSN=${CORE_TRANSPORT_DSN}
         networks:
             - proxy
