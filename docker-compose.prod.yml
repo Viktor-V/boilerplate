@@ -28,6 +28,8 @@ services:
         container_name: worker
         restart: always
         entrypoint: php bin/console messenger:consume --limit=10 -vv
+        environment:
+            - CORE_TRANSPORT_DSN=${CORE_TRANSPORT_DSN}
         depends_on:
             - rabbitmq
 
