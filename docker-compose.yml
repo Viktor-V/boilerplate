@@ -14,25 +14,25 @@ services:
         ports:
             - 80:80
         depends_on:
-            - consume
             - rabbitmq
 
-    consume:
+    worker:
         image: boilerplate:latest
+        container_name: worker
         restart: always
-        container_name: consume
         entrypoint: php bin/console messenger:consume --limit=10 -vv
+        depends_on:
+            - rabbitmq
+
+    rabbitmq:
+        image: rabbitmq:3.8-management
+        container_name: rabbitmq
+        ports:
+            - 5672:5672 # dsn server
+            - 15672:15672 # web ui
 
     mailhog:
         image: mailhog/mailhog
         ports:
             - 1025:1025 # smtp server
             - 8025:8025 # web ui
-
-    rabbitmq:
-        image: rabbitmq:3.8-management
-        container_name: rabbitmq
-        hostname: rabbitmq
-        ports:
-            - 5672:5672 # dsn server
-            - 15672:15672 # web ui

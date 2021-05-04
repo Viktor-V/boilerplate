@@ -9,7 +9,6 @@ services:
             target: prod
             args:
                 - ENVIRONMENT=prod
-        restart: always
         labels:
             - "traefik.enable=true"
             - "traefik.http.routers.web.entryPoints=websecure"
@@ -22,25 +21,27 @@ services:
             - CORE_MAILER_EMAIL=${CORE_MAILER_EMAIL}
             - CORE_TRANSPORT_DSN=${CORE_TRANSPORT_DSN}
         depends_on:
-            - consume
             - rabbitmq
 
-    consume:
+    worker:
         image: boilerplate:latest
-        container_name: consume
+        container_name: worker
         restart: always
         entrypoint: php bin/console messenger:consume --limit=10 -vv
+        depends_on:
+            - rabbitmq
 
     rabbitmq:
         image: rabbitmq:3.8-management
         container_name: rabbitmq
-        hostname: rabbitmq
         volumes:
             - ./.docker/rabbitmq/data/:/var/lib/rabbitmq/
             - ./.docker/rabbitmq/logs/:/var/log/rabbitmq/
         environment:
             - RABBITMQ_DEFAULT_USER=${TRANSPORT_USERNAME}
             - RABBITMQ_DEFAULT_PASS=${TRANSPORT_PASSWORD}
+        networks:
+            - proxy
         ports:
             - 5672:5672
 
