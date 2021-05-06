@@ -38,6 +38,13 @@
     {%- if form_method != method -%}
         <input type="hidden" name="_method" value="{{ method }}" />
     {%- endif -%}
-    {%- endblock form_start -%}
+{%- endblock form_start -%}
+
+{%- block form_widget_compound -%}
+    <div {{ block('widget_container_attributes') }}>
+        {{- block('form_rows') -}}
+        {{- form_rest(form) -}}
+    </div>
+{%- endblock form_widget_compound -%}
 
 {% block form_label_errors %}{# empty #}{% endblock form_label_errors %}

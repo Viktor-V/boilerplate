@@ -30,11 +30,11 @@
             </div>
         </div>
 
+        {% set form = form.createView %}
         <div class="column-right">
             {{ form_start(form) }}
-            {{ form_widget(form) }}
-
-            <button type="submit" class="btn btn-primary">{{ _('Send Message') }}</button>
+                {{ form_widget(form) }}
+                <button type="submit" class="btn btn-primary">{{ _('Send Message') }}</button>
             {{ form_end(form) }}
         </div>
     </div>

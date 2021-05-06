@@ -13,10 +13,10 @@
     {% endfor %}
 {% endfor %}
 
-{% if errors is defined %}
-    {% for error in errors %}
+{% if form.errors is defined %}
+    {% for error in form.errors %}
         <div class="alert alert-danger alert-dismissible" role="alert" data-controller="close">
-            {{ error }}
+            {{ error.message }}
 
             <button type="button"
                     class="btn-close"
