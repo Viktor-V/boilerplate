@@ -14,7 +14,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $containerConfigurator->extension('framework', [
         'mailer' => [
-            'dsn' => '%core.mailer.dsn%',
+            'dsn' => param('core.mailer.dsn'),
             'headers' => [
                 'from' => $from
             ]

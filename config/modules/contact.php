@@ -38,5 +38,5 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->tag('controller.service_arguments');
 
     $services->set(ContactHandler::class)
-        ->arg('$support', param('%core.mailer.email%'));
+        ->arg('$support', param('core.mailer.email'));
 };
