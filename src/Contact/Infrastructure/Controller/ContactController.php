@@ -15,9 +15,9 @@ use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class IndexController extends AbstractController
+class ContactController extends AbstractController
 {
-    #[Route(path: 'contact', name: RouteName::CONTACT, methods: ['GET', 'POST'])]
+    #[Route(path: RouteName::CONTACT_PATH, name: RouteName::CONTACT, methods: ['GET', 'POST'])]
     public function __invoke(Request $request, ContactHandler $handler): Response
     {
         $form = $this

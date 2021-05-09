@@ -17,7 +17,7 @@ final class ContactEmailRule implements RuleInterface
                 'message' => __('%s is a required value.', _('Email'))
             ]),
             new Email([
-                'message' => __('%s is not a valid email address.', _('Email'))
+                'message' => _('Email is not valid.')
             ])
         ];
     }

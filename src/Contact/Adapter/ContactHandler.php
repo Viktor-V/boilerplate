@@ -19,6 +19,7 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Mime\Email;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\Mime\Message;
 
 final class ContactHandler implements HandlerInterface
 {
@@ -42,26 +43,28 @@ final class ContactHandler implements HandlerInterface
             new ContactMessageField($requestData->message),
         );
 
-        $email = (new Email())
-            ->replyTo(new Address((string) $contact->getEmail(), (string) $contact->getName()))
-            ->to($this->support)
-            ->subject((string) $contact->getSubject())
-            ->text((string) $contact->getMessage());
         try {
-            $this->mailer->send($email);
+            $this->mailer->send(
+                (new Email())
+                    ->replyTo(new Address((string) $contact->getEmail(), (string) $contact->getName()))
+                    ->to($this->support)
+                    ->subject((string) $contact->getSubject())
+                    ->text((string) $contact->getMessage())
+            );
         } catch (TransportExceptionInterface $exception) {
             $this->logger->error('Cannot send email to support. Reason: ' . $exception->getMessage());
 
             throw $exception;
         }
 
-        $confirmationEmail = (new TemplatedEmail())
-            ->to((string) $contact->getEmail())
-            ->subject(_('Request received'))
-            ->htmlTemplate('contact/mail/confirmation.html.twig')
-            ->context(['contact' => $contact]);
         try {
-            $this->mailer->send($confirmationEmail);
+            $this->mailer->send(
+                (new TemplatedEmail())
+                    ->to((string) $contact->getEmail())
+                    ->subject(_('Request received'))
+                    ->htmlTemplate('contact/mail/confirmation.html.twig')
+                    ->context(['contact' => $contact])
+            );
         } catch (TransportExceptionInterface $exception) {
             $this->logger->error(
                 'Cannot send confirmation email to sender of mail. Reason: ' . $exception->getMessage()
