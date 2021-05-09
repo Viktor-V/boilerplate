@@ -10,7 +10,9 @@ RUN set -ex \
     && pecl install apcu amqp-1.11.0beta \
     && docker-php-ext-enable apcu amqp \
     && docker-php-ext-configure intl \
-    && docker-php-ext-install intl
+    && docker-php-ext-install intl \
+    && docker-php-ext-install pdo pdo_mysql mysqli \
+    && docker-php-ext-enable mysqli
 
 COPY unit.conf.json /docker-entrypoint.d/unit.conf.json
 

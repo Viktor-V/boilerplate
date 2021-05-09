@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
+use Symfony\Component\Mailer\Messenger\SendEmailMessage;
+
 return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->extension(
         'framework',
         [
             'messenger' => [
-                //'failure_transport' => 'failed',
+                'failure_transport' => 'failed',
 
                 'transports' => [
                     'async' => [
@@ -19,13 +21,13 @@ return static function (ContainerConfigurator $containerConfigurator): void {
                         ]
                     ],
 
-                    /*'failed' => [
+                    'failed' => [
                         'dsn' => 'doctrine://default?queue_name=failed',
-                    ]*/
+                    ]
                 ],
 
                 'routing' => [
-                    \Symfony\Component\Mailer\Messenger\SendEmailMessage::class => 'async'
+                    SendEmailMessage::class => 'async'
                 ]
             ]
         ]
