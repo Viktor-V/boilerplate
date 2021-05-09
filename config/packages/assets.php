@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->extension('framework', [
         'assets' => [
-            'json_manifest_path' => '%kernel.project_dir%/public/build/manifest.json'
+            'json_manifest_path' => param('kernel.project_dir') . '/public/build/manifest.json'
         ]
     ]);
 };

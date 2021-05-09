@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->extension('twig', [
-        'default_path' => '%kernel.project_dir%/templates',
+        'default_path' => param('kernel.project_dir') . '/templates',
         'globals' => [
-            'project' => '%project%'
+            'project' => param('project')
         ],
         'form_themes' => [
             'bootstrap_4_layout.html.twig',

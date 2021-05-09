@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
+namespace Symfony\Component\DependencyInjection\Loader\Configurator;
+
 use App\Contact\Adapter\ContactHandler;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $parameters = $containerConfigurator->parameters();
@@ -15,7 +16,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $containerConfigurator->extension('twig', [
         'globals' => [
-            'social' => '%contact.social%'
+            'social' => param('contact.social')
         ],
     ]);
 
@@ -37,5 +38,5 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->tag('controller.service_arguments');
 
     $services->set(ContactHandler::class)
-        ->arg('$support', '%core.mailer.email%');
+        ->arg('$support', param('%core.mailer.email%'));
 };

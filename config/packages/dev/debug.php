@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->extension('debug', [
-        'dump_destination' => 'tcp://%env(VAR_DUMPER_SERVER)%',
+        'dump_destination' => 'tcp://' . param('env(VAR_DUMPER_SERVER)'),
     ]);
 };

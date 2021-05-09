@@ -2,15 +2,22 @@
 
 declare(strict_types=1);
 
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
+    $from = sprintf(
+        '%s %s <%s>',
+        param('project'),
+        _('Support'),
+        param('core.mailer.email')
+    );
+
     $containerConfigurator->extension('framework', [
         'mailer' => [
             'dsn' => '%core.mailer.dsn%',
             'headers' => [
-                'from' => '%project% ' . _('Support') . '<%core.mailer.email%>',
-            ],
+                'from' => $from
+            ]
         ]
     ]);
 };

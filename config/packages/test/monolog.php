@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->extension('monolog', [
@@ -16,7 +16,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             ],
             'nested' => [
                 'type' => 'stream',
-                'path' => "%kernel.logs_dir%/%kernel.environment%.log",
+                'path' => param('kernel.logs_dir') . '/' . param('kernel.environment') . '.log',
                 'level' => 'debug'
             ]
         ]
