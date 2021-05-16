@@ -51,6 +51,20 @@ services:
         ports:
             - 5672:5672
 
+    mariadb:
+        image: mariadb:10.4.18
+        container_name: mariadb
+        restart: always
+        volumes:
+            - ./.docker/mysql/data/:/var/lib/mysql
+        environment:
+            - MYSQL_USER=${DB_USERNAME}
+            - MYSQL_PASSWORD=${DB_PASSWORD}
+            - MYSQL_DATABASE=${DB_NAME}
+        command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+        networks:
+            - proxy
+
 networks:
     proxy:
         external: true
