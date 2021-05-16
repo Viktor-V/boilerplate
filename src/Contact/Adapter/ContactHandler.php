@@ -67,7 +67,7 @@ final class ContactHandler implements HandlerInterface
             );
         } catch (TransportExceptionInterface $exception) {
             $this->logger->error(
-                'Cannot send confirmation email to sender of mail. Reason: ' . $exception->getMessage()
+                'Cannot send confirmation email to sender . Reason: ' . $exception->getMessage()
             );
 
             throw $exception;
