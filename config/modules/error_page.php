@@ -21,6 +21,10 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services
         ->load('App\ErrorPage\\', __DIR__ . '/../../src/ErrorPage/');
 
-    $services->load('App\ErrorPage\Infrastructure\Controller\\', __DIR__ . '/../../src/ErrorPage/Infrastructure/Controller/')
+    $services
+        ->load(
+            'App\ErrorPage\Infrastructure\Controller\\',
+            __DIR__ . '/../../src/ErrorPage/Infrastructure/Controller/'
+        )
         ->tag('controller.service_arguments');
 };
