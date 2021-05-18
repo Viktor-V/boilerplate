@@ -8,7 +8,7 @@ use App\ErrorPage\Infrastructure\Controller\ErrorController;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->extension('framework', [
-        'error_controller' => 'App\ErrorPage\Infrastructure\Controller\ErrorController::show'
+        'error_controller' => ErrorController::class
     ]);
 
     $services = $containerConfigurator->services();

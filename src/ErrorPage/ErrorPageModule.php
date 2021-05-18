@@ -9,7 +9,6 @@ use App\ModuleInterface;
 final class ErrorPageModule implements ModuleInterface
 {
     public const NAME = 'error_page';
-    public const ENABLED = true;
 
     public function name(): string
     {
@@ -18,6 +17,6 @@ final class ErrorPageModule implements ModuleInterface
 
     public function enabled(): bool
     {
-        return $_SERVER['APP_ENV'] === 'prod' && self::ENABLED === true;
+        return $_SERVER['APP_ENV'] === 'prod';
     }
 }

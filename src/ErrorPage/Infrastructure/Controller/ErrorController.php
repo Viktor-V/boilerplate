@@ -6,12 +6,11 @@ namespace App\ErrorPage\Infrastructure\Controller;
 
 use Symfony\Component\ErrorHandler\Exception\FlattenException;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Log\DebugLoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ErrorController extends AbstractController
 {
-    public function show(FlattenException $exception, DebugLoggerInterface $logger = null): Response
+    public function __invoke(FlattenException $exception): Response
     {
         return $this->render('error_page/error.html.twig', [
             'exception' => $exception,

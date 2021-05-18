@@ -39,16 +39,10 @@ class LanguageExtension extends AbstractExtension
             }
         }
 
-        $parameters = array_merge($parameters, ['_locale' => $locale]);
-
-        $route = $request->get('_route');
-        if (!$route) {
-            $route = RouteName::HOMEPAGE;
-
-            $parameters = ['_locale' => $locale];
-        }
-
-        return $this->generator->generate($route, $parameters);
+        return $this->generator->generate(
+            $request->get('_route', RouteName::HOMEPAGE),
+            array_merge($parameters, ['_locale' => $locale])
+        );
     }
 
     public function currentLanguageName(Request $request): string
