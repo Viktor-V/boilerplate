@@ -1,4 +1,6 @@
-#contact {
+.contact-content {
+    @extend .row;
+
     .column-left {
         @extend .mt-4;
         @extend .mt-md-0;

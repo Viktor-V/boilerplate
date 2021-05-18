@@ -2,12 +2,8 @@
 
 {% block title %}{{ _('Contact') }}{% endblock %}
 
-{%- block page_id -%}
-    {{ block('title')|lower }}
-{%- endblock -%}
-
 {% block main %}
-    <div class="row">
+    <div class="contact-content">
         <div class="column-left">
             <h2>{{ block('title') }}</h2>
 
