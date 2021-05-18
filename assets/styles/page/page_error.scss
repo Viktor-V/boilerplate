@@ -1,0 +1,13 @@
+.error-content {
+    @extend .text-center;
+
+    h1 {
+        @extend .m-0;
+        @extend .text-danger;
+    }
+
+    p {
+        @extend .text-muted;
+        @extend .m-0;
+    }
+}

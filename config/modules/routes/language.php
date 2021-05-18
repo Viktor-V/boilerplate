@@ -6,12 +6,13 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use App\ModuleInterface;
 use App\Language\LanguageModule;
+use App\ErrorPage\ErrorPageModule;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 
 return static function (RoutingConfigurator $routingConfigurator): void {
     $contents = require __DIR__ . '/../../modules.php';
     foreach ($contents as $class) {
-        if ($class === LanguageModule::class) {
+        if ($class === LanguageModule::class || $class === ErrorPageModule::class) {
             continue;
         }
 
