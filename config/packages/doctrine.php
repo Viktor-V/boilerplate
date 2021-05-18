@@ -17,13 +17,13 @@ return static function (ContainerConfigurator $containerConfigurator): void {
                 'naming_strategy' => 'doctrine.orm.naming_strategy.underscore_number_aware',
                 'auto_mapping' => true,
                 'mappings' => [
-                    'App' => [
+                    /*'App' => [
                         'is_bundle' => false,
                         'type' => 'annotation',
                         'dir' => param('kernel.project_dir') . '/src/Entity',
                         'prefix' => 'App\Entity',
                         'alias' => 'App'
-                    ]
+                    ]*/
                 ]
             ]
         ]
