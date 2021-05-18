@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
+use App\Core\RouteName;
 
 class LanguageExtension extends AbstractExtension
 {
@@ -40,7 +41,14 @@ class LanguageExtension extends AbstractExtension
 
         $parameters = array_merge($parameters, ['_locale' => $locale]);
 
-        return $this->generator->generate($request->get('_route'), $parameters);
+        $route = $request->get('_route');
+        if (!$route) {
+            $route = RouteName::HOMEPAGE;
+
+            $parameters = ['_locale' => $locale];
+        }
+
+        return $this->generator->generate($route, $parameters);
     }
 
     public function currentLanguageName(Request $request): string
