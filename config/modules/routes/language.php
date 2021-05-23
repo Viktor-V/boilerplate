@@ -5,14 +5,21 @@ declare(strict_types=1);
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use App\ModuleInterface;
+use App\AntiSpam\AntiSpamModule;
 use App\Language\LanguageModule;
 use App\ErrorPage\ErrorPageModule;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 
 return static function (RoutingConfigurator $routingConfigurator): void {
+    $excludeModules = [
+        LanguageModule::class,
+        ErrorPageModule::class,
+        AntiSpamModule::class
+    ];
+
     $contents = require __DIR__ . '/../../modules.php';
     foreach ($contents as $class) {
-        if ($class === LanguageModule::class || $class === ErrorPageModule::class) {
+        if (\in_array($class, $excludeModules, true)) {
             continue;
         }
 
