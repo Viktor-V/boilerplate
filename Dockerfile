@@ -1,5 +1,5 @@
 # Build php and nginx unit
-FROM docker.io/nginx/unit:1.22.0-php8.0 as build
+FROM docker.io/nginx/unit:1.23.0-php8.0 as build
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN set -ex \
