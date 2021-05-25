@@ -15,5 +15,5 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $services
         ->load('App\AntiSpam\\', __DIR__ . '/../../src/AntiSpam/')
-        ->exclude(__DIR__ . '/../../src/AntiSpam/Infrastructure/EventListener/HiddenValidationEventSubscriber.php');
+        ->exclude(__DIR__ . '/../../src/AntiSpam/Infrastructure/{EventListener}');
 };

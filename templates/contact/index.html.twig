@@ -8,7 +8,13 @@
             <h2>{{ block('title') }}</h2>
 
             <h3>
-                <small class="text-muted">{{ _('Our team is happy to answer your questions. Fill out the form and we\'ll be in touch as soon as possible.') }}</small>
+                {% set email %}
+                    {% include 'core/partial/email.html.twig' with {email: support} only %}
+                {% endset %}
+
+                <small class="text-muted">
+                    {{ __('Our team is happy to answer your questions. Fill out the form or mail us %s and we\'ll be in touch as soon as possible.', email)|raw }}
+                </small>
             </h3>
 
             <div class="social">

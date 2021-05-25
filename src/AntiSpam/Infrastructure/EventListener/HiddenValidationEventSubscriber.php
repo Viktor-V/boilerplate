@@ -30,9 +30,10 @@ class HiddenValidationEventSubscriber implements EventSubscriberInterface
             $value = \is_string($data[$this->field] ?? null) ? $data[$this->field] : null;
             if ($value) {
                 $this->logger->warning(sprintf(
-                    'Bot detected. IP: %s; User Agent: %s',
+                    'Bot detected. IP: %s; User Agent: %s; Spam detector: %s',
                     $this->request->getClientIp(),
-                    $this->request->headers->get('User-Agent')
+                    $this->request->headers->get('User-Agent'),
+                    self::class
                 ));
 
                 $form->addError(new FormError(_('Oops. Something went wrong. Please, try later.')));

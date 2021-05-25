@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace App\AntiSpam\Infrastructure\Form\Extension;
 
+use App\AntiSpam\Infrastructure\EventListener\CrawlerValidationEventSubscriber;
 use App\AntiSpam\Infrastructure\EventListener\HiddenValidationEventSubscriber;
+use Jaybizzle\CrawlerDetect\CrawlerDetect;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormTypeExtensionInterface;
@@ -15,10 +16,8 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class FormTypeHiddenExtension implements FormTypeExtensionInterface
+class FormTypeCrawlerExtension implements FormTypeExtensionInterface
 {
-    private const FIELD_NAME = 'hidden';
-
     public function __construct(
         private RequestStack $requestStack,
         private LoggerInterface $logger
@@ -32,45 +31,22 @@ class FormTypeHiddenExtension implements FormTypeExtensionInterface
             return;
         }
 
-        if ($options['hidden_field_protection'] === false) {
+        if ($options['crawler_protection'] === false) {
             return;
         }
 
         $builder
-            ->addEventSubscriber(new HiddenValidationEventSubscriber(
+            ->addEventSubscriber(new CrawlerValidationEventSubscriber(
+                new CrawlerDetect($request->server->all(), $request->headers->get('User-Agent')),
                 $request,
-                $this->logger,
-                self::FIELD_NAME
+                $this->logger
             ));
-    }
-
-    public function finishView(FormView $view, FormInterface $form, array $options): void
-    {
-        if ($view->parent) {
-            return;
-        }
-
-        if ($options['hidden_field_protection'] === false) {
-            return;
-        }
-
-        if ($view->parent === null) {
-            $factory = $form->getConfig()->getFormFactory();
-
-            $form = $factory->createNamed(self::FIELD_NAME, TextType::class, [], [
-                'mapped' => false,
-                'label' => false,
-                'attr' => ['style' => 'display: none;']
-            ]);
-
-            $view->children[self::FIELD_NAME . '_field_name'] = $form->createView($view);
-        }
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'hidden_field_protection' => true
+            'crawler_protection' => true
         ]);
     }
 
@@ -80,6 +56,11 @@ class FormTypeHiddenExtension implements FormTypeExtensionInterface
     }
 
     public function buildView(FormView $view, FormInterface $form, array $options): void
+    {
+        /* Empty */
+    }
+
+    public function finishView(FormView $view, FormInterface $form, array $options): void
     {
         /* Empty */
     }

@@ -8,7 +8,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->extension('twig', [
         'default_path' => param('kernel.project_dir') . '/templates',
         'globals' => [
-            'project' => param('project')
+            'project' => param('project'),
+            'support' => param('core.mailer.email')
         ],
         'form_themes' => [
             'bootstrap_4_layout.html.twig',
