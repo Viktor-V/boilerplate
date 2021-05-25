@@ -20,7 +20,8 @@ class FormTypeCrawlerExtension implements FormTypeExtensionInterface
 {
     public function __construct(
         private RequestStack $requestStack,
-        private LoggerInterface $logger
+        private LoggerInterface $logger,
+        private bool $enabled
     ) {
     }
 
@@ -46,7 +47,7 @@ class FormTypeCrawlerExtension implements FormTypeExtensionInterface
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'crawler_protection' => true
+            'crawler_protection' => $this->enabled
         ]);
     }
 

@@ -21,7 +21,8 @@ class FormTypeHiddenExtension implements FormTypeExtensionInterface
 
     public function __construct(
         private RequestStack $requestStack,
-        private LoggerInterface $logger
+        private LoggerInterface $logger,
+        private bool $enabled
     ) {
     }
 
@@ -70,7 +71,7 @@ class FormTypeHiddenExtension implements FormTypeExtensionInterface
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'hidden_field_protection' => true
+            'hidden_field_protection' => $this->enabled
         ]);
     }
 
