@@ -9,7 +9,7 @@
 
             <h3>
                 {% set email %}
-                    {% include 'core/partial/email.html.twig' with {email: support} only %}
+                    {% include 'anti_spam/partial/email.html.twig' with {email: support} only %}
                 {% endset %}
 
                 <small class="text-muted">

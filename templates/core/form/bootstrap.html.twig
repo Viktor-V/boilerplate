@@ -48,3 +48,10 @@
 {%- endblock form_widget_compound -%}
 
 {% block form_label_errors %}{# empty #}{% endblock form_label_errors %}
+
+{%- block widget_container_attributes -%}
+    {%- if id is not empty %}id="{{ id }}"{% endif -%}
+    {%- if form is not rootform -%}
+        {{ block('attributes') }}
+    {%- endif -%}
+{%- endblock widget_container_attributes -%}
