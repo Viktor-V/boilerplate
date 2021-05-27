@@ -60,7 +60,7 @@ class FormTypeHashExtension implements FormTypeExtensionInterface
             $hashField = $factory->createNamed(self::FIELD_NAME, HiddenType::class, [], [
                 'mapped' => false,
                 'attr' => [
-                    'data-form-target' => 'hash'
+                    'data-hash-form-target' => 'hash'
                 ]
             ]);
             $view->children[self::FIELD_NAME . '_field_name'] = $hashField->createView($view);
@@ -68,8 +68,8 @@ class FormTypeHashExtension implements FormTypeExtensionInterface
             $view->vars['attr'] = array_merge(
                 $view->vars['attr'],
                 [
-                    'data-controller' => 'form',
-                    'data-action' => 'form#onSubmit'
+                    'data-controller' => 'hash-form',
+                    'data-action' => 'hash-form#onSubmit'
                 ]
             );
         }
