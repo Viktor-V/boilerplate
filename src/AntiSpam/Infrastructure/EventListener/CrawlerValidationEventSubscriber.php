@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace App\AntiSpam\Infrastructure\EventListener;
 
 use Jaybizzle\CrawlerDetect\CrawlerDetect;
-use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\HttpFoundation\Request;
+use Psr\Log\LoggerInterface;
 
 class CrawlerValidationEventSubscriber implements EventSubscriberInterface
 {
@@ -25,7 +25,11 @@ class CrawlerValidationEventSubscriber implements EventSubscriberInterface
     {
         $form = $event->getForm();
 
-        if ($form->isRoot() && $this->crawlerDetect->isCrawler()) {
+        if (!$form->isRoot()) {
+            return;
+        }
+
+        if ($this->crawlerDetect->isCrawler()) {
             $this->logger->warning(sprintf(
                 'Bot detected. IP: %s; User Agent: %s; Spam detector: %s',
                 $this->request->getClientIp(),

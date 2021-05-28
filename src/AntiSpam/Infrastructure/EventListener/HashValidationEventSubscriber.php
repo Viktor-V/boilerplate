@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\AntiSpam\Infrastructure\EventListener;
 
-use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\HttpFoundation\Request;
+use Psr\Log\LoggerInterface;
 
 class HashValidationEventSubscriber implements EventSubscriberInterface
 {
@@ -24,33 +24,35 @@ class HashValidationEventSubscriber implements EventSubscriberInterface
     {
         $form = $event->getForm();
 
-        if ($form->isRoot()) {
-            $data = $event->getData();
+        if (!$form->isRoot()) {
+            return;
+        }
 
-            $concatenatedValues = null;
-            foreach ($data as $field => $value) {
-                if ($field !== $this->field) {
-                    $concatenatedValues .= $value;
-                }
+        $data = $event->getData();
+
+        $concatenatedValues = null;
+        foreach ($data as $field => $value) {
+            if ($field !== $this->field) {
+                $concatenatedValues .= $value;
             }
+        }
 
-            $hashedForm = md5((string) $concatenatedValues);
-            if ($hashedForm !== $data[$this->field]) {
-                $this->logger->warning(sprintf(
-                    'Bot detected. IP: %s; User Agent: %s; Spam detector: %s',
-                    $this->request->getClientIp(),
-                    $this->request->headers->get('User-Agent'),
-                    self::class
-                ));
+        $hashedForm = md5((string) $concatenatedValues);
+        if ($hashedForm !== $data[$this->field]) {
+            $this->logger->warning(sprintf(
+                'Bot detected. IP: %s; User Agent: %s; Spam detector: %s',
+                $this->request->getClientIp(),
+                $this->request->headers->get('User-Agent'),
+                self::class
+            ));
 
-                $form->addError(new FormError(_('Oops. Something went wrong. Please, try later.')));
-            }
+            $form->addError(new FormError(_('Oops. Something went wrong. Please, try later.')));
+        }
 
-            if (\is_array($data)) {
-                unset($data[$this->field]);
+        if (\is_array($data)) {
+            unset($data[$this->field]);
 
-                $event->setData($data);
-            }
+            $event->setData($data);
         }
     }
 

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\AntiSpam\Infrastructure\Form\Extension;
 
 use App\AntiSpam\Infrastructure\EventListener\CrawlerValidationEventSubscriber;
-use App\AntiSpam\Infrastructure\EventListener\HiddenValidationEventSubscriber;
 use Jaybizzle\CrawlerDetect\CrawlerDetect;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -13,8 +12,8 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormTypeExtensionInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Psr\Log\LoggerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Psr\Log\LoggerInterface;
 
 class FormTypeCrawlerExtension implements FormTypeExtensionInterface
 {

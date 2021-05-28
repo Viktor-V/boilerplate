@@ -12,8 +12,8 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormTypeExtensionInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Psr\Log\LoggerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Psr\Log\LoggerInterface;
 
 class FormTypeHashExtension implements FormTypeExtensionInterface
 {
