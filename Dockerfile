@@ -7,12 +7,13 @@ RUN set -ex \
     && apt-get install --no-install-recommends -y libicu-dev=63.1-6+deb10u1 librabbitmq-dev=0.9.0-0.2 \
     && rm -rf /var/lib/apt/lists/* \
     && docker-php-ext-install opcache \
-    && pecl install apcu amqp-1.11.0beta \
+    && pecl install apcu amqp-1.11.0beta redis \
     && docker-php-ext-enable apcu amqp \
     && docker-php-ext-configure intl \
     && docker-php-ext-install intl \
     && docker-php-ext-install pdo pdo_mysql mysqli \
-    && docker-php-ext-enable mysqli
+    && docker-php-ext-enable mysqli \
+    && docker-php-ext-enable redis
 
 COPY unit.conf.json /docker-entrypoint.d/unit.conf.json
 

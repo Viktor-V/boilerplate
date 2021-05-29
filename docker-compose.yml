@@ -42,6 +42,12 @@ services:
             - MYSQL_DATABASE=localhost
         command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
 
+    redis:
+        image: redis:6.2.3-alpine
+        container_name: redis
+        ports:
+            - 6379:6379
+
     adminer:
         image: adminer
         restart: always
