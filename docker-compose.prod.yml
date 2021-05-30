@@ -22,6 +22,8 @@ services:
             - proxy
         depends_on:
             - rabbitmq
+            - redis
+            - mariadb
 
     worker:
         image: boilerplate:latest
@@ -71,7 +73,9 @@ services:
         restart: always
         volumes:
             - ./.docker/redis/data/:/data
-        command: redis-server --requirepass ${REDIS_PASSWORD} --appendonly yes
+        environment:
+            - REDIS_PASSWORD=${REDIS_PASSWORD}
+        command: ["sh", "-c", "redis-server --requirepass $REDIS_PASSWORD --appendonly yes"]
         networks:
             - proxy
         ports:
