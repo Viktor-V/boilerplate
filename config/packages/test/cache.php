@@ -6,6 +6,13 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->extension('framework', [
-        'cache' => null
+        'cache' => [
+            'pools' => [
+                'core.cache.default' => [
+                    'adapter' => 'cache.adapter.array',
+                    'provider' => null
+                ]
+            ]
+        ]
     ]);
 };

@@ -36,7 +36,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $services
         ->set(FormTypeAttemptExtension::class)
-        ->arg('$cache', service('redis_pool'))
+        ->arg('$cache', service('core.cache.default'))
         ->arg('$enabled', true)
         ->arg('$attemptCount', 10)
         ->arg('$attemptLastTime', 600);

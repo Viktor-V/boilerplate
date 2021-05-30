@@ -9,7 +9,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         'cache' => [
             'default_redis_provider' => param('core.cache.redis.provider'),
             'pools' => [
-                'redis_pool' => [
+                'core.cache.default' => [
                     'adapter' => 'cache.adapter.redis',
                     'provider' => 'cache.default_redis_provider'
                 ]
