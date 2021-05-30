@@ -17,7 +17,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $parameters->set('core.db.dsn', param('env(resolve:CORE_DB_DSN)'));
 
-    $parameters->set('core.cache.redis.provider', param('env(resolve:CORE_CACHE_REDIS_PROVIDER)'));
+    $parameters->set('core.redis.dsn', param('env(resolve:CORE_REDIS_DSN)'));
 
     // Default environment values
     $parameters->set('env(CORE_MAILER_DSN)', 'smtp://mailhog:1025');
@@ -30,8 +30,5 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         'mysql://root:root@mariadb:3306/localhost?serverVersion=mariadb-10.4.18'
     );
 
-    $parameters->set(
-        'env(CORE_CACHE_REDIS_PROVIDER)',
-        'redis://redis:6379'
-    );
+    $parameters->set('env(CORE_REDIS_DSN)', 'redis://redis:6379');
 };

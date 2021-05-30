@@ -65,6 +65,18 @@ services:
         networks:
             - proxy
 
+    redis:
+        image: redis:6.2.3-alpine
+        container_name: redis
+        restart: always
+        volumes:
+            - ./.docker/redis/data/:/data
+        command: redis-server --requirepass ${REDIS_PASSWORD} --appendonly yes
+        networks:
+            - proxy
+        ports:
+            - 6379:6379
+
 networks:
     proxy:
         external: true
