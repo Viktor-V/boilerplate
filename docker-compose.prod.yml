@@ -68,14 +68,14 @@ services:
             - proxy
 
     redis:
-        image: redis:6.2.3-alpine
+        image: bitnami/redis:6.0.13
         container_name: redis
         restart: always
         volumes:
-            - ./.docker/redis/data/:/data
+            - ./.docker/redis/data/:/bitnami/redis/data
         environment:
+            - ALLOW_EMPTY_PASSWORD=no
             - REDIS_PASSWORD=${REDIS_PASSWORD}
-        command: ["sh", "-c", "redis-server --requirepass $REDIS_PASSWORD --appendonly yes"]
         networks:
             - proxy
         ports:

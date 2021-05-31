@@ -43,8 +43,10 @@ services:
         command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
 
     redis:
-        image: redis:6.2.3-alpine
+        image: bitnami/redis:6.2.3
         container_name: redis
+        environment:
+            - ALLOW_EMPTY_PASSWORD=yes
         ports:
             - 6379:6379
 
