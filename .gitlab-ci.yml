@@ -29,14 +29,6 @@ build-php:
         - php composer.phar dump-autoload --optimize --classmap-authoritative
         - php composer.phar check-platform-reqs
 
-build-js:
-    image: node:15.11.0-alpine3.13
-    before_script: []
-    stage: build
-    script:
-        - yarn install
-        - yarn build
-
 codestyle:
     stage: test
     script:
