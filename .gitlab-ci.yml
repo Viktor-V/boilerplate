@@ -16,7 +16,6 @@ cache:
         - vendor/
         - bin/.phpunit
         - var/cache
-        - public/build
 
 before_script:
     - curl --show-error --silent "https://getcomposer.org/installer" | php
