@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Tests;
 
 use App\BaseKernel;
-use App\Core\RouteName;
+use App\Core\CoreRouteName;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class IndexControllerTest extends WebTestCase
@@ -13,7 +13,7 @@ class IndexControllerTest extends WebTestCase
     public function testIndex(): void
     {
         $client = static::createClient();
-        $client->request('GET', $client->getContainer()->get('router')->generate(RouteName::HOMEPAGE));
+        $client->request('GET', $client->getContainer()->get('router')->generate(CoreRouteName::HOMEPAGE));
 
         self::assertEquals(200, $client->getResponse()->getStatusCode());
 

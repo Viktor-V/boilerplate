@@ -1,6 +1,6 @@
 <li class="menu-item">
-    <a href="{{ path(constant('App\\Blog\\RouteName::BLOG')) }}"
-       class="menu-link {{ app.request.get('_route') in [constant('App\\Blog\\RouteName::BLOG')] ? 'active' }}"
+    <a href="{{ path(constant('App\\Blog\\BlogRouteName::BLOG')) }}"
+       class="menu-link {{ app.request.get('_route') in [constant('App\\Blog\\BlogRouteName::BLOG')] ? 'active' }}"
     >
         {{ _('Blog') }}
     </a>

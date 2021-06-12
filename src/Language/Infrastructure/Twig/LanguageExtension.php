@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
-use App\Core\RouteName;
+use App\Core\CoreRouteName;
 
 class LanguageExtension extends AbstractExtension
 {
@@ -40,7 +40,7 @@ class LanguageExtension extends AbstractExtension
         }
 
         return $this->generator->generate(
-            $request->get('_route', RouteName::HOMEPAGE),
+            $request->get('_route', CoreRouteName::HOMEPAGE),
             array_merge($parameters, ['_locale' => $locale])
         );
     }

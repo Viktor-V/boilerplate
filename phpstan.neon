@@ -4,7 +4,6 @@ includes:
 
     - vendor/symplify/phpstan-rules/config/static-rules.neon
     - vendor/symplify/phpstan-rules/config/nette-rules.neon
-    - vendor/symplify/phpstan-rules/config/generic-rules.neon
     - vendor/symplify/phpstan-rules/config/array-rules.neon
     - vendor/symplify/phpstan-rules/config/forbidden-static-rules.neon
     - vendor/symplify/phpstan-rules/config/doctrine-rules.neon
@@ -44,3 +43,4 @@ parameters:
     ignoreErrors:
         - '#Method call on new expression is not allowed#'
         - '#Use separate function calls with readable variable names#'
+        - '#Missing sprintf\(\) function for a mask#'

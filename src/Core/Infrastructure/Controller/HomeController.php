@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace App\Core\Infrastructure\Controller;
 
 use App\BaseKernel;
-use App\Core\RouteName;
+use App\Core\CoreRouteName;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class IndexController extends AbstractController
+class HomeController extends AbstractController
 {
-    #[Route(path: null, name: RouteName::HOMEPAGE, methods: ['GET'])]
+    #[Route(path: null, name: CoreRouteName::HOMEPAGE, methods: ['GET'])]
     public function __invoke(): Response
     {
         return $this->render('core/home.html.twig', [

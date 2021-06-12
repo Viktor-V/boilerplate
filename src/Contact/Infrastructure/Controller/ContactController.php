@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Contact\Infrastructure\Controller;
 
 use App\Contact\Adapter\ContactHandler;
-use App\Contact\RouteName;
+use App\Contact\ContactRouteName;
 use App\Contact\Infrastructure\Form\ContactForm;
 use App\Contact\ValueObject\ContactRequestData;
 use App\Core\Validator\ValidatorException;
@@ -17,7 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ContactController extends AbstractController
 {
-    #[Route(path: RouteName::CONTACT_PATH, name: RouteName::CONTACT, methods: ['GET', 'POST'])]
+    #[Route(path: ContactRouteName::CONTACT_PATH, name: ContactRouteName::CONTACT, methods: ['GET', 'POST'])]
     public function __invoke(Request $request, ContactHandler $handler): Response
     {
         $form = $this
@@ -32,7 +32,7 @@ class ContactController extends AbstractController
 
                 $this->addFlash('success', $successMessage);
 
-                return $this->redirectToRoute(RouteName::CONTACT);
+                return $this->redirectToRoute(ContactRouteName::CONTACT);
             } catch (ValidatorException $exception) {
                 $this->addFlash('danger', $exception->getMessage());
             } catch (TransportExceptionInterface) {
