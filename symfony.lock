@@ -2,6 +2,9 @@
     "composer/package-versions-deprecated": {
         "version": "1.11.99.1"
     },
+    "danielstjules/stringy": {
+        "version": "3.1.0"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -363,6 +366,9 @@
     "symfony/orm-pack": {
         "version": "v2.1.0"
     },
+    "symfony/password-hasher": {
+        "version": "v5.3.0"
+    },
     "symfony/phpunit-bridge": {
         "version": "4.3",
         "recipe": {
@@ -398,6 +404,9 @@
     },
     "symfony/polyfill-php80": {
         "version": "v1.20.0"
+    },
+    "symfony/polyfill-php81": {
+        "version": "v1.23.0"
     },
     "symfony/profiler-pack": {
         "version": "v1.0.5"
@@ -547,6 +556,9 @@
     },
     "symplify/rule-doc-generator-contracts": {
         "version": "v9.2.14"
+    },
+    "symplify/simple-php-doc-parser": {
+        "version": "v9.3.26"
     },
     "symplify/smart-file-system": {
         "version": "v9.2.14"

@@ -16,7 +16,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $containerConfigurator->extension('twig', [
         'globals' => [
-            'social' => param('contact.social')
+            'social' => (string) param('contact.social')
         ],
     ]);
 
@@ -38,5 +38,5 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->tag('controller.service_arguments');
 
     $services->set(ContactHandler::class)
-        ->arg('$support', param('core.mailer.email'));
+        ->arg('$support', (string) param('core.mailer.email'));
 };

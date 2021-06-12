@@ -32,14 +32,14 @@ return static function (RoutingConfigurator $routingConfigurator): void {
                     'annotation'
                 )
                 ->prefix('/{_locale}')
-                ->requirements(['_locale' => param('language.locales')])
-                ->defaults(['_locale' => param('language.default')]);
+                ->requirements(['_locale' => (string) param('language.locales')])
+                ->defaults(['_locale' => (string) param('language.default')]);
         }
     }
 
     $routingConfigurator
         ->add('nolocale', '/')
         ->controller('Symfony\Bundle\FrameworkBundle\Controller\RedirectController::urlRedirectAction')
-        ->defaults(['path' => '/' . param('language.default')])
+        ->defaults(['path' => '/' . (string) param('language.default')])
         ->methods(['GET']);
 };

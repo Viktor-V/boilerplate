@@ -9,7 +9,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         'doctrine',
         [
             'dbal' => [
-                'url' => param('core.db.dsn'),
+                'url' => (string) param('core.db.dsn'),
                 'server_version' => 'mariadb:10.4.18'
             ],
             'orm' => [
@@ -20,7 +20,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
                     /*'App' => [
                         'is_bundle' => false,
                         'type' => 'annotation',
-                        'dir' => param('kernel.project_dir') . '/src/Entity',
+                        'dir' => (string) param('kernel.project_dir') . '/src/Entity',
                         'prefix' => 'App\Entity',
                         'alias' => 'App'
                     ]*/

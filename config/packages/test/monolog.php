@@ -16,7 +16,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             ],
             'nested' => [
                 'type' => 'stream',
-                'path' => param('kernel.logs_dir') . '/' . param('kernel.environment') . '.log',
+                'path' => (string) param('kernel.logs_dir') . '/' . (string) param('kernel.environment') . '.log',
                 'level' => 'debug'
             ]
         ]

@@ -9,7 +9,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         'doctrine',
         [
             'dbal' => [
-                'dbname' => 'main_test' . param('env(default::TEST_TOKEN)')
+                'dbname' => 'main_test' . (string) param('env(default::TEST_TOKEN)')
             ]
         ]
     );

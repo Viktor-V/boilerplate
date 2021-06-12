@@ -10,14 +10,14 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $parameters->set('project', 'Boilerplate');
 
     // Config values
-    $parameters->set('core.mailer.dsn', param('env(resolve:CORE_MAILER_DSN)'));
-    $parameters->set('core.mailer.email', param('env(string:CORE_MAILER_EMAIL)'));
+    $parameters->set('core.mailer.dsn', (string) param('env(resolve:CORE_MAILER_DSN)'));
+    $parameters->set('core.mailer.email', (string) param('env(string:CORE_MAILER_EMAIL)'));
 
-    $parameters->set('core.transport.dsn', param('env(resolve:CORE_TRANSPORT_DSN)'));
+    $parameters->set('core.transport.dsn', (string) param('env(resolve:CORE_TRANSPORT_DSN)'));
 
-    $parameters->set('core.db.dsn', param('env(resolve:CORE_DB_DSN)'));
+    $parameters->set('core.db.dsn', (string) param('env(resolve:CORE_DB_DSN)'));
 
-    $parameters->set('core.redis.dsn', param('env(resolve:CORE_REDIS_DSN)'));
+    $parameters->set('core.redis.dsn', (string) param('env(resolve:CORE_REDIS_DSN)'));
 
     // Default environment values
     $parameters->set('env(CORE_MAILER_DSN)', 'smtp://mailhog:1025');

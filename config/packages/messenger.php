@@ -15,7 +15,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
                 'transports' => [
                     'async' => [
-                        'dsn' => param('core.transport.dsn'),
+                        'dsn' => (string) param('core.transport.dsn'),
                         'retry_strategy' => [
                             'max_retries' => 3
                         ]

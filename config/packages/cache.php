@@ -7,7 +7,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->extension('framework', [
         'cache' => [
-            'default_redis_provider' => param('core.redis.dsn'),
+            'default_redis_provider' => (string) param('core.redis.dsn'),
             'pools' => [
                 'core.cache.default' => [
                     'adapter' => 'cache.adapter.redis',

@@ -9,9 +9,9 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         'doctrine_migrations',
         [
             'migrations_paths' => [
-                'DoctrineMigrations' => param('kernel.project_dir') . '/migrations'
+                'DoctrineMigrations' => (string) param('kernel.project_dir') . '/migrations'
             ],
-            'enable_profiler' => param('kernel.debug')
+            'enable_profiler' => (string) param('kernel.debug')
         ]
     );
 };
