@@ -34,5 +34,5 @@ class ReCaptchaValidator implements HiddenCaptchaValidatorInterface
         $response = $response->toArray();
 
         return $response['success'] && $response['score'] >= self::RECAPTCHA_THRESHOLD;
-     }
+    }
 }
