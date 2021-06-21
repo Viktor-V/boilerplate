@@ -1,0 +1,63 @@
+<script src="https://www.google.com/recaptcha/api.js?hl={{ app.request.locale }}" async defer></script>
+
+<script>
+    let isCaptchaExecuted = false;
+    document.addEventListener('DOMContentLoaded', function() {
+        let form = document.getElementById('{{ form.vars.id }}').closest('form');
+
+        form.querySelector('button[type="submit"]').addEventListener('click', function (event) {
+            if (!isCaptchaExecuted) {
+                isCaptchaExecuted = true;
+
+                event.preventDefault();
+                grecaptcha.ready(function() {
+                    grecaptcha.execute();
+                });
+            }
+        });
+    });
+
+    function captchaResponseCallback(response) {
+        let fieldElement = document.getElementById('{{ form.vars.id }}');
+        if (response) {
+            fieldElement.value = response;
+        }
+
+        /** Avoid error that form contains extra fields */
+        let recaptchaResponseElement = document.getElementById('g-recaptcha-response');
+        if (recaptchaResponseElement) {
+            recaptchaResponseElement.parentNode.removeChild(recaptchaResponseElement);
+        }
+
+        /** Call twice to be possible execute hash controller **/
+        fieldElement.closest('form').querySelector('button[type="submit"]').click();
+    }
+
+    function captchaExpiredCallback() {
+        grecaptcha.reset();
+    }
+
+    function captchaErrorCallback() {
+        alert('{{ _('Problem with captcha detected. Please refresh the page.') }}');
+    }
+</script>
+
+<div class="g-recaptcha"
+     id="g-recaptcha"
+     data-sitekey="{{ public_key }}"
+     data-size="invisible"
+     data-callback="captchaResponseCallback"
+     data-expired-callback="captchaExpiredCallback"
+     data-error-callback="captchaErrorCallback"
+><!--Invisible reCAPTCHA--></div>
+
+{{ form_widget(form) }}
+
+<p>
+    <small class="form-text text-muted">
+        {{ __('Protected by %s', 'reCaptcha') }}
+        <a href="https://policies.google.com/privacy?hl={{ app.request.locale }}">{{ _('Privacy Policy') }}</a>
+        &#124;
+        <a href="https://policies.google.com/terms?hl={{ app.request.locale }}">{{ _('Terms of Service') }}</a>
+    </small>
+</p>

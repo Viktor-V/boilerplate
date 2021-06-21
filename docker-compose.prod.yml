@@ -20,6 +20,8 @@ services:
             - CORE_TRANSPORT_DSN=${CORE_TRANSPORT_DSN}
             - CORE_DB_DSN=${CORE_DB_DSN}
             - CORE_REDIS_DSN=${CORE_REDIS_DSN}
+            - ANTI_SPAM_HIDDEN_CAPTCHA_PUBLIC_KEY=${ANTI_SPAM_HIDDEN_CAPTCHA_PUBLIC_KEY}
+            - ANTI_SPAM_HIDDEN_CAPTCHA_PRIVATE_KEY=${ANTI_SPAM_HIDDEN_CAPTCHA_PRIVATE_KEY}
         networks:
             - proxy
         depends_on:

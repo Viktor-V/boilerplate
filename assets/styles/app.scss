@@ -10,6 +10,8 @@
 @import "module/icon";
 @import "module/feature";
 @import "module/form";
+@import "module/link";
+@import "module/hidden_captcha";
 
 main {
     @extend .container-xl;

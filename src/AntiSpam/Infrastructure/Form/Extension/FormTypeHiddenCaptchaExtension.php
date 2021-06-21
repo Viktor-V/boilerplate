@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace App\AntiSpam\Infrastructure\Form\Extension;
 
-use App\AntiSpam\Infrastructure\EventListener\HiddenValidationEventSubscriber;
+use App\AntiSpam\Infrastructure\EventListener\HiddenCaptchaValidationEventSubscriber;
+use App\AntiSpam\Infrastructure\Form\Type\HiddenCaptchaType;
+use App\AntiSpam\Service\HiddenCaptchaValidatorInterface;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormTypeExtensionInterface;
@@ -15,12 +16,13 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Psr\Log\LoggerInterface;
 
-class FormTypeHiddenExtension implements FormTypeExtensionInterface
+class FormTypeHiddenCaptchaExtension implements FormTypeExtensionInterface
 {
-    private const FIELD_NAME = 'hidden_field';
+    private const FIELD_NAME = 'hidden_captcha';
 
     public function __construct(
         private RequestStack $requestStack,
+        private HiddenCaptchaValidatorInterface $hiddenCaptchaValidator,
         private LoggerInterface $logger,
         private bool $enabled
     ) {
@@ -33,13 +35,14 @@ class FormTypeHiddenExtension implements FormTypeExtensionInterface
             return;
         }
 
-        if ($options['hidden_field_protection'] === false) {
+        if ($options['hidden_captcha_field_protection'] === false) {
             return;
         }
 
         $builder
-            ->addEventSubscriber(new HiddenValidationEventSubscriber(
+            ->addEventSubscriber(new HiddenCaptchaValidationEventSubscriber(
                 $request,
+                $this->hiddenCaptchaValidator,
                 $this->logger,
                 self::FIELD_NAME
             ));
@@ -51,17 +54,16 @@ class FormTypeHiddenExtension implements FormTypeExtensionInterface
             return;
         }
 
-        if ($options['hidden_field_protection'] === false) {
+        if ($options['hidden_captcha_field_protection'] === false) {
             return;
         }
 
         if ($view->parent === null) {
             $factory = $form->getConfig()->getFormFactory();
 
-            $form = $factory->createNamed(self::FIELD_NAME, HiddenType::class, [], [
+            $form = $factory->createNamed(self::FIELD_NAME, HiddenCaptchaType::class, [], [
                 'mapped' => false,
-                'label' => false,
-                'block_prefix' => self::FIELD_NAME
+                'label' => false
             ]);
 
             $view->children[self::FIELD_NAME . '_field_name'] = $form->createView($view);
@@ -71,7 +73,7 @@ class FormTypeHiddenExtension implements FormTypeExtensionInterface
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'hidden_field_protection' => $this->enabled
+            'hidden_captcha_field_protection' => $this->enabled
         ]);
     }
 
