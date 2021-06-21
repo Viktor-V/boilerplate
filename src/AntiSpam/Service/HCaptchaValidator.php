@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace App\AntiSpam\Service;
 
 use App\AntiSpam\Exception\HiddenCaptchaException;
+use App\AntiSpam\Service\Contract\HiddenCaptchaValidatorInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class HCaptchaValidator implements HiddenCaptchaValidatorInterface
 {
-    private const HCAPTCHA_THRESHOLD = 0.5;
     private const HCAPTCHA_URL = 'https://hcaptcha.com/siteverify';
 
     public function __construct(

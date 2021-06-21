@@ -21,7 +21,7 @@ class HiddenCaptchaType implements FormTypeInterface
     ) {
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         /* Empty */
     }
@@ -30,26 +30,26 @@ class HiddenCaptchaType implements FormTypeInterface
         FormView $view,
         FormInterface $form,
         array $options
-    ) {
+    ): void {
         $view->vars = array_merge([
             'captcha_type' => $this->type,
             'public_key' => $this->publicKey
         ], $view->vars);
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             /* Empty */
         ]);
     }
 
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return self::NAME;
     }
 
-    public function getParent()
+    public function getParent(): string
     {
         return HiddenType::class;
     }
@@ -58,7 +58,7 @@ class HiddenCaptchaType implements FormTypeInterface
         FormView $view,
         FormInterface $form,
         array $options
-    ) {
+    ): void {
         /* Empty */
     }
 }

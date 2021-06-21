@@ -6,7 +6,7 @@ namespace App\AntiSpam\Infrastructure\Form\Extension;
 
 use App\AntiSpam\Infrastructure\EventListener\HiddenCaptchaValidationEventSubscriber;
 use App\AntiSpam\Infrastructure\Form\Type\HiddenCaptchaType;
-use App\AntiSpam\Service\HiddenCaptchaValidatorInterface;
+use App\AntiSpam\Service\Contract\HiddenCaptchaValidatorInterface;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;

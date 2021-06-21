@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\AntiSpam\Service;
 
 use App\AntiSpam\Exception\HiddenCaptchaException;
+use App\AntiSpam\Service\Contract\HiddenCaptchaValidatorInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class ReCaptchaValidator implements HiddenCaptchaValidatorInterface

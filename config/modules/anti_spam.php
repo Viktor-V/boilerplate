@@ -11,7 +11,7 @@ use App\AntiSpam\Infrastructure\Form\Extension\FormTypeHiddenCaptchaExtension;
 use App\AntiSpam\Infrastructure\Form\Extension\FormTypeHiddenExtension;
 use App\AntiSpam\Infrastructure\Form\Type\HiddenCaptchaType;
 use App\AntiSpam\Service\HCaptchaValidator;
-use App\AntiSpam\Service\HiddenCaptchaValidatorInterface;
+use App\AntiSpam\Service\Contract\HiddenCaptchaValidatorInterface;
 use App\AntiSpam\Service\ReCaptchaValidator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
