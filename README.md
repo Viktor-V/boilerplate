@@ -119,7 +119,7 @@ sudo gitlab-runner register -n \
   --url https://gitlab.com/ \
   --registration-token REGISTRATION_TOKEN \
   --executor docker \
-  --docker-image alpine:latest \
+  --docker-image docker/compose:1.29.2 \
   --docker-volumes "/var/run/docker.sock:/var/run/docker.sock" "/cache"
 ```
 

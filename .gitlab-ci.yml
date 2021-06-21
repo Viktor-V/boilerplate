@@ -53,13 +53,13 @@ test:
         - php -d memory_limit=-1 ./vendor/bin/phpstan analyse -c phpstan-tests.neon --no-progress
 
 deploy:
-    image: docker/compose
+    image: docker/compose:1.29.2
     before_script: []
     services:
         - docker:dind
     stage: deploy
     script:
-        - docker-compose -f docker-compose.prod.yml up -d --build --remove-orphans
+        - docker-compose -f docker-compose.prod.yml up -d --build
     only:
         - master
     when: manual

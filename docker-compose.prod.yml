@@ -1,4 +1,4 @@
-version: "3.4"
+version: "3.5"
 
 services:
     web:
@@ -38,13 +38,18 @@ services:
             - CORE_MAILER_DSN=${CORE_MAILER_DSN}
             - CORE_MAILER_EMAIL=${CORE_MAILER_EMAIL}
             - CORE_TRANSPORT_DSN=${CORE_TRANSPORT_DSN}
+            - CORE_DB_DSN=${CORE_DB_DSN}
+            - CORE_REDIS_DSN=${CORE_REDIS_DSN}
+            - ANTI_SPAM_HIDDEN_CAPTCHA_PUBLIC_KEY=${ANTI_SPAM_HIDDEN_CAPTCHA_PUBLIC_KEY}
+            - ANTI_SPAM_HIDDEN_CAPTCHA_PRIVATE_KEY=${ANTI_SPAM_HIDDEN_CAPTCHA_PRIVATE_KEY}
         networks:
             - proxy
         depends_on:
             - rabbitmq
+            - web
 
     rabbitmq:
-        image: rabbitmq:3.8-management
+        image: rabbitmq:3.8.17-management
         container_name: rabbitmq
         volumes:
             - ./.docker/rabbitmq/data/:/var/lib/rabbitmq/
@@ -88,3 +93,4 @@ services:
 networks:
     proxy:
         external: true
+        name: proxy
