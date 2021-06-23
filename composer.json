@@ -39,6 +39,7 @@
         "twig/twig": "^2.12|^3.0"
     },
     "require-dev": {
+        "brianium/paratest": "^6.3",
         "phpstan/phpstan": "^0.12.57",
         "phpstan/phpstan-doctrine": "^0.12.25",
         "phpstan/phpstan-strict-rules": "^0.12.5",
