@@ -14,29 +14,17 @@ cache:
         - .env
         - composer.phar
         - vendor/
-        - bin/.phpunit
         - var/cache
-        - public/build
         - .phpunit.result.cache
-
-before_script:
-    - curl --show-error --silent "https://getcomposer.org/installer" | php
-    - php composer.phar install --ignore-platform-reqs --no-ansi --no-interaction --no-scripts
-    - echo "APP_SECRET=$(tr -dc A-Za-z0-9 < /dev/urandom | head -c 32)" >> .env
 
 build-php:
     stage: build
     script:
+        - curl --show-error --silent "https://getcomposer.org/installer" | php
+        - php composer.phar install --ignore-platform-reqs --no-ansi --no-interaction --no-scripts
+        - echo "APP_SECRET=$(tr -dc A-Za-z0-9 < /dev/urandom | head -c 32)" >> .env
         - php composer.phar dump-autoload --optimize --classmap-authoritative
         - php composer.phar check-platform-reqs
-
-build-js:
-    image: node:15.11.0-alpine3.13
-    before_script: []
-    stage: build
-    script:
-        - yarn install
-        - yarn build
 
 codestyle:
     stage: test
@@ -45,17 +33,17 @@ codestyle:
         - php -d memory_limit=-1 ./vendor/bin/phpcs --standard=phpcs.xml
         - php -d memory_limit=-1 ./vendor/bin/phpcpd --fuzzy src/ tests/ config/
         - php -d memory_limit=-1 ./vendor/bin/phpstan analyse -c phpstan.neon --no-progress
+        - php -d memory_limit=-1 ./bin/console cache:warmup --env=test
+        - php -d memory_limit=-1 ./vendor/bin/phpstan analyse -c phpstan-tests.neon --no-progress
 
 test:
     stage: test
     script:
         - php -d memory_limit=-1 ./bin/console cache:warmup --env=test
         - php -d memory_limit=-1 ./vendor/bin/paratest -p10
-        - php -d memory_limit=-1 ./vendor/bin/phpstan analyse -c phpstan-tests.neon --no-progress
 
 deploy:
     image: docker/compose:1.29.2
-    before_script: []
     services:
         - docker:dind
     stage: deploy
