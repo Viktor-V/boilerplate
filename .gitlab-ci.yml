@@ -32,9 +32,9 @@ codestyle:
         - php -d memory_limit=-1 ./bin/console cache:warmup --env=dev
         - php -d memory_limit=-1 ./vendor/bin/phpcs --standard=phpcs.xml
         - php -d memory_limit=-1 ./vendor/bin/phpcpd --fuzzy src/ tests/ config/
-        - php -d memory_limit=-1 ./vendor/bin/phpstan analyse -c phpstan.neon --no-progress
+        - php -d memory_limit=-1 ./vendor/bin/phpstan analyse -c phpstan.neon --no-progress --quiet
         - php -d memory_limit=-1 ./bin/console cache:warmup --env=test
-        - php -d memory_limit=-1 ./vendor/bin/phpstan analyse -c phpstan-tests.neon --no-progress
+        - php -d memory_limit=-1 ./vendor/bin/phpstan analyse -c phpstan-tests.neon --no-progress --quiet
 
 test:
     stage: test
