@@ -21,11 +21,6 @@ class HiddenCaptchaType implements FormTypeInterface
     ) {
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
-        /* Empty */
-    }
-
     public function buildView(
         FormView $view,
         FormInterface $form,
@@ -54,11 +49,13 @@ class HiddenCaptchaType implements FormTypeInterface
         return HiddenType::class;
     }
 
-    public function finishView(
-        FormView $view,
-        FormInterface $form,
-        array $options
-    ): void {
+    public function buildForm(FormBuilderInterface $builder, array $options): void
+    {
+        /* Empty */
+    }
+
+    public function finishView(FormView $view, FormInterface $form, array $options): void
+    {
         /* Empty */
     }
 }

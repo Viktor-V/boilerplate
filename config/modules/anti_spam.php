@@ -8,7 +8,7 @@ use App\AntiSpam\Infrastructure\Form\Extension\FormTypeAttemptExtension;
 use App\AntiSpam\Infrastructure\Form\Extension\FormTypeCrawlerExtension;
 use App\AntiSpam\Infrastructure\Form\Extension\FormTypeHashExtension;
 use App\AntiSpam\Infrastructure\Form\Extension\FormTypeHiddenCaptchaExtension;
-use App\AntiSpam\Infrastructure\Form\Extension\FormTypeHiddenExtension;
+use App\AntiSpam\Infrastructure\Form\Extension\FormTypeHiddenFieldExtension;
 use App\AntiSpam\Infrastructure\Form\Type\HiddenCaptchaType;
 use App\AntiSpam\Service\HCaptchaValidator;
 use App\AntiSpam\Service\Contract\HiddenCaptchaValidatorInterface;
@@ -35,7 +35,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->exclude(__DIR__ . '/../../src/AntiSpam/Infrastructure/{EventListener}');
 
     $services
-        ->set(FormTypeHiddenExtension::class)
+        ->set(FormTypeHiddenFieldExtension::class)
         ->arg('$enabled', true);
 
     $services
@@ -52,7 +52,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->arg('$enabled', true)
         ->arg('$attemptCount', 10)
         ->arg('$attemptLastTime', 600);
-
 
     /* Available recaptcha and hcaptcha */
     $hiddenCaptchaType = 'recaptcha';

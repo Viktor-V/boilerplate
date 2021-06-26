@@ -58,16 +58,14 @@ class FormTypeHiddenCaptchaExtension implements FormTypeExtensionInterface
             return;
         }
 
-        if ($view->parent === null) {
-            $factory = $form->getConfig()->getFormFactory();
+        $factory = $form->getConfig()->getFormFactory();
 
-            $form = $factory->createNamed(self::FIELD_NAME, HiddenCaptchaType::class, [], [
-                'mapped' => false,
-                'label' => false
-            ]);
+        $form = $factory->createNamed(self::FIELD_NAME, HiddenCaptchaType::class, [], [
+            'mapped' => false,
+            'label' => false
+        ]);
 
-            $view->children[self::FIELD_NAME . '_field_name'] = $form->createView($view);
-        }
+        $view->children[self::FIELD_NAME . '_field_name'] = $form->createView($view);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

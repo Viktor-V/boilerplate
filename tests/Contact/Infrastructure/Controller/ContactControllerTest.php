@@ -58,7 +58,7 @@ class ContactControllerTest extends WebTestCase
         }
 
         /** @var InMemoryTransport $transport */
-        $transport = static::$container->get('messenger.transport.async');
+        $transport = static::getContainer()->get('messenger.transport.async');
 
         $messages = $transport->getSent();
         self::assertCount(2, $messages);

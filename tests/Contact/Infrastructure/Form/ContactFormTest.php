@@ -14,11 +14,16 @@ class ContactFormTest extends TypeTestCase
 {
     public function testSubmitData(): void
     {
-        $form = $this->factory->create(ContactForm::class);
+        $fields = [];
 
+        $requiredFields = ['name', 'email', 'subject', 'message'];
+
+        $form = $this->factory->create(ContactForm::class);
         foreach (array_keys($form->createView()->children) as $key) {
-            self::assertContains($key, ['name', 'email', 'subject', 'message', 'recaptcha']);
+            $fields[] = $key;
         }
+
+        self::assertSame($requiredFields, $fields);
     }
 
     /**

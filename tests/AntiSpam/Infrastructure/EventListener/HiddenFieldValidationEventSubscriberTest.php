@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\AntiSpam\Infrastructure\EventListener;
 
-use App\AntiSpam\Infrastructure\EventListener\HashValidationEventSubscriber;
+use App\AntiSpam\Infrastructure\EventListener\HiddenFieldValidationEventSubscriber;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormInterface;
@@ -13,9 +13,9 @@ use Symfony\Component\HttpFoundation\Request;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 
-class HashValidationEventSubscriberTest extends TestCase
+class HiddenFieldValidationEventSubscriberTest extends TestCase
 {
-    private const HASH_FIELD = 'hash';
+    private const HIDDEN_FIELD = 'hidden';
 
     public function testFormIsNotRoot(): void
     {
@@ -35,10 +35,10 @@ class HashValidationEventSubscriberTest extends TestCase
             ->expects(self::never())
             ->method('getData');
 
-        (new HashValidationEventSubscriber(
+        (new HiddenFieldValidationEventSubscriber(
             $request,
             $this->createMock(LoggerInterface::class),
-            self::HASH_FIELD
+            self::HIDDEN_FIELD
         ))->preSubmit($event);
     }
 
@@ -69,13 +69,13 @@ class HashValidationEventSubscriberTest extends TestCase
             ->expects(self::once())
             ->method('getData')
             ->willReturn([
-                self::HASH_FIELD => 'inputwronghashedvalue'
+                self::HIDDEN_FIELD => 'notempty'
             ]);
 
-        (new HashValidationEventSubscriber(
+        (new HiddenFieldValidationEventSubscriber(
             $request,
             $this->createMock(LoggerInterface::class),
-            self::HASH_FIELD
+            self::HIDDEN_FIELD
         ))->preSubmit($event);
     }
 
@@ -100,13 +100,13 @@ class HashValidationEventSubscriberTest extends TestCase
             ->expects(self::once())
             ->method('getData')
             ->willReturn([
-                self::HASH_FIELD => 'd41d8cd98f00b204e9800998ecf8427e'
+                self::HIDDEN_FIELD => null
             ]);
 
-        (new HashValidationEventSubscriber(
+        (new HiddenFieldValidationEventSubscriber(
             $request,
             $this->createMock(LoggerInterface::class),
-            self::HASH_FIELD
+            self::HIDDEN_FIELD
         ))->preSubmit($event);
     }
 }

@@ -31,8 +31,8 @@ class ContactEntityTest extends TestCase
 
     public function testFailedInit(): void
     {
-        self::expectException(ValidatorException::class);
-        self::expectExceptionMessage('Email is not valid.');
+        $this->expectException(ValidatorException::class);
+        $this->expectExceptionMessage('Email is not valid.');
 
         ContactEntity::init(
             new ContactNameField('Firstname L.'),

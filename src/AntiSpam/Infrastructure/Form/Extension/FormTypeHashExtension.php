@@ -55,24 +55,22 @@ class FormTypeHashExtension implements FormTypeExtensionInterface
             return;
         }
 
-        if ($view->parent === null) {
-            $factory = $form->getConfig()->getFormFactory();
-            $hashField = $factory->createNamed(self::FIELD_NAME, HiddenType::class, [], [
-                'mapped' => false,
-                'attr' => [
-                    'data-hash-form-target' => 'hash'
-                ]
-            ]);
-            $view->children[self::FIELD_NAME . '_field_name'] = $hashField->createView($view);
+        $factory = $form->getConfig()->getFormFactory();
+        $hashField = $factory->createNamed(self::FIELD_NAME, HiddenType::class, [], [
+            'mapped' => false,
+            'attr' => [
+                'data-hash-form-target' => 'hash'
+            ]
+        ]);
+        $view->children[self::FIELD_NAME . '_field_name'] = $hashField->createView($view);
 
-            $view->vars['attr'] = array_merge(
-                $view->vars['attr'],
-                [
-                    'data-controller' => 'hash-form',
-                    'data-action' => 'hash-form#onSubmit'
-                ]
-            );
-        }
+        $view->vars['attr'] = array_merge(
+            $view->vars['attr'],
+            [
+                'data-controller' => 'hash-form',
+                'data-action' => 'hash-form#onSubmit'
+            ]
+        );
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\AntiSpam\Infrastructure\Form\Extension;
 
-use App\AntiSpam\Infrastructure\EventListener\HiddenValidationEventSubscriber;
+use App\AntiSpam\Infrastructure\EventListener\HiddenFieldValidationEventSubscriber;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Psr\Log\LoggerInterface;
 
-class FormTypeHiddenExtension implements FormTypeExtensionInterface
+class FormTypeHiddenFieldExtension implements FormTypeExtensionInterface
 {
     private const FIELD_NAME = 'hidden_field';
 
@@ -38,7 +38,7 @@ class FormTypeHiddenExtension implements FormTypeExtensionInterface
         }
 
         $builder
-            ->addEventSubscriber(new HiddenValidationEventSubscriber(
+            ->addEventSubscriber(new HiddenFieldValidationEventSubscriber(
                 $request,
                 $this->logger,
                 self::FIELD_NAME

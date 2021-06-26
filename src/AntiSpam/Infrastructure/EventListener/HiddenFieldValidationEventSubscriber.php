@@ -11,7 +11,7 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\HttpFoundation\Request;
 use Psr\Log\LoggerInterface;
 
-class HiddenValidationEventSubscriber implements EventSubscriberInterface
+class HiddenFieldValidationEventSubscriber implements EventSubscriberInterface
 {
     public function __construct(
         private Request $request,
