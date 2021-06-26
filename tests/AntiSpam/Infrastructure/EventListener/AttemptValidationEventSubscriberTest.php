@@ -81,7 +81,7 @@ class AttemptValidationEventSubscriberTest extends TestCase
         ))->postSubmit($event);
     }
 
-    public function testAttemptsAreMoreThanExpected(): void
+    public function testUserIsBot(): void
     {
         $request = $this->createMock(Request::class);
         $request->headers = $this->createMock(HeaderBag::class);
@@ -130,7 +130,7 @@ class AttemptValidationEventSubscriberTest extends TestCase
         ))->postSubmit($event);
     }
 
-    public function testAttemptsAreLessThanExpected(): void
+    public function testUserIsNotBot(): void
     {
         $request = $this->createMock(Request::class);
         $request
