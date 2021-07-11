@@ -44,8 +44,6 @@ test:
 
 deploy:
     image: docker/compose:1.29.2
-    services:
-        - docker:dind
     stage: deploy
     script:
         - docker-compose -f docker-compose.prod.yml up -d --build
