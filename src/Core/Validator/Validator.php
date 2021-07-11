@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core\Validator;
 
+use App\Core\Validator\Exception\ValidatorException;
 use App\Core\Validator\Contract\ValidatorInterface;
 use Symfony\Component\Validator\Validation;
 

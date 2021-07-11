@@ -6,7 +6,7 @@ namespace App\Contact\Domain\Field;
 
 use App\Contact\Validator\Rule\ContactEmailRule;
 use App\Core\Validator\Validator;
-use App\Core\Validator\ValidatorException;
+use App\Core\Validator\Exception\ValidatorException;
 
 final class ContactEmailField
 {

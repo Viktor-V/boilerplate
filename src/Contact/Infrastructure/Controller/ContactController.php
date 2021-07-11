@@ -8,7 +8,7 @@ use App\Contact\Adapter\ContactHandler;
 use App\Contact\ContactRouteName;
 use App\Contact\Infrastructure\Form\ContactForm;
 use App\Contact\ValueObject\ContactRequestData;
-use App\Core\Validator\ValidatorException;
+use App\Core\Validator\Exception\ValidatorException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;

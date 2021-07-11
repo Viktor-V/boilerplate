@@ -11,7 +11,7 @@ use App\Contact\Domain\Field\ContactNameField;
 use App\Contact\Domain\Field\ContactSubjectField;
 use App\Contact\ValueObject\ContactRequestData;
 use App\Core\Adapter\Contract\HandlerInterface;
-use App\Core\Validator\ValidatorException;
+use App\Core\Validator\Exception\ValidatorException;
 use App\Core\ValueObject\Contract\RequestDataInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;

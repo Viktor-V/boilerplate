@@ -44,3 +44,4 @@ parameters:
         - '#Method call on new expression is not allowed#'
         - '#Use separate function calls with readable variable names#'
         - '#Missing sprintf\(\) function for a mask#'
+        #- '#Array method calls \[\$this, \"method\"\] are not allowed#'
