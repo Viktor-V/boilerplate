@@ -62,6 +62,7 @@
     "autoload": {
         "psr-4": {
             "App\\": "src/",
+            "App\\Admin\\": "src/Admin",
             "App\\AntiSpam\\": "src/AntiSpam",
             "App\\Blog\\": "src/Blog",
             "App\\Contact\\": "src/Contact",
