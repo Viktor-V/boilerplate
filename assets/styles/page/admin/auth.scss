@@ -1,0 +1,44 @@
+#auth {
+    min-height: inherit;
+
+    .content {
+        @extend .col-lg-12;
+
+        .signin {
+            max-width: 330px;
+            margin: 0 auto;
+
+            label {
+                @extend .d-block;
+            }
+
+            .form-control {
+                height: auto;
+                padding: 10px;
+                position: relative;
+                box-sizing: border-box;
+
+                &:focus {
+                    z-index: 2;
+                }
+            }
+
+            .btn {
+                @extend .w-100;
+                @extend .btn-primary;
+            }
+
+            input[id="username"] {
+                margin-bottom: -1px;
+                border-bottom-right-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+
+            input[id="password"] {
+                margin-bottom: 10px;
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+            }
+        }
+    }
+}

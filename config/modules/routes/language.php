@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use App\ModuleInterface;
+use App\Admin\AdminModule;
 use App\AntiSpam\AntiSpamModule;
 use App\Language\LanguageModule;
 use App\ErrorPage\ErrorPageModule;
@@ -14,7 +15,8 @@ return static function (RoutingConfigurator $routingConfigurator): void {
     $excludeModules = [
         LanguageModule::class,
         ErrorPageModule::class,
-        AntiSpamModule::class
+        AntiSpamModule::class,
+        AdminModule::class
     ];
 
     $contents = require __DIR__ . '/../../modules.php';

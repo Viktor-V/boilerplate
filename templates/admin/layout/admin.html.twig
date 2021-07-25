@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="{{ app.request.locale }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        {% block title %}
+            {{ project }}
+        {% endblock %}
+    </title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('admin') }}
+    {% endblock %}
+</head>
+<body>
+    {% include 'core/partial/noscript.html.twig' %}
+
+    {% block header %}
+        {% include 'admin/partial/header.html.twig' with {menu: include('admin/partial/header/menu.html.twig')} %}
+    {% endblock %}
+
+    <main id="{% block page_id %}main{% endblock %}">
+        <div class="row">
+            {% block sidebar %}
+                <aside class="sidebar">
+                    {% include 'admin/partial/sidebar.html.twig' %}
+                </aside>
+            {% endblock %}
+
+            <section class="content">
+                {% block message %}
+                    {% include 'core/partial/message.html.twig' %}
+                {% endblock %}
+
+                {% block main %}
+                    {# main block #}
+                {% endblock %}
+            </section>
+        </div>
+    </main>
+
+    {% block footer %}
+        {% include 'admin/partial/footer.html.twig' %}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('admin') }}
+    {% endblock %}
+</body>
+</html>

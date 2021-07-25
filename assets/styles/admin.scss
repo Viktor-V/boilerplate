@@ -1,0 +1,45 @@
+@import "~bootswatch/dist/minty/variables";
+@import "~bootstrap";
+@import "~bootswatch/dist/minty/bootswatch";
+
+@import "component/noscript";
+@import "component/header";
+@import "component/footer";
+
+@import "page/admin/auth";
+@import "page/page_error";
+
+@import "module/icon";
+@import "module/feature";
+@import "module/form";
+@import "module/link";
+@import "module/hidden_captcha";
+@import "module/list-group";
+
+@import "component/admin/header";
+@import "component/admin/footer";
+@import "component/admin/sidebar";
+@import "component/admin/section";
+
+html {
+  background: $primary;
+}
+
+body {
+  background: #f6f8fa;
+}
+
+main {
+  @extend .container-xl;
+  @extend .py-4;
+
+  min-height: 700px;
+
+  .sidebar {
+
+  }
+
+  .content {
+
+  }
+}

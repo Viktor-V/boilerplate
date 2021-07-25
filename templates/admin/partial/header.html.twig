@@ -1,0 +1,13 @@
+<div class="admin-header">
+    <header>
+        <h1 class="brand">
+            <a href="{{ path(constant('App\\Admin\\AdminRouteName::ADMIN')) }}" class="link">
+                <strong>{{ project }}</strong>
+            </a>
+        </h1>
+
+        {% if menu is defined and menu is not empty %}
+            {{ menu|raw }}
+        {% endif %}
+    </header>
+</div>

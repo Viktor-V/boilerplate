@@ -1,0 +1,44 @@
+.admin-header {
+    background: $primary;
+
+    header {
+        @extend .pt-3;
+        @extend .container-xl;
+        @extend .align-items-center;
+        border: 0 !important;
+        height: 72px;
+
+        .brand {
+            .link {
+                color: rgba(255, 255, 255, 0.9) !important;
+            }
+        }
+
+        .menu {
+            .menu-item {
+                .menu-link {
+                    color: rgba(255, 255, 255, 0.55);
+
+                    &:hover,
+                    &:focus {
+                        color: rgba(255, 255, 255, 0.9);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(xs) {
+    header .menu .menu-item {
+        width: auto !important;
+    }
+
+    header .menu .menu-language-item {
+        width: auto !important;
+
+        .menu-link {
+            width: auto !important;
+        }
+    }
+}

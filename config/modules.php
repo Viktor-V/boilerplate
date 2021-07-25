@@ -6,5 +6,6 @@ return [
     \App\Blog\BlogModule::class,
     \App\Contact\ContactModule::class,
     \App\AntiSpam\AntiSpamModule::class,
-    \App\Language\LanguageModule::class
+    \App\Language\LanguageModule::class,
+    \App\Admin\AdminModule::class
 ];

@@ -1,0 +1,14 @@
+.list-group {
+    .list-group-item {
+        @extend .justify-content-between;
+        @extend .align-items-start;
+        @extend .d-flex;
+
+        .badge {
+            @extend .bg-secondary;
+            @extend .rounded-pill;
+
+            margin: 0.1rem 0;
+        }
+    }
+}
