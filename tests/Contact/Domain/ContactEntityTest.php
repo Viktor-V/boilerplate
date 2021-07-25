@@ -9,7 +9,7 @@ use App\Contact\Domain\Field\ContactEmailField;
 use App\Contact\Domain\Field\ContactMessageField;
 use App\Contact\Domain\Field\ContactNameField;
 use App\Contact\Domain\Field\ContactSubjectField;
-use App\Core\Validator\ValidatorException;
+use App\Core\Validator\Exception\ValidatorException;
 use PHPUnit\Framework\TestCase;
 
 class ContactEntityTest extends TestCase
