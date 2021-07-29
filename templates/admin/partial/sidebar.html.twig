@@ -1,5 +1,32 @@
+<label for="menu" class="mobile-menu">
+    <select id="menu" onChange="window.location.href = this.value;">
+        <option selected disabled>{{ _('Menu') }}</option>
+
+        <optgroup label="{{ _('Dashboard') }}">
+            <option value="{{ path(constant('App\\Admin\\AdminRouteName::ADMIN')) }}">{{ _('Dashboard') }}</option>
+        </optgroup>
+
+        <optgroup label="{{ _('User manager') }}">
+            <option value="{{ path(constant('App\\Admin\\AdminRouteName::ADMIN')) }}">{{ _('Admin') }}</option>
+        </optgroup>
+
+        <optgroup label="{{ _('I18N manager') }}">
+            <option value="{{ path(constant('App\\Admin\\AdminRouteName::ADMIN')) }}">{{ _('Locale') }}</option>
+            <option value="{{ path(constant('App\\Admin\\AdminRouteName::ADMIN')) }}">{{ _('Translation') }}</option>
+        </optgroup>
+
+        <optgroup label="{{ _('Setting') }}">
+            <option value="{{ path(constant('App\\Admin\\AdminRouteName::ADMIN')) }}">{{ _('Setting') }}</option>
+        </optgroup>
+
+        <optgroup label="{{ _('Cache clear') }}">
+            <option value="{{ path(constant('App\\Admin\\AdminRouteName::ADMIN')) }}">{{ _('Cache clear') }}</option>
+        </optgroup>
+    </select>
+</label>
+
 <nav class="sidebar-menu" role="navigation">
-    <a href="#" class="menu-item active">
+    <a href="{{ path(constant('App\\Admin\\AdminRouteName::ADMIN')) }}" class="menu-item active">
         <span>
             <i class="fas fa-tachometer-alt">{# icon #}</i>
             <span class="menu-label">{{ _('Dashboard') }}</span>
@@ -13,7 +40,7 @@
             <span class="menu-label">{{ _('User manager') }}</span>
         </span>
     </span>
-    <a href="#" class="menu-item">
+    <a href="{{ path(constant('App\\Admin\\AdminRouteName::ADMIN')) }}" class="menu-item">
         <span>
             <i class="fa fa-caret-right" aria-hidden="true"></i>
             <span class="menu-label">{{ _('Admin') }}</span>
@@ -26,27 +53,27 @@
             <span class="menu-label">{{ _('I18N manager') }}</span>
         </span>
     </span>
-    <a href="#" class="menu-item">
+    <a href="{{ path(constant('App\\Admin\\AdminRouteName::ADMIN')) }}" class="menu-item">
         <span>
             <i class="fa fa-caret-right" aria-hidden="true"></i>
             <span class="menu-label">{{ _('Locale') }}</span>
         </span>
     </a>
-    <a href="#" class="menu-item ">
+    <a href="{{ path(constant('App\\Admin\\AdminRouteName::ADMIN')) }}" class="menu-item ">
         <span>
             <i class="fa fa-caret-right" aria-hidden="true"></i>
             <span class="menu-label">{{ _('Translation') }}</span>
         </span>
     </a>
 
-    <a href="#" class="menu-item">
+    <a href="{{ path(constant('App\\Admin\\AdminRouteName::ADMIN')) }}" class="menu-item">
         <span>
             <i class="fas fa-cogs">{# icon #}</i>
             <span class="menu-label">{{ _('Setting') }}</span>
         </span>
     </a>
 
-    <a href="#" class="menu-item">
+    <a href="{{ path(constant('App\\Admin\\AdminRouteName::ADMIN')) }}" class="menu-item">
         <span>
             <i class="fas fa-eraser">{# icon #}</i>
             <span class="menu-label">{{ _('Cache clear') }}</span>

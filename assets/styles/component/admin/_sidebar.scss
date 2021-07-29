@@ -1,9 +1,21 @@
 .sidebar {
     @extend .col-lg-3;
+    @extend .col-md-4;
+
+    .mobile-menu {
+        @extend .w-100;
+        @extend .d-md-none;
+
+        select {
+            @extend .form-select;
+            @extend .form-select-lg;
+            @extend .mb-3;
+        }
+    }
 
     .sidebar-menu {
         @extend .list-group;
-        @extend .d-sm-block;
+        @extend .d-md-block;
         @extend .d-none;
 
         .menu-item {
