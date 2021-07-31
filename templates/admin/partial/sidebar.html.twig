@@ -3,10 +3,10 @@
         <option selected disabled>{{ _('Menu') }}</option>
 
         <optgroup label="{{ _('Dashboard') }}">
-            <option value="{{ path(constant('App\\Admin\\AdminRouteName::ADMIN')) }}">{{ _('Dashboard') }}</option>
+            <option value="{{ path(constant('App\\AdminDashboard\\AdminDashboardRouteName::ADMIN')) }}">{{ _('Dashboard') }}</option>
         </optgroup>
 
-        <optgroup label="{{ _('User manager') }}">
+        {#<optgroup label="{{ _('User manager') }}">
             <option value="{{ path(constant('App\\Admin\\AdminRouteName::ADMIN')) }}">{{ _('Admin') }}</option>
         </optgroup>
 
@@ -17,26 +17,25 @@
 
         <optgroup label="{{ _('Setting') }}">
             <option value="{{ path(constant('App\\Admin\\AdminRouteName::ADMIN')) }}">{{ _('Setting') }}</option>
-        </optgroup>
+        </optgroup>#}
 
-        <optgroup label="{{ _('Cache clear') }}">
-            <option value="{{ path(constant('App\\Admin\\AdminRouteName::ADMIN')) }}">{{ _('Cache clear') }}</option>
+        <optgroup label="{{ _('Cache') }}">
+            <option value="{{ path(constant('App\\AdminDashboard\\AdminDashboardRouteName::ADMIN')) }}">{{ _('Cache clear') }}</option>
         </optgroup>
     </select>
 </label>
 
 <nav class="sidebar-menu" role="navigation">
-    <a href="{{ path(constant('App\\Admin\\AdminRouteName::ADMIN')) }}" class="menu-item active">
+    <a href="{{ path(constant('App\\AdminDashboard\\AdminDashboardRouteName::ADMIN')) }}" class="menu-item active">
         <span>
             <i class="fas fa-tachometer-alt">{# icon #}</i>
             <span class="menu-label">{{ _('Dashboard') }}</span>
         </span>
-        <span class="badge">1</span>
     </a>
 
-    <span class="menu-item disabled" aria-disabled="true">
+    {#<span class="menu-item disabled" aria-disabled="true">
         <span>
-            <i class="fas fa-users">{# icon #}</i>
+            <i class="fas fa-users">#}{# icon #}{#</i>
             <span class="menu-label">{{ _('User manager') }}</span>
         </span>
     </span>
@@ -49,7 +48,7 @@
 
     <span class="menu-item disabled" aria-disabled="true">
         <span>
-            <i class="fas fa-language">{# icon #}</i>
+            <i class="fas fa-language">#}{# icon #}{#</i>
             <span class="menu-label">{{ _('I18N manager') }}</span>
         </span>
     </span>
@@ -68,12 +67,12 @@
 
     <a href="{{ path(constant('App\\Admin\\AdminRouteName::ADMIN')) }}" class="menu-item">
         <span>
-            <i class="fas fa-cogs">{# icon #}</i>
+            <i class="fas fa-cogs">#}{# icon #}{#</i>
             <span class="menu-label">{{ _('Setting') }}</span>
         </span>
-    </a>
+    </a>#}
 
-    <a href="{{ path(constant('App\\Admin\\AdminRouteName::ADMIN')) }}" class="menu-item">
+    <a href="{{ path(constant('App\\AdminDashboard\\AdminDashboardRouteName::ADMIN')) }}" class="menu-item">
         <span>
             <i class="fas fa-eraser">{# icon #}</i>
             <span class="menu-label">{{ _('Cache clear') }}</span>

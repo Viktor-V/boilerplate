@@ -15,8 +15,13 @@ final class ErrorPageModule implements ModuleInterface
         return self::NAME;
     }
 
-    public function enabled(): bool
+    public function enable(): bool
     {
         return $_SERVER['APP_ENV'] === 'prod';
+    }
+
+    public function localize(): bool
+    {
+        return false;
     }
 }

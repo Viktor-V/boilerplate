@@ -9,15 +9,21 @@ use App\ModuleInterface;
 final class BlogModule implements ModuleInterface
 {
     public const NAME = 'blog';
-    public const ENABLED = true;
+    public const ENABLE = true;
+    public const LOCALIZE = true;
 
     public function name(): string
     {
         return self::NAME;
     }
 
-    public function enabled(): bool
+    public function enable(): bool
     {
-        return self::ENABLED;
+        return self::ENABLE;
+    }
+
+    public function localize(): bool
+    {
+        return self::LOCALIZE;
     }
 }

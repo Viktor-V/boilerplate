@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\AntiSpam;
+namespace App\AdminDashboard;
 
 use App\ModuleInterface;
 
-final class AntiSpamModule implements ModuleInterface
+final class AdminDashboardModule implements ModuleInterface
 {
-    public const NAME = 'anti_spam';
+    public const NAME = 'admin_dashboard';
     public const ENABLE = true;
     public const LOCALIZE = false;
 

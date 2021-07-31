@@ -6,18 +6,24 @@ namespace App\Language;
 
 use App\ModuleInterface;
 
-class LanguageModule implements ModuleInterface
+final class LanguageModule implements ModuleInterface
 {
     public const NAME = 'language';
-    public const ENABLED = true;
+    public const ENABLE = true;
+    public const LOCALIZE = false;
 
     public function name(): string
     {
         return self::NAME;
     }
 
-    public function enabled(): bool
+    public function enable(): bool
     {
-        return self::ENABLED;
+        return self::ENABLE;
+    }
+
+    public function localize(): bool
+    {
+        return self::LOCALIZE;
     }
 }

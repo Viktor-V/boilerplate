@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Admin;
+namespace App\AdminDashboard;
 
-final class AdminRouteName
+final class AdminDashboardRouteName
 {
     public const ADMIN = 'admin';
     public const ADMIN_PATH = self::ADMIN;

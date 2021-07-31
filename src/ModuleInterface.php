@@ -7,5 +7,6 @@ namespace App;
 interface ModuleInterface
 {
     public function name(): string;
-    public function enabled(): bool;
+    public function enable(): bool;
+    public function localize(): bool;
 }

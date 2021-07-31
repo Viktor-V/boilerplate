@@ -7,5 +7,5 @@ return [
     \App\Contact\ContactModule::class,
     \App\AntiSpam\AntiSpamModule::class,
     \App\Language\LanguageModule::class,
-    \App\Admin\AdminModule::class
+    \App\AdminDashboard\AdminDashboardModule::class
 ];

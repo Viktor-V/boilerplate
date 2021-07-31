@@ -7,15 +7,15 @@
         </a>
     </li>
 
-    {% if constant('App\\Blog\\BlogModule::ENABLED') %}
+    {% if constant('App\\Blog\\BlogModule::ENABLE') %}
         {% include 'blog/menu/link.html.twig' %}
     {% endif %}
 
-    {% if constant('App\\Contact\\ContactModule::ENABLED') %}
+    {% if constant('App\\Contact\\ContactModule::ENABLE') %}
         {% include 'contact/menu/link.html.twig' %}
     {% endif %}
 
-    {% if constant('App\\Language\\LanguageModule::ENABLED') %}
+    {% if constant('App\\Language\\LanguageModule::ENABLE') %}
         {% include 'language/menu/language.html.twig' %}
     {% endif %}
 </ul>

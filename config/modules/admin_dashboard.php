@@ -14,8 +14,10 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->public();
 
     $services
-        ->load('App\Admin\\', __DIR__ . '/../../src/Admin/');
+        ->load('App\AdminDashboard\\', __DIR__.'/../../src/AdminDashboard/');
 
-    $services->load('App\Admin\Infrastructure\Controller\\', __DIR__ . '/../../src/Admin/Infrastructure/Controller/')
+    $services->load('App\AdminDashboard\Infrastructure\Controller\\',
+        __DIR__.'/../../src/AdminDashboard/Infrastructure/Controller/'
+    )
         ->tag('controller.service_arguments');
 };

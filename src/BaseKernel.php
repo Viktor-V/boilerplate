@@ -63,7 +63,7 @@ final class BaseKernel extends Kernel
         foreach ($contents as $class) {
             /** @var ModuleInterface $module */
             $module = new $class();
-            if ($module->enabled()) {
+            if ($module->enable()) {
                 $modules[] = $module->name();
             }
         }
