@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace App\AdminDashboard;
 
+use App\AdminCore\AdminCoreRouteName;
+
 final class AdminDashboardRouteName
 {
-    public const ADMIN = 'admin';
-    public const ADMIN_PATH = self::ADMIN;
+    public const DASHBOARD = AdminCoreRouteName::ADMIN_CORE_NAME . 'dashboard';
+    public const DASHBOARD_PATH = null;
 
-    public const AUTH = 'auth';
-    public const AUTH_PATH = self::ADMIN_PATH . '/' . self::AUTH;
+    public const AUTH = AdminCoreRouteName::ADMIN_CORE_NAME . 'auth';
+    public const AUTH_PATH = 'auth';
 }

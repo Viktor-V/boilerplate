@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\AdminDashboard;
+namespace App\AdminCache;
 
 use App\AdminModuleInterface;
 
-final class AdminDashboardModule implements AdminModuleInterface
+final class AdminCacheModule implements AdminModuleInterface
 {
-    public const NAME = 'admin_dashboard';
+    public const NAME = 'admin_cache';
     public const ENABLE = true;
     public const LOCALIZE = false;
 

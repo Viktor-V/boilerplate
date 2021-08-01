@@ -18,14 +18,14 @@
     {% include 'core/partial/noscript.html.twig' %}
 
     {% block header %}
-        {% include 'admin/partial/header.html.twig' with {menu: include('admin/partial/header/menu.html.twig')} %}
+        {% include 'admin_core/partial/header.html.twig' with {menu: include('admin_core/partial/header/menu.html.twig')} %}
     {% endblock %}
 
     <main id="{% block page_id %}main{% endblock %}">
         <div class="row">
             {% block sidebar %}
                 <aside class="sidebar">
-                    {% include 'admin/partial/sidebar.html.twig' %}
+                    {% include 'admin_core/partial/sidebar.html.twig' %}
                 </aside>
             {% endblock %}
 
@@ -42,7 +42,7 @@
     </main>
 
     {% block footer %}
-        {% include 'admin/partial/footer.html.twig' %}
+        {% include 'admin_core/partial/footer.html.twig' %}
     {% endblock %}
 
     {% block javascripts %}

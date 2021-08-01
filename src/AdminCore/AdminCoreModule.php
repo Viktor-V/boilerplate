@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\AdminDashboard;
+namespace App\AdminCore;
 
 use App\AdminModuleInterface;
 
-final class AdminDashboardModule implements AdminModuleInterface
+final class AdminCoreModule implements AdminModuleInterface
 {
-    public const NAME = 'admin_dashboard';
+    public const NAME = 'admin_core';
     public const ENABLE = true;
     public const LOCALIZE = false;
 

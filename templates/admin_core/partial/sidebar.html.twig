@@ -3,7 +3,7 @@
         <option selected disabled>{{ _('Menu') }}</option>
 
         <optgroup label="{{ _('Dashboard') }}">
-            <option value="{{ path(constant('App\\AdminDashboard\\AdminDashboardRouteName::ADMIN')) }}">{{ _('Dashboard') }}</option>
+            <option value="{{ path(constant('App\\AdminDashboard\\AdminDashboardRouteName::DASHBOARD')) }}">{{ _('Dashboard') }}</option>
         </optgroup>
 
         {#<optgroup label="{{ _('User manager') }}">
@@ -20,13 +20,13 @@
         </optgroup>#}
 
         <optgroup label="{{ _('Cache') }}">
-            <option value="{{ path(constant('App\\AdminDashboard\\AdminDashboardRouteName::ADMIN')) }}">{{ _('Cache clear') }}</option>
+            <option value="{{ path(constant('App\\AdminDashboard\\AdminDashboardRouteName::DASHBOARD')) }}">{{ _('Cache clear') }}</option>
         </optgroup>
     </select>
 </label>
 
 <nav class="sidebar-menu" role="navigation">
-    <a href="{{ path(constant('App\\AdminDashboard\\AdminDashboardRouteName::ADMIN')) }}" class="menu-item active">
+    <a href="{{ path(constant('App\\AdminDashboard\\AdminDashboardRouteName::DASHBOARD')) }}" class="menu-item active">
         <span>
             <i class="fas fa-tachometer-alt">{# icon #}</i>
             <span class="menu-label">{{ _('Dashboard') }}</span>
@@ -72,7 +72,7 @@
         </span>
     </a>#}
 
-    <a href="{{ path(constant('App\\AdminDashboard\\AdminDashboardRouteName::ADMIN')) }}" class="menu-item">
+    <a href="{{ path(constant('App\\AdminDashboard\\AdminDashboardRouteName::DASHBOARD')) }}" class="menu-item">
         <span>
             <i class="fas fa-eraser">{# icon #}</i>
             <span class="menu-label">{{ _('Cache clear') }}</span>

@@ -15,3 +15,9 @@ if (!function_exists('__')) {
         return sprintf($message, ...$values);
     }
 }
+
+if (!function_exists('camelize')) {
+    function camelize(string $snakeCase): string {
+        return str_replace('_', '', ucwords($snakeCase, '_'));
+    }
+}
