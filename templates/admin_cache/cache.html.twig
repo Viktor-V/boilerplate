@@ -1,0 +1,8 @@
+{% extends 'admin_core/layout/admin.html.twig' %}
+
+{% block title %}{{ _('Cache control') }}{% endblock %}
+
+{% block main %}
+    {{ form(clearForm.createView) }}
+    {{ form(warmForm.createView) }}
+{% endblock %}
