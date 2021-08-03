@@ -2,9 +2,9 @@
     <select id="menu" onChange="window.location.href = this.value;">
         <option selected disabled>{{ _('Menu') }}</option>
 
-        <optgroup label="{{ _('Dashboard') }}">
-            <option value="{{ path(constant('App\\AdminDashboard\\AdminDashboardRouteName::DASHBOARD')) }}">{{ _('Dashboard') }}</option>
-        </optgroup>
+        {% if constant('App\\AdminDashboard\\AdminDashboardModule::ENABLE') %}
+            {% include 'admin_dashboard/menu/mobile.html.twig' %}
+        {% endif %}
 
         {#<optgroup label="{{ _('User manager') }}">
             <option value="{{ path(constant('App\\Admin\\AdminRouteName::ADMIN')) }}">{{ _('Admin') }}</option>
@@ -20,20 +20,15 @@
         </optgroup>#}
 
         {% if constant('App\\AdminCache\\AdminCacheModule::ENABLE') %}
-            <optgroup label="{{ _('Cache') }}">
-                <option value="{{ path(constant('App\\AdminCache\\AdminCacheRouteName::CACHE')) }}">{{ _('Cache control') }}</option>
-            </optgroup>
+            {% include 'admin_cache/menu/mobile.html.twig' %}
         {% endif %}
     </select>
 </label>
 
 <nav class="sidebar-menu" role="navigation">
-    <a href="{{ path(constant('App\\AdminDashboard\\AdminDashboardRouteName::DASHBOARD')) }}" class="menu-item {{ app.request.get('_route') in [constant('App\\AdminDashboard\\AdminDashboardRouteName::DASHBOARD')] ? 'active' }}">
-        <span>
-            <i class="fas fa-tachometer-alt">{# icon #}</i>
-            <span class="menu-label">{{ _('Dashboard') }}</span>
-        </span>
-    </a>
+    {% if constant('App\\AdminDashboard\\AdminDashboardModule::ENABLE') %}
+        {% include 'admin_dashboard/menu/link.html.twig' %}
+    {% endif %}
 
     {#<span class="menu-item disabled" aria-disabled="true">
         <span>
@@ -75,11 +70,6 @@
     </a>#}
 
     {% if constant('App\\AdminCache\\AdminCacheModule::ENABLE') %}
-        <a href="{{ path(constant('App\\AdminCache\\AdminCacheRouteName::CACHE')) }}" class="menu-item {{ app.request.get('_route') in [constant('App\\AdminCache\\AdminCacheRouteName::CACHE')] ? 'active' }}">
-            <span>
-                <i class="fas fa-eraser">{# icon #}</i>
-                <span class="menu-label">{{ _('Cache control') }}</span>
-            </span>
-        </a>
+        {% include 'admin_cache/menu/link.html.twig' %}
     {% endif %}
 </nav>

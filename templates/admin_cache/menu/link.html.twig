@@ -1,0 +1,6 @@
+ <a href="{{ path(constant('App\\AdminCache\\AdminCacheRouteName::CACHE')) }}" class="menu-item {{ app.request.get('_route') in [constant('App\\AdminCache\\AdminCacheRouteName::CACHE')] ? 'active' }}">
+    <span>
+        <i class="fas fa-eraser">{# icon #}</i>
+        <span class="menu-label">{{ _('Cache control') }}</span>
+    </span>
+</a>

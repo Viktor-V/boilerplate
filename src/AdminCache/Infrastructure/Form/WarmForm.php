@@ -6,7 +6,6 @@ namespace App\AdminCache\Infrastructure\Form;
 
 use App\AdminCache\AdminCacheRouteName;
 use App\AdminCore\Infrastructure\Form\AbstractForm;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
@@ -23,8 +22,5 @@ final class WarmForm extends AbstractForm
     ): void {
         $builder->setAction($this->urlGenerator->generate(AdminCacheRouteName::CACHE_WARM));
         $builder->setMethod('post');
-        $builder->add('button', SubmitType::class, [
-            'label' => _('Warm cache')
-        ]);
     }
 }

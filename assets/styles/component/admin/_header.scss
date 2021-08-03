@@ -2,6 +2,7 @@
     background: $primary;
 
     header {
+        @extend .mb-0;
         @extend .pt-3;
         @extend .container-xl;
         @extend .align-items-center;

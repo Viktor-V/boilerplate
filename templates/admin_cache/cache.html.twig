@@ -2,7 +2,24 @@
 
 {% block title %}{{ _('Cache control') }}{% endblock %}
 
-{% block main %}
-    {{ form(clearForm.createView) }}
-    {{ form(warmForm.createView) }}
+{% block headline %}
+    <div class="headline">
+        <div class="headline-body">
+            <div class="headline-title">
+                <h3>{{ block('title') }}</h3>
+            </div>
+
+            <div class="headline-right">
+                {% set clearForm = clearForm.createView %}
+                {{ form_start(clearForm) }}
+                    <button type="submit" class="btn btn-primary">{{ _('Clear') }}</button>
+                {{ form_end(clearForm) }}
+
+                {% set warmForm = warmForm.createView %}
+                {{ form_start(warmForm) }}
+                    <button type="submit" class="btn btn-secondary">{{ _('Warm') }}</button>
+                {{ form_end(warmForm) }}
+            </div>
+        </div>
+    </div>
 {% endblock %}

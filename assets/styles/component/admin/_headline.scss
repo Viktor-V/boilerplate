@@ -1,0 +1,53 @@
+.headline {
+    @extend .card;
+
+    .headline-body {
+        @extend .card-body;
+        @extend .d-flex;
+        @extend .flex-column;
+        @extend .flex-sm-row;
+    }
+
+    .headline-title {
+        @extend .mt-auto;
+        @extend .mb-auto;
+        @extend .d-flex;
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            @extend .m-0;
+            @extend .mb-auto;
+            @extend .mt-auto;
+        }
+    }
+
+    .headline-right {
+        @extend .mt-2;
+        @extend .mt-sm-0;
+        @extend .ms-sm-auto;
+        @extend .d-sm-inline-flex;
+
+        form {
+            @extend .mx-sm-1;
+
+            .btn:first-of-type {
+                @extend .mx-sm-0;
+            }
+        }
+
+        .btn {
+            @extend .w-100;
+
+            &:first-of-type {
+                @extend .m-0;
+                @extend .mb-2;
+                @extend .mb-sm-0;
+                @extend .mx-sm-1;
+            }
+        }
+    }
+}
