@@ -16,10 +16,11 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->public();
 
     $services
-        ->load('App\AdminCache\\', __DIR__.'/../../src/AdminCache/');
+        ->load('App\AdminCache\\', __DIR__ . '/../../src/AdminCache/');
 
-    $services->load('App\AdminCache\Infrastructure\Controller\\',
-        __DIR__.'/../../src/AdminCache/Infrastructure/Controller/'
+    $services->load(
+        'App\AdminCache\Infrastructure\Controller\\',
+        __DIR__ . '/../../src/AdminCache/Infrastructure/Controller/'
     )->tag('controller.service_arguments');
 
     $services->set(ClearController::class)

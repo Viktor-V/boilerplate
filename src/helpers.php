@@ -17,7 +17,8 @@ if (!function_exists('__')) {
 }
 
 if (!function_exists('camelize')) {
-    function camelize(string $snakeCase): string {
+    function camelize(string $snakeCase): string
+    {
         return str_replace('_', '', ucwords($snakeCase, '_'));
     }
 }

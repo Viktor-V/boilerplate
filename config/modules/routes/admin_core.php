@@ -11,7 +11,8 @@ use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 
 return static function (RoutingConfigurator $routingConfigurator): void {
     $routingConfigurator->import(
-        __DIR__.'/../../../src/AdminCore/Infrastructure/Controller/', 'annotation'
+        __DIR__ . '/../../../src/AdminCore/Infrastructure/Controller/',
+        'annotation'
     );
 
     $contents = require __DIR__ . '/../../modules.php';
