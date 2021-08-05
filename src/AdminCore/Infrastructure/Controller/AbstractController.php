@@ -8,4 +8,5 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController as SymfonyContr
 
 abstract class AbstractController extends SymfonyController
 {
+    /* Empty */
 }

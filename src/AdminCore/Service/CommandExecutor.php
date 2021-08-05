@@ -18,6 +18,9 @@ final class CommandExecutor
     ) {
     }
 
+    /**
+     * @param array<mixed> $options
+     */
     public function execute(string $command, array $options = []): bool
     {
         $this->application->setAutoExit(false);
@@ -27,8 +30,8 @@ final class CommandExecutor
 
         try {
             $result = $this->application->run($input, $output);
-        } catch (Throwable $e) {
-            $this->logger->error('Cannot execute command. Reason: ' . $e->getMessage());
+        } catch (Throwable $exception) {
+            $this->logger->error('Cannot execute command. Reason: ' . $exception->getMessage());
 
             return false;
         }

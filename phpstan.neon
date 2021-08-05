@@ -37,6 +37,7 @@ parameters:
     excludePaths:
         - config
         - src/ModuleInterface.php
+        - src/AdminModuleInterface.php
         - src/Core/Infrastructure/Twig/TranslationExtension.php
         - src/helpers.php
 
@@ -45,3 +46,4 @@ parameters:
         - '#Use separate function calls with readable variable names#'
         - '#Missing sprintf\(\) function for a mask#'
         - '#Array method calls \[\$this, \"method\"\] are not allowed#'
+        - '#Method "execute\(\)" returns bool type#'
