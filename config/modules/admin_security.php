@@ -25,7 +25,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             'admins_in_memory' => ['memory' => true]
         ],
         'access_control' => [
-            ['path' => '^/admin', 'roles' => 'ROLE_ADMIN'],
+            ['path' => '^/admin/auth', 'roles' => 'PUBLIC_ACCESS'],
+            ['path' => '^/admin', 'roles' => 'ROLE_ADMIN']
         ]
     ]);
 };

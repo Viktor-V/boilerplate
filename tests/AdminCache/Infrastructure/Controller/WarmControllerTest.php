@@ -11,7 +11,10 @@ class WarmControllerTest extends WebTestCase
 {
     public function testWarm(): void
     {
-        $client = static::createClient();
+        $client = static::createClient(server: [
+            'PHP_AUTH_USER' => 'admin',
+            'PHP_AUTH_PW' => 'admin'
+        ]);
 
         $crawler = $client->request(
             'GET',
@@ -20,7 +23,10 @@ class WarmControllerTest extends WebTestCase
         self::assertEquals(200, $client->getResponse()->getStatusCode());
 
         $client->submit($crawler->selectButton('Warm')->form(method: 'POST'));
-        $client->followRedirect();
+
+        if ($client->getResponse()->getStatusCode() === 302) {
+            $client->followRedirect();
+        }
 
         self::assertStringContainsString(
             'Cache successfully warmed.',
