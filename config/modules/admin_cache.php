@@ -24,8 +24,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     )->tag('controller.service_arguments');
 
     $services->set(ClearController::class)
-        ->arg('$environment', (string) env('string:APP_ENV'));
+        ->arg('$environment', (string) param('kernel.environment'));
 
     $services->set(WarmController::class)
-        ->arg('$environment', (string) env('string:APP_ENV'));
+        ->arg('$environment', (string) param('kernel.environment'));
 };
