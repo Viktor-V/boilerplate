@@ -8,6 +8,7 @@ return [
     \App\AntiSpam\AntiSpamModule::class,
     \App\Language\LanguageModule::class,
 
+    \App\AdminSecurity\AdminSecurityModule::class,
     \App\AdminDashboard\AdminDashboardModule::class,
     \App\AdminCache\AdminCacheModule::class,
     \App\AdminCore\AdminCoreModule::class

@@ -64,6 +64,7 @@
             "App\\": "src/",
             "App\\AdminCore\\": "src/AdminCore",
             "App\\AdminCache\\": "src/AdminCache",
+            "App\\AdminSecurity\\": "src/AdminSecurity",
             "App\\AdminDashboard\\": "src/AdminDashboard",
             "App\\AntiSpam\\": "src/AntiSpam",
             "App\\Blog\\": "src/Blog",
