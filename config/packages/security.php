@@ -20,7 +20,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             'provider' => 'admins_in_memory',
             'custom_authenticators' => [FormAuthenticator::class],
             'logout' => [
-                'path' => AdminSecurityRouteName::LOGOUT_PATH
+                'path' => AdminSecurityRouteName::LOGOUT
             ]
         ];
     }

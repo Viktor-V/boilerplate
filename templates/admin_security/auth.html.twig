@@ -11,7 +11,7 @@
 {% block sidebar %}{# empty #}{% endblock %}
 
 {% block main %}
-    <form class="signin">
+    <form class="signin" method="post">
         {% if error %}
             <div class="alert alert-danger alert-dismissible" role="alert" data-controller="close">
                 {{ error.messageKey|trans(error.messageData, 'security')  }}
@@ -25,7 +25,7 @@
             </div>
         {% endif %}
 
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"
+        <input type="hidden" name="csrf_token" value="{{ csrf_token('authenticate') }}">
 
         <label for="username">
             <input type="text" id="username" name="username" class="form-control" placeholder="{{ _('Username') }}" autocomplete="off">
