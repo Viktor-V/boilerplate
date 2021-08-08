@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use App\AdminSecurity\AdminSecurityModule;
+use App\AdminSecurity\AdminSecurityRouteName;
+use App\AdminSecurity\Infrastructure\Security\FormAuthenticator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $firewalls['dev'] = [
@@ -15,7 +17,11 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     if (AdminSecurityModule::ENABLE) {
         $firewalls['admin'] = [
             'lazy' => true,
-            'provider' => 'admins_in_memory'
+            'provider' => 'admins_in_memory',
+            'custom_authenticators' => [FormAuthenticator::class],
+            'logout' => [
+                'path' => AdminSecurityRouteName::LOGOUT_PATH
+            ]
         ];
     }
 

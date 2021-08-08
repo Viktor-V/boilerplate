@@ -9,15 +9,13 @@ use App\AdminSecurity\AdminSecurityRouteName;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use LogicException;
 
-class SecurityController extends AbstractController
+class LogoutController extends AbstractController
 {
-    #[Route(path: AdminSecurityRouteName::AUTH_PATH, name: AdminSecurityRouteName::AUTH, methods: ['GET'])]
+    #[Route(path: AdminSecurityRouteName::LOGOUT_PATH, name: AdminSecurityRouteName::LOGOUT, methods: ['GET'])]
     public function __invoke(AuthenticationUtils $authenticationUtils): Response
     {
-        return $this->render(
-            'admin_security/auth.html.twig',
-            ['error' => $authenticationUtils->getLastAuthenticationError()]
-        );
+        throw new LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 }

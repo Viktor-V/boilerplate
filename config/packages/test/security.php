@@ -13,7 +13,9 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         $firewalls['admin'] = [
             'lazy' => true,
             'provider' => 'admins_in_memory',
-            'http_basic' => true
+            'http_basic' => true,
+            'custom_authenticators' => false,
+            'logout' => false
         ];
     }
 
