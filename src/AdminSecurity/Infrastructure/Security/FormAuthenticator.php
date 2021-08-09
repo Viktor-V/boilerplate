@@ -19,6 +19,7 @@ use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Csrf\CsrfToken;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
@@ -54,9 +55,11 @@ class FormAuthenticator implements AuthenticationEntryPointInterface, Interactiv
         }
 
         $username = (string) $request->request->get('username');
+        /** @var PasswordAuthenticatedUserInterface $user */
         $user = $this->userProvider->loadUserByIdentifier($username);
 
-        if (!$this->passwordHasher->isPasswordValid($user, $request->request->get('password'))) {
+        $isPasswordValid = $this->passwordHasher->isPasswordValid($user, (string) $request->request->get('password'));
+        if (!$isPasswordValid) {
             throw new BadCredentialsException();
         }
 

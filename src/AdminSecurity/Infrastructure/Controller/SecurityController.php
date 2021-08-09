@@ -9,6 +9,7 @@ use App\AdminDashboard\AdminDashboardRouteName;
 use App\AdminSecurity\AdminSecurityRouteName;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
@@ -16,7 +17,7 @@ class SecurityController extends AbstractController
     #[Route(path: AdminSecurityRouteName::AUTH_PATH, name: AdminSecurityRouteName::AUTH, methods: ['GET', 'POST'])]
     public function __invoke(AuthenticationUtils $authenticationUtils): Response
     {
-        if ($this->getUser()) {
+        if ($this->getUser() instanceof UserInterface) {
             return $this->redirectToRoute(AdminDashboardRouteName::DASHBOARD);
         }
 
