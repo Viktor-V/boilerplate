@@ -31,7 +31,11 @@ final class CommandExecutor
         try {
             $result = $this->application->run($input, $output);
         } catch (Throwable $exception) {
-            $this->logger->error('Cannot execute command. Reason: ' . $exception->getMessage());
+            $this->logger->error(sprintf(
+                'Cannot execute command. Reason: %s. Output: %s',
+                $exception->getMessage(),
+                $output->fetch()
+            ));
 
             return false;
         }

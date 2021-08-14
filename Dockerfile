@@ -59,10 +59,10 @@ COPY --from=node /home/node/app/public/build/ public/build
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN set -ex \
-    && chown www-data:www-data /var/www/html \
     && echo "APP_SECRET=$(tr -dc A-Za-z0-9 < /dev/urandom | head -c 32)" >> .env \
     && echo "APP_ENV=${ENVIRONMENT}" >> .env \
-    && php bin/console cache:warmup --env=${ENVIRONMENT}
+    && php bin/console cache:warmup --env=${ENVIRONMENT} \
+    && chown -R unit:www-data /var/www/html
 
 # Prod environment
 FROM dev as prod
