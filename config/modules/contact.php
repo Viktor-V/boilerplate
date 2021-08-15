@@ -46,8 +46,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->arg('$support', (string) param('contact.support.email'));
 
     // Config values
-    $parameters->set('contact.support.email', (string) param('env(string:CONTACT_SUPPORT_EMAIL)'));
-    $parameters->set('contact.support.phone', (string) param('env(string:CONTACT_SUPPORT_PHONE)'));
+    $parameters->set('contact.support.email', (string) param('env(resolve:CONTACT_SUPPORT_EMAIL)'));
+    $parameters->set('contact.support.phone', (string) param('env(resolve:CONTACT_SUPPORT_PHONE)'));
 
     // Default environment values
     $parameters->set('env(CONTACT_SUPPORT_EMAIL)', 'user@example.com');
