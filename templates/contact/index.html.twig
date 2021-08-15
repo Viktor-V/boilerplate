@@ -9,11 +9,15 @@
 
             <h3>
                 {% set email %}
-                    {% include 'anti_spam/partial/email.html.twig' with {email: support} only %}
+                    {% include 'anti_spam/partial/email.html.twig' with {email: supportEmail} only %}
+                {% endset %}
+
+                {% set phone %}
+                    {% include 'anti_spam/partial/phone.html.twig' with {phone: supportPhone} only %}
                 {% endset %}
 
                 <small class="text-muted">
-                    {{ __('Our team is happy to answer your questions. Fill out the form or mail us %s and we\'ll be in touch as soon as possible.', email)|raw }}
+                    {{ __('Our team is happy to answer your questions. Fill out the form, mail us %s or call %s and we\'ll be in touch as soon as possible.', email, phone)|raw }}
                 </small>
             </h3>
 

@@ -17,8 +17,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ContactController extends AbstractController
 {
+    public function __construct(
+        private ContactHandler $handler,
+        private string $supportEmail,
+        private string $supportPhone
+    ) {
+    }
+
     #[Route(path: ContactRouteName::CONTACT_PATH, name: ContactRouteName::CONTACT, methods: ['GET', 'POST'])]
-    public function __invoke(Request $request, ContactHandler $handler): Response
+    public function __invoke(Request $request): Response
     {
         $form = $this
             ->createForm(ContactForm::class, $contactRequest = new ContactRequestData())
@@ -26,7 +33,7 @@ class ContactController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                $handler->handle($contactRequest);
+                $this->handler->handle($contactRequest);
 
                 $successMessage = _('We received your email and will respond as soon as possible.');
 
@@ -40,6 +47,10 @@ class ContactController extends AbstractController
             }
         }
 
-        return $this->render('contact/index.html.twig', ['form' => $form]);
+        return $this->render('contact/index.html.twig', [
+            'form' => $form,
+            'supportEmail' => $this->supportEmail,
+            'supportPhone' => $this->supportPhone,
+        ]);
     }
 }

@@ -3,6 +3,7 @@
 
     footer {
         @extend .container-xl;
+        @extend .mt-0;
 
         color: rgba(255, 255, 255, 0.9) !important;
         border: 0 !important;
