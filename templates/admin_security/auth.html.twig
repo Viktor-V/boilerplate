@@ -1,6 +1,6 @@
 {% extends 'admin_core/layout/admin.html.twig' %}
 
-{% block title %}{{ _('Authenticate') }}{% endblock %}
+{% block title %}{{ _a('Authenticate') }}{% endblock %}
 
 {% block page_id %}auth{% endblock %}
 
@@ -19,7 +19,7 @@
                 <button type="button"
                         class="btn-close"
                         data-bs-dismiss="alert"
-                        aria-label="{{ _('close') }}"
+                        aria-label="{{ _a('close') }}"
                         data-action="click->close#close"
                 >{# empty #}</button>
             </div>
@@ -28,13 +28,13 @@
         <input type="hidden" name="csrf_token" value="{{ csrf_token('authenticate') }}">
 
         <label for="username">
-            <input type="text" id="username" name="username" class="form-control" placeholder="{{ _('Username') }}" autocomplete="off">
+            <input type="text" id="username" name="username" class="form-control" placeholder="{{ _a('Username') }}" autocomplete="off">
         </label>
 
         <label for="password">
-            <input type="password" id="password" name="password" class="form-control" placeholder="{{ _('Password') }}">
+            <input type="password" id="password" name="password" class="form-control" placeholder="{{ _a('Password') }}">
         </label>
 
-        <button class="btn" type="submit">{{ _('Sign in') }}</button>
+        <button class="btn" type="submit">{{ _a('Sign in') }}</button>
     </form>
 {% endblock %}

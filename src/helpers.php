@@ -16,6 +16,20 @@ if (!function_exists('__')) {
     }
 }
 
+if (!function_exists('_a')) {
+    function _a(string $message): string
+    {
+        return _($message, []);
+    }
+}
+
+if (!function_exists('__a')) {
+    function __a(string $message, mixed ...$values): string
+    {
+        return __($message, []);
+    }
+}
+
 if (!function_exists('camelize')) {
     function camelize(string $snakeCase): string
     {

@@ -9,10 +9,8 @@ use App\AdminSecurity\AdminSecurityRouteName;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\PasswordHasher\PasswordHasherInterface;
-use Symfony\Component\Security\Core\Exception\BadCredentialsException;
+use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
 use Symfony\Component\Security\Core\Exception\LogicException;
 use Symfony\Component\Security\Core\Security;
@@ -30,6 +28,7 @@ use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPasspor
 use Symfony\Component\Security\Http\Authenticator\Passport\UserPassportInterface;
 use Symfony\Component\Security\Http\Authenticator\Token\PostAuthenticationToken;
 use Symfony\Component\Security\Http\EntryPoint\AuthenticationEntryPointInterface;
+use Throwable;
 
 class FormAuthenticator implements AuthenticationEntryPointInterface, InteractiveAuthenticatorInterface
 {
@@ -55,12 +54,17 @@ class FormAuthenticator implements AuthenticationEntryPointInterface, Interactiv
         }
 
         $username = (string) $request->request->get('username');
-        /** @var PasswordAuthenticatedUserInterface $user */
-        $user = $this->userProvider->loadUserByIdentifier($username);
+
+        try {
+            /** @var PasswordAuthenticatedUserInterface $user */
+            $user = $this->userProvider->loadUserByIdentifier($username);
+        } catch (Throwable) {
+            throw new CustomUserMessageAuthenticationException(_('Invalid credentials.'));
+        }
 
         $isPasswordValid = $this->passwordHasher->isPasswordValid($user, (string) $request->request->get('password'));
         if (!$isPasswordValid) {
-            throw new BadCredentialsException();
+            throw new CustomUserMessageAuthenticationException(_('Invalid credentials.'));
         }
 
         return new SelfValidatingPassport(new UserBadge((string) $request->request->get('username')));

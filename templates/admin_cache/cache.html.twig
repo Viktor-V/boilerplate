@@ -1,6 +1,6 @@
 {% extends 'admin_core/layout/admin.html.twig' %}
 
-{% block title %}{{ _('Cache control') }}{% endblock %}
+{% block title %}{{ _a('Cache control') }}{% endblock %}
 
 {% block headline %}
     <div class="headline">
@@ -12,12 +12,12 @@
             <div class="headline-right">
                 {% set clearForm = clearForm.createView %}
                 {{ form_start(clearForm) }}
-                    <button type="submit" class="btn btn-primary">{{ _('Clear') }}</button>
+                    <button type="submit" class="btn btn-primary">{{ _a('Clear') }}</button>
                 {{ form_end(clearForm) }}
 
                 {% set warmForm = warmForm.createView %}
                 {{ form_start(warmForm) }}
-                    <button type="submit" class="btn btn-secondary">{{ _('Warm') }}</button>
+                    <button type="submit" class="btn btn-secondary">{{ _a('Warm') }}</button>
                 {{ form_end(warmForm) }}
             </div>
         </div>

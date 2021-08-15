@@ -28,8 +28,8 @@ class ClearController extends AbstractController
         );
 
         $cacheCleared
-            ? $this->addFlash('success', _('Cache successfully cleared.'))
-            : $this->addFlash('danger', _('System error. Cache cannot be cleared.'));
+            ? $this->addFlash('success', _a('Cache successfully cleared.'))
+            : $this->addFlash('danger', _a('System error. Cache cannot be cleared.'));
 
         return $this->redirectToRoute(AdminCacheRouteName::CACHE);
     }

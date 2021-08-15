@@ -28,8 +28,8 @@ class WarmController extends AbstractController
         );
 
         $cacheCleared
-            ? $this->addFlash('success', _('Cache successfully warmed.'))
-            : $this->addFlash('danger', _('System error. Cache cannot be warmed.'));
+            ? $this->addFlash('success', _a('Cache successfully warmed.'))
+            : $this->addFlash('danger', _a('System error. Cache cannot be warmed.'));
 
         return $this->redirectToRoute(AdminCacheRouteName::CACHE);
     }

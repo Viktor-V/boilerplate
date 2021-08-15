@@ -39,6 +39,7 @@ parameters:
         - src/ModuleInterface.php
         - src/AdminModuleInterface.php
         - src/Core/Infrastructure/Twig/TranslationExtension.php
+        - src/AdminCore/Infrastructure/Twig/TranslationExtension.php
         - src/helpers.php
 
     ignoreErrors:

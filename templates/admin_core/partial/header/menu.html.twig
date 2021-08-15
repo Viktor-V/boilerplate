@@ -1,14 +1,14 @@
 <ul role="menubar" class="menu">
     <li class="menu-item">
         <a href="{{ path(constant('App\\Core\\CoreRouteName::HOMEPAGE')) }}" class="menu-link">
-            {{ _('Home') }}
+            {{ _a('Home') }}
         </a>
     </li>
 
     {% if constant('App\\AdminSecurity\\AdminSecurityModule::ENABLE') %}
         <li class="menu-item">
             <a href="{{ path(constant('App\\AdminSecurity\\AdminSecurityRouteName::LOGOUT')) }}" class="menu-link">
-                {{ _('Logout') }}
+                {{ _a('Logout') }}
             </a>
         </li>
     {% endif %}
