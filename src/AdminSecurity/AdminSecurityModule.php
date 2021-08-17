@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace App\AdminSecurity;
 
-use App\AdminCore\AdminCoreModule;
 use App\AdminModuleInterface;
-use App\ModuleTrait;
+use App\AdminModuleTrait;
 
-class AdminSecurityModule implements AdminModuleInterface
+final class AdminSecurityModule implements AdminModuleInterface
 {
-    use ModuleTrait;
+    use AdminModuleTrait;
 
     public const NAME = 'admin_security';
-    public const ENABLE = AdminCoreModule::ENABLE && true;
+    public const ENABLE = true;
     public const LOCALIZE = false;
 }

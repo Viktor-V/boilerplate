@@ -41,6 +41,8 @@ parameters:
         - src/Core/Infrastructure/Twig/TranslationExtension.php
         - src/AdminCore/Infrastructure/Twig/TranslationExtension.php
         - src/helpers.php
+        - src/ModuleTrait.php
+        - src/AdminModuleTrait.php
 
     ignoreErrors:
         - '#Method call on new expression is not allowed#'

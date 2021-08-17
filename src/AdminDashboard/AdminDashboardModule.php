@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace App\AdminDashboard;
 
-use App\AdminCore\AdminCoreModule;
 use App\AdminModuleInterface;
-use App\ModuleTrait;
+use App\AdminModuleTrait;
 
 final class AdminDashboardModule implements AdminModuleInterface
 {
-    use ModuleTrait;
+    use AdminModuleTrait;
 
     public const NAME = 'admin_dashboard';
-    public const ENABLE = AdminCoreModule::ENABLE && true;
+    public const ENABLE = true;
     public const LOCALIZE = false;
 }
