@@ -5,15 +5,13 @@ declare(strict_types=1);
 namespace App\ErrorPage;
 
 use App\ModuleInterface;
+use App\ModuleTrait;
 
 final class ErrorPageModule implements ModuleInterface
 {
-    public const NAME = 'error_page';
+    use ModuleTrait;
 
-    public function name(): string
-    {
-        return self::NAME;
-    }
+    public const NAME = 'error_page';
 
     public function enable(): bool
     {

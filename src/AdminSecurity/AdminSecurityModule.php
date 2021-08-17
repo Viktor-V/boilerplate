@@ -4,26 +4,15 @@ declare(strict_types=1);
 
 namespace App\AdminSecurity;
 
+use App\AdminCore\AdminCoreModule;
 use App\AdminModuleInterface;
+use App\ModuleTrait;
 
 class AdminSecurityModule implements AdminModuleInterface
 {
+    use ModuleTrait;
+
     public const NAME = 'admin_security';
-    public const ENABLE = true;
+    public const ENABLE = AdminCoreModule::ENABLE && true;
     public const LOCALIZE = false;
-
-    public function name(): string
-    {
-        return self::NAME;
-    }
-
-    public function enable(): bool
-    {
-        return self::ENABLE;
-    }
-
-    public function localize(): bool
-    {
-        return self::LOCALIZE;
-    }
 }
