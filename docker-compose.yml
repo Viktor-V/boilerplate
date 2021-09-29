@@ -1,4 +1,4 @@
-version: "3"
+version: "3.7"
 
 services:
     web:
@@ -41,6 +41,8 @@ services:
             - MYSQL_ROOT_PASSWORD=root
             - MYSQL_DATABASE=localhost
         command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+        ports:
+            - 3306:3306 # db server
 
     redis:
         image: redis:6.2.3-alpine

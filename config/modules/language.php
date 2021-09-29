@@ -8,20 +8,20 @@ use App\Language\Infrastructure\Twig\LanguageExtension;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $languages = [
-        'en' => ['name' => 'English', 'native' => 'English', 'default' => true],
-        'ru' => ['name' => 'Russian', 'native' => 'Русский', 'default' => false]
+        'en' => ['name' => 'English', 'native' => 'English', 'prime' => true]
     ];
 
     $defaultLocale = 'en';
     foreach ($languages as $locale => $language) {
-        if ($language['default'] === true) {
+        if ($language['prime'] === true) {
             $defaultLocale = $locale;
         }
     }
 
     $parameters = $containerConfigurator->parameters();
+    $parameters->set('language.languages', $languages);
     $parameters->set('language.locales', implode('|', array_keys($languages)));
-    $parameters->set('language.default', $defaultLocale);
+    $parameters->set('language.prime', $defaultLocale);
 
     $services = $containerConfigurator->services();
     $services
@@ -34,5 +34,5 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $services
         ->set(LanguageExtension::class)
-        ->arg('$languages', $languages);
+        ->arg('$languages', (string) param('language.languages'));
 };

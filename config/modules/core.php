@@ -15,7 +15,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $services
         ->load('App\Core\\', __DIR__ . '/../../src/Core/')
-        ->exclude(__DIR__ . '/../../src/Core/Validator');
+        ->exclude(__DIR__ . '/../../src/Core/{Validator,DependencyInjection}');
 
     $services->load('App\Core\Infrastructure\Controller\\', __DIR__ . '/../../src/Core/Infrastructure/Controller/')
         ->tag('controller.service_arguments');

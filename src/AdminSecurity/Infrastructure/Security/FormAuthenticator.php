@@ -59,12 +59,12 @@ class FormAuthenticator implements AuthenticationEntryPointInterface, Interactiv
             /** @var PasswordAuthenticatedUserInterface $user */
             $user = $this->userProvider->loadUserByIdentifier($username);
         } catch (Throwable) {
-            throw new CustomUserMessageAuthenticationException(_('Invalid credentials.'));
+            throw new CustomUserMessageAuthenticationException(_a('Invalid credentials.'));
         }
 
         $isPasswordValid = $this->passwordHasher->isPasswordValid($user, (string) $request->request->get('password'));
         if (!$isPasswordValid) {
-            throw new CustomUserMessageAuthenticationException(_('Invalid credentials.'));
+            throw new CustomUserMessageAuthenticationException(_a('Invalid credentials.'));
         }
 
         return new SelfValidatingPassport(new UserBadge((string) $request->request->get('username')));

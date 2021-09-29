@@ -1,0 +1,11 @@
+<a href="{{ path(constant('App\\AdminLanguage\\AdminLanguageRouteName::LANGUAGE')) }}"
+   class="menu-item {{ app.request.get('_route') in [
+       constant('App\\AdminLanguage\\AdminLanguageRouteName::LANGUAGE'),
+       constant('App\\AdminLanguage\\AdminLanguageRouteName::LANGUAGE_EDIT'),
+   ] ? 'active' }}"
+>
+    <span>
+        <i class="fas fa-language">{# icon #}</i>
+        <span class="menu-label">{{ _a('Language') }}</span>
+    </span>
+</a>

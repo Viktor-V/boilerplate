@@ -4,7 +4,13 @@ declare(strict_types=1);
 
 namespace App;
 
+use App\AdminLanguage\DependencyInjection\Compiler\LanguageCompilerPass;
+use App\AdminLanguage\DependencyInjection\Process\LanguageProcess;
+use App\AdminLanguage\DependencyInjection\Query\LanguageQuery;
+use App\Core\DependencyInjection\Connection\ConnectionInitialization;
+use Doctrine\Bundle\DoctrineBundle\ConnectionFactory;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpKernel\Kernel;
@@ -50,6 +56,17 @@ final class BaseKernel extends Kernel
                 $routes->import($path);
             }
         }
+    }
+
+    protected function build(ContainerBuilder $container)
+    {
+        $connectionInitialization = new ConnectionInitialization(new ConnectionFactory([]));
+
+        $container->addCompilerPass(new LanguageCompilerPass(
+            $connectionInitialization,
+            new LanguageQuery(),
+            new LanguageProcess()
+        ));
     }
 
     /**

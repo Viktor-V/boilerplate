@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use App\ModuleInterface;
+use Symfony\Component\Config\Loader\ParamConfigurator;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 
 return static function (RoutingConfigurator $routingConfigurator): void {
@@ -20,14 +21,14 @@ return static function (RoutingConfigurator $routingConfigurator): void {
                     'annotation'
                 )
                 ->prefix('/{_locale}')
-                ->requirements(['_locale' => (string) param('language.locales')])
-                ->defaults(['_locale' => (string) param('language.default')]);
+                ->requirements(['_locale' => (string) new ParamConfigurator('language.locales')])
+                ->defaults(['_locale' => (string) new ParamConfigurator('language.prime')]);
         }
     }
 
     $routingConfigurator
         ->add('nolocale', '/')
         ->controller('Symfony\Bundle\FrameworkBundle\Controller\RedirectController::urlRedirectAction')
-        ->defaults(['path' => '/' . (string) param('language.default')])
+        ->defaults(['path' => '/' . (string) new ParamConfigurator('language.prime')])
         ->methods(['GET']);
 };
