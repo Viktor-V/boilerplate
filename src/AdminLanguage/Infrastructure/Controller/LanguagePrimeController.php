@@ -6,7 +6,6 @@ namespace App\AdminLanguage\Infrastructure\Controller;
 
 use App\AdminCore\Infrastructure\Controller\AbstractController;
 use App\AdminLanguage\Adapter\LanguagePrimeHandler;
-use App\AdminLanguage\AdminLanguageRouteName;
 use App\AdminLanguage\Infrastructure\Form\LanguagePrimeForm;
 use App\AdminLanguage\ValueObject\LanguagePrimeRequestData;
 use App\Core\Validator\Exception\ValidatorException;
@@ -16,14 +15,17 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class LanguagePrimeController extends AbstractController
 {
+    public const LANGUAGE_PRIME_ROUTE_NAME = LanguageViewController::LANGUAGE_ROUTE_NAME . 'prime';
+    public const LANGUAGE_PRIME_ROUTE_PATH = LanguageViewController::LANGUAGE_ROUTE_PATH . '/prime';
+
     public function __construct(
         private LanguagePrimeHandler $handler
     ) {
     }
 
     #[Route(
-        path: AdminLanguageRouteName::LANGUAGE_PATH,
-        name: AdminLanguageRouteName::LANGUAGE_PRIME,
+        path: self::LANGUAGE_PRIME_ROUTE_PATH,
+        name: self::LANGUAGE_PRIME_ROUTE_NAME,
         methods: ['PUT']
     )]
     public function __invoke(Request $request): Response
@@ -43,7 +45,7 @@ class LanguagePrimeController extends AbstractController
         }
 
         return $this->redirectToRoute(
-            AdminLanguageRouteName::LANGUAGE_EDIT,
+            LanguageEditController::LANGUAGE_EDIT_ROUTE_NAME,
             [
                 'identifier' => $languageRequest->identifier
             ]

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\AdminLanguage\Infrastructure\Form;
 
 use App\AdminCore\Infrastructure\Form\AbstractForm;
-use App\AdminLanguage\AdminLanguageRouteName;
+use App\AdminLanguage\Infrastructure\Controller\LanguageDeleteController;
 use App\AdminLanguage\ValueObject\LanguageDeleteRequestData;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -23,7 +23,7 @@ class LanguageDeleteForm extends AbstractForm
         FormBuilderInterface $builder,
         array $options
     ): void {
-        $builder->setAction($this->urlGenerator->generate(AdminLanguageRouteName::LANGUAGE));
+        $builder->setAction($this->urlGenerator->generate(LanguageDeleteController::LANGUAGE_DELETE_ROUTE_NAME));
         $builder->setMethod('delete');
 
         $builder->add('identifier', HiddenType::class, [

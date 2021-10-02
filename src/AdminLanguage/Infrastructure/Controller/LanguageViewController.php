@@ -10,17 +10,19 @@ use App\AdminLanguage\Infrastructure\Form\LanguageDeleteForm;
 use App\AdminLanguage\ValueObject\LanguageCreateRequestData;
 use App\AdminLanguage\ValueObject\LanguageDeleteRequestData;
 use App\Core\Validator\Exception\ValidatorException;
+use App\AdminCore\Infrastructure\Controller\AbstractController;
+use App\AdminLanguage\Infrastructure\Form\LanguageCreateForm;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\AdminCore\Infrastructure\Controller\AbstractController;
-use App\AdminLanguage\Infrastructure\Form\LanguageCreateForm;
-use App\AdminLanguage\AdminLanguageRouteName;
 
 class LanguageViewController extends AbstractController
 {
+    public const LANGUAGE_ROUTE_NAME = self::ADMIN_CORE_NAME . 'language';
+    public const LANGUAGE_ROUTE_PATH = 'language';
+
     public function __construct(
         private LanguageCreateHandler $handler,
         private LanguageFetcher $languageFetcher
@@ -28,8 +30,8 @@ class LanguageViewController extends AbstractController
     }
 
     #[Route(
-        path: AdminLanguageRouteName::LANGUAGE_PATH,
-        name: AdminLanguageRouteName::LANGUAGE,
+        path: self::LANGUAGE_ROUTE_PATH,
+        name: self::LANGUAGE_ROUTE_NAME,
         methods: ['GET', 'POST']
     )]
     public function __invoke(Request $request): Response
@@ -47,7 +49,7 @@ class LanguageViewController extends AbstractController
                     _a('New language successfully added. Do not forget to add translations for the new language!')
                 );
 
-                return $this->redirectToRoute(AdminLanguageRouteName::LANGUAGE);
+                return $this->redirectToRoute(LanguageViewController::LANGUAGE_ROUTE_NAME);
             } catch (ValidatorException $exception) {
                 $this->addFlash('danger', $exception->getMessage());
             } catch (NonUniqueResultException | NoResultException) {

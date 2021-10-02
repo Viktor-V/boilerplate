@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\AdminLanguage\Infrastructure\Form;
 
 use App\AdminCore\Infrastructure\Form\AbstractForm;
-use App\AdminLanguage\AdminLanguageRouteName;
+use App\AdminLanguage\Infrastructure\Controller\LanguagePrimeController;
 use App\AdminLanguage\ValueObject\LanguagePrimeRequestData;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -23,7 +23,7 @@ class LanguagePrimeForm extends AbstractForm
         FormBuilderInterface $builder,
         array $options
     ): void {
-        $builder->setAction($this->urlGenerator->generate(AdminLanguageRouteName::LANGUAGE_PRIME));
+        $builder->setAction($this->urlGenerator->generate(LanguagePrimeController::LANGUAGE_PRIME_ROUTE_NAME));
         $builder->setMethod('put');
 
         $builder->add('identifier', HiddenType::class, [

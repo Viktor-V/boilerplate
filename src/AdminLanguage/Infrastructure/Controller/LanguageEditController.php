@@ -13,22 +13,23 @@ use App\AdminLanguage\Infrastructure\Form\LanguagePrimeForm;
 use App\AdminLanguage\ValueObject\LanguageEditRequestData;
 use App\AdminLanguage\ValueObject\LanguagePrimeRequestData;
 use App\Core\Validator\Exception\ValidatorException;
-use Doctrine\ORM\NonUniqueResultException;
-use Doctrine\ORM\NoResultException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class LanguageEditController extends AbstractController
 {
+    public const LANGUAGE_EDIT_ROUTE_NAME = LanguageViewController::LANGUAGE_ROUTE_NAME . 'edit';
+    public const LANGUAGE_EDIT_ROUTE_PATH = LanguageViewController::LANGUAGE_ROUTE_PATH . '/{identifier}/edit';
+
     public function __construct(
         private LanguageEditHandler $handler
     ) {
     }
 
     #[Route(
-        path: AdminLanguageRouteName::LANGUAGE_EDIT_PATH,
-        name: AdminLanguageRouteName::LANGUAGE_EDIT,
+        path: self::LANGUAGE_EDIT_ROUTE_PATH,
+        name: self::LANGUAGE_EDIT_ROUTE_NAME,
         methods: ['GET', "PUT"]
     )]
     public function __invoke(LanguageEntity $language, Request $request): Response
@@ -43,7 +44,7 @@ class LanguageEditController extends AbstractController
 
                 $this->addFlash('success', _a('Language successfully updated!'));
 
-                return $this->redirectToRoute(AdminLanguageRouteName::LANGUAGE_EDIT, [
+                return $this->redirectToRoute(self::LANGUAGE_EDIT_ROUTE_NAME, [
                     'identifier' => $language->getIdentifier()
                 ]);
             } catch (ValidatorException $exception) {

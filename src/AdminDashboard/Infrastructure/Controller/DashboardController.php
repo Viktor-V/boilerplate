@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class DashboardController extends AbstractController
 {
     public const DASHBOARD_ROUTE_NAME = self::ADMIN_CORE_NAME . 'dashboard';
-    public const DASHBOARD_ROUTE_PATH = 'dashboard';
+    public const DASHBOARD_ROUTE_PATH = null;
 
     #[Route(path: self::DASHBOARD_ROUTE_PATH, name: self::DASHBOARD_ROUTE_NAME, methods: ['GET'])]
     public function __invoke(): Response

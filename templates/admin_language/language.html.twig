@@ -58,7 +58,7 @@
                                                 &#124;
                                             {% endif %}
 
-                                            <a href="{{ path(constant('App\\AdminLanguage\\AdminLanguageRouteName::LANGUAGE_EDIT'), {identifier: item.identifier}) }}" class="btn btn-link text-info text-decoration-none p-0">{{ _a('Edit') }}</a>
+                                            <a href="{{ path(constant('App\\AdminLanguage\\Infrastructure\\Controller\\LanguageEditController::LANGUAGE_EDIT_ROUTE_NAME'), {identifier: item.identifier}) }}" class="btn btn-link text-info text-decoration-none p-0">{{ _a('Edit') }}</a>
                                         </td>
                                     </tr>
                                 {% endfor %}

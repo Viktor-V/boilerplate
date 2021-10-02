@@ -6,7 +6,6 @@ namespace App\AdminLanguage\Infrastructure\Controller;
 
 use App\AdminCore\Infrastructure\Controller\AbstractController;
 use App\AdminLanguage\Adapter\LanguageDeleteHandler;
-use App\AdminLanguage\AdminLanguageRouteName;
 use App\AdminLanguage\Infrastructure\Form\LanguageDeleteForm;
 use App\AdminLanguage\ValueObject\LanguageDeleteRequestData;
 use App\Core\Validator\Exception\ValidatorException;
@@ -16,14 +15,17 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class LanguageDeleteController extends AbstractController
 {
+    public const LANGUAGE_DELETE_ROUTE_NAME = LanguageViewController::LANGUAGE_ROUTE_NAME . 'delete';
+    public const LANGUAGE_DELETE_ROUTE_PATH = LanguageViewController::LANGUAGE_ROUTE_PATH . '/delete';
+
     public function __construct(
         private LanguageDeleteHandler $handler
     ) {
     }
 
     #[Route(
-        path: AdminLanguageRouteName::LANGUAGE_PATH,
-        name: AdminLanguageRouteName::LANGUAGE_DELETE,
+        path: self::LANGUAGE_DELETE_ROUTE_PATH,
+        name: self::LANGUAGE_DELETE_ROUTE_NAME,
         methods: ['DELETE']
     )]
     public function __invoke(Request $request): Response
@@ -42,6 +44,6 @@ class LanguageDeleteController extends AbstractController
             }
         }
 
-        return $this->redirectToRoute(AdminLanguageRouteName::LANGUAGE);
+        return $this->redirectToRoute(LanguageViewController::LANGUAGE_ROUTE_NAME);
     }
 }
