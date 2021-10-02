@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\AdminSecurity\Infrastructure\Security;
 
-use App\AdminDashboard\AdminDashboardRouteName;
+use App\AdminDashboard\Infrastructure\Controller\DashboardController;
 use App\AdminSecurity\AdminSecurityRouteName;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -75,7 +75,7 @@ class FormAuthenticator implements AuthenticationEntryPointInterface, Interactiv
         TokenInterface $token,
         string $firewallName
     ): ?Response {
-        return new RedirectResponse($this->urlGenerator->generate(AdminDashboardRouteName::DASHBOARD));
+        return new RedirectResponse($this->urlGenerator->generate(DashboardController::DASHBOARD_ROUTE_NAME));
     }
 
     public function onAuthenticationFailure(

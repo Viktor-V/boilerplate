@@ -1,4 +1,4 @@
-<a href="{{ path(constant('App\\AdminDashboard\\AdminDashboardRouteName::DASHBOARD')) }}" class="menu-item {{ app.request.get('_route') in [constant('App\\AdminDashboard\\AdminDashboardRouteName::DASHBOARD')] ? 'active' }}">
+<a href="{{ path(constant('App\\AdminDashboard\\Infrastructure\\Controller\\DashboardController::DASHBOARD_ROUTE_NAME')) }}" class="menu-item {{ app.request.get('_route') in [constant('App\\AdminDashboard\\Infrastructure\\Controller\\DashboardController::DASHBOARD_ROUTE_NAME')] ? 'active' }}">
     <span>
         <i class="fas fa-tachometer-alt">{# icon #}</i>
         <span class="menu-label">{{ _a('Dashboard') }}</span>

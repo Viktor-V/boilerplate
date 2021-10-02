@@ -5,14 +5,16 @@ declare(strict_types=1);
 namespace App\AdminDashboard\Infrastructure\Controller;
 
 use App\BaseKernel;
-use App\AdminDashboard\AdminDashboardRouteName;
 use App\AdminCore\Infrastructure\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DashboardController extends AbstractController
 {
-    #[Route(path: AdminDashboardRouteName::DASHBOARD_PATH, name: AdminDashboardRouteName::DASHBOARD, methods: ['GET'])]
+    public const DASHBOARD_ROUTE_NAME = self::ADMIN_CORE_NAME . 'dashboard';
+    public const DASHBOARD_ROUTE_PATH = 'dashboard';
+
+    #[Route(path: self::DASHBOARD_ROUTE_PATH, name: self::DASHBOARD_ROUTE_NAME, methods: ['GET'])]
     public function __invoke(): Response
     {
         return $this->render('admin_dashboard/dashboard.html.twig', [

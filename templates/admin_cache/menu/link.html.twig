@@ -1,4 +1,4 @@
- <a href="{{ path(constant('App\\AdminCache\\Infrastructure\\Controller\\CacheController::CACHE_ROUTE_NAME')) }}" class="menu-item {{ app.request.get('_route') in [constant('App\\AdminCache\\AdminCacheRouteName::CACHE')] ? 'active' }}">
+ <a href="{{ path(constant('App\\AdminCache\\Infrastructure\\Controller\\CacheController::CACHE_ROUTE_NAME')) }}" class="menu-item {{ app.request.get('_route') in [constant('App\\AdminCache\\Infrastructure\\Controller\\CacheController::CACHE_ROUTE_NAME')] ? 'active' }}">
     <span>
         <i class="fas fa-eraser">{# icon #}</i>
         <span class="menu-label">{{ _a('Cache control') }}</span>

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\AdminSecurity\Infrastructure\Controller;
 
 use App\AdminCore\Infrastructure\Controller\AbstractController;
-use App\AdminDashboard\AdminDashboardRouteName;
+use App\AdminDashboard\Infrastructure\Controller\DashboardController;
 use App\AdminSecurity\AdminSecurityRouteName;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,7 +18,7 @@ class SecurityController extends AbstractController
     public function __invoke(AuthenticationUtils $authenticationUtils): Response
     {
         if ($this->getUser() instanceof UserInterface) {
-            return $this->redirectToRoute(AdminDashboardRouteName::DASHBOARD);
+            return $this->redirectToRoute(DashboardController::DASHBOARD_ROUTE_NAME);
         }
 
         return $this->render(
