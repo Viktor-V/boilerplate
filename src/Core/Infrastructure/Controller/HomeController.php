@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Core\Infrastructure\Controller;
 
 use App\BaseKernel;
-use App\Core\CoreRouteName;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
