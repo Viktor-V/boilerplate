@@ -7,7 +7,7 @@
 
     {% if constant('App\\AdminSecurity\\AdminSecurityModule::ENABLE') %}
         <li class="menu-item">
-            <a href="{{ path(constant('App\\AdminSecurity\\AdminSecurityRouteName::LOGOUT')) }}" class="menu-link">
+            <a href="{{ path(constant('App\\AdminSecurity\\Infrastructure\\Controller\\LogoutController::LOGOUT_ROUTE_NAME')) }}" class="menu-link">
                 {{ _a('Logout') }}
             </a>
         </li>

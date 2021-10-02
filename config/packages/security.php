@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use App\AdminSecurity\AdminSecurityModule;
-use App\AdminSecurity\AdminSecurityRouteName;
+use App\AdminSecurity\Infrastructure\Controller\LogoutController;
 use App\AdminSecurity\Infrastructure\Security\FormAuthenticator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
@@ -20,7 +20,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             'provider' => 'admins_in_memory',
             'custom_authenticators' => [FormAuthenticator::class],
             'logout' => [
-                'path' => AdminSecurityRouteName::LOGOUT
+                'path' => LogoutController::LOGOUT_ROUTE_NAME
             ]
         ];
     }

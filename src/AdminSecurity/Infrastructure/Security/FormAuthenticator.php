@@ -6,6 +6,7 @@ namespace App\AdminSecurity\Infrastructure\Security;
 
 use App\AdminDashboard\Infrastructure\Controller\DashboardController;
 use App\AdminSecurity\AdminSecurityRouteName;
+use App\AdminSecurity\Infrastructure\Controller\SecurityController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -42,7 +43,7 @@ class FormAuthenticator implements AuthenticationEntryPointInterface, Interactiv
 
     public function supports(Request $request): ?bool
     {
-        return AdminSecurityRouteName::AUTH === $request->attributes->get('_route')
+        return SecurityController::AUTH_ROUTE_NAME === $request->attributes->get('_route')
             && $request->isMethod('POST');
     }
 
@@ -86,7 +87,7 @@ class FormAuthenticator implements AuthenticationEntryPointInterface, Interactiv
             $request->getSession()->set(Security::AUTHENTICATION_ERROR, $exception);
         }
 
-        return new RedirectResponse($this->urlGenerator->generate(AdminSecurityRouteName::AUTH));
+        return new RedirectResponse($this->urlGenerator->generate(SecurityController::AUTH_ROUTE_NAME));
     }
 
     /**
@@ -97,7 +98,7 @@ class FormAuthenticator implements AuthenticationEntryPointInterface, Interactiv
         Request $request,
         AuthenticationException $authException = null
     ) {
-        return new RedirectResponse($this->urlGenerator->generate(AdminSecurityRouteName::AUTH));
+        return new RedirectResponse($this->urlGenerator->generate(SecurityController::AUTH_ROUTE_NAME));
     }
 
     public function isInteractive(): bool
