@@ -9,10 +9,10 @@ use App\Core\Domain\View\FromArrayTrait;
 
 class LanguageProcessObject implements ProcessObjectInterface
 {
+    use FromArrayTrait;
+
     public string|null $code = null;
     public string|null $name = null;
     public string|null $native = null;
     public bool $prime = false;
-
-    use FromArrayTrait;
 }
