@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Contact\Infrastructure\Controller;
 
-use App\Contact\ContactRouteName;
+use App\Contact\Infrastructure\Controller\ContactController;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\Messenger\SendEmailMessage;
@@ -47,7 +47,7 @@ class ContactControllerTest extends WebTestCase
     {
         $client = self::createClient();
 
-        $crawler = $client->request('GET', $client->getContainer()->get('router')->generate(ContactRouteName::CONTACT));
+        $crawler = $client->request('GET', $client->getContainer()->get('router')->generate(ContactController::CONTACT_ROUTE_NAME));
         $client->submit($crawler->selectButton('Send Message')->form($formData, 'POST'));
 
         // Form contain invalid data
