@@ -47,7 +47,10 @@ class ContactControllerTest extends WebTestCase
     {
         $client = self::createClient();
 
-        $crawler = $client->request('GET', $client->getContainer()->get('router')->generate(ContactController::CONTACT_ROUTE_NAME));
+        $crawler = $client->request(
+            'GET',
+            $client->getContainer()->get('router')->generate(ContactController::CONTACT_ROUTE_NAME)
+        );
         $client->submit($crawler->selectButton('Send Message')->form($formData, 'POST'));
 
         // Form contain invalid data
