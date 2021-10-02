@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\AdminCache\Infrastructure\Controller;
 
-use App\AdminCache\AdminCacheRouteName;
 use App\AdminCache\Infrastructure\Form\ClearForm;
 use App\AdminCache\Infrastructure\Form\WarmForm;
 use App\AdminCore\Infrastructure\Controller\AbstractController;
@@ -14,7 +13,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CacheController extends AbstractController
 {
-    #[Route(path: AdminCacheRouteName::CACHE_PATH, name: AdminCacheRouteName::CACHE, methods: ['GET'])]
+    public const CACHE_ROUTE_NAME = self::ADMIN_CORE_NAME . 'cache';
+    public const CACHE_ROUTE_PATH = 'cache';
+
+    #[Route(path: self::CACHE_ROUTE_PATH, name: self::CACHE_ROUTE_NAME, methods: ['GET'])]
     public function __invoke(Request $request): Response
     {
         return $this->render(

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\AdminCache\Infrastructure\Controller;
 
-use App\AdminCache\AdminCacheRouteName;
+use App\AdminCache\Infrastructure\Controller\CacheController;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class WarmControllerTest extends WebTestCase
@@ -18,7 +18,7 @@ class WarmControllerTest extends WebTestCase
 
         $crawler = $client->request(
             'GET',
-            $client->getContainer()->get('router')->generate(AdminCacheRouteName::CACHE)
+            $client->getContainer()->get('router')->generate(CacheController::CACHE_ROUTE_NAME)
         );
         self::assertEquals(200, $client->getResponse()->getStatusCode());
 
