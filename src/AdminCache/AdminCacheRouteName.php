@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\AdminCache;
 
-use App\AdminCore\AdminCoreRouteName;
+use App\AdminCore\Infrastructure\Controller\AbstractController;
 
 final class AdminCacheRouteName
 {
-    public const CACHE = AdminCoreRouteName::ADMIN_CORE_NAME . 'cache';
+    public const CACHE = AbstractController::ADMIN_CORE_NAME . 'cache';
     public const CACHE_PATH = 'cache';
 
     public const CACHE_CLEAR = self::CACHE . '_clear';

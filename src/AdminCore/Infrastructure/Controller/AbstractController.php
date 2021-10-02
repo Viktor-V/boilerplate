@@ -8,5 +8,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController as SymfonyContr
 
 abstract class AbstractController extends SymfonyController
 {
+    public const ADMIN_CORE_NAME = 'admin_';
+    public const ADMIN_CORE_PATH = 'admin';
+
     /* Empty */
 }

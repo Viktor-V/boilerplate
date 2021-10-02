@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\AdminLanguage;
 
-use App\AdminCore\AdminCoreRouteName;
+use App\AdminCore\Infrastructure\Controller\AbstractController;
 
 final class AdminLanguageRouteName
 {
-    public const LANGUAGE = AdminCoreRouteName::ADMIN_CORE_NAME . 'language';
+    public const LANGUAGE = AbstractController::ADMIN_CORE_NAME . 'language';
     public const LANGUAGE_PATH = 'language';
 
     public const LANGUAGE_CREATE = self::LANGUAGE . '_create';
