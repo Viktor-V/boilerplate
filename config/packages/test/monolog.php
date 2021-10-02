@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
+use Symfony\Component\Config\Loader\ParamConfigurator;
+
 return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->extension('monolog', [
         'handlers' => [
@@ -16,7 +18,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             ],
             'nested' => [
                 'type' => 'stream',
-                'path' => (string) param('kernel.logs_dir') . '/' . (string) param('kernel.environment') . '.log',
+                'path' => (string)new ParamConfigurator('kernel.logs_dir') . '/'
+                    . (string)new ParamConfigurator('kernel.environment') . '.log',
                 'level' => 'debug'
             ]
         ]

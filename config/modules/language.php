@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use App\Language\Infrastructure\Twig\LanguageExtension;
+use Symfony\Component\Config\Loader\ParamConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $languages = [
@@ -34,5 +35,5 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $services
         ->set(LanguageExtension::class)
-        ->arg('$languages', (string) param('language.languages'));
+        ->arg('$languages', (string) new ParamConfigurator('language.languages'));
 };

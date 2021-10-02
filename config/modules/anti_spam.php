@@ -13,6 +13,7 @@ use App\AntiSpam\Infrastructure\Form\Type\HiddenCaptchaType;
 use App\AntiSpam\Service\HCaptchaValidator;
 use App\AntiSpam\Service\Contract\HiddenCaptchaValidatorInterface;
 use App\AntiSpam\Service\ReCaptchaValidator;
+use Symfony\Component\Config\Loader\ParamConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->extension('twig', [
@@ -62,35 +63,35 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     switch ($hiddenCaptchaType) {
         case 'recaptcha':
             $services->set(HiddenCaptchaValidatorInterface::class, ReCaptchaValidator::class)
-                ->arg('$privateKey', (string) param('anti_spam.hidden_captcha.private_key'));
+                ->arg('$privateKey', (string) new ParamConfigurator('anti_spam.hidden_captcha.private_key'));
             break;
         case 'hcaptcha':
             $services->set(HiddenCaptchaValidatorInterface::class, HCaptchaValidator::class)
-                ->arg('$privateKey', (string) param('anti_spam.hidden_captcha.private_key'));
+                ->arg('$privateKey', (string) new ParamConfigurator('anti_spam.hidden_captcha.private_key'));
             break;
     }
     $hiddenCaptchaExtension->arg('$hiddenCaptchaValidator', service(HiddenCaptchaValidatorInterface::class));
 
     $services->set(HiddenCaptchaType::class)
-        ->arg('$publicKey', (string) param('anti_spam.hidden_captcha.public_key'))
+        ->arg('$publicKey', (string) new ParamConfigurator('anti_spam.hidden_captcha.public_key'))
         ->arg('$type', $hiddenCaptchaType);
 
     $services->set(ReCaptchaValidator::class)
-        ->arg('$privateKey', (string) param('anti_spam.hidden_captcha.private_key'));
+        ->arg('$privateKey', (string) new ParamConfigurator('anti_spam.hidden_captcha.private_key'));
 
     $services->set(HCaptchaValidator::class)
-        ->arg('$privateKey', (string) param('anti_spam.hidden_captcha.private_key'));
+        ->arg('$privateKey', (string) new ParamConfigurator('anti_spam.hidden_captcha.private_key'));
 
     $parameters = $containerConfigurator->parameters();
 
     // Config values
     $parameters->set(
         'anti_spam.hidden_captcha.public_key',
-        (string) param('env(resolve:ANTI_SPAM_HIDDEN_CAPTCHA_PUBLIC_KEY)')
+        (string) new ParamConfigurator('env(resolve:ANTI_SPAM_HIDDEN_CAPTCHA_PUBLIC_KEY)')
     );
     $parameters->set(
         'anti_spam.hidden_captcha.private_key',
-        (string) param('env(resolve:ANTI_SPAM_HIDDEN_CAPTCHA_PRIVATE_KEY)')
+        (string) new ParamConfigurator('env(resolve:ANTI_SPAM_HIDDEN_CAPTCHA_PRIVATE_KEY)')
     );
 
     // Default environment values

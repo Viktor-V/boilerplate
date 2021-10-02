@@ -6,6 +6,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use App\AdminCache\Infrastructure\Controller\ClearController;
 use App\AdminCache\Infrastructure\Controller\WarmController;
+use Symfony\Component\Config\Loader\ParamConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
@@ -24,8 +25,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     )->tag('controller.service_arguments');
 
     $services->set(ClearController::class)
-        ->arg('$environment', (string) param('kernel.environment'));
+        ->arg('$environment', (string) new ParamConfigurator('kernel.environment'));
 
     $services->set(WarmController::class)
-        ->arg('$environment', (string) param('kernel.environment'));
+        ->arg('$environment', (string) new ParamConfigurator('kernel.environment'));
 };

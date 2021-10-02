@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
+use Symfony\Component\Config\Loader\ParamConfigurator;
 use Symfony\Component\Mailer\Messenger\SendEmailMessage;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
@@ -15,7 +16,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
                 'transports' => [
                     'async' => [
-                        'dsn' => (string) param('core.transport.dsn'),
+                        'dsn' => (string) new ParamConfigurator('core.transport.dsn'),
                         'retry_strategy' => [
                             'max_retries' => 3
                         ]

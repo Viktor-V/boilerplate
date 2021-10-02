@@ -4,20 +4,22 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
+use Symfony\Component\Config\Loader\ParamConfigurator;
+
 return static function (ContainerConfigurator $containerConfigurator): void {
     $parameters = $containerConfigurator->parameters();
 
     $parameters->set('project', 'Boilerplate');
 
     // Config values
-    $parameters->set('core.mailer.dsn', (string) param('env(resolve:CORE_MAILER_DSN)'));
-    $parameters->set('core.mailer.email', (string) param('env(string:CORE_MAILER_EMAIL)'));
+    $parameters->set('core.mailer.dsn', (string) new ParamConfigurator('env(resolve:CORE_MAILER_DSN)'));
+    $parameters->set('core.mailer.email', (string) new ParamConfigurator('env(string:CORE_MAILER_EMAIL)'));
 
-    $parameters->set('core.transport.dsn', (string) param('env(resolve:CORE_TRANSPORT_DSN)'));
+    $parameters->set('core.transport.dsn', (string) new ParamConfigurator('env(resolve:CORE_TRANSPORT_DSN)'));
 
-    $parameters->set('core.db.dsn', (string) param('env(resolve:CORE_DB_DSN)'));
+    $parameters->set('core.db.dsn', (string) new ParamConfigurator('env(resolve:CORE_DB_DSN)'));
 
-    $parameters->set('core.redis.dsn', (string) param('env(resolve:CORE_REDIS_DSN)'));
+    $parameters->set('core.redis.dsn', (string) new ParamConfigurator('env(resolve:CORE_REDIS_DSN)'));
 
     // Default environment values
     $parameters->set('env(CORE_MAILER_DSN)', 'smtp://mailhog:1025');

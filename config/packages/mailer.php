@@ -4,17 +4,19 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
+use Symfony\Component\Config\Loader\ParamConfigurator;
+
 return static function (ContainerConfigurator $containerConfigurator): void {
     $from = sprintf(
         '%s %s <%s>',
-        (string) param('project'),
+        (string) new ParamConfigurator('project'),
         _('Support'),
-        (string) param('core.mailer.email')
+        (string) new ParamConfigurator('core.mailer.email')
     );
 
     $containerConfigurator->extension('framework', [
         'mailer' => [
-            'dsn' => (string) param('core.mailer.dsn'),
+            'dsn' => (string) new ParamConfigurator('core.mailer.dsn'),
             'headers' => [
                 'from' => $from
             ]

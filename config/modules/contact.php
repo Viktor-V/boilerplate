@@ -6,6 +6,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use App\Contact\Adapter\ContactHandler;
 use App\Contact\Infrastructure\Controller\ContactController;
+use Symfony\Component\Config\Loader\ParamConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $parameters = $containerConfigurator->parameters();
@@ -17,7 +18,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $containerConfigurator->extension('twig', [
         'globals' => [
-            'social' => (string) param('contact.social')
+            'social' => (string) new ParamConfigurator('contact.social')
         ],
     ]);
 
@@ -39,15 +40,15 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->tag('controller.service_arguments');
 
     $services->set(ContactController::class)
-        ->arg('$supportEmail', (string) param('contact.support.email'))
-        ->arg('$supportPhone', (string) param('contact.support.phone'));
+        ->arg('$supportEmail', (string) new ParamConfigurator('contact.support.email'))
+        ->arg('$supportPhone', (string) new ParamConfigurator('contact.support.phone'));
 
     $services->set(ContactHandler::class)
-        ->arg('$support', (string) param('contact.support.email'));
+        ->arg('$support', (string) new ParamConfigurator('contact.support.email'));
 
     // Config values
-    $parameters->set('contact.support.email', (string) param('env(resolve:CONTACT_SUPPORT_EMAIL)'));
-    $parameters->set('contact.support.phone', (string) param('env(resolve:CONTACT_SUPPORT_PHONE)'));
+    $parameters->set('contact.support.email', (string) new ParamConfigurator('env(resolve:CONTACT_SUPPORT_EMAIL)'));
+    $parameters->set('contact.support.phone', (string) new ParamConfigurator('env(resolve:CONTACT_SUPPORT_PHONE)'));
 
     // Default environment values
     $parameters->set('env(CONTACT_SUPPORT_EMAIL)', 'user@example.com');

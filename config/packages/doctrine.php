@@ -35,7 +35,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         'doctrine',
         [
             'dbal' => [
-                'url' => (string) param('core.db.dsn'),
+                'url' => (string) new ParamConfigurator('core.db.dsn'),
                 'server_version' => 'mariadb:10.4.18',
                 'types' => $types
             ],
