@@ -23,7 +23,7 @@ final class LanguageCodeType extends StringType
      */
     public function convertToPHPValue($value, AbstractPlatform $platform): ?LanguageCodeField
     {
-        return !empty($value) ? new LanguageCodeField($value) : null;
+        return $value != null ? new LanguageCodeField($value) : null;
     }
 
     public function getName(): string

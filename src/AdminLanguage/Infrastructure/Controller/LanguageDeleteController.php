@@ -21,7 +21,11 @@ class LanguageDeleteController extends AbstractController
     ) {
     }
 
-    #[Route(path: AdminLanguageRouteName::LANGUAGE_PATH, name: AdminLanguageRouteName::LANGUAGE_DELETE, methods: ['DELETE'])]
+    #[Route(
+        path: AdminLanguageRouteName::LANGUAGE_PATH,
+        name: AdminLanguageRouteName::LANGUAGE_DELETE,
+        methods: ['DELETE']
+    )]
     public function __invoke(Request $request): Response
     {
         $form = $this

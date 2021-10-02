@@ -21,6 +21,8 @@ includes:
     - phar://phpstan.phar/conf/bleedingEdge.neon
 
 parameters:
+    checkGenericClassInNonGenericObjectType: false
+
     paths:
         - src
         - config
@@ -41,8 +43,12 @@ parameters:
         - src/Core/Infrastructure/Twig/TranslationExtension.php
         - src/AdminCore/Infrastructure/Twig/TranslationExtension.php
         - src/helpers.php
-        - src/ModuleTrait.php
+        - src/Core/Domain/Flusher.php
         - src/AdminModuleTrait.php
+        # Ignoring inherit from abstract class
+        - src/AdminLanguage/Domain/Language/Type/*
+        - src/AdminLanguage/AdminLanguageModule.php
+        - src/AdminLanguage/DependencyInjection/Process/LanguageProcess.php 
 
     ignoreErrors:
         - '#Method call on new expression is not allowed#'
@@ -50,3 +56,5 @@ parameters:
         - '#Missing sprintf\(\) function for a mask#'
         - '#Array method calls \[\$this, \"method\"\] are not allowed#'
         - '#Method "execute\(\)" returns bool type#'
+        - '#Do not use trait, extract to a service and dependency injection instead#'
+        - '#Variable property access#'

@@ -10,8 +10,6 @@ use Doctrine\DBAL\Exception;
 
 final class ConnectionInitialization
 {
-    private ?Connection $connection = null;
-
     public function __construct(
         private ConnectionFactory $connectionFactory
     ) {
@@ -26,11 +24,9 @@ final class ConnectionInitialization
             return null;
         }
 
-        $this->connection = $this->connectionFactory->createConnection([
+        return $this->connectionFactory->createConnection([
             /* todo: how to get from doctrine.dbal.url? */
             'url' => $_ENV['CORE_DB_DSN']
         ]);
-
-        return $this->connection;
     }
 }

@@ -81,18 +81,14 @@ final class LanguageEntity
         return $this;
     }
 
-    public function setPrime(): self
+    public function setPrime(): void
     {
         $this->prime = true;
-
-        return $this;
     }
 
-    public function unsetPrime(): self
+    public function unsetPrime(): void
     {
         $this->prime = false;
-
-        return $this;
     }
 
     public function getIdentifier(): LanguageIdentifierField

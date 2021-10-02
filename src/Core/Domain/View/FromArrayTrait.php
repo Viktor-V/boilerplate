@@ -1,10 +1,12 @@
 <?php
 
-
 namespace App\Core\Domain\View;
 
 trait FromArrayTrait
 {
+    /**
+     * @param array<int|string, mixed> $data
+     */
     public static function initialize(array $data): self
     {
         $object = new self();

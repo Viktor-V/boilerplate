@@ -58,7 +58,7 @@ final class BaseKernel extends Kernel
         }
     }
 
-    protected function build(ContainerBuilder $container)
+    protected function build(ContainerBuilder $container): void
     {
         $connectionInitialization = new ConnectionInitialization(new ConnectionFactory([]));
 

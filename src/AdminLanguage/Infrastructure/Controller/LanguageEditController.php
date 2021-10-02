@@ -26,7 +26,11 @@ class LanguageEditController extends AbstractController
     ) {
     }
 
-    #[Route(path: AdminLanguageRouteName::LANGUAGE_EDIT_PATH, name: AdminLanguageRouteName::LANGUAGE_EDIT, methods: ['GET', "PUT"])]
+    #[Route(
+        path: AdminLanguageRouteName::LANGUAGE_EDIT_PATH,
+        name: AdminLanguageRouteName::LANGUAGE_EDIT,
+        methods: ['GET', "PUT"]
+    )]
     public function __invoke(LanguageEntity $language, Request $request): Response
     {
         $editForm = $this

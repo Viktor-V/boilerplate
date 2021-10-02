@@ -21,7 +21,11 @@ class LanguagePrimeController extends AbstractController
     ) {
     }
 
-    #[Route(path: AdminLanguageRouteName::LANGUAGE_PATH, name: AdminLanguageRouteName::LANGUAGE_PRIME, methods: ['PUT'])]
+    #[Route(
+        path: AdminLanguageRouteName::LANGUAGE_PATH,
+        name: AdminLanguageRouteName::LANGUAGE_PRIME,
+        methods: ['PUT']
+    )]
     public function __invoke(Request $request): Response
     {
         $form = $this

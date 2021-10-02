@@ -8,5 +8,5 @@ use App\Core\ValueObject\Contract\RequestDataInterface;
 
 final class LanguageDeleteRequestData implements RequestDataInterface
 {
-    public string|null $identifier = null;
+    public string $identifier;
 }

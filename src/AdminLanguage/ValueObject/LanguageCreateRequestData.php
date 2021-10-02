@@ -8,7 +8,7 @@ use App\Core\ValueObject\Contract\RequestDataInterface;
 
 final class LanguageCreateRequestData implements RequestDataInterface
 {
-    public string|null $code = null;
-    public string|null $name = null;
-    public string|null $native = null;
+    public string $code;
+    public string $name;
+    public string $native;
 }

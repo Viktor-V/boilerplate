@@ -30,7 +30,7 @@ final class LanguageCreateHandler implements HandlerInterface
     }
 
     /**
-     * @throws ValidatorException|NonUniqueResultException|NoResultException
+     * @throws ValidatorException | NonUniqueResultException | NoResultException
      */
     public function handle(RequestDataInterface $requestData): void
     {
@@ -54,7 +54,7 @@ final class LanguageCreateHandler implements HandlerInterface
             $this->languageRepository->add($language);
 
             $this->flusher->flush();
-        } catch (NonUniqueResultException|NoResultException $exception) {
+        } catch (NonUniqueResultException | NoResultException $exception) {
             $this->logger->error('Cannot add new language. Reason: ' . $exception->getMessage());
 
             throw $exception;

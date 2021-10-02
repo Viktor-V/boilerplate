@@ -23,7 +23,7 @@ final class LanguageNameType extends StringType
      */
     public function convertToPHPValue($value, AbstractPlatform $platform): ?LanguageNameField
     {
-        return !empty($value) ? new LanguageNameField($value) : null;
+        return $value != null ? new LanguageNameField($value) : null;
     }
 
     public function getName(): string

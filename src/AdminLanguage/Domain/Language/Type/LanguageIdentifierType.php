@@ -23,7 +23,7 @@ final class LanguageIdentifierType extends GuidType
      */
     public function convertToPHPValue($value, AbstractPlatform $platform): ?LanguageIdentifierField
     {
-        return !empty($value) ? new LanguageIdentifierField($value) : null;
+        return $value != null ? new LanguageIdentifierField($value) : null;
     }
 
     public function getName(): string

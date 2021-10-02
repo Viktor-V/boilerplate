@@ -27,7 +27,11 @@ class LanguageViewController extends AbstractController
     ) {
     }
 
-    #[Route(path: AdminLanguageRouteName::LANGUAGE_PATH, name: AdminLanguageRouteName::LANGUAGE, methods: ['GET', 'POST'])]
+    #[Route(
+        path: AdminLanguageRouteName::LANGUAGE_PATH,
+        name: AdminLanguageRouteName::LANGUAGE,
+        methods: ['GET', 'POST']
+    )]
     public function __invoke(Request $request): Response
     {
         $form = $this
@@ -46,7 +50,7 @@ class LanguageViewController extends AbstractController
                 return $this->redirectToRoute(AdminLanguageRouteName::LANGUAGE);
             } catch (ValidatorException $exception) {
                 $this->addFlash('danger', $exception->getMessage());
-            } catch (NonUniqueResultException|NoResultException) {
+            } catch (NonUniqueResultException | NoResultException) {
                 $this->addFlash(
                     'danger',
                     _a('For some reason new language cannot be added. Please, try again later.')

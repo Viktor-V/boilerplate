@@ -5,12 +5,16 @@ declare(strict_types=1);
 namespace App\AdminLanguage\DependencyInjection\Query;
 
 use App\AdminLanguage\Domain\Entity\LanguageEntity;
-use App\Core\DependencyInjection\Query\QueryInterface;
+use App\Core\DependencyInjection\Query\Contract\QueryInterface;
 use Doctrine\DBAL\Connection;
-use Exception;
+use Doctrine\DBAL\Driver\Exception as DoctrineDriverException;
+use Doctrine\DBAL\Exception as DoctrineException;
 
 final class LanguageQuery implements QueryInterface
 {
+    /**
+     * @return array<int, mixed>
+     */
     public function fetch(Connection $connection): array
     {
         $queryBuilder = $connection->createQueryBuilder();
@@ -22,9 +26,9 @@ final class LanguageQuery implements QueryInterface
 
         try {
             return $connection
-                ->executeQuery($queryBuilder)
+                ->executeQuery($queryBuilder->getSQL())
                 ->fetchAllAssociative();
-        } catch (Exception) {
+        } catch (DoctrineException | DoctrineDriverException) {
             return [];
         }
     }

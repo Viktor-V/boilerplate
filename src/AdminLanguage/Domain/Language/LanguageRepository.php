@@ -9,11 +9,13 @@ use App\AdminLanguage\Domain\Language\Field\LanguageCodeField;
 use App\AdminLanguage\Domain\Language\Field\LanguageIdentifierField;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectRepository;
+use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 
 final class LanguageRepository
 {
+    /** @var EntityRepository $repository */
     private ObjectRepository $repository;
 
     public function __construct(
