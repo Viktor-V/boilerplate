@@ -1,4 +1,4 @@
-version: "3.7"
+version: '3.7'
 
 services:
     web:
@@ -12,7 +12,7 @@ services:
         volumes:
             - ./:/var/www/html
         ports:
-            - 80:80
+            - '127.0.0.1:80:80' # web
         depends_on:
             - mariadb
             - rabbitmq
@@ -30,8 +30,8 @@ services:
         image: rabbitmq:3.8.17-management
         container_name: rabbitmq
         ports:
-            - 5672:5672 # dsn server
-            - 15672:15672 # web ui
+            - '127.0.0.1:5672:5672' # dsn server
+            - '127.0.0.1:15672:15672' # web ui
 
     mariadb:
         image: mariadb:10.4.18
@@ -42,22 +42,22 @@ services:
             - MYSQL_DATABASE=localhost
         command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
         ports:
-            - 3306:3306 # db server
+            - '127.0.0.1:3306:3306' # db server
 
     redis:
         image: redis:6.2.3-alpine
         container_name: redis
         ports:
-            - 6379:6379
+            - '127.0.0.1:6379:6379' # redis server
 
     adminer:
         image: adminer
         restart: always
         ports:
-            - 8080:8080 # web ui
+            - '127.0.0.1:8080:8080' # web ui
 
     mailhog:
         image: mailhog/mailhog
         ports:
-            - 1025:1025 # smtp server
-            - 8025:8025 # web ui
+            - '127.0.0.1:1025:1025' # smtp server
+            - '127.0.0.1:8025:8025' # web ui
