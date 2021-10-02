@@ -1,7 +1,7 @@
 <ul role="menubar" class="menu">
     <li class="menu-item">
-        <a href="{{ path(constant('App\\Core\\CoreRouteName::HOMEPAGE')) }}"
-           class="menu-link {{ app.request.get('_route') in [constant('App\\Core\\CoreRouteName::HOMEPAGE')] ? 'active' }}"
+        <a href="{{ path(constant('App\\Core\\Infrastructure\\Controller\\HomeController::HOME_ROUTE_NAME')) }}"
+           class="menu-link {{ app.request.get('_route') in [constant('App\\Core\\Infrastructure\\Controller\\HomeController::HOME_ROUTE_NAME')] ? 'active' }}"
         >
             {{ _('Home') }}
         </a>

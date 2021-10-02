@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Language\Infrastructure\Twig;
 
+use App\Core\Infrastructure\Controller\HomeController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
-use App\Core\CoreRouteName;
 
 class LanguageExtension extends AbstractExtension
 {
@@ -40,7 +40,7 @@ class LanguageExtension extends AbstractExtension
         }
 
         return $this->generator->generate(
-            $request->get('_route', CoreRouteName::HOMEPAGE),
+            $request->get('_route', HomeController::HOME_ROUTE_NAME),
             array_merge($parameters, ['_locale' => $locale])
         );
     }

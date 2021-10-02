@@ -12,7 +12,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
-    #[Route(path: null, name: CoreRouteName::HOMEPAGE, methods: ['GET'])]
+    public const HOME_ROUTE_NAME = 'homepage';
+
+    #[Route(path: null, name: self::HOME_ROUTE_NAME, methods: ['GET'])]
     public function __invoke(): Response
     {
         return $this->render('core/home.html.twig', [
