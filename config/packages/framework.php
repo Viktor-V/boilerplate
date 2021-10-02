@@ -18,9 +18,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             'php_errors' => [
                 'log' => true
             ],
-            'csrf_protection' => [
-                'enabled' => true
-            ]
+            'csrf_protection' => true
         ]
     );
 };
