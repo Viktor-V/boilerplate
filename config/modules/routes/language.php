@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use App\ModuleInterface;
+use App\Core\Module\Contract\ModuleInterface;
 use Symfony\Component\Config\Loader\ParamConfigurator;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Common\Language;
 
-use App\ModuleInterface;
-use App\ModuleTrait;
+use App\Core\Module\Contract\ModuleInterface;
+use App\Core\Module\ModuleTrait;
 
 final class LanguageModule implements ModuleInterface
 {

@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\AdminSecurity;
 
-use App\AdminModuleInterface;
-use App\AdminModuleTrait;
+use App\Core\Module\Contract\AdminModuleInterface;
+use App\Core\Module\ModuleTrait;
 
 final class AdminSecurityModule implements AdminModuleInterface
 {
-    use AdminModuleTrait;
+    use ModuleTrait;
 
     public const NAME = 'admin_security';
     public const ENABLE = true;

@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use App\Core\Admin\Infrastructure\Controller\AbstractController;
-use App\AdminModuleInterface;
-use App\ModuleInterface;
+use App\Core\Module\Contract\AdminModuleInterface;
+use App\Core\Module\Contract\ModuleInterface;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 
 return static function (RoutingConfigurator $routingConfigurator): void {

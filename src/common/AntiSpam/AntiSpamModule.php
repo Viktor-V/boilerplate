@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Common\AntiSpam;
 
-use App\ModuleInterface;
-use App\ModuleTrait;
+use App\Core\Module\Contract\ModuleInterface;
+use App\Core\Module\ModuleTrait;
 
 final class AntiSpamModule implements ModuleInterface
 {

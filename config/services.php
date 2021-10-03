@@ -19,7 +19,10 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $services
         ->load('App\Core\\', __DIR__ . '/../src/core/')
-        ->exclude(__DIR__ . '/../src/core/Common/{Validator,DependencyInjection}');
+        ->exclude([
+            __DIR__ . '/../src/core/Common/{Validator,DependencyInjection}',
+            __DIR__ . '/../src/core/helpers.php'
+        ]);
 
     $services->set(Application::class)
         ->arg('$kernel', service(KernelInterface::class));
