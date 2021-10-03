@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use App\Language\Infrastructure\Twig\LanguageExtension;
+use App\Common\Language\Infrastructure\Twig\LanguageExtension;
 use Symfony\Component\Config\Loader\ParamConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
@@ -31,7 +31,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->autoconfigure()
         ->public();
 
-    $services->load('App\Language\\', __DIR__ . '/../../src/Language/');
+    $services->load('App\Common\Language\\', __DIR__.'/../../src/common/Language/');
 
     $services
         ->set(LanguageExtension::class)

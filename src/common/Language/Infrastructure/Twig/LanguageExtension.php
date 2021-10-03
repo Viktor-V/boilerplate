@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Language\Infrastructure\Twig;
+namespace App\Common\Language\Infrastructure\Twig;
 
 use App\Core\Infrastructure\Controller\HomeController;
 use Symfony\Component\HttpFoundation\Request;

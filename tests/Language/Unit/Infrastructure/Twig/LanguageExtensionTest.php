@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Language\Unit\Infrastructure\Twig;
 
-use App\Language\Infrastructure\Twig\LanguageExtension;
+use App\Common\Language\Infrastructure\Twig\LanguageExtension;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpFoundation\Request;

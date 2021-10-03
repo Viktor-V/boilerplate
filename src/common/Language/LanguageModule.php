@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Language;
+namespace App\Common\Language;
 
 use App\ModuleInterface;
 use App\ModuleTrait;

@@ -6,7 +6,7 @@ return [
     \App\Common\Blog\BlogModule::class,
     \App\Common\Contact\ContactModule::class,
     \App\Common\AntiSpam\AntiSpamModule::class,
-    \App\Language\LanguageModule::class,
+    \App\Common\Language\LanguageModule::class,
 
     \App\AdminSecurity\AdminSecurityModule::class,
     \App\AdminDashboard\AdminDashboardModule::class,

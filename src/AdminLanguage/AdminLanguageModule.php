@@ -7,7 +7,7 @@ namespace App\AdminLanguage;
 use App\AdminCore\AdminCoreModule;
 use App\AdminModuleInterface;
 use App\AdminModuleTrait;
-use App\Language\LanguageModule;
+use App\Common\Language\LanguageModule;
 
 final class AdminLanguageModule implements AdminModuleInterface
 {
