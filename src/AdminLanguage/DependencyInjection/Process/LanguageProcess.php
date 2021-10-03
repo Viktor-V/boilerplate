@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\AdminLanguage\DependencyInjection\Process;
 
-use App\Core\DependencyInjection\Process\Contract\ProcessInterface;
+use App\Core\Common\DependencyInjection\Process\Contract\ProcessInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Generator;
 

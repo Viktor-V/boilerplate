@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\AdminLanguage\Domain\Language\View;
 
-use App\Core\Domain\View\FromArrayTrait;
+use App\Core\Common\Domain\View\FromArrayTrait;
 
 final class LanguageView
 {

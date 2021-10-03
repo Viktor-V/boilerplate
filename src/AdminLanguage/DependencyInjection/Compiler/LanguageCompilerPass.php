@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\AdminLanguage\DependencyInjection\Compiler;
 
 use App\AdminLanguage\DependencyInjection\Process\LanguageProcessObject;
-use App\Core\DependencyInjection\Compiler\CompilerPassTrait;
+use App\Core\Common\DependencyInjection\Compiler\CompilerPassTrait;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Generator;
 

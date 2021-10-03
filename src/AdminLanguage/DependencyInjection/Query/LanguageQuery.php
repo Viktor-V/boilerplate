@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\AdminLanguage\DependencyInjection\Query;
 
 use App\AdminLanguage\Domain\Entity\LanguageEntity;
-use App\Core\DependencyInjection\Query\Contract\QueryInterface;
+use App\Core\Common\DependencyInjection\Query\Contract\QueryInterface;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Driver\Exception as DoctrineDriverException;
 use Doctrine\DBAL\Exception as DoctrineException;

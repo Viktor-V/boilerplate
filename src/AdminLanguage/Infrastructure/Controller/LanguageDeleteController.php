@@ -8,7 +8,7 @@ use App\Core\Admin\Infrastructure\Controller\AbstractController;
 use App\AdminLanguage\Adapter\LanguageDeleteHandler;
 use App\AdminLanguage\Infrastructure\Form\LanguageDeleteForm;
 use App\AdminLanguage\ValueObject\LanguageDeleteRequestData;
-use App\Core\Validator\Exception\ValidatorException;
+use App\Core\Common\Validator\Exception\ValidatorException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

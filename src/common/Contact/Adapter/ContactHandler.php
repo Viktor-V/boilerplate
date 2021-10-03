@@ -10,16 +10,15 @@ use App\Common\Contact\Domain\Field\ContactMessageField;
 use App\Common\Contact\Domain\Field\ContactNameField;
 use App\Common\Contact\Domain\Field\ContactSubjectField;
 use App\Common\Contact\ValueObject\ContactRequestData;
-use App\Core\Adapter\Contract\HandlerInterface;
-use App\Core\Validator\Exception\ValidatorException;
-use App\Core\ValueObject\Contract\RequestDataInterface;
+use App\Core\Common\Adapter\Contract\HandlerInterface;
+use App\Core\Common\Validator\Exception\ValidatorException;
+use App\Core\Common\ValueObject\Contract\RequestDataInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Mime\Email;
 use Psr\Log\LoggerInterface;
-use Symfony\Component\Mime\Message;
 
 final class ContactHandler implements HandlerInterface
 {

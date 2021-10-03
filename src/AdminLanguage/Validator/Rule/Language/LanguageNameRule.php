@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\AdminLanguage\Validator\Rule\Language;
 
-use App\Core\Validator\Contract\RuleInterface;
+use App\Core\Common\Validator\Contract\RuleInterface;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 

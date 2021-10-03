@@ -12,7 +12,7 @@ use App\AdminLanguage\Infrastructure\Form\LanguageEditForm;
 use App\AdminLanguage\Infrastructure\Form\LanguagePrimeForm;
 use App\AdminLanguage\ValueObject\LanguageEditRequestData;
 use App\AdminLanguage\ValueObject\LanguagePrimeRequestData;
-use App\Core\Validator\Exception\ValidatorException;
+use App\Core\Common\Validator\Exception\ValidatorException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

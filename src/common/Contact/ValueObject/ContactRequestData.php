@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Common\Contact\ValueObject;
 
-use App\Core\ValueObject\Contract\RequestDataInterface;
+use App\Core\Common\ValueObject\Contract\RequestDataInterface;
 
 final class ContactRequestData implements RequestDataInterface
 {

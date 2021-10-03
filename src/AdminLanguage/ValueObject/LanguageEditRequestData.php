@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\AdminLanguage\ValueObject;
 
 use App\AdminLanguage\Domain\Entity\LanguageEntity;
-use App\Core\ValueObject\Contract\RequestDataInterface;
+use App\Core\Common\ValueObject\Contract\RequestDataInterface;
 
 final class LanguageEditRequestData implements RequestDataInterface
 {

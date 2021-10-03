@@ -9,7 +9,7 @@ use App\AdminLanguage\Domain\Language\LanguageFetcher;
 use App\AdminLanguage\Infrastructure\Form\LanguageDeleteForm;
 use App\AdminLanguage\ValueObject\LanguageCreateRequestData;
 use App\AdminLanguage\ValueObject\LanguageDeleteRequestData;
-use App\Core\Validator\Exception\ValidatorException;
+use App\Core\Common\Validator\Exception\ValidatorException;
 use App\Core\Admin\Infrastructure\Controller\AbstractController;
 use App\AdminLanguage\Infrastructure\Form\LanguageCreateForm;
 use Doctrine\ORM\NonUniqueResultException;

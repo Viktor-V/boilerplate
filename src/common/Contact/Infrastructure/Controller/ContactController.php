@@ -7,7 +7,7 @@ namespace App\Common\Contact\Infrastructure\Controller;
 use App\Common\Contact\Adapter\ContactHandler;
 use App\Common\Contact\Infrastructure\Form\ContactForm;
 use App\Common\Contact\ValueObject\ContactRequestData;
-use App\Core\Validator\Exception\ValidatorException;
+use App\Core\Common\Validator\Exception\ValidatorException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\AdminLanguage\Validator\Rule\Language;
 
-use App\Core\Validator\Contract\RuleInterface;
+use App\Core\Common\Validator\Contract\RuleInterface;
 use Doctrine\ORM\Mapping\UniqueConstraint;
 use Symfony\Component\Validator\Constraints\Language;
 use Symfony\Component\Validator\Constraints\Length;

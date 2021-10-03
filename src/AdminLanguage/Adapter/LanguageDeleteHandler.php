@@ -7,10 +7,10 @@ namespace App\AdminLanguage\Adapter;
 use App\AdminLanguage\Domain\Language\Field\LanguageIdentifierField;
 use App\AdminLanguage\Domain\Language\LanguageRepository;
 use App\AdminLanguage\ValueObject\LanguageDeleteRequestData;
-use App\Core\Adapter\Contract\HandlerInterface;
-use App\Core\Domain\Flusher;
-use App\Core\Validator\Exception\ValidatorException;
-use App\Core\ValueObject\Contract\RequestDataInterface;
+use App\Core\Common\Adapter\Contract\HandlerInterface;
+use App\Core\Common\Domain\Flusher;
+use App\Core\Common\Validator\Exception\ValidatorException;
+use App\Core\Common\ValueObject\Contract\RequestDataInterface;
 
 final class LanguageDeleteHandler implements HandlerInterface
 {

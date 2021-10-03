@@ -19,8 +19,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $services
         ->load('App\Core\\', __DIR__ . '/../src/core/')
-        ->exclude(__DIR__ . '/../src/core/{Validator,DependencyInjection}');
-    
+        ->exclude(__DIR__ . '/../src/core/Common/{Validator,DependencyInjection}');
+
     $services->set(Application::class)
         ->arg('$kernel', service(KernelInterface::class));
 };

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\AdminLanguage\Domain\Language\Type;
 
 use App\AdminLanguage\Domain\Language\Field\LanguageCodeField;
-use App\Core\Validator\Exception\ValidatorException;
+use App\Core\Common\Validator\Exception\ValidatorException;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
 

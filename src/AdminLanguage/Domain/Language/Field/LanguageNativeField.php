@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\AdminLanguage\Domain\Language\Field;
 
 use App\AdminLanguage\Validator\Rule\Language\LanguageNativeRule;
-use App\Core\Validator\Exception\ValidatorException;
-use App\Core\Validator\Validator;
+use App\Core\Common\Validator\Exception\ValidatorException;
+use App\Core\Common\Validator\Validator;
 
 final class LanguageNativeField
 {
