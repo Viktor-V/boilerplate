@@ -64,6 +64,9 @@
     },
     "autoload": {
         "psr-4": {
+            "App\\Common\\": "src/common",
+            "App\\Admin\\": "src/admin",
+            "App\\Api\\": "src/api",
             "App\\": "src/",
             "App\\AdminCore\\": "src/AdminCore",
             "App\\AdminCache\\": "src/AdminCache",
@@ -71,7 +74,6 @@
             "App\\AdminDashboard\\": "src/AdminDashboard",
             "App\\AdminLanguage\\": "src/AdminLanguage",
             "App\\AntiSpam\\": "src/AntiSpam",
-            "App\\Blog\\": "src/Blog",
             "App\\Contact\\": "src/Contact",
             "App\\Core\\": "src/Core",
             "App\\ErrorPage\\": "src/ErrorPage",

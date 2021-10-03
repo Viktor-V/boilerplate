@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Blog;
+namespace App\Common\Blog;
 
 use App\ModuleInterface;
 use App\ModuleTrait;

@@ -7,7 +7,7 @@
         </a>
     </li>
 
-    {% if constant('App\\Blog\\BlogModule::ENABLE') %}
+    {% if constant('App\\Common\\Blog\\BlogModule::ENABLE') %}
         {% include 'blog/menu/link.html.twig' %}
     {% endif %}
 

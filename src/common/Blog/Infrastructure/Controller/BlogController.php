@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Blog\Infrastructure\Controller;
+namespace App\Common\Blog\Infrastructure\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
