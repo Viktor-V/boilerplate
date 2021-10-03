@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Contact\ValueObject;
+namespace App\Common\Contact\ValueObject;
 
 use App\Core\ValueObject\Contract\RequestDataInterface;
 

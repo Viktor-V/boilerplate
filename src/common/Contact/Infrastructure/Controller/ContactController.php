@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Contact\Infrastructure\Controller;
+namespace App\Common\Contact\Infrastructure\Controller;
 
-use App\Contact\Adapter\ContactHandler;
-use App\Contact\Infrastructure\Form\ContactForm;
-use App\Contact\ValueObject\ContactRequestData;
+use App\Common\Contact\Adapter\ContactHandler;
+use App\Common\Contact\Infrastructure\Form\ContactForm;
+use App\Common\Contact\ValueObject\ContactRequestData;
 use App\Core\Validator\Exception\ValidatorException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

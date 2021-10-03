@@ -2,23 +2,23 @@
 
 declare(strict_types=1);
 
-namespace App\Contact\Domain\Field;
+namespace App\Common\Contact\Domain\Field;
 
-use App\Contact\Validator\Rule\ContactMessageRule;
+use App\Common\Contact\Validator\Rule\ContactNameRule;
 use App\Core\Validator\Validator;
 use App\Core\Validator\Exception\ValidatorException;
 
-final class ContactMessageField
+final class ContactNameField
 {
     /** @throws ValidatorException */
     public function __construct(
-        private string|null $message
+        private string|null $name
     ) {
-        Validator::validate($message, ContactMessageRule::rules());
+        Validator::validate($name, ContactNameRule::rules());
     }
 
     public function __toString(): string
     {
-        return (string) $this->message;
+        return (string) $this->name;
     }
 }

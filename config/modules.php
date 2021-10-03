@@ -4,7 +4,7 @@ return [
     \App\Core\CoreModule::class,
     \App\ErrorPage\ErrorPageModule::class,
     \App\Common\Blog\BlogModule::class,
-    \App\Contact\ContactModule::class,
+    \App\Common\Contact\ContactModule::class,
     \App\AntiSpam\AntiSpamModule::class,
     \App\Language\LanguageModule::class,
 

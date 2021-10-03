@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Contact\Adapter;
+namespace App\Common\Contact\Adapter;
 
-use App\Contact\Domain\ContactEntity;
-use App\Contact\Domain\Field\ContactEmailField;
-use App\Contact\Domain\Field\ContactMessageField;
-use App\Contact\Domain\Field\ContactNameField;
-use App\Contact\Domain\Field\ContactSubjectField;
-use App\Contact\ValueObject\ContactRequestData;
+use App\Common\Contact\Domain\ContactEntity;
+use App\Common\Contact\Domain\Field\ContactEmailField;
+use App\Common\Contact\Domain\Field\ContactMessageField;
+use App\Common\Contact\Domain\Field\ContactNameField;
+use App\Common\Contact\Domain\Field\ContactSubjectField;
+use App\Common\Contact\ValueObject\ContactRequestData;
 use App\Core\Adapter\Contract\HandlerInterface;
 use App\Core\Validator\Exception\ValidatorException;
 use App\Core\ValueObject\Contract\RequestDataInterface;

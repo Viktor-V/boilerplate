@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Tests\Contact\Domain;
 
-use App\Contact\Domain\ContactEntity;
-use App\Contact\Domain\Field\ContactEmailField;
-use App\Contact\Domain\Field\ContactMessageField;
-use App\Contact\Domain\Field\ContactNameField;
-use App\Contact\Domain\Field\ContactSubjectField;
+use App\Common\Contact\Domain\ContactEntity;
+use App\Common\Contact\Domain\Field\ContactEmailField;
+use App\Common\Contact\Domain\Field\ContactMessageField;
+use App\Common\Contact\Domain\Field\ContactNameField;
+use App\Common\Contact\Domain\Field\ContactSubjectField;
 use App\Core\Validator\Exception\ValidatorException;
 use PHPUnit\Framework\TestCase;
 

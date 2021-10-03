@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Contact\Infrastructure\Form;
+namespace App\Common\Contact\Infrastructure\Form;
 
-use App\Contact\Validator\Rule\ContactEmailRule;
-use App\Contact\Validator\Rule\ContactMessageRule;
-use App\Contact\Validator\Rule\ContactNameRule;
-use App\Contact\Validator\Rule\ContactSubjectRule;
-use App\Contact\ValueObject\ContactRequestData;
+use App\Common\Contact\Validator\Rule\ContactEmailRule;
+use App\Common\Contact\Validator\Rule\ContactMessageRule;
+use App\Common\Contact\Validator\Rule\ContactNameRule;
+use App\Common\Contact\Validator\Rule\ContactSubjectRule;
+use App\Common\Contact\ValueObject\ContactRequestData;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;

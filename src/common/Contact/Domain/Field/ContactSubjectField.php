@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Contact\Domain\Field;
+namespace App\Common\Contact\Domain\Field;
 
-use App\Contact\Validator\Rule\ContactSubjectRule;
+use App\Common\Contact\Validator\Rule\ContactSubjectRule;
 use App\Core\Validator\Validator;
 use App\Core\Validator\Exception\ValidatorException;
 

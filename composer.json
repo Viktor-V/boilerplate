@@ -74,7 +74,6 @@
             "App\\AdminDashboard\\": "src/AdminDashboard",
             "App\\AdminLanguage\\": "src/AdminLanguage",
             "App\\AntiSpam\\": "src/AntiSpam",
-            "App\\Contact\\": "src/Contact",
             "App\\Core\\": "src/Core",
             "App\\ErrorPage\\": "src/ErrorPage",
             "App\\Language\\": "src/Language"

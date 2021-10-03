@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Contact\Validator\Rule;
+namespace App\Common\Contact\Validator\Rule;
 
 use App\Core\Validator\Contract\RuleInterface;
 use Symfony\Component\Validator\Constraints\Email;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Contact;
+namespace App\Common\Contact;
 
 use App\ModuleInterface;
 use App\ModuleTrait;

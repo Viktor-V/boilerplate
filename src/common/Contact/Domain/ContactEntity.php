@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Contact\Domain;
+namespace App\Common\Contact\Domain;
 
-use App\Contact\Domain\Field\ContactEmailField;
-use App\Contact\Domain\Field\ContactMessageField;
-use App\Contact\Domain\Field\ContactNameField;
-use App\Contact\Domain\Field\ContactSubjectField;
+use App\Common\Contact\Domain\Field\ContactEmailField;
+use App\Common\Contact\Domain\Field\ContactMessageField;
+use App\Common\Contact\Domain\Field\ContactNameField;
+use App\Common\Contact\Domain\Field\ContactSubjectField;
 
 final class ContactEntity
 {

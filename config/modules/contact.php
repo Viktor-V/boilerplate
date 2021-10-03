@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use App\Contact\Adapter\ContactHandler;
-use App\Contact\Infrastructure\Controller\ContactController;
+use App\Common\Contact\Adapter\ContactHandler;
+use App\Common\Contact\Infrastructure\Controller\ContactController;
 use Symfony\Component\Config\Loader\ParamConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
@@ -30,12 +30,12 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->public();
 
     $services
-        ->load('App\Contact\\', __DIR__ . '/../../src/Contact/')
-        ->exclude(__DIR__ . '/../../src/Contact/{Domain}');
+        ->load('App\Common\Contact\\', __DIR__ . '/../../src/common/Contact/')
+        ->exclude(__DIR__ . '/../../src/common/Contact/{Domain}');
     $services
         ->load(
-            'App\Contact\Infrastructure\Controller\\',
-            __DIR__ . '/../../src/Contact/Infrastructure/Controller/'
+            'App\Common\Contact\Infrastructure\Controller\\',
+            __DIR__ . '/../../src/common/Contact/Infrastructure/Controller/'
         )
         ->tag('controller.service_arguments');
 

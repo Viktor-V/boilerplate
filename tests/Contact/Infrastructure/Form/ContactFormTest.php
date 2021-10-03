@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Contact\Infrastructure\Form;
 
-use App\Contact\Infrastructure\Form\ContactForm;
+use App\Common\Contact\Infrastructure\Form\ContactForm;
 use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
 use Symfony\Component\Form\FormExtensionInterface;
 use Symfony\Component\Form\Test\TypeTestCase;

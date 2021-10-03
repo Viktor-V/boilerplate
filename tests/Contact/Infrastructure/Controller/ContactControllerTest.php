@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Contact\Infrastructure\Controller;
 
-use App\Contact\Infrastructure\Controller\ContactController;
+use App\Common\Contact\Infrastructure\Controller\ContactController;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\Messenger\SendEmailMessage;
