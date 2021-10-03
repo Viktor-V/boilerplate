@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\ErrorPage\Infrastructure\Controller;
+namespace App\Common\ErrorPage\Infrastructure\Controller;
 
 use Symfony\Component\ErrorHandler\Exception\FlattenException;
 use Symfony\Component\HttpFoundation\Response;

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use App\ErrorPage\Infrastructure\Controller\ErrorController;
+use App\Common\ErrorPage\Infrastructure\Controller\ErrorController;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->extension('framework', [
@@ -19,12 +19,12 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->public();
 
     $services
-        ->load('App\ErrorPage\\', __DIR__ . '/../../src/ErrorPage/');
+        ->load('App\Common\ErrorPage\\', __DIR__ . '/../../src/common/ErrorPage/');
 
     $services
         ->load(
-            'App\ErrorPage\Infrastructure\Controller\\',
-            __DIR__ . '/../../src/ErrorPage/Infrastructure/Controller/'
+            'App\Common\ErrorPage\Infrastructure\Controller\\',
+            __DIR__ . '/../../src/common/ErrorPage/Infrastructure/Controller/'
         )
         ->tag('controller.service_arguments');
 };

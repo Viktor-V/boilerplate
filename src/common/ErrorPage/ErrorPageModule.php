@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\ErrorPage;
+namespace App\Common\ErrorPage;
 
 use App\ModuleInterface;
 use App\ModuleTrait;

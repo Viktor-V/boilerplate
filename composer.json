@@ -73,8 +73,7 @@
             "App\\AdminSecurity\\": "src/AdminSecurity",
             "App\\AdminDashboard\\": "src/AdminDashboard",
             "App\\AdminLanguage\\": "src/AdminLanguage",
-            "App\\Core\\": "src/Core",
-            "App\\ErrorPage\\": "src/ErrorPage"
+            "App\\Core\\": "src/Core"
         }
     },
     "autoload-dev": {
