@@ -15,25 +15,14 @@ return static function (RoutingConfigurator $routingConfigurator): void {
         $module = new $class();
 
         if ($module->enable() && $module->localize()) {
-            try {
-                $routingConfigurator
-                    ->import(
-                        __DIR__ . '/../../../src/' . camelize($module->name()) . '/Infrastructure/Controller/',
-                        'annotation'
-                    )
-                    ->prefix('/{_locale}')
-                    ->requirements(['_locale' => (string) new ParamConfigurator('language.locales')])
-                    ->defaults(['_locale' => (string) new ParamConfigurator('language.prime')]);
-            } catch (\Throwable $e) {
-                $routingConfigurator
-                    ->import(
-                        __DIR__ . '/../../../src/common/' . camelize($module->name()) . '/Infrastructure/Controller/',
-                        'annotation'
-                    )
-                    ->prefix('/{_locale}')
-                    ->requirements(['_locale' => (string) new ParamConfigurator('language.locales')])
-                    ->defaults(['_locale' => (string) new ParamConfigurator('language.prime')]);
-            }
+            $routingConfigurator
+                ->import(
+                    __DIR__ . '/../../../src/common/' . camelize($module->name()) . '/Infrastructure/Controller/',
+                    'annotation'
+                )
+                ->prefix('/{_locale}')
+                ->requirements(['_locale' => (string) new ParamConfigurator('language.locales')])
+                ->defaults(['_locale' => (string) new ParamConfigurator('language.prime')]);
         }
     }
 
