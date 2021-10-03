@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\AdminCore\Service;
 
-use App\AdminCore\Service\CommandExecutor;
+use App\Core\Admin\Service\CommandExecutor;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Psr\Log\LoggerInterface;
 use PHPUnit\Framework\TestCase;

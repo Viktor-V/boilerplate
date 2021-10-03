@@ -4,8 +4,34 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
+use App\Core\Admin\Infrastructure\Controller\AbstractController;
+use App\AdminModuleInterface;
+use App\ModuleInterface;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 
 return static function (RoutingConfigurator $routingConfigurator): void {
-    /* @see ./admin_core.php */
+    /*$routingConfigurator->import(
+        __DIR__ . '/../../../src/Core/Admin/Infrastructure/Controller/',
+        'annotation'
+    );*/
+
+    $contents = require __DIR__ . '/../../modules.php';
+    foreach ($contents as $class) {
+        /** @var ModuleInterface $module */
+        $module = new $class();
+
+        $isAdminModule = $module instanceof AdminModuleInterface;
+        if (!$isAdminModule) {
+            continue;
+        }
+
+        if ($module->enable()) {
+            $routingConfigurator
+                ->import(
+                    __DIR__ . '/../../../src/' . camelize($module->name()) . '/Infrastructure/Controller/',
+                    'annotation'
+                )
+                ->prefix('/' . AbstractController::ADMIN_CORE_PATH);
+        }
+    }
 };

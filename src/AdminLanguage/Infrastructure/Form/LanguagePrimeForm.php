@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\AdminLanguage\Infrastructure\Form;
 
-use App\AdminCore\Infrastructure\Form\AbstractForm;
+use App\Core\Admin\Infrastructure\Form\AbstractForm;
 use App\AdminLanguage\Infrastructure\Controller\LanguagePrimeController;
 use App\AdminLanguage\ValueObject\LanguagePrimeRequestData;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;

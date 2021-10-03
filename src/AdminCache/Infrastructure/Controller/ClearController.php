@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\AdminCache\Infrastructure\Controller;
 
-use App\AdminCore\Service\CommandExecutor;
-use App\AdminCore\Infrastructure\Controller\AbstractController;
+use App\Core\Admin\Service\CommandExecutor;
+use App\Core\Admin\Infrastructure\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

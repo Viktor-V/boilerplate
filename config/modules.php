@@ -11,6 +11,5 @@ return [
     \App\AdminSecurity\AdminSecurityModule::class,
     \App\AdminDashboard\AdminDashboardModule::class,
     \App\AdminCache\AdminCacheModule::class,
-    \App\AdminLanguage\AdminLanguageModule::class,
-    \App\AdminCore\AdminCoreModule::class
+    \App\AdminLanguage\AdminLanguageModule::class
 ];

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\AdminCore\Infrastructure\Controller;
+namespace App\Core\Admin\Infrastructure\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController as SymfonyController;
 

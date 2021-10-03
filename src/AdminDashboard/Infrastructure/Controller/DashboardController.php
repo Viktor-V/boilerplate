@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\AdminDashboard\Infrastructure\Controller;
 
 use App\BaseKernel;
-use App\AdminCore\Infrastructure\Controller\AbstractController;
+use App\Core\Admin\Infrastructure\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 

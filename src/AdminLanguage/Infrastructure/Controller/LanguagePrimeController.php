@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\AdminLanguage\Infrastructure\Controller;
 
-use App\AdminCore\Infrastructure\Controller\AbstractController;
+use App\Core\Admin\Infrastructure\Controller\AbstractController;
 use App\AdminLanguage\Adapter\LanguagePrimeHandler;
 use App\AdminLanguage\Infrastructure\Form\LanguagePrimeForm;
 use App\AdminLanguage\ValueObject\LanguagePrimeRequestData;

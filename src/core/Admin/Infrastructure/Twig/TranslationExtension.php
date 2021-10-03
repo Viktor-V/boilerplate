@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\AdminCore\Infrastructure\Twig;
+namespace App\Core\Admin\Infrastructure\Twig;
 
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;

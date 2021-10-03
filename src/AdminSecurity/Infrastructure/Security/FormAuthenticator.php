@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\AdminSecurity\Infrastructure\Security;
 
 use App\AdminDashboard\Infrastructure\Controller\DashboardController;
-use App\AdminSecurity\AdminSecurityRouteName;
 use App\AdminSecurity\Infrastructure\Controller\SecurityController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;

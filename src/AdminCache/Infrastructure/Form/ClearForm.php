@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\AdminCache\Infrastructure\Form;
 
 use App\AdminCache\Infrastructure\Controller\ClearController;
-use App\AdminCore\Infrastructure\Form\AbstractForm;
+use App\Core\Admin\Infrastructure\Form\AbstractForm;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 

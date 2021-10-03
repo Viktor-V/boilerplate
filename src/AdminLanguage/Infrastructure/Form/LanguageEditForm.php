@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\AdminLanguage\Infrastructure\Form;
 
-use App\AdminCore\Infrastructure\Form\AbstractForm;
+use App\Core\Admin\Infrastructure\Form\AbstractForm;
 use App\AdminLanguage\Validator\Rule\Language\LanguageNameRule;
 use App\AdminLanguage\Validator\Rule\Language\LanguageNativeRule;
 use App\AdminLanguage\ValueObject\LanguageEditRequestData;

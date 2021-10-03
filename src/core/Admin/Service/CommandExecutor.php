@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\AdminCore\Service;
+namespace App\Core\Admin\Service;
 
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\ArrayInput;

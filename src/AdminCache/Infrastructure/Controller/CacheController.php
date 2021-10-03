@@ -6,7 +6,7 @@ namespace App\AdminCache\Infrastructure\Controller;
 
 use App\AdminCache\Infrastructure\Form\ClearForm;
 use App\AdminCache\Infrastructure\Form\WarmForm;
-use App\AdminCore\Infrastructure\Controller\AbstractController;
+use App\Core\Admin\Infrastructure\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
