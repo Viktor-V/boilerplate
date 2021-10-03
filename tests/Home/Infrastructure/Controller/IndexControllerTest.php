@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Core\Infrastructure\Controller;
+namespace App\Tests\Home\Infrastructure\Controller;
 
 use App\BaseKernel;
-use App\Core\Infrastructure\Controller\HomeController;
+use App\Common\Home\Infrastructure\Controller\HomeController;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class IndexControllerTest extends WebTestCase

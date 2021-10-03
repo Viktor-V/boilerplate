@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Common\Language\Infrastructure\Twig;
 
-use App\Core\Infrastructure\Controller\HomeController;
+use App\Common\Home\Infrastructure\Controller\HomeController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Extension\AbstractExtension;

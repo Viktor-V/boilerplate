@@ -13,5 +13,5 @@ final class CoreModule implements ModuleInterface
 
     public const NAME = 'core';
     public const ENABLE = true;
-    public const LOCALIZE = true;
+    public const LOCALIZE = false;
 }

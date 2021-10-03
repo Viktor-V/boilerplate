@@ -2,6 +2,7 @@
 
 return [
     \App\Core\CoreModule::class,
+    \App\Common\Home\HomeModule::class,
     \App\Common\ErrorPage\ErrorPageModule::class,
     \App\Common\Blog\BlogModule::class,
     \App\Common\Contact\ContactModule::class,

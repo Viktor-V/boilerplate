@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Infrastructure\Controller;
+namespace App\Common\Home\Infrastructure\Controller;
 
 use App\BaseKernel;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +16,7 @@ class HomeController extends AbstractController
     #[Route(path: null, name: self::HOME_ROUTE_NAME, methods: ['GET'])]
     public function __invoke(): Response
     {
-        return $this->render('core/home.html.twig', [
+        return $this->render('home/home.html.twig', [
             'php' => PHP_VERSION,
             'symfony' => BaseKernel::VERSION,
             'env' => $_SERVER['APP_ENV']
