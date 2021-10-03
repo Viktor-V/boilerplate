@@ -13,4 +13,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->autowire()
         ->autoconfigure()
         ->public();
+
+    $services
+        ->load('App\Core\\', __DIR__ . '/../src/core/')
+        ->exclude(__DIR__ . '/../src/core/{Validator,DependencyInjection}');
 };
