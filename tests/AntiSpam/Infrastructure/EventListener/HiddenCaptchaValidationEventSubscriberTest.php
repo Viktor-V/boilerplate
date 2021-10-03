@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Tests\AntiSpam\Infrastructure\EventListener;
 
-use App\AntiSpam\Exception\HiddenCaptchaException;
-use App\AntiSpam\Infrastructure\EventListener\HiddenCaptchaValidationEventSubscriber;
-use App\AntiSpam\Service\Contract\HiddenCaptchaValidatorInterface;
+use App\Common\AntiSpam\Exception\HiddenCaptchaException;
+use App\Common\AntiSpam\Infrastructure\EventListener\HiddenCaptchaValidationEventSubscriber;
+use App\Common\AntiSpam\Service\Contract\HiddenCaptchaValidatorInterface;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormInterface;

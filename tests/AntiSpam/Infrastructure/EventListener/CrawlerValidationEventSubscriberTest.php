@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\AntiSpam\Infrastructure\EventListener;
 
-use App\AntiSpam\Infrastructure\EventListener\CrawlerValidationEventSubscriber;
+use App\Common\AntiSpam\Infrastructure\EventListener\CrawlerValidationEventSubscriber;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormInterface;

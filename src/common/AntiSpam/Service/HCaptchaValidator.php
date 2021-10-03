@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\AntiSpam\Service;
+namespace App\Common\AntiSpam\Service;
 
-use App\AntiSpam\Exception\HiddenCaptchaException;
-use App\AntiSpam\Service\Contract\HiddenCaptchaValidatorInterface;
+use App\Common\AntiSpam\Exception\HiddenCaptchaException;
+use App\Common\AntiSpam\Service\Contract\HiddenCaptchaValidatorInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class HCaptchaValidator implements HiddenCaptchaValidatorInterface

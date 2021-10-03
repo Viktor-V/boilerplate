@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\AntiSpam\Infrastructure\Form\Extension;
 
-use App\AntiSpam\Infrastructure\EventListener\HiddenFieldValidationEventSubscriber;
-use App\AntiSpam\Infrastructure\Form\Extension\FormTypeHiddenFieldExtension;
+use App\Common\AntiSpam\Infrastructure\EventListener\HiddenFieldValidationEventSubscriber;
+use App\Common\AntiSpam\Infrastructure\Form\Extension\FormTypeHiddenFieldExtension;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;

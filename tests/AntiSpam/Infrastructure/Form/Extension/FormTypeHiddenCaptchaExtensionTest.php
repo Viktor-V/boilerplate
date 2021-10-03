@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Tests\AntiSpam\Infrastructure\Form\Extension;
 
-use App\AntiSpam\Infrastructure\EventListener\HiddenCaptchaValidationEventSubscriber;
-use App\AntiSpam\Infrastructure\Form\Extension\FormTypeHiddenCaptchaExtension;
-use App\AntiSpam\Infrastructure\Form\Type\HiddenCaptchaType;
-use App\AntiSpam\Service\Contract\HiddenCaptchaValidatorInterface;
+use App\Common\AntiSpam\Infrastructure\EventListener\HiddenCaptchaValidationEventSubscriber;
+use App\Common\AntiSpam\Infrastructure\Form\Extension\FormTypeHiddenCaptchaExtension;
+use App\Common\AntiSpam\Infrastructure\Form\Type\HiddenCaptchaType;
+use App\Common\AntiSpam\Service\Contract\HiddenCaptchaValidatorInterface;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormConfigInterface;

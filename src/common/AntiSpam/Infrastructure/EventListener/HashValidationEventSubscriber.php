@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-namespace App\AntiSpam\Infrastructure\EventListener;
+namespace App\Common\AntiSpam\Infrastructure\EventListener;
 
-use Jaybizzle\CrawlerDetect\CrawlerDetect;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormEvent;
@@ -12,12 +11,12 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\HttpFoundation\Request;
 use Psr\Log\LoggerInterface;
 
-class CrawlerValidationEventSubscriber implements EventSubscriberInterface
+class HashValidationEventSubscriber implements EventSubscriberInterface
 {
     public function __construct(
-        private CrawlerDetect $crawlerDetect,
         private Request $request,
-        private LoggerInterface $logger
+        private LoggerInterface $logger,
+        private string $field
     ) {
     }
 
@@ -29,7 +28,17 @@ class CrawlerValidationEventSubscriber implements EventSubscriberInterface
             return;
         }
 
-        if ($this->crawlerDetect->isCrawler()) {
+        $data = $event->getData();
+
+        $concatenatedValues = null;
+        foreach ($data as $field => $value) {
+            if ($field !== $this->field) {
+                $concatenatedValues .= $value;
+            }
+        }
+
+        $hashedForm = md5((string) $concatenatedValues);
+        if ($hashedForm !== $data[$this->field]) {
             $this->logger->warning(sprintf(
                 'Bot detected. IP: %s; User Agent: %s; Spam detector: %s',
                 $this->request->getClientIp(),
@@ -38,6 +47,12 @@ class CrawlerValidationEventSubscriber implements EventSubscriberInterface
             ));
 
             $form->addError(new FormError(_('Oops. Something went wrong. Please, try later.')));
+        }
+
+        if (\is_array($data)) {
+            unset($data[$this->field]);
+
+            $event->setData($data);
         }
     }
 

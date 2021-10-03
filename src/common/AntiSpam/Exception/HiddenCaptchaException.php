@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\AntiSpam\Exception;
+namespace App\Common\AntiSpam\Exception;
 
 use Exception;
 

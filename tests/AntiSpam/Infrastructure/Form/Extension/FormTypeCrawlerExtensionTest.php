@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\AntiSpam\Infrastructure\Form\Extension;
 
-use App\AntiSpam\Infrastructure\EventListener\CrawlerValidationEventSubscriber;
-use App\AntiSpam\Infrastructure\Form\Extension\FormTypeCrawlerExtension;
+use App\Common\AntiSpam\Infrastructure\EventListener\CrawlerValidationEventSubscriber;
+use App\Common\AntiSpam\Infrastructure\Form\Extension\FormTypeCrawlerExtension;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\HeaderBag;

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\AntiSpam\Infrastructure\Form\Extension;
+namespace App\Common\AntiSpam\Infrastructure\Form\Extension;
 
-use App\AntiSpam\Infrastructure\EventListener\HiddenFieldValidationEventSubscriber;
+use App\Common\AntiSpam\Infrastructure\EventListener\HashValidationEventSubscriber;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -15,9 +15,9 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Psr\Log\LoggerInterface;
 
-class FormTypeHiddenFieldExtension implements FormTypeExtensionInterface
+class FormTypeHashExtension implements FormTypeExtensionInterface
 {
-    private const FIELD_NAME = 'hidden_field';
+    private const FIELD_NAME = 'hash';
 
     public function __construct(
         private RequestStack $requestStack,
@@ -33,12 +33,12 @@ class FormTypeHiddenFieldExtension implements FormTypeExtensionInterface
             return;
         }
 
-        if ($options['hidden_field_protection'] === false) {
+        if ($options['hash_field_protection'] === false) {
             return;
         }
 
         $builder
-            ->addEventSubscriber(new HiddenFieldValidationEventSubscriber(
+            ->addEventSubscriber(new HashValidationEventSubscriber(
                 $request,
                 $this->logger,
                 self::FIELD_NAME
@@ -51,27 +51,32 @@ class FormTypeHiddenFieldExtension implements FormTypeExtensionInterface
             return;
         }
 
-        if ($options['hidden_field_protection'] === false) {
+        if ($options['hash_field_protection'] === false) {
             return;
         }
 
-        if ($view->parent === null) {
-            $factory = $form->getConfig()->getFormFactory();
+        $factory = $form->getConfig()->getFormFactory();
+        $hashField = $factory->createNamed(self::FIELD_NAME, HiddenType::class, [], [
+            'mapped' => false,
+            'attr' => [
+                'data-hash-form-target' => 'hash'
+            ]
+        ]);
+        $view->children[self::FIELD_NAME . '_field_name'] = $hashField->createView($view);
 
-            $form = $factory->createNamed(self::FIELD_NAME, HiddenType::class, [], [
-                'mapped' => false,
-                'label' => false,
-                'block_prefix' => self::FIELD_NAME
-            ]);
-
-            $view->children[self::FIELD_NAME . '_field_name'] = $form->createView($view);
-        }
+        $view->vars['attr'] = array_merge(
+            $view->vars['attr'],
+            [
+                'data-controller' => 'hash-form',
+                'data-action' => 'hash-form#onSubmit'
+            ]
+        );
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'hidden_field_protection' => $this->enabled
+            'hash_field_protection' => $this->enabled
         ]);
     }
 

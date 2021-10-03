@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\AntiSpam\Infrastructure\EventListener;
 
-use App\AntiSpam\Infrastructure\EventListener\AttemptValidationEventSubscriber;
+use App\Common\AntiSpam\Infrastructure\EventListener\AttemptValidationEventSubscriber;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormEvent;

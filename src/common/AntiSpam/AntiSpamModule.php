@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\AntiSpam;
+namespace App\Common\AntiSpam;
 
 use App\ModuleInterface;
 use App\ModuleTrait;

@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use App\AntiSpam\Infrastructure\Form\Extension\FormTypeAttemptExtension;
-use App\AntiSpam\Infrastructure\Form\Extension\FormTypeCrawlerExtension;
-use App\AntiSpam\Infrastructure\Form\Extension\FormTypeHashExtension;
-use App\AntiSpam\Infrastructure\Form\Extension\FormTypeHiddenCaptchaExtension;
-use App\AntiSpam\Infrastructure\Form\Extension\FormTypeHiddenFieldExtension;
-use App\AntiSpam\Infrastructure\Form\Type\HiddenCaptchaType;
-use App\AntiSpam\Service\HCaptchaValidator;
-use App\AntiSpam\Service\Contract\HiddenCaptchaValidatorInterface;
-use App\AntiSpam\Service\ReCaptchaValidator;
+use App\Common\AntiSpam\Infrastructure\Form\Extension\FormTypeAttemptExtension;
+use App\Common\AntiSpam\Infrastructure\Form\Extension\FormTypeCrawlerExtension;
+use App\Common\AntiSpam\Infrastructure\Form\Extension\FormTypeHashExtension;
+use App\Common\AntiSpam\Infrastructure\Form\Extension\FormTypeHiddenCaptchaExtension;
+use App\Common\AntiSpam\Infrastructure\Form\Extension\FormTypeHiddenFieldExtension;
+use App\Common\AntiSpam\Infrastructure\Form\Type\HiddenCaptchaType;
+use App\Common\AntiSpam\Service\HCaptchaValidator;
+use App\Common\AntiSpam\Service\Contract\HiddenCaptchaValidatorInterface;
+use App\Common\AntiSpam\Service\ReCaptchaValidator;
 use Symfony\Component\Config\Loader\ParamConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
@@ -32,8 +32,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->public();
 
     $services
-        ->load('App\AntiSpam\\', __DIR__ . '/../../src/AntiSpam/')
-        ->exclude(__DIR__ . '/../../src/AntiSpam/Infrastructure/{EventListener}');
+        ->load('App\Common\AntiSpam\\', __DIR__.'/../../src/common/AntiSpam/')
+        ->exclude(__DIR__.'/../../src/common/AntiSpam/Infrastructure/{EventListener}');
 
     $services
         ->set(FormTypeHiddenFieldExtension::class)

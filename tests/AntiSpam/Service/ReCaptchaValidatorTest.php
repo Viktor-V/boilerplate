@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\AntiSpam\Service;
 
-use App\AntiSpam\Exception\HiddenCaptchaException;
-use App\AntiSpam\Service\ReCaptchaValidator;
+use App\Common\AntiSpam\Exception\HiddenCaptchaException;
+use App\Common\AntiSpam\Service\ReCaptchaValidator;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 use PHPUnit\Framework\TestCase;

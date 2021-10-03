@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\AntiSpam\Infrastructure\Form\Extension;
 
-use App\AntiSpam\Infrastructure\EventListener\AttemptValidationEventSubscriber;
-use App\AntiSpam\Infrastructure\Form\Extension\FormTypeAttemptExtension;
+use App\Common\AntiSpam\Infrastructure\EventListener\AttemptValidationEventSubscriber;
+use App\Common\AntiSpam\Infrastructure\Form\Extension\FormTypeAttemptExtension;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\Request;

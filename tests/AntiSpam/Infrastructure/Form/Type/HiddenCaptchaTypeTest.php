@@ -8,7 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use App\AntiSpam\Infrastructure\Form\Type\HiddenCaptchaType;
+use App\Common\AntiSpam\Infrastructure\Form\Type\HiddenCaptchaType;
 use PHPUnit\Framework\TestCase;
 
 class HiddenCaptchaTypeTest extends TestCase

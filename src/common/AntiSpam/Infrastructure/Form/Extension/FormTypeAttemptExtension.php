@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\AntiSpam\Infrastructure\Form\Extension;
+namespace App\Common\AntiSpam\Infrastructure\Form\Extension;
 
-use App\AntiSpam\Infrastructure\EventListener\AttemptValidationEventSubscriber;
+use App\Common\AntiSpam\Infrastructure\EventListener\AttemptValidationEventSubscriber;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;

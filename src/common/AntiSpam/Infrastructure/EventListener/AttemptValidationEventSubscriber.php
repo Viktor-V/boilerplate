@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\AntiSpam\Infrastructure\EventListener;
+namespace App\Common\AntiSpam\Infrastructure\EventListener;
 
 use Symfony\Component\Cache\Adapter\AdapterInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;

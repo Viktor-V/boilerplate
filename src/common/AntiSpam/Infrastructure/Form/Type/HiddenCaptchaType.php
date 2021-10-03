@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\AntiSpam\Infrastructure\Form\Type;
+namespace App\Common\AntiSpam\Infrastructure\Form\Type;
 
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;

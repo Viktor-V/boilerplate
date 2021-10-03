@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\AntiSpam\Infrastructure\Form\Extension;
+namespace App\Common\AntiSpam\Infrastructure\Form\Extension;
 
-use App\AntiSpam\Infrastructure\EventListener\HashValidationEventSubscriber;
+use App\Common\AntiSpam\Infrastructure\EventListener\HiddenCaptchaValidationEventSubscriber;
+use App\Common\AntiSpam\Infrastructure\Form\Type\HiddenCaptchaType;
+use App\Common\AntiSpam\Service\Contract\HiddenCaptchaValidatorInterface;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormTypeExtensionInterface;
@@ -15,12 +16,13 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Psr\Log\LoggerInterface;
 
-class FormTypeHashExtension implements FormTypeExtensionInterface
+class FormTypeHiddenCaptchaExtension implements FormTypeExtensionInterface
 {
-    private const FIELD_NAME = 'hash';
+    private const FIELD_NAME = 'hidden_captcha';
 
     public function __construct(
         private RequestStack $requestStack,
+        private HiddenCaptchaValidatorInterface $hiddenCaptchaValidator,
         private LoggerInterface $logger,
         private bool $enabled
     ) {
@@ -33,13 +35,14 @@ class FormTypeHashExtension implements FormTypeExtensionInterface
             return;
         }
 
-        if ($options['hash_field_protection'] === false) {
+        if ($options['hidden_captcha_field_protection'] === false) {
             return;
         }
 
         $builder
-            ->addEventSubscriber(new HashValidationEventSubscriber(
+            ->addEventSubscriber(new HiddenCaptchaValidationEventSubscriber(
                 $request,
+                $this->hiddenCaptchaValidator,
                 $this->logger,
                 self::FIELD_NAME
             ));
@@ -51,32 +54,24 @@ class FormTypeHashExtension implements FormTypeExtensionInterface
             return;
         }
 
-        if ($options['hash_field_protection'] === false) {
+        if ($options['hidden_captcha_field_protection'] === false) {
             return;
         }
 
         $factory = $form->getConfig()->getFormFactory();
-        $hashField = $factory->createNamed(self::FIELD_NAME, HiddenType::class, [], [
-            'mapped' => false,
-            'attr' => [
-                'data-hash-form-target' => 'hash'
-            ]
-        ]);
-        $view->children[self::FIELD_NAME . '_field_name'] = $hashField->createView($view);
 
-        $view->vars['attr'] = array_merge(
-            $view->vars['attr'],
-            [
-                'data-controller' => 'hash-form',
-                'data-action' => 'hash-form#onSubmit'
-            ]
-        );
+        $form = $factory->createNamed(self::FIELD_NAME, HiddenCaptchaType::class, [], [
+            'mapped' => false,
+            'label' => false
+        ]);
+
+        $view->children[self::FIELD_NAME . '_field_name'] = $form->createView($view);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'hash_field_protection' => $this->enabled
+            'hidden_captcha_field_protection' => $this->enabled
         ]);
     }
 

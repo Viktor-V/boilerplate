@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\AntiSpam\Service\Contract;
+namespace App\Common\AntiSpam\Service\Contract;
 
-use App\AntiSpam\Exception\HiddenCaptchaException;
+use App\Common\AntiSpam\Exception\HiddenCaptchaException;
 
 interface HiddenCaptchaValidatorInterface
 {

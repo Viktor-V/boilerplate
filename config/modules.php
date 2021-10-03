@@ -5,7 +5,7 @@ return [
     \App\ErrorPage\ErrorPageModule::class,
     \App\Common\Blog\BlogModule::class,
     \App\Common\Contact\ContactModule::class,
-    \App\AntiSpam\AntiSpamModule::class,
+    \App\Common\AntiSpam\AntiSpamModule::class,
     \App\Language\LanguageModule::class,
 
     \App\AdminSecurity\AdminSecurityModule::class,
