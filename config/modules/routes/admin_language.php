@@ -10,11 +10,6 @@ use App\ModuleInterface;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 
 return static function (RoutingConfigurator $routingConfigurator): void {
-    /*$routingConfigurator->import(
-        __DIR__ . '/../../../src/Core/Admin/Infrastructure/Controller/',
-        'annotation'
-    );*/
-
     $contents = require __DIR__ . '/../../modules.php';
     foreach ($contents as $class) {
         /** @var ModuleInterface $module */
