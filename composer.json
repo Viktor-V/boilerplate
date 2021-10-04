@@ -70,7 +70,6 @@
             "App\\Api\\": "src/api",
             "App\\": "src/",
             "App\\AdminSecurity\\": "src/AdminSecurity",
-            "App\\AdminDashboard\\": "src/AdminDashboard",
             "App\\AdminLanguage\\": "src/AdminLanguage"
         }
     },

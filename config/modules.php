@@ -9,7 +9,7 @@ return [
     \App\Common\Language\LanguageModule::class,
 
     \App\AdminSecurity\AdminSecurityModule::class,
-    \App\AdminDashboard\AdminDashboardModule::class,
+    \App\Admin\AdminDashboard\AdminDashboardModule::class,
     \App\Admin\AdminCache\AdminCacheModule::class,
     \App\AdminLanguage\AdminLanguageModule::class
 ];

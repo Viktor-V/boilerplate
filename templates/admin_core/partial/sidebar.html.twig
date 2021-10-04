@@ -2,7 +2,7 @@
     <select id="menu" onChange="window.location.href = this.value;">
         <option selected disabled>{{ _a('Menu') }}</option>
 
-        {% if constant('App\\AdminDashboard\\AdminDashboardModule::ENABLE') %}
+        {% if constant('App\\Admin\\AdminDashboard\\AdminDashboardModule::ENABLE') %}
             {% include 'admin_dashboard/menu/mobile.html.twig' %}
         {% endif %}
 
@@ -30,7 +30,7 @@
 </label>
 
 <nav class="sidebar-menu" role="navigation">
-    {% if constant('App\\AdminDashboard\\AdminDashboardModule::ENABLE') %}
+    {% if constant('App\\Admin\\AdminDashboard\\AdminDashboardModule::ENABLE') %}
         {% include 'admin_dashboard/menu/link.html.twig' %}
     {% endif %}
 

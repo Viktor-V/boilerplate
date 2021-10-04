@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\AdminDashboard\Infrastructure\Controller;
+namespace App\Admin\AdminDashboard\Infrastructure\Controller;
 
 use App\BaseKernel;
 use App\Core\Admin\Infrastructure\Controller\AbstractController;
