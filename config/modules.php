@@ -10,6 +10,6 @@ return [
 
     \App\AdminSecurity\AdminSecurityModule::class,
     \App\AdminDashboard\AdminDashboardModule::class,
-    \App\AdminCache\AdminCacheModule::class,
+    \App\Admin\AdminCache\AdminCacheModule::class,
     \App\AdminLanguage\AdminLanguageModule::class
 ];

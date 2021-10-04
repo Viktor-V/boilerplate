@@ -23,7 +23,7 @@
             {% include 'admin_language/menu/mobile.html.twig' %}
         {% endif %}
 
-        {% if constant('App\\AdminCache\\AdminCacheModule::ENABLE') %}
+        {% if constant('App\\Admin\\AdminCache\\AdminCacheModule::ENABLE') %}
             {% include 'admin_cache/menu/mobile.html.twig' %}
         {% endif %}
     </select>
@@ -77,7 +77,7 @@
         {% include 'admin_language/menu/link.html.twig' %}
     {% endif %}
 
-    {% if constant('App\\AdminCache\\AdminCacheModule::ENABLE') %}
+    {% if constant('App\\Admin\\AdminCache\\AdminCacheModule::ENABLE') %}
         {% include 'admin_cache/menu/link.html.twig' %}
     {% endif %}
 </nav>

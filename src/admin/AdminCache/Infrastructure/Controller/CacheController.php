@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\AdminCache\Infrastructure\Controller;
+namespace App\Admin\AdminCache\Infrastructure\Controller;
 
-use App\AdminCache\Infrastructure\Form\ClearForm;
-use App\AdminCache\Infrastructure\Form\WarmForm;
+use App\Admin\AdminCache\Infrastructure\Form\ClearForm;
+use App\Admin\AdminCache\Infrastructure\Form\WarmForm;
 use App\Core\Admin\Infrastructure\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

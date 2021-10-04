@@ -69,8 +69,6 @@
             "App\\Admin\\": "src/admin",
             "App\\Api\\": "src/api",
             "App\\": "src/",
-            "App\\AdminCore\\": "src/AdminCore",
-            "App\\AdminCache\\": "src/AdminCache",
             "App\\AdminSecurity\\": "src/AdminSecurity",
             "App\\AdminDashboard\\": "src/AdminDashboard",
             "App\\AdminLanguage\\": "src/AdminLanguage"

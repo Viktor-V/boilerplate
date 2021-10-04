@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\AdminCache;
+namespace App\Admin\AdminCache;
 
 use App\Core\Module\Contract\AdminModuleInterface;
 use App\Core\Module\ModuleTrait;

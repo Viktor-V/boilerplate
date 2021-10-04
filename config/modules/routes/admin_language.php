@@ -21,12 +21,21 @@ return static function (RoutingConfigurator $routingConfigurator): void {
         }
 
         if ($module->enable()) {
-            $routingConfigurator
-                ->import(
-                    __DIR__ . '/../../../src/' . camelize($module->name()) . '/Infrastructure/Controller/',
-                    'annotation'
-                )
-                ->prefix('/' . AbstractController::ADMIN_CORE_PATH);
+            try {
+                $routingConfigurator
+                    ->import(
+                        __DIR__ . '/../../../src/' . camelize($module->name()) . '/Infrastructure/Controller/',
+                        'annotation'
+                    )
+                    ->prefix('/' . AbstractController::ADMIN_CORE_PATH);
+            } catch (\Throwable $e) {
+                $routingConfigurator
+                    ->import(
+                        __DIR__ . '/../../../src/admin/' . camelize($module->name()) . '/Infrastructure/Controller/',
+                        'annotation'
+                    )
+                    ->prefix('/' . AbstractController::ADMIN_CORE_PATH);
+            }
         }
     }
 };

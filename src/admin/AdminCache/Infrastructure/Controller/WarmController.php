@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\AdminCache\Infrastructure\Controller;
+namespace App\Admin\AdminCache\Infrastructure\Controller;
 
 use App\Core\Admin\Service\CommandExecutor;
 use App\Core\Admin\Infrastructure\Controller\AbstractController;
