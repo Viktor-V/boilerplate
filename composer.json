@@ -69,7 +69,6 @@
             "App\\Admin\\": "src/admin",
             "App\\Api\\": "src/api",
             "App\\": "src/",
-            "App\\AdminSecurity\\": "src/AdminSecurity",
             "App\\AdminLanguage\\": "src/AdminLanguage"
         }
     },

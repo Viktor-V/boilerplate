@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\AdminSecurity;
+namespace App\Admin\AdminSecurity;
 
 use App\Core\Module\Contract\AdminModuleInterface;
 use App\Core\Module\ModuleTrait;

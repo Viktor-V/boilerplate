@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use App\AdminSecurity\AdminSecurityModule;
-use App\AdminSecurity\Infrastructure\Controller\LogoutController;
-use App\AdminSecurity\Infrastructure\Security\FormAuthenticator;
+use App\Admin\AdminSecurity\AdminSecurityModule;
+use App\Admin\AdminSecurity\Infrastructure\Controller\LogoutController;
+use App\Admin\AdminSecurity\Infrastructure\Security\FormAuthenticator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $firewalls['dev'] = [

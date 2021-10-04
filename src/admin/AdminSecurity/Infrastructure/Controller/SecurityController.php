@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\AdminSecurity\Infrastructure\Controller;
+namespace App\Admin\AdminSecurity\Infrastructure\Controller;
 
 use App\Core\Admin\Infrastructure\Controller\AbstractController;
-use App\AdminDashboard\Infrastructure\Controller\DashboardController;
+use App\Admin\AdminDashboard\Infrastructure\Controller\DashboardController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;

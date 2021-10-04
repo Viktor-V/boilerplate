@@ -4,11 +4,6 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use App\AdminSecurity\Infrastructure\Security\FormAuthenticator;
-use Symfony\Bundle\FrameworkBundle\Console\Application;
-use Symfony\Component\HttpKernel\KernelInterface;
-use Symfony\Component\PasswordHasher\Hasher\PlaintextPasswordHasher;
-use Symfony\Component\Security\Core\Encoder\PasswordHasherEncoder;
 use Symfony\Component\Security\Core\User\InMemoryUser;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
@@ -20,11 +15,11 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->public();
 
     $services
-        ->load('App\AdminSecurity\\', __DIR__ . '/../../src/AdminSecurity/');
+        ->load('App\Admin\AdminSecurity\\', __DIR__ . '/../../src/admin/AdminSecurity/');
 
     $services->load(
-        'App\AdminSecurity\Infrastructure\Controller\\',
-        __DIR__ . '/../../src/AdminSecurity/Infrastructure/Controller/'
+        'App\Admin\AdminSecurity\Infrastructure\Controller\\',
+        __DIR__ . '/../../src/admin/AdminSecurity/Infrastructure/Controller/'
     )->tag('controller.service_arguments');
 
     $containerConfigurator->extension('security', [
