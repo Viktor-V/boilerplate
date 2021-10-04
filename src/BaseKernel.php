@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App;
 
-use App\AdminLanguage\DependencyInjection\Compiler\LanguageCompilerPass;
-use App\AdminLanguage\DependencyInjection\Process\LanguageProcess;
-use App\AdminLanguage\DependencyInjection\Query\LanguageQuery;
+use App\Admin\AdminLanguage\DependencyInjection\Compiler\LanguageCompilerPass;
+use App\Admin\AdminLanguage\DependencyInjection\Process\LanguageProcess;
+use App\Admin\AdminLanguage\DependencyInjection\Query\LanguageQuery;
 use App\Core\Common\DependencyInjection\Connection\ConnectionInitialization;
 use App\Core\Module\Contract\ModuleInterface;
 use Doctrine\Bundle\DoctrineBundle\ConnectionFactory;

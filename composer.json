@@ -68,8 +68,7 @@
             "App\\Common\\": "src/common",
             "App\\Admin\\": "src/admin",
             "App\\Api\\": "src/api",
-            "App\\": "src/",
-            "App\\AdminLanguage\\": "src/AdminLanguage"
+            "App\\": "src/"
         }
     },
     "autoload-dev": {

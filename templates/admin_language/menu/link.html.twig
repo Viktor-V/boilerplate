@@ -1,7 +1,7 @@
-<a href="{{ path(constant('App\\AdminLanguage\\Infrastructure\\Controller\\LanguageViewController::LANGUAGE_ROUTE_NAME')) }}"
+<a href="{{ path(constant('App\\Admin\\AdminLanguage\\Infrastructure\\Controller\\LanguageViewController::LANGUAGE_ROUTE_NAME')) }}"
    class="menu-item {{ app.request.get('_route') in [
-       constant('App\\AdminLanguage\\Infrastructure\\Controller\\LanguageViewController::LANGUAGE_ROUTE_NAME'),
-       constant('App\\AdminLanguage\\Infrastructure\\Controller\\LanguageEditController::LANGUAGE_EDIT_ROUTE_NAME'),
+       constant('App\\Admin\\AdminLanguage\\Infrastructure\\Controller\\LanguageViewController::LANGUAGE_ROUTE_NAME'),
+       constant('App\\Admin\\AdminLanguage\\Infrastructure\\Controller\\LanguageEditController::LANGUAGE_EDIT_ROUTE_NAME'),
    ] ? 'active' }}"
 >
     <span>

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use App\AdminLanguage\Domain\Language\LanguageFetcher;
-use App\AdminLanguage\Domain\Language\LanguageRepository;
+use App\Admin\AdminLanguage\Domain\Language\LanguageFetcher;
+use App\Admin\AdminLanguage\Domain\Language\LanguageRepository;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
@@ -16,15 +16,15 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->public();
 
     $services
-        ->load('App\AdminLanguage\\', __DIR__ . '/../../src/AdminLanguage/')
+        ->load('App\Admin\AdminLanguage\\', __DIR__ . '/../../src/admin/AdminLanguage/')
         ->exclude([
-            __DIR__ . '/../../src/AdminLanguage/{DependencyInjection,Domain}',
-            __DIR__ . '/../../src/AdminLanguage/ValueObject/LanguageEditRequestData.php',
+            __DIR__ . '/../../src/admin/AdminLanguage/{DependencyInjection,Domain}',
+            __DIR__ . '/../../src/admin/AdminLanguage/ValueObject/LanguageEditRequestData.php',
         ]);
 
     $services->load(
-        'App\AdminLanguage\Infrastructure\Controller\\',
-        __DIR__ . '/../../src/AdminLanguage/Infrastructure/Controller/'
+        'App\Admin\AdminLanguage\Infrastructure\Controller\\',
+        __DIR__ . '/../../src/admin/AdminLanguage/Infrastructure/Controller/'
     )->tag('controller.service_arguments');
 
     $services->set(LanguageRepository::class);

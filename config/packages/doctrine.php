@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use App\AdminLanguage\AdminLanguageModule;
-use App\AdminLanguage\Domain\Language\Type\LanguageCodeType;
-use App\AdminLanguage\Domain\Language\Type\LanguageIdentifierType;
-use App\AdminLanguage\Domain\Language\Type\LanguageNameType;
-use App\AdminLanguage\Domain\Language\Type\LanguageNativeType;
+use App\Admin\AdminLanguage\AdminLanguageModule;
+use App\Admin\AdminLanguage\Domain\Language\Type\LanguageCodeType;
+use App\Admin\AdminLanguage\Domain\Language\Type\LanguageIdentifierType;
+use App\Admin\AdminLanguage\Domain\Language\Type\LanguageNameType;
+use App\Admin\AdminLanguage\Domain\Language\Type\LanguageNativeType;
 use Symfony\Component\Config\Loader\ParamConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
@@ -25,8 +25,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         $mappings['AdminLanguage'] = [
             'is_bundle' => false,
             'type' => 'attribute',
-            'dir' => ((string) new ParamConfigurator('kernel.project_dir')) . '/src/AdminLanguage/Domain/Entity',
-            'prefix' => 'App\AdminLanguage\Domain\Entity',
+            'dir' => ((string) new ParamConfigurator('kernel.project_dir')) . '/src/admin/AdminLanguage/Domain/Entity',
+            'prefix' => 'App\Admin\AdminLanguage\Domain\Entity',
             'alias' => 'AdminLanguage'
         ];
     }

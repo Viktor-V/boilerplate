@@ -19,7 +19,7 @@
             <option value="{{ path(constant('App\\Admin\\AdminRouteName::ADMIN')) }}">{{ _a('Setting') }}</option>
         </optgroup>#}
 
-        {% if constant('App\\AdminLanguage\\AdminLanguageModule::ENABLE') %}
+        {% if constant('App\\Admin\\AdminLanguage\\AdminLanguageModule::ENABLE') %}
             {% include 'admin_language/menu/mobile.html.twig' %}
         {% endif %}
 
@@ -73,7 +73,7 @@
         </span>
     </a>#}
 
-    {% if constant('App\\AdminLanguage\\AdminLanguageModule::ENABLE') %}
+    {% if constant('App\\Admin\\AdminLanguage\\AdminLanguageModule::ENABLE') %}
         {% include 'admin_language/menu/link.html.twig' %}
     {% endif %}
 
