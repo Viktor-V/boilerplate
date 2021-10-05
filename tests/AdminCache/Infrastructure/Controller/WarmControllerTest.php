@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\AdminCache\Infrastructure\Controller;
 
-use App\AdminCache\Infrastructure\Controller\CacheController;
+use App\Admin\AdminCache\Infrastructure\Controller\CacheController;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class WarmControllerTest extends WebTestCase

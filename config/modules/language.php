@@ -31,7 +31,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->autoconfigure()
         ->public();
 
-    $services->load('App\Common\Language\\', __DIR__.'/../../src/common/Language/');
+    $services->load('App\Common\Language\\', __DIR__ . '/../../src/common/Language/');
 
     $services
         ->set(LanguageExtension::class)

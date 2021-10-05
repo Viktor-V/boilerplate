@@ -32,8 +32,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->public();
 
     $services
-        ->load('App\Common\AntiSpam\\', __DIR__.'/../../src/common/AntiSpam/')
-        ->exclude(__DIR__.'/../../src/common/AntiSpam/Infrastructure/{EventListener}');
+        ->load('App\Common\AntiSpam\\', __DIR__ . '/../../src/common/AntiSpam/')
+        ->exclude(__DIR__ . '/../../src/common/AntiSpam/Infrastructure/{EventListener}');
 
     $services
         ->set(FormTypeHiddenFieldExtension::class)
