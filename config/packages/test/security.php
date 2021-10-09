@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use App\AdminSecurity\AdminSecurityModule;
+use App\Admin\AdminSecurity\AdminSecurityModule;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $firewalls = [];

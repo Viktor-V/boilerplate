@@ -38,17 +38,14 @@ parameters:
 
     excludePaths:
         - config
-        - src/ModuleInterface.php
-        - src/AdminModuleInterface.php
-        - src/Core/Infrastructure/Twig/TranslationExtension.php
-        - src/AdminCore/Infrastructure/Twig/TranslationExtension.php
-        - src/helpers.php
-        - src/Core/Domain/Flusher.php
-        - src/AdminModuleTrait.php
+        - src/core/helpers.php
+        - src/core/Common/Domain/Flusher.php
+        - src/core/Common/Infrastructure/Twig/TranslationExtension.php
+        - src/core/Admin/Infrastructure/Twig/TranslationExtension.php
         # Ignoring inherit from abstract class
-        - src/AdminLanguage/Domain/Language/Type/*
-        - src/AdminLanguage/AdminLanguageModule.php
-        - src/AdminLanguage/DependencyInjection/Process/LanguageProcess.php 
+        - src/admin/AdminLanguage/Domain/Language/Type/*
+        - src/admin/AdminLanguage/AdminLanguageModule.php
+        - src/admin/AdminLanguage/DependencyInjection/Process/LanguageProcess.php
 
     ignoreErrors:
         - '#Method call on new expression is not allowed#'
