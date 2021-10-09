@@ -24,7 +24,7 @@ class SecurityController extends AbstractController
         }
 
         return $this->render(
-            'admin_security/auth.html.twig',
+            'admin/admin_security/auth.html.twig',
             ['error' => $authenticationUtils->getLastAuthenticationError()]
         );
     }

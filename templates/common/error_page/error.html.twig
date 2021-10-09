@@ -1,0 +1,20 @@
+{% extends 'core/common/layout/default.html.twig' %}
+
+{% block title %}{{ __('An Error Occurred: %s', statusText) }}{% endblock %}
+
+{% block main %}
+    <div class="error-content">
+        <h1>{{ _('Oops! An Error Occurred!') }}</h1>
+        <h2>{{ __('The server returned a "%s %s".', statusCode, statusText) }}</h2>
+
+        {% if statusCode == 500 %}
+            <p>
+                {{ _('Something is broken. Please let us know what you were doing when this error occurred.') }}
+            </p>
+
+            <p>
+                {{ _('We will fix it as soon as possible. Sorry for any inconvenience caused.') }}
+            </p>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -60,7 +60,7 @@ class LanguageViewController extends AbstractController
             }
         }
 
-        return $this->render('admin_language/language.html.twig', [
+        return $this->render('admin/admin_language/language.html.twig', [
             'createForm' => $form,
             'deleteForm' => $this->createForm(LanguageDeleteForm::class, new LanguageDeleteRequestData()),
             'data' => $this->languageFetcher->all()

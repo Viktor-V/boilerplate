@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="{{ app.request.locale }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        {% block title %}
+            {{ project }}
+        {% endblock %}
+    </title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+</head>
+<body>
+    {% include 'core/common/partial/noscript.html.twig' %}
+
+    <main id="{% block page_id %}main{% endblock %}">
+        {% block header %}
+            {% include 'core/common/partial/header.html.twig' %}
+        {% endblock %}
+
+        {% block message %}
+            {% include 'core/common/partial/message.html.twig' %}
+        {% endblock %}
+
+        {% block main %}
+            {# main block #}
+        {% endblock %}
+
+        {% block footer %}
+            {% include 'core/common/partial/footer.html.twig' %}
+        {% endblock %}
+    </main>
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</body>
+</html>

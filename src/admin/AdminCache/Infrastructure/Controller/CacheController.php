@@ -20,7 +20,7 @@ class CacheController extends AbstractController
     public function __invoke(Request $request): Response
     {
         return $this->render(
-            'admin_cache/cache.html.twig',
+            'admin/admin_cache/cache.html.twig',
             [
                 'clearForm' => $this->createForm(ClearForm::class)->handleRequest($request),
                 'warmForm' => $this->createForm(WarmForm::class)->handleRequest($request)

@@ -14,7 +14,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ],
         'form_themes' => [
             'bootstrap_4_layout.html.twig',
-            'core/form/bootstrap.html.twig'
+            'core/common/form/bootstrap.html.twig'
         ]
     ]);
 };

@@ -52,7 +52,7 @@ class LanguageEditController extends AbstractController
             }
         }
 
-        return $this->render('admin_language/language_edit.html.twig', [
+        return $this->render('admin/admin_language/language_edit.html.twig', [
             'editForm' => $editForm,
             'primeForm' => $this->createForm(LanguagePrimeForm::class, new LanguagePrimeRequestData()),
             'language' => $language

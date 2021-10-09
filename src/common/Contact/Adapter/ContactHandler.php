@@ -61,7 +61,7 @@ final class ContactHandler implements HandlerInterface
                 (new TemplatedEmail())
                     ->to((string) $contact->getEmail())
                     ->subject(_('Request received'))
-                    ->htmlTemplate('contact/mail/confirmation.html.twig')
+                    ->htmlTemplate('common/contact/mail/confirmation.html.twig')
                     ->context(['contact' => $contact])
             );
         } catch (TransportExceptionInterface $exception) {

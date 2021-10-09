@@ -12,7 +12,7 @@ class ErrorController extends AbstractController
 {
     public function __invoke(FlattenException $exception): Response
     {
-        return $this->render('error_page/error.html.twig', [
+        return $this->render('common/error_page/error.html.twig', [
             'exception' => $exception,
             'statusCode' => $exception->getStatusCode(),
             'statusText' => $exception->getStatusText()

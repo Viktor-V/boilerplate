@@ -49,7 +49,7 @@ class ContactController extends AbstractController
             }
         }
 
-        return $this->render('contact/index.html.twig', [
+        return $this->render('common/contact/index.html.twig', [
             'form' => $form,
             'supportEmail' => $this->supportEmail,
             'supportPhone' => $this->supportPhone,

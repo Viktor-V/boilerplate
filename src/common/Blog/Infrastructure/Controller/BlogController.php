@@ -16,6 +16,6 @@ class BlogController extends AbstractController
     #[Route(path: self::BLOG_ROUTE_PATH, name: self::BLOG_ROUTE_NAME, methods: ['GET'])]
     public function __invoke(): Response
     {
-        return $this->render('blog/index.html.twig');
+        return $this->render('common/blog/index.html.twig');
     }
 }

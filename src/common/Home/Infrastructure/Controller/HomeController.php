@@ -16,7 +16,7 @@ class HomeController extends AbstractController
     #[Route(path: null, name: self::HOME_ROUTE_NAME, methods: ['GET'])]
     public function __invoke(): Response
     {
-        return $this->render('home/home.html.twig', [
+        return $this->render('common/home/home.html.twig', [
             'php' => PHP_VERSION,
             'symfony' => BaseKernel::VERSION,
             'env' => $_SERVER['APP_ENV']

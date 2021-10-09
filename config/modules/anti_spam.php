@@ -18,8 +18,8 @@ use Symfony\Component\Config\Loader\ParamConfigurator;
 return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->extension('twig', [
         'form_themes' => [
-            'anti_spam/form/hidden_field.html.twig',
-            'anti_spam/form/hidden_captcha.html.twig'
+            'common/anti_spam/form/hidden_field.html.twig',
+            'common/anti_spam/form/hidden_captcha.html.twig'
         ]
     ]);
 

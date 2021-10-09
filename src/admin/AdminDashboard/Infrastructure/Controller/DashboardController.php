@@ -17,7 +17,7 @@ class DashboardController extends AbstractController
     #[Route(path: self::DASHBOARD_ROUTE_PATH, name: self::DASHBOARD_ROUTE_NAME, methods: ['GET'])]
     public function __invoke(): Response
     {
-        return $this->render('admin_dashboard/dashboard.html.twig', [
+        return $this->render('admin/admin_dashboard/dashboard.html.twig', [
             'php' => PHP_VERSION,
             'symfony' => BaseKernel::VERSION,
             'env' => $_SERVER['APP_ENV']
