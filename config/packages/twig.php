@@ -13,7 +13,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             'project' => (string) new ParamConfigurator('project')
         ],
         'form_themes' => [
-            'bootstrap_4_layout.html.twig',
+            'bootstrap_5_layout.html.twig',
             'core/common/form/bootstrap.html.twig'
         ]
     ]);
