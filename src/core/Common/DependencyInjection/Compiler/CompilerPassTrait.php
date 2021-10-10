@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core\Common\DependencyInjection\Compiler;
 
-use App\Core\Common\DependencyInjection\Process\Contract\ProcessObjectInterface;
+use App\Core\Common\ValueObject\Contract\ProcessObjectInterface;
 use App\Core\Common\DependencyInjection\Query\Contract\QueryInterface;
 use App\Core\Common\DependencyInjection\Process\Contract\ProcessInterface;
 use App\Core\Common\DependencyInjection\Connection\ConnectionInitialization;

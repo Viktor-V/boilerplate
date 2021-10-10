@@ -6,7 +6,7 @@ namespace App\Admin\AdminLanguage\Infrastructure\Form;
 
 use App\Core\Admin\Infrastructure\Form\AbstractForm;
 use App\Admin\AdminLanguage\Infrastructure\Controller\LanguageDeleteController;
-use App\Admin\AdminLanguage\ValueObject\LanguageDeleteRequestData;
+use App\Admin\AdminLanguage\Infrastructure\Form\RequestObject\LanguageDeleteRequestData;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;

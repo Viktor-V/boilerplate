@@ -46,6 +46,7 @@ parameters:
         - src/admin/AdminLanguage/Domain/Language/Type/*
         - src/admin/AdminLanguage/AdminLanguageModule.php
         - src/admin/AdminLanguage/DependencyInjection/Process/LanguageProcess.php
+        - src/admin/AdminLanguage/Infrastructure/Form/RequestObject/LanguageEditRequestData.php
 
     ignoreErrors:
         - '#Method call on new expression is not allowed#'

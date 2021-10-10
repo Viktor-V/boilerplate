@@ -9,12 +9,12 @@ use App\Admin\AdminLanguage\Domain\Language\Field\LanguageIdentifierField;
 use App\Admin\AdminLanguage\Domain\Language\Field\LanguageNameField;
 use App\Admin\AdminLanguage\Domain\Language\Field\LanguageNativeField;
 use App\Admin\AdminLanguage\Domain\Language\LanguageRepository;
-use App\Admin\AdminLanguage\ValueObject\LanguageCreateRequestData;
+use App\Admin\AdminLanguage\Infrastructure\Form\RequestObject\LanguageCreateRequestData;
 use App\Core\Common\Adapter\Contract\HandlerInterface;
 use App\Core\Common\Domain\Flusher;
 use App\Core\Common\Validator\Exception\ValidatorException;
-use App\Core\Common\ValueObject\Contract\RequestDataInterface;
 use App\Admin\AdminLanguage\Domain\Entity\LanguageEntity;
+use App\Core\Common\ValueObject\Contract\RequestObjectInterface;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 use Psr\Log\LoggerInterface;
@@ -32,7 +32,7 @@ final class LanguageCreateHandler implements HandlerInterface
     /**
      * @throws ValidatorException | NonUniqueResultException | NoResultException
      */
-    public function handle(RequestDataInterface $requestData): void
+    public function handle(RequestObjectInterface $requestData): void
     {
         /** @var LanguageCreateRequestData $requestData */
         $code = new LanguageCodeField($requestData->code);

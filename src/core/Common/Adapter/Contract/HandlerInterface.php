@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Core\Common\Adapter\Contract;
 
-use App\Core\Common\ValueObject\Contract\RequestDataInterface;
+use App\Core\Common\ValueObject\Contract\RequestObjectInterface;
 
 interface HandlerInterface
 {
-    public function handle(RequestDataInterface $requestData): void;
+    public function handle(RequestObjectInterface $requestData): void;
 }

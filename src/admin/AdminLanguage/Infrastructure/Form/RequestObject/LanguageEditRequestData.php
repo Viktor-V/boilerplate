@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Admin\AdminLanguage\ValueObject;
+namespace App\Admin\AdminLanguage\Infrastructure\Form\RequestObject;
 
 use App\Admin\AdminLanguage\Domain\Entity\LanguageEntity;
-use App\Core\Common\ValueObject\Contract\RequestDataInterface;
+use App\Core\Common\ValueObject\Contract\RequestObjectInterface;
 
-final class LanguageEditRequestData implements RequestDataInterface
+final class LanguageEditRequestData implements RequestObjectInterface
 {
     public string $identifier;
     public string $code;

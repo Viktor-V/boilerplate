@@ -31,7 +31,7 @@ codestyle:
     script:
         - php -d memory_limit=-1 ./bin/console cache:warmup --env=dev
         - php -d memory_limit=-1 ./vendor/bin/phpcs --standard=phpcs.xml
-        - php -d memory_limit=-1 ./vendor/bin/phpcs --standard=phpcs.xml
+        - php -d memory_limit=-1 ./vendor/bin/phpcpd --fuzzy src/ config/
         - php -d memory_limit=-1 ./vendor/bin/phpstan analyse -c phpstan.neon --no-progress --quiet
         - php -d memory_limit=-1 ./bin/console cache:warmup --env=test
         - php -d memory_limit=-1 ./vendor/bin/phpstan analyse -c phpstan-tests.neon --no-progress --quiet

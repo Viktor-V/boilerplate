@@ -6,7 +6,7 @@ namespace App\Admin\AdminLanguage\Infrastructure\Form;
 
 use App\Core\Admin\Infrastructure\Form\AbstractForm;
 use App\Admin\AdminLanguage\Infrastructure\Controller\LanguagePrimeController;
-use App\Admin\AdminLanguage\ValueObject\LanguagePrimeRequestData;
+use App\Admin\AdminLanguage\Infrastructure\Form\RequestObject\LanguagePrimeRequestData;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;

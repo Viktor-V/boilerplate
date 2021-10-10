@@ -19,7 +19,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->load('App\Admin\AdminLanguage\\', __DIR__ . '/../../src/admin/AdminLanguage/')
         ->exclude([
             __DIR__ . '/../../src/admin/AdminLanguage/{DependencyInjection,Domain}',
-            __DIR__ . '/../../src/admin/AdminLanguage/ValueObject/LanguageEditRequestData.php',
+            __DIR__ . '/../../src/admin/AdminLanguage/Infrastructure/Form/RequestObject/LanguageEditRequestData.php',
         ]);
 
     $services->load(

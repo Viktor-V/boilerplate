@@ -9,10 +9,10 @@ use App\Common\Contact\Domain\Field\ContactEmailField;
 use App\Common\Contact\Domain\Field\ContactMessageField;
 use App\Common\Contact\Domain\Field\ContactNameField;
 use App\Common\Contact\Domain\Field\ContactSubjectField;
-use App\Common\Contact\ValueObject\ContactRequestData;
+use App\Common\Contact\Infrastructure\Form\RequestObject\ContactRequestData;
 use App\Core\Common\Adapter\Contract\HandlerInterface;
 use App\Core\Common\Validator\Exception\ValidatorException;
-use App\Core\Common\ValueObject\Contract\RequestDataInterface;
+use App\Core\Common\ValueObject\Contract\RequestObjectInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
@@ -32,7 +32,7 @@ final class ContactHandler implements HandlerInterface
     /**
      * @throws ValidatorException|TransportExceptionInterface
      */
-    public function handle(RequestDataInterface $requestData): void
+    public function handle(RequestObjectInterface $requestData): void
     {
         /** @var ContactRequestData $requestData */
         $contact = ContactEntity::init(

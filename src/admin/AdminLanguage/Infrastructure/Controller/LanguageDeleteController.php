@@ -7,7 +7,7 @@ namespace App\Admin\AdminLanguage\Infrastructure\Controller;
 use App\Core\Admin\Infrastructure\Controller\AbstractController;
 use App\Admin\AdminLanguage\Adapter\LanguageDeleteHandler;
 use App\Admin\AdminLanguage\Infrastructure\Form\LanguageDeleteForm;
-use App\Admin\AdminLanguage\ValueObject\LanguageDeleteRequestData;
+use App\Admin\AdminLanguage\Infrastructure\Form\RequestObject\LanguageDeleteRequestData;
 use App\Core\Common\Validator\Exception\ValidatorException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Admin\AdminLanguage\DependencyInjection\Process;
 
-use App\Core\Common\DependencyInjection\Process\Contract\ProcessObjectInterface;
+use App\Core\Common\ValueObject\Contract\ProcessObjectInterface;
 use App\Core\Common\Domain\View\FromArrayTrait;
 
 class LanguageProcessObject implements ProcessObjectInterface

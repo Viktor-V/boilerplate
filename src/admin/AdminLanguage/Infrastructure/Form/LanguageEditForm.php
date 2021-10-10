@@ -7,7 +7,7 @@ namespace App\Admin\AdminLanguage\Infrastructure\Form;
 use App\Core\Admin\Infrastructure\Form\AbstractForm;
 use App\Admin\AdminLanguage\Validator\Rule\Language\LanguageNameRule;
 use App\Admin\AdminLanguage\Validator\Rule\Language\LanguageNativeRule;
-use App\Admin\AdminLanguage\ValueObject\LanguageEditRequestData;
+use App\Admin\AdminLanguage\Infrastructure\Form\RequestObject\LanguageEditRequestData;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
