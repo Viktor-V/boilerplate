@@ -17,7 +17,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity]
 #[ORM\Table(name: self::TABLE_NAME)]
 #[ORM\UniqueConstraint(name: 'language_index', columns: [LanguageCodeType::NAME])]
-final class LanguageEntity
+class LanguageEntity
 {
     public const TABLE_NAME = 'language';
 
