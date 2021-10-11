@@ -54,6 +54,7 @@ COPY config config
 COPY public public
 COPY src src
 COPY templates templates
+COPY migrations migrations
 COPY --from=vendor /app/vendor/ vendor
 COPY --from=node /home/node/app/public/build/ public/build
 
