@@ -1,4 +1,4 @@
-image: php:8.0.3-cli-alpine3.12
+image: php:8.0.9-cli-alpine3.14
 
 stages:
     - build

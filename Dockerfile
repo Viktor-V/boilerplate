@@ -1,10 +1,10 @@
 # Build php and nginx unit
-FROM docker.io/nginx/unit:1.24.0-php8.0 as build
+FROM docker.io/nginx/unit:1.25.0-php8.0 as build
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN set -ex \
     && apt-get update -qq \
-    && apt-get install --no-install-recommends -y libicu-dev=63.1-6+deb10u1 librabbitmq-dev=0.9.0-0.2 \
+    && apt-get install --no-install-recommends -y libicu-dev=67.1-7 librabbitmq-dev=0.10.0-1 \
     && rm -rf /var/lib/apt/lists/* \
     && docker-php-ext-install opcache \
     && pecl install apcu amqp-1.11.0beta redis \
