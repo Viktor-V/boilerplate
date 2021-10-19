@@ -19,7 +19,7 @@
                 <div class="card-header">{{ _a('Language list') }}</div>
 
                 <div class="card-body">
-                    {% if data %}
+                    {% if data.key is not null %}
                         <table class="table table-bordered m-0">
                             <thead>
                                 <tr>
@@ -65,7 +65,10 @@
                             </tbody>
                         </table>
                     {% else %}
-                        <p class="m-0">{{ _a('Please, add new languages. The prime language is English and gets from config file.') }}</p>
+                        <div class="alert alert-warning">
+                            {{ _a('Please, add new languages.') }}
+                            <b>{{ _a('The prime language is English and gets from config file.') }}</b>
+                        </div>
                     {% endif %}
                 </div>
             </div>

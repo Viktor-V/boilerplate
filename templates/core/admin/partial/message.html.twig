@@ -1,0 +1,33 @@
+{% for key, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="admin-message">
+            <div class="alert alert-{{ key }} alert-dismissible" role="alert" data-controller="close">
+                {{ message }}
+
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert"
+                        aria-label="{{ _('close') }}"
+                        data-action="click->close#close"
+                >{# empty #}</button>
+            </div>
+        </div>
+    {% endfor %}
+{% endfor %}
+
+{% if form.errors is defined %}
+    {% for error in form.errors %}
+        <div class="admin-message">
+            <div class="alert alert-danger alert-dismissible" role="alert" data-controller="close">
+                {{ error.message }}
+
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert"
+                        aria-label="{{ _('close') }}"
+                        data-action="click->close#close"
+                >{# empty #}</button>
+            </div>
+        </div>
+    {% endfor %}
+{% endif %}
