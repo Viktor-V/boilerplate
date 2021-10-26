@@ -24,12 +24,6 @@ done
 docker-compose up -d
 ```
 
-#### Step 4 - run migrations
-```bash
-docker exec web php bin/console doctrine:database:create --if-not-exists
-docker exec web php bin/console doctrine:migrations:migrate
-```
-
 You are done and ready to create your best application. Visit [http://localhost](http://localhost)
 
 ## Prod environment

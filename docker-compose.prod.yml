@@ -49,8 +49,30 @@ services:
         networks:
             - proxy
         depends_on:
+            - mariadb
             - rabbitmq
-            - web
+
+    migration:
+        image: boilerplate:latest
+        container_name: migration
+        restart: always
+        command: >
+            bash -c "php bin/console doctrine:database:create --if-not-exists
+            && php bin/console doctrine:migrations:migrate --no-interaction"
+        environment:
+            - CORE_MAILER_DSN=${CORE_MAILER_DSN}
+            - CORE_MAILER_EMAIL=${CORE_MAILER_EMAIL}
+            - CORE_TRANSPORT_DSN=${CORE_TRANSPORT_DSN}
+            - CORE_DB_DSN=${CORE_DB_DSN}
+            - CORE_REDIS_DSN=${CORE_REDIS_DSN}
+            - ANTI_SPAM_HIDDEN_CAPTCHA_PUBLIC_KEY=${ANTI_SPAM_HIDDEN_CAPTCHA_PUBLIC_KEY}
+            - ANTI_SPAM_HIDDEN_CAPTCHA_PRIVATE_KEY=${ANTI_SPAM_HIDDEN_CAPTCHA_PRIVATE_KEY}
+            - CONTACT_SUPPORT_EMAIL=${CONTACT_SUPPORT_EMAIL}
+            - CONTACT_SUPPORT_PHONE=${CONTACT_SUPPORT_PHONE}
+        networks:
+            - proxy
+        depends_on:
+            - mariadb
 
     rabbitmq:
         image: rabbitmq:3.8.17-management
