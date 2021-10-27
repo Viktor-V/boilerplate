@@ -40,7 +40,7 @@ test:
     stage: test
     script:
         - php -d memory_limit=-1 ./bin/console cache:warmup --env=test
-        - php -d memory_limit=-1 ./vendor/bin/paratest -p10
+        - php -d memory_limit=-1 ./bin/phpunit # at the moment it is faster than paratest
 
 deploy:
     image: docker/compose:1.29.2

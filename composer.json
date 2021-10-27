@@ -73,6 +73,10 @@
     },
     "autoload-dev": {
         "psr-4": {
+            "App\\Tests\\Core\\": "tests/core",
+            "App\\Tests\\Common\\": "tests/common",
+            "App\\Tests\\Admin\\": "tests/admin",
+            "App\\Tests\\Api\\": "tests/api",
             "App\\Tests\\": "tests/"
         },
         "files": [
