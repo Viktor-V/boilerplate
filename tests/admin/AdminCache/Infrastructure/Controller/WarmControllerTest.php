@@ -5,16 +5,13 @@ declare(strict_types=1);
 namespace App\Tests\Admin\AdminCache\Infrastructure\Controller;
 
 use App\Admin\AdminCache\Infrastructure\Controller\CacheController;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use App\Tests\AdminWebTestCase;
 
-class WarmControllerTest extends WebTestCase
+class WarmControllerTest extends AdminWebTestCase
 {
     public function testWarm(): void
     {
-        $client = static::createClient(server: [
-            'PHP_AUTH_USER' => 'admin',
-            'PHP_AUTH_PW' => 'admin'
-        ]);
+        $client = $this->client;
 
         $crawler = $client->request(
             'GET',

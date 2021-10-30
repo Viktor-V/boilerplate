@@ -14,7 +14,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         'security' => false
     ];
 
-    if ((new AdminSecurityModule())->enable()) {
+    if (AdminSecurityModule::ENABLE) {
         $firewalls['admin'] = [
             'lazy' => true,
             'provider' => 'admins_in_memory',

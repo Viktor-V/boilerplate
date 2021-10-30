@@ -40,7 +40,7 @@ class FormAuthenticator implements AuthenticationEntryPointInterface, Interactiv
     ) {
     }
 
-    public function supports(Request $request): ?bool
+    public function supports(Request $request): bool
     {
         return SecurityController::AUTH_ROUTE_NAME === $request->attributes->get('_route')
             && $request->isMethod('POST');
@@ -96,7 +96,7 @@ class FormAuthenticator implements AuthenticationEntryPointInterface, Interactiv
     public function start(
         Request $request,
         AuthenticationException $authException = null
-    ) {
+    ): Response {
         return new RedirectResponse($this->urlGenerator->generate(SecurityController::AUTH_ROUTE_NAME));
     }
 
@@ -117,6 +117,8 @@ class FormAuthenticator implements AuthenticationEntryPointInterface, Interactiv
             ));
         }
 
-        return new PostAuthenticationToken($passport->getUser(), $firewallName, $passport->getUser()->getRoles());
+        $user = $passport->getUser();
+
+        return new PostAuthenticationToken($user, $firewallName, $user->getRoles());
     }
 }

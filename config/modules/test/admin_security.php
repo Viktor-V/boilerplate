@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
+use App\Tests\AdminWebTestCase;
 use Symfony\Component\Security\Core\User\InMemoryUser;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
@@ -15,7 +16,10 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             'admins_in_memory' => [
                 'memory' => [
                     'users' => [
-                        'admin' => ['password' => 'admin', 'roles' => ['ROLE_ADMIN']]
+                        AdminWebTestCase::ADMIN_USERNAME => [
+                            'password' => AdminWebTestCase::ADMIN_PASSWORD,
+                            'roles' => ['ROLE_ADMIN']
+                        ]
                     ]
                 ]
             ]
