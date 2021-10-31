@@ -8,7 +8,7 @@ use App\Admin\AdminDashboard\Infrastructure\Controller\DashboardController;
 use App\Admin\AdminSecurity\Infrastructure\Controller\LogoutController;
 use App\Admin\AdminSecurity\Infrastructure\Controller\SecurityController;
 use App\Common\Home\Infrastructure\Controller\HomeController;
-use App\Tests\AdminWebTestCase;
+use App\Tests\AdminConstant;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class SecurityControllerTest extends WebTestCase
@@ -26,8 +26,8 @@ class SecurityControllerTest extends WebTestCase
             $crawler->selectButton('Sign in')
                 ->form(
                     [
-                        'username' => AdminWebTestCase::ADMIN_USERNAME,
-                        'password' => AdminWebTestCase::ADMIN_PASSWORD
+                        'username' => AdminConstant::ADMIN_USERNAME,
+                        'password' => AdminConstant::ADMIN_PASSWORD
                     ],
                     'POST'
                 )
@@ -82,7 +82,7 @@ class SecurityControllerTest extends WebTestCase
             $crawler->selectButton('Sign in')
                 ->form(
                     [
-                        'username' => AdminWebTestCase::ADMIN_USERNAME,
+                        'username' => AdminConstant::ADMIN_USERNAME,
                         'password' => 'wrongpass'
                     ],
                     'POST'
