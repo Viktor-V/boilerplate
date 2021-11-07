@@ -11,6 +11,7 @@ use App\Core\Common\Adapter\Contract\HandlerInterface;
 use App\Core\Common\Domain\Flusher;
 use App\Core\Common\Validator\Exception\ValidatorException;
 use App\Core\Common\ValueObject\Contract\RequestObjectInterface;
+use DomainException;
 
 final class LanguagePrimeHandler implements HandlerInterface
 {
@@ -27,13 +28,20 @@ final class LanguagePrimeHandler implements HandlerInterface
     {
         /** @var LanguageEditRequestData $requestData */
         $language = $this->languageRepository->getByIdentifier(new LanguageIdentifierField($requestData->identifier));
-        if ($language->isPrime()) {
-            throw new ValidatorException(_('Language is already set as prime!'));
+
+        try {
+            $language->setPrime();
+        } catch (DomainException $exception) {
+            throw new ValidatorException($exception->getMessage());
         }
-        $language->setPrime();
 
         $primeLanguage = $this->languageRepository->getPrime();
-        $primeLanguage->unsetPrime();
+
+        try {
+            $primeLanguage->unsetPrime();
+        } catch (DomainException $exception) {
+            throw new ValidatorException($exception->getMessage());
+        }
 
         $this->languageRepository->add($primeLanguage);
         $this->languageRepository->add($language);

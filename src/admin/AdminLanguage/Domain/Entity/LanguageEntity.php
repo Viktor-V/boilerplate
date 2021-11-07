@@ -13,6 +13,7 @@ use App\Admin\AdminLanguage\Domain\Language\Type\LanguageIdentifierType;
 use App\Admin\AdminLanguage\Domain\Language\Type\LanguageNameType;
 use App\Admin\AdminLanguage\Domain\Language\Type\LanguageNativeType;
 use Doctrine\ORM\Mapping as ORM;
+use DomainException;
 
 #[ORM\Entity]
 #[ORM\Table(name: self::TABLE_NAME)]
@@ -81,13 +82,22 @@ class LanguageEntity
         return $this;
     }
 
+
     public function setPrime(): void
     {
+        if ($this->isPrime()) {
+            throw new DomainException(_('Language is already set as prime!'));
+        }
+
         $this->prime = true;
     }
 
     public function unsetPrime(): void
     {
+        if (!$this->isPrime()) {
+            throw new DomainException(_('Language is already not prime!'));
+        }
+
         $this->prime = false;
     }
 

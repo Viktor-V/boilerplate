@@ -56,3 +56,4 @@ parameters:
         - '#Method "execute\(\)" returns bool type#'
         - '#Do not use trait, extract to a service and dependency injection instead#'
         - '#Variable property access#'
+        - '#Use custom exceptions instead of native \"DomainException\"#'
