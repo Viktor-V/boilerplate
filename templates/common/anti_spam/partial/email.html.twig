@@ -1,9 +1,0 @@
-{% set emailPart = email|split('@') %}
-
-<a href="#"
-   data-controller="email"
-   data-email-username-value="{{ emailPart[0] }}"
-   data-email-domain-value="{{ emailPart[1] }}"
->
-    {# email #}
-</a>
