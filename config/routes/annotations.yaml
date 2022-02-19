@@ -1,5 +1,13 @@
-controllers:
-    resource: ../../src/Controller/
+rest:
+    resource: ../../ui/rest/Controller/
+    type: annotation
+
+back:
+    resource: ../../ui/back/Controller/
+    type: annotation
+
+front:
+    resource: ../../ui/front/Controller/
     type: annotation
 
 kernel:

@@ -36,5 +36,29 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
+    Ui\Cli\:
+        resource: '../ui/cli/'
+
+    Ui\Rest\:
+        resource: '../ui/rest/'
+
+    Ui\Back\:
+        resource: '../ui/back/'
+
+    Ui\Front\:
+        resource: '../ui/front/'
+
+    Ui\Rest\Controller\:
+        resource: '../ui/rest/Controller/'
+        tags: [ 'controller.service_arguments' ]
+
+    Ui\Back\Controller\:
+        resource: '../ui/back/Controller/'
+        tags: [ 'controller.service_arguments' ]
+
+    Ui\Front\Controller\:
+        resource: '../ui/front/Controller/'
+        tags: [ 'controller.service_arguments' ]
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

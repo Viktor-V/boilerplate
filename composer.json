@@ -60,7 +60,11 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "App\\": "src/",
+            "Ui\\Cli\\": "ui/cli",
+            "Ui\\Rest\\": "ui/rest",
+            "Ui\\Back\\": "ui/back",
+            "Ui\\Front\\": "ui/front"
         }
     },
     "autoload-dev": {

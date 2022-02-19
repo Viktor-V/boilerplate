@@ -6,5 +6,4 @@ namespace App\Admin\Domain\ValueObject;
 
 final class Email
 {
-
 }
