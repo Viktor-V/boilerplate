@@ -6,18 +6,26 @@ namespace App\Tests\Admin\Domain\Entity;
 
 use App\Admin\Domain\Entity\Admin;
 use App\Admin\Domain\Event\AdminCreatedEvent;
+use App\Admin\Domain\Specification\PasswordEncoderInterface;
+use App\Admin\Domain\Specification\UniqueEmailInterface;
 use App\Admin\Domain\ValueObject\Email;
 use App\Admin\Domain\ValueObject\PlainPassword;
-use App\Common\Domain\ValueObject\UuidInterface;
+use App\Common\Domain\ValueObject\Uuid;
 use PHPUnit\Framework\TestCase;
 
 class AdminTest extends TestCase
 {
     public function testCreate(): void
     {
-        $uuid = new class() implements UuidInterface {};
+        $admin = Admin::create(
+            new Uuid('b48b643e-a9b8-41a6-802d-0b438b566f62'),
+            new Email('admin@admin.com'),
+            new PlainPassword('qwert'),
+            $this->createMock(UniqueEmailInterface::class),
+            $this->createMock(PasswordEncoderInterface::class)
+        );
 
-        $admin = Admin::create($uuid, new Email(), new PlainPassword());
+        self::assertInstanceOf(Admin::class, $admin);
 
         $events = [];
         foreach($admin->popEvents() as $event) {

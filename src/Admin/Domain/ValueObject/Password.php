@@ -6,22 +6,21 @@ namespace App\Admin\Domain\ValueObject;
 
 use App\Common\Domain\Assert\Assertion;
 
-final class Email
+final class Password
 {
-    private string $email;
+    private string $password;
 
     public function __construct(
-        string $email
+        string $password
     ) {
-        Assertion::notEmpty($email);
-        Assertion::email($email);
+        Assertion::notEmpty($password);
 
-        $this->email = $email;
+        $this->password = $password;
     }
 
     public function toString(): string
     {
-        return $this->email;
+        return $this->password;
     }
 
     public function __toString(): string
