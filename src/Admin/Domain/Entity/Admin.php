@@ -5,11 +5,9 @@ declare(strict_types=1);
 namespace App\Admin\Domain\Entity;
 
 use App\Admin\Domain\Event\AdminCreatedEvent;
-use App\Admin\Domain\Specification\PasswordEncoderInterface;
 use App\Admin\Domain\Specification\UniqueEmailInterface;
 use App\Admin\Domain\ValueObject\Email;
 use App\Admin\Domain\ValueObject\Password;
-use App\Admin\Domain\ValueObject\PlainPassword;
 use App\Common\Domain\Entity\Aggregate;
 use App\Common\Domain\ValueObject\UuidInterface;
 use DateTimeImmutable;
@@ -31,15 +29,14 @@ class Admin extends Aggregate
     public static function create(
         UuidInterface $uuid,
         Email $email,
-        PlainPassword $password,
-        UniqueEmailInterface $uniqueEmail,
-        PasswordEncoderInterface $passwordEncoder
+        Password $password,
+        UniqueEmailInterface $uniqueEmail
     ): self {
         if ($uniqueEmail->isUnique($email)) {
             throw new DomainException(sprintf('Admin %s already exists.', $email->toString()));
         }
 
-        $admin = new self($uuid, $email, $passwordEncoder->encode($password));
+        $admin = new self($uuid, $email, $password);
         $admin->raise(new AdminCreatedEvent($uuid, $email));
 
         return $admin;
