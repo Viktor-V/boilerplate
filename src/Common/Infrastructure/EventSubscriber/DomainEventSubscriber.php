@@ -20,7 +20,8 @@ final class DomainEventSubscriber implements EventSubscriber
 
     public function __construct(
         private EventBusInterface $eventBus
-    ) {}
+    ) {
+    }
 
     public function getSubscribedEvents()
     {

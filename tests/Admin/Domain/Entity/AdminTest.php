@@ -26,7 +26,7 @@ class AdminTest extends TestCase
         self::assertInstanceOf(Admin::class, $admin);
 
         $events = [];
-        foreach($admin->popEvents() as $event) {
+        foreach ($admin->popEvents() as $event) {
             $events[] = $event::class;
         }
 

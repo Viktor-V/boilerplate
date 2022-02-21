@@ -13,7 +13,8 @@ class AdminCreatedEvent implements EventInterface
     public function __construct(
         private UuidInterface $uuid,
         private Email $email
-    ) {}
+    ) {
+    }
 
     public function getUuid(): UuidInterface
     {
