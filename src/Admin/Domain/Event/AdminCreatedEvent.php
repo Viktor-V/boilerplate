@@ -6,17 +6,17 @@ namespace App\Admin\Domain\Event;
 
 use App\Admin\Domain\ValueObject\Email;
 use App\Common\Domain\Event\EventInterface;
-use App\Common\Domain\ValueObject\UuidInterface;
+use App\Common\Domain\ValueObject\Uuid;
 
 class AdminCreatedEvent implements EventInterface
 {
     public function __construct(
-        private UuidInterface $uuid,
+        private Uuid $uuid,
         private Email $email
     ) {
     }
 
-    public function getUuid(): UuidInterface
+    public function getUuid(): Uuid
     {
         return $this->uuid;
     }

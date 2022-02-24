@@ -13,7 +13,7 @@ final class Email
     public function __construct(
         string $email
     ) {
-        Assertion::notEmpty($email);
+        Assertion::notEmpty($email, 'Email should not be empty.');
         Assertion::email($email);
 
         $this->email = $email;

@@ -9,7 +9,7 @@ use App\Admin\Domain\Specification\UniqueEmailInterface;
 use App\Admin\Domain\ValueObject\Email;
 use App\Admin\Domain\ValueObject\Password;
 use App\Common\Domain\Entity\Aggregate;
-use App\Common\Domain\ValueObject\UuidInterface;
+use App\Common\Domain\ValueObject\Uuid;
 use DateTimeImmutable;
 use DomainException;
 
@@ -19,24 +19,25 @@ class Admin extends Aggregate
     private DateTimeImmutable $updatedAt;
 
     private function __construct(
-        private UuidInterface $uuid,
+        private Uuid $uuid,
         private Email $email,
-        private Password $password
+        private Password $password,
+        private UniqueEmailInterface $uniqueEmail
     ) {
+        if (!$uniqueEmail->isUnique($email)) {
+            throw new DomainException(sprintf('Admin %s already exists.', $email->toString()));
+        }
+
         $this->createdAt = new DateTimeImmutable();
     }
 
     public static function create(
-        UuidInterface $uuid,
+        Uuid $uuid,
         Email $email,
         Password $password,
         UniqueEmailInterface $uniqueEmail
     ): self {
-        if ($uniqueEmail->isUnique($email)) {
-            throw new DomainException(sprintf('Admin %s already exists.', $email->toString()));
-        }
-
-        $admin = new self($uuid, $email, $password);
+        $admin = new self($uuid, $email, $password, $uniqueEmail);
         $admin->raise(new AdminCreatedEvent($uuid, $email));
 
         return $admin;

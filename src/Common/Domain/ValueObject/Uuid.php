@@ -6,7 +6,7 @@ namespace App\Common\Domain\ValueObject;
 
 use App\Common\Domain\Assert\Assertion;
 
-final class Uuid implements UuidInterface
+final class Uuid
 {
     private string $uuid;
 
@@ -17,11 +17,6 @@ final class Uuid implements UuidInterface
         Assertion::uuid($uuid);
 
         $this->uuid = $uuid;
-    }
-
-    public static function generate(): self
-    {
-        return new self(\Ramsey\Uuid\Uuid::uuid4()->toString());
     }
 
     public function toString(): string
