@@ -291,6 +291,9 @@
             "phpcs.xml.dist"
         ]
     },
+    "symfony/amqp-messenger": {
+        "version": "v6.0.3"
+    },
     "symfony/asset": {
         "version": "v6.0.3"
     },

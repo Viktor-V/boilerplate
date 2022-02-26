@@ -25,12 +25,14 @@ RUN apk add --no-cache \
 ENV LD_PRELOAD /usr/lib/preloadable_libiconv.so
 
 ARG APCU_VERSION=5.1.21
+ARG AMQP_VERSION=1.11.0beta
 RUN set -eux; \
 	apk add --no-cache --virtual .build-deps \
 		$PHPIZE_DEPS \
 		icu-dev \
 		libzip-dev \
 		zlib-dev \
+        rabbitmq-c-dev \
 	; \
 	\
 	docker-php-ext-configure zip; \
@@ -40,11 +42,13 @@ RUN set -eux; \
 	; \
 	pecl install \
 		apcu-${APCU_VERSION} \
+        amqp-${AMQP_VERSION} \
 	; \
 	pecl clear-cache; \
 	docker-php-ext-enable \
 		apcu \
 		opcache \
+        amqp \
 	; \
 	\
 	runDeps="$( \
