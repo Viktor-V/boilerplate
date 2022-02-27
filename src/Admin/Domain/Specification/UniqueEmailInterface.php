@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Admin\Domain\Specification;
 
-use App\Admin\Domain\ValueObject\Email;
+use App\Admin\Domain\Entity\ValueObject\Email;
 
 interface UniqueEmailInterface
 {

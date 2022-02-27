@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Admin\Application\UseCase\Command\Create;
 
-use App\Admin\Domain\ValueObject\Email;
-use App\Admin\Domain\ValueObject\PlainPassword;
+use App\Admin\Domain\Entity\ValueObject\Uuid;
+use App\Admin\Domain\Entity\ValueObject\Email;
+use App\Admin\Domain\Entity\ValueObject\PlainPassword;
 use App\Common\Application\Command\CommandInterface;
-use App\Common\Domain\ValueObject\Uuid;
 
 class CreateCommand implements CommandInterface
 {

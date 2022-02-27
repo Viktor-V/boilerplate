@@ -9,9 +9,10 @@ doctrine:
         auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
         auto_mapping: true
-        mappings: []
-            #App:
-            #    is_bundle: false
-            #    dir: '%kernel.project_dir%/src/Entity'
-            #    prefix: 'App\Entity'
-            #    alias: App
+        mappings:
+            Admin:
+                is_bundle: false
+                type: xml
+                dir: '%kernel.project_dir%/src/Admin/Infrastructure/ORM/Mapping'
+                prefix: 'App\Admin\Domain\Entity'
+                alias: Admin

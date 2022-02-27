@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\Tests\Admin\Domain\Entity;
 
 use App\Admin\Domain\Entity\Admin;
+use App\Admin\Domain\Entity\ValueObject\Email;
+use App\Admin\Domain\Entity\ValueObject\Password;
 use App\Admin\Domain\Event\AdminCreatedEvent;
 use App\Admin\Domain\Specification\UniqueEmailInterface;
-use App\Admin\Domain\ValueObject\Email;
-use App\Admin\Domain\ValueObject\Password;
 use App\Common\Domain\ValueObject\Uuid;
 use PHPUnit\Framework\TestCase;
 

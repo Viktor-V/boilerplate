@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Admin\Application\Service;
 
-use App\Admin\Domain\ValueObject\Password;
-use App\Admin\Domain\ValueObject\PlainPassword;
+use App\Admin\Domain\Entity\ValueObject\Password;
+use App\Admin\Domain\Entity\ValueObject\PlainPassword;
 
 interface PasswordEncoderInterface
 {

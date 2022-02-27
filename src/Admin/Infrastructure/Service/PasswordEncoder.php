@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Admin\Infrastructure\Service;
 
 use App\Admin\Application\Service\PasswordEncoderInterface;
-use App\Admin\Domain\ValueObject\Password;
-use App\Admin\Domain\ValueObject\PlainPassword;
+use App\Admin\Domain\Entity\ValueObject\Password;
+use App\Admin\Domain\Entity\ValueObject\PlainPassword;
 use App\Admin\Infrastructure\Security\AdminIdentity;
 use Symfony\Component\PasswordHasher\Hasher\PasswordHasherFactoryInterface;
 

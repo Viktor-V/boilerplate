@@ -6,9 +6,9 @@ namespace App\Common\Domain\ValueObject;
 
 use App\Common\Domain\Assert\Assertion;
 
-final class Uuid
+abstract class Uuid
 {
-    private string $uuid;
+    protected string $uuid;
 
     public function __construct(
         string $uuid

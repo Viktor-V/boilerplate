@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Admin\Domain\Event;
 
-use App\Admin\Domain\ValueObject\Email;
+use App\Admin\Domain\Entity\ValueObject\Email;
 use App\Common\Domain\Event\EventInterface;
 use App\Common\Domain\ValueObject\Uuid;
 

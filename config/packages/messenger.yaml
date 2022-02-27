@@ -25,7 +25,7 @@ framework:
             App\Common\Application\Command\CommandInterface: sync
             App\Common\Application\Query\QueryInterface: sync
             App\Common\Domain\Event\EventInterface: async
-            
+
         #routing:
         #    Symfony\Component\Mailer\Messenger\SendEmailMessage: async
         #    Symfony\Component\Notifier\Message\ChatMessage: async
