@@ -4,6 +4,10 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
+    env(APP_DOMAIN): 'localhost'
+    domain: '%env(string:APP_DOMAIN)%'
+
+    email.info: 'info@%domain%'
 
 services:
     # default configuration for services in *this* file
@@ -11,21 +15,25 @@ services:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
+        bind:
+            $infoEmail: '%email.info%'
+
     _instanceof:
         App\Common\Application\Command\CommandHandlerInterface:
-            public: true
             tags:
                 - { name: messenger.message_handler, bus: command.bus }
 
         App\Common\Application\Query\QueryHandlerInterface:
-            public: true
             tags:
                 - { name: messenger.message_handler, bus: query.bus }
 
         App\Common\Domain\Event\EventHandlerInterface:
-            public: true
             tags:
                 - { name: messenger.message_handler, bus: event.bus }
+
+        App\Common\Infrastructure\EventSubscriber\DomainEventSubscriber:
+            tags:
+                - { name: doctrine.event_subscriber }
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
