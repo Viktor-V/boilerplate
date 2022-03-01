@@ -44,6 +44,18 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
+    App\Common\Infrastructure\Bus\Command\CommandBus:
+        arguments:
+            $commandBus: '@command.bus'
+
+    App\Common\Infrastructure\Bus\Query\QueryBus:
+        arguments:
+            $messageBus: '@query.bus'
+
+    App\Common\Infrastructure\Bus\Event\EventBus:
+        arguments:
+            $eventBus: '@event.bus'
+
     Ui\Cli\:
         resource: '../ui/cli/'
 
