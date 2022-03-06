@@ -24,7 +24,10 @@ class ListController extends AbstractController
     #[Route('/admin/', name: 'admin.list')]
     public function __invoke(Request $request): Response
     {
-        $query = new AllQuery($request->query->getInt('page', 1));
+        $query = new AllQuery(
+            $request->query->getInt('page', AllQuery::DEFAULT_PAGE),
+            $request->query->getInt('limit', AllQuery::DEFAULT_LIMIT)
+        );
 
         /** @var AdminDTO[] $pagination */
         $pagination = $this->paginator->paginate($this->bus->handle($query), $query->page, $query->limit);

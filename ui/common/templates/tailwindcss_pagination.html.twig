@@ -1,9 +1,14 @@
-{% if pageCount > 1 %}
+<div class="flex justify-between items-center mt-3">
+    <form>
+        <select class="select select-bordered" name="limit" onchange="this.form.submit()">
+            <option {% if app.request.query.get('limit') == 10 %}selected{% endif %}>10</option>
+            <option {% if app.request.query.get('limit') == 50 %}selected{% endif %}>50</option>
+            <option {% if app.request.query.get('limit') == 100 %}selected{% endif %}>100</option>
+        </select>
+    </form>
 
-    <div class="flex justify-between items-center mt-3">
-        <div class="w-1/2"></div>
-
-        <div class="btn-group ">
+    {% if pageCount > 1 %}
+        <div class="btn-group">
             {% if previous is defined %}
                 <a class="btn" rel="prev" href="{{ path(route, query|merge({(pageParameterName): previous})) }}">{% trans %}Previous page{% endtrans %}</a>
             {% endif %}
@@ -14,5 +19,5 @@
                 <a class="btn" rel="next" href="{{ path(route, query|merge({(pageParameterName): next})) }}">{% trans %}Next{% endtrans %}</a>
             {% endif %}
         </div>
-    </div>
-{% endif %}
+    {% endif %}
+</div>
