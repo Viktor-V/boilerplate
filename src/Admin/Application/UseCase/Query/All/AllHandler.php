@@ -23,11 +23,15 @@ final class AllHandler implements QueryHandlerInterface
     public function __invoke(AllQuery $query): Generator
     {
         $sql = <<<EOF
-            SELECT uuid, email, created_at, updated_at FROM admin;
+            SELECT uuid, email, created_at, updated_at FROM admin
+            LIMIT :limit OFFSET :page;
         EOF;
 
-        $rows = $this->connection->prepare($sql)->executeQuery()->fetchAllAssociative();
+        $statement = $this->connection->prepare($sql);
+        $statement->bindValue('limit', $query->limit);
+        $statement->bindValue('page', $query->page - 1);
 
+        $rows = $statement->executeQuery()->fetchAllAssociative();
         foreach ($rows as $row) {
             yield new AdminDTO(
                 $row['uuid'],

@@ -5,30 +5,30 @@ declare(strict_types=1);
 namespace UI\Back\Controller\Admin;
 
 use App\Admin\Application\UseCase\Query\All\AllQuery;
+use App\Admin\Application\UseCase\Query\DTO\AdminDTO;
 use App\Common\Application\Query\QueryBusInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Generator;
+use UI\Common\Controller\AbstractController;
 
 class ListController extends AbstractController
 {
     public function __construct(
-        private QueryBusInterface $bus
+        private QueryBusInterface $bus,
+        private PaginatorInterface $paginator
     ) {
     }
 
     #[Route('/admin/', name: 'admin.list')]
-    public function __invoke(): Response
+    public function __invoke(Request $request): Response
     {
-        /** @var Generator $adminGenerator */
-        $adminGenerator = $this->bus->handle(new AllQuery());
+        $query = new AllQuery($request->query->getInt('page', 1));
 
-        $admins = [];
-        foreach ($adminGenerator as $admin) {
-            $admins[] = $admin;
-        }
-        
-        return $this->render('admin/list.html.twig', ['admins' => $admins]);
+        /** @var AdminDTO[] $pagination */
+        $pagination = $this->paginator->paginate($this->bus->handle($query), $query->page, $query->limit);
+
+        return $this->render('admin/list.html.twig', ['pagination' => $pagination]);
     }
 }

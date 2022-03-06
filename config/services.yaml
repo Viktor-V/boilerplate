@@ -70,6 +70,9 @@ services:
     UI\Front\:
         resource: '../ui/front/'
 
+    UI\Common\:
+        resource: '../ui/common/'
+
     UI\Rest\Controller\:
         resource: '../ui/rest/Controller/'
         tags: [ 'controller.service_arguments' ]
