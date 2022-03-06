@@ -8,6 +8,7 @@ use App\Admin\Application\UseCase\Query\DTO\AdminDTO;
 use App\Common\Application\Query\QueryHandlerInterface;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Exception;
+use Generator;
 
 final class AllHandler implements QueryHandlerInterface
 {
@@ -19,7 +20,7 @@ final class AllHandler implements QueryHandlerInterface
     /**
      * @throws Exception
      */
-    public function __invoke(AllQuery $query): iterable
+    public function __invoke(AllQuery $query): Generator
     {
         $sql = <<<EOF
             SELECT uuid, email, created_at, updated_at FROM admin;
@@ -35,5 +36,7 @@ final class AllHandler implements QueryHandlerInterface
                 $row['updated_at'],
             );
         }
+
+        return (int) $this->connection->prepare('SELECT COUNT(*) FROM admin')->executeQuery()->fetchOne();
     }
 }

@@ -9,6 +9,8 @@ parameters:
 
     email.info: 'info@%domain%'
 
+    backoffice.label: 'Backoffice'
+
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -56,27 +58,27 @@ services:
         arguments:
             $eventBus: '@event.bus'
 
-    Ui\Cli\:
+    UI\Cli\:
         resource: '../ui/cli/'
 
-    Ui\Rest\:
+    UI\Rest\:
         resource: '../ui/rest/'
 
-    Ui\Back\:
+    UI\Back\:
         resource: '../ui/back/'
 
-    Ui\Front\:
+    UI\Front\:
         resource: '../ui/front/'
 
-    Ui\Rest\Controller\:
+    UI\Rest\Controller\:
         resource: '../ui/rest/Controller/'
         tags: [ 'controller.service_arguments' ]
 
-    Ui\Back\Controller\:
+    UI\Back\Controller\:
         resource: '../ui/back/Controller/'
         tags: [ 'controller.service_arguments' ]
 
-    Ui\Front\Controller\:
+    UI\Front\Controller\:
         resource: '../ui/front/Controller/'
         tags: [ 'controller.service_arguments' ]
 

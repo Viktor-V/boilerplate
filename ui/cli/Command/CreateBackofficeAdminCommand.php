@@ -1,6 +1,8 @@
 <?php
 
-namespace Ui\Cli\Command;
+declare(strict_types=1);
+
+namespace UI\Cli\Command;
 
 use App\Admin\Application\UseCase\Command\Create\CreateCommand;
 use App\Common\Application\Command\CommandBusInterface;

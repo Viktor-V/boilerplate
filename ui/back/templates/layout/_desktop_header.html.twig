@@ -1,0 +1,16 @@
+<div class="w-1/2"></div>
+
+<div x-data="{ isOpen: false }" class="relative w-1/2 flex justify-end">
+    <button @click="isOpen = !isOpen" class="avatar">
+        <div class="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 hover:ring-primary/75 focus:ring-primary/75">
+            <img src="https://source.unsplash.com/uJ8LNVCBjFQ/400x400">
+        </div>
+    </button>
+
+    <button x-show="isOpen" @click="isOpen = false" class="h-full w-full fixed inset-0 cursor-default"></button>
+
+    <div x-show="isOpen" class="absolute w-32 bg-white rounded-lg shadow-lg py-2 mt-16">
+        <a href="#" class="block px-4 py-2 hover:bg-primary-focus focus:bg-primary-focus hover:text-white focus:text-white">{% trans from 'backoffice' %}Account{% endtrans %}</a>
+        <a href="#" class="block px-4 py-2 hover:bg-primary-focus focus:bg-primary-focus hover:text-white focus:text-white">{% trans from 'backoffice' %}Sign Out{% endtrans %}</a>
+    </div>
+</div>

@@ -67,10 +67,10 @@
     "autoload": {
         "psr-4": {
             "App\\": "src/",
-            "Ui\\Cli\\": "ui/cli",
-            "Ui\\Rest\\": "ui/rest",
-            "Ui\\Back\\": "ui/back",
-            "Ui\\Front\\": "ui/front"
+            "UI\\Cli\\": "ui/cli",
+            "UI\\Rest\\": "ui/rest",
+            "UI\\Back\\": "ui/back",
+            "UI\\Front\\": "ui/front"
         }
     },
     "autoload-dev": {

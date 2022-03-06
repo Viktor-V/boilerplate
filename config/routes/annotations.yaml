@@ -1,8 +1,11 @@
 rest:
+    prefix: /api
     resource: ../../ui/rest/Controller/
     type: annotation
 
 back:
+    prefix: /backoffice
+    name_prefix: backoffice.
     resource: ../../ui/back/Controller/
     type: annotation
 
