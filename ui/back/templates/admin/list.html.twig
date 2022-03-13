@@ -5,7 +5,22 @@
 {% endblock %}
 
 {% block content %}
-    <h2 class="text-3xl text-black mb-10">{% trans from 'backoffice' %}Admin{% endtrans %}</h2>
+    <h2 class="text-3xl text-black mb-10">{{ block('pageTitle') }}</h2>
+
+    {% for key, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ key }} alert-dismissible" role="alert" data-controller="close">
+                {{ message }}
+
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert"
+                        aria-label="{{ 'close' }}"
+                        data-action="click->close#close"
+                >{# empty #}</button>
+            </div>
+        {% endfor %}
+    {% endfor %}
 
     <div class="w-full">
         <div class="flex justify-between items-center mb-3">
@@ -14,7 +29,7 @@
                 {% trans from 'backoffice' %}Latest Admins{% endtrans %}
             </p>
 
-            <button class="btn btn-primary w-100">{% trans from 'backoffice' %}Create{% endtrans %}</button>
+            <a href="{{ path('backoffice.admin.create') }}" class="btn btn-primary w-100">{% trans from 'backoffice' %}Create{% endtrans %}</a>
         </div>
 
         <div class="overflow-x-auto border">
@@ -28,13 +43,19 @@
                 </thead>
 
                 <tbody>
-                    {% for admin in pagination %}
+                    {% if pagination.getTotalItemCount %}
+                        {% for admin in pagination %}
+                            <tr>
+                                <td>{{ admin.email }}</td>
+                                <td>{{ admin.createdAt }}</td>
+                                <td>{{ admin.updatedAt ?? '-' }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
                         <tr>
-                            <td>{{ admin.email }}</td>
-                            <td>{{ admin.createdAt }}</td>
-                            <td>{{ admin.updatedAt ?? '-' }}</td>
+                            <td colspan="3">{% trans %}Not found.{% endtrans %}</td>
                         </tr>
-                    {% endfor %}
+                    {% endif %}
                 </tbody>
             </table>
         </div>

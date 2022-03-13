@@ -16,7 +16,7 @@
         </a>
 
         <a href="{{ path('backoffice.admin.list') }}"
-           class="flex items-center text-white py-2 pl-4 nav-item {{ app.request.get('_route') in ['backoffice.admin.list'] ? 'bg-primary-focus' : 'hover:bg-primary-focus/50 focus:bg-primary-focus/50' }}"
+           class="flex items-center text-white py-2 pl-4 nav-item {{ app.request.get('_route') in ['backoffice.admin.list', 'backoffice.admin.create'] ? 'bg-primary-focus' : 'hover:bg-primary-focus/50 focus:bg-primary-focus/50' }}"
         >
             <i class="fas fa-sticky-note mr-3"></i>
             {% trans from 'backoffice' %}Admin{% endtrans %}

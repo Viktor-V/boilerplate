@@ -10,7 +10,7 @@ use App\Admin\Domain\Repository\AdminRepositoryInterface;
 use App\Admin\Domain\Specification\UniqueEmailInterface;
 use App\Common\Application\Command\CommandHandlerInterface;
 
-class CreateHandler implements CommandHandlerInterface
+final class CreateHandler implements CommandHandlerInterface
 {
     public function __construct(
         private PasswordEncoderInterface $passwordEncoder,

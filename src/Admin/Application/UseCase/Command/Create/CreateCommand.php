@@ -9,7 +9,7 @@ use App\Admin\Domain\Entity\ValueObject\Email;
 use App\Admin\Domain\Entity\ValueObject\PlainPassword;
 use App\Common\Application\Command\CommandInterface;
 
-class CreateCommand implements CommandInterface
+final class CreateCommand implements CommandInterface
 {
     public readonly Uuid $uuid;
     public readonly Email $email;

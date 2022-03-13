@@ -4,34 +4,21 @@ declare(strict_types=1);
 
 namespace UI\Back\Controller\Admin;
 
-use App\Admin\Application\UseCase\Query\All\AllQuery;
-use App\Admin\Application\UseCase\Query\DTO\AdminDTO;
-use App\Common\Application\Query\QueryBusInterface;
-use Knp\Component\Pager\PaginatorInterface;
-use Symfony\Component\HttpFoundation\Request;
+use App\Admin\Application\UseCase\Query\List\ListQuery;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use UI\Back\Request\Admin\ListPayload;
 use UI\Common\Controller\AbstractController;
 
 class ListController extends AbstractController
 {
-    public function __construct(
-        private QueryBusInterface $bus,
-        private PaginatorInterface $paginator
-    ) {
-    }
-
-    #[Route('/admin/', name: 'admin.list')]
-    public function __invoke(Request $request): Response
+    #[Route('/admin/list', name: 'admin.list')]
+    public function __invoke(ListPayload $payload): Response
     {
-        $query = new AllQuery(
-            $request->query->getInt('page', AllQuery::DEFAULT_PAGE),
-            $request->query->getInt('limit', AllQuery::DEFAULT_LIMIT)
-        );
+        //$this->addFlash();
 
-        /** @var AdminDTO[] $pagination */
-        $pagination = $this->paginator->paginate($this->bus->handle($query), $query->page, $query->limit);
-
-        return $this->render('admin/list.html.twig', ['pagination' => $pagination]);
+        return $this->render('admin/list.html.twig', [
+            'pagination' => $this->paginate(new ListQuery($payload->getPage(), $payload->getLimit(), $payload->getLikeEmail()))
+        ]);
     }
 }

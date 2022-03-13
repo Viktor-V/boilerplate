@@ -1,6 +1,6 @@
 <div class="flex justify-between items-center mt-3">
-    <form>
-        <select class="select select-bordered" name="limit" onchange="this.form.submit()">
+    <form action="{{ path(route, query) }}" method="get">
+        <select class="select select-bordered" name="limit" onchange="this.form.submit()" aria-label="{% trans %}Limit{% endtrans %}">
             <option {% if app.request.query.get('limit') == 10 %}selected{% endif %}>10</option>
             <option {% if app.request.query.get('limit') == 50 %}selected{% endif %}>50</option>
             <option {% if app.request.query.get('limit') == 100 %}selected{% endif %}>100</option>
