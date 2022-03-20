@@ -14,7 +14,7 @@ class PayloadParamConverter implements ParamConverterInterface
 {
     public const NAME = 'payload';
 
-    public function apply(Request $request, ParamConverter $configuration)
+    public function apply(Request $request, ParamConverter $configuration): bool
     {
         $payloadClass = $configuration->getClass();
         /** @var PayloadInterface $payload */

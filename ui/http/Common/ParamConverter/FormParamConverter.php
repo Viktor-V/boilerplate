@@ -22,7 +22,7 @@ class FormParamConverter implements ParamConverterInterface
     ) {
     }
 
-    public function apply(Request $request, ParamConverter $configuration)
+    public function apply(Request $request, ParamConverter $configuration): bool
     {
         /** @var FormPayloadInterface $payload */
         $payload = $request->attributes->get(PayloadParamConverter::NAME);

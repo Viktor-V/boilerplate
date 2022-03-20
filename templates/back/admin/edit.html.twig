@@ -6,5 +6,9 @@
 
 {% block content %}
     <h2 class="text-3xl text-black mb-10">{{ block('pageTitle') }}</h2>
-    {{ dump(admin) }}
+
+    {{ form_start(form) }}
+        {{ form_row(form.email, {'value': admin.email}) }}
+        {{ form_row(form.password) }}
+    {{ form_end(form) }}
 {% endblock %}
