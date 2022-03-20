@@ -1,0 +1,65 @@
+{% extends 'back/layout/default.html.twig' %}
+
+{% block pageTitle %}
+    {% trans from 'backoffice' %}Admin{% endtrans %}
+{% endblock %}
+
+{% block content %}
+    <h2 class="text-3xl text-black mb-10">{{ block('pageTitle') }}</h2>
+
+    {% for key, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ key }} alert-dismissible" role="alert" data-controller="close">
+                {{ message }}
+
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert"
+                        aria-label="{{ 'close' }}"
+                        data-action="click->close#close"
+                >{# empty #}</button>
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    <div class="w-full">
+        <div class="flex justify-between items-center mb-3">
+            <p class="text-xl flex items-center">
+                <i class="fas fa-list mr-3"></i>
+                {% trans from 'backoffice' %}Latest Admins{% endtrans %}
+            </p>
+
+            <a href="{{ path('backoffice.admin.create') }}" class="btn btn-primary w-100">{% trans from 'backoffice' %}Create{% endtrans %}</a>
+        </div>
+
+        <div class="overflow-x-auto border">
+            <table class="table w-full">
+                <thead>
+                    <tr>
+                        <th>{% trans from 'backoffice' %}Email{% endtrans %}</th>
+                        <th>{% trans from 'backoffice' %}Created At{% endtrans %}</th>
+                        <th>{% trans from 'backoffice' %}Updated At{% endtrans %}</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% if pagination.getTotalItemCount %}
+                        {% for admin in pagination %}
+                            <tr>
+                                <td>{{ admin.email }}</td>
+                                <td>{{ admin.createdAt }}</td>
+                                <td>{{ admin.updatedAt ?? '-' }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="3">{% trans %}Not found.{% endtrans %}</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+
+        {{ knp_pagination_render(pagination) }}
+    </div>
+{% endblock %}

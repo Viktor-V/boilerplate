@@ -70,9 +70,7 @@
             "App\\": "src/",
             "UI\\Cli\\": "ui/cli",
             "UI\\Rest\\": "ui/rest",
-            "UI\\Back\\": "ui/back",
-            "UI\\Front\\": "ui/front",
-            "UI\\Common\\": "ui/common"
+            "UI\\Http\\": "ui/http"
         }
     },
     "autoload-dev": {

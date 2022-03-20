@@ -6,11 +6,11 @@ rest:
 back:
     prefix: /backoffice
     name_prefix: backoffice.
-    resource: ../../ui/back/Controller/
+    resource: ../../ui/http/Back/
     type: annotation
 
 front:
-    resource: ../../ui/front/Controller/
+    resource: ../../ui/http/Front/
     type: annotation
 
 kernel:

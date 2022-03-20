@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="{{ app.request }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        {%- block pageTitle -%}
+            {{ backofficeLabel }}
+        {%- endblock -%}
+    </title>
+
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+
+        <style>
+            .bg-content {
+                background-color: #f7fafc;
+            }
+
+            .border-table {
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+                border-width: 1px;
+                border-style: solid;
+                border-color: #e2e8f0;
+            }
+
+            .table :where(thead, tfoot) :where(th, td):first-child,
+            .table :where(thead, tfoot) :where(th, td):last-child {
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+
+            .table :where(thead, tfoot) :where(th, td) {
+                background-color: rgb(243 244 246);
+            }
+
+            /*.btn-group > .btn:not(:first-child) {
+                border-radius: 0;
+            }
+
+            .btn-group > .btn:not(:last-child) {
+                border-radius: 0;
+            }*/
+        </style>
+    {% endblock %}
+</head>
+<body class="font-family-karla flex">
+    {% block aside %}
+        <aside class="relative bg-primary h-screen w-64 hidden sm:block shadow-xl">
+            <div class="p-6">
+                <h1>
+                    <a href="{{ path('backoffice.dashboard') }}" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">
+                        {{ backofficeLabel }}
+                    </a>
+                </h1>
+            </div>
+
+            <nav class="text-white text-base font-semibold pt-3">
+                {% block asideMenu %}
+                    {% include 'back/layout/_aside_menu.html.twig' %}
+                {% endblock %}
+            </nav>
+
+            <a href="#" class="absolute w-full bottom-0 bg-primary bg-primary-focus/50 hover:bg-primary-focus focus:bg-primary-focus text-white flex items-center justify-center py-4">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                {% trans from 'backoffice' %}Sign Out{% endtrans %}
+            </a>
+        </aside>
+    {% endblock %}
+
+    <div class="w-full flex flex-col h-screen overflow-y-hidden">
+        <header class="w-full items-center bg-white py-2 px-6 hidden sm:flex">
+            {% block desktopHeader %}
+                {% include 'back/layout/_desktop_header.html.twig' %}
+            {% endblock %}
+        </header>
+
+        {% block mobileHeader %}
+            {% include 'back/layout/_mobile_header.html.twig' %}
+        {% endblock %}
+
+        <div class="w-full overflow-x-hidden bg-content border-t flex flex-col">
+            <main class="w-full flex-grow p-6">
+                {% block content %}{% endblock %}
+            </main>
+
+            <footer class="w-full bg-white text-right p-4">
+                {% trans from 'backoffice'%}Powered by{% endtrans %} <a target="_blank" href="https://github.com/Viktor-V/boilerplate" class="underline">Symfony Boilerplate</a>.
+            </footer>
+        </div>
+    </div>
+
+    {% block javascripts %}
+        <!-- AlpineJS -->
+        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+        <!-- Font Awesome -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
+        <!-- ChartJS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
+    {% endblock %}
+</body>
+</html>

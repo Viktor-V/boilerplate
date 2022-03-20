@@ -64,25 +64,19 @@ services:
     UI\Rest\:
         resource: '../ui/rest/'
 
-    UI\Back\:
-        resource: '../ui/back/'
-
-    UI\Front\:
-        resource: '../ui/front/'
-
-    UI\Common\:
-        resource: '../ui/common/'
+    UI\Http\:
+        resource: '../ui/http/'
 
     UI\Rest\Controller\:
         resource: '../ui/rest/Controller/'
         tags: [ 'controller.service_arguments' ]
 
-    UI\Back\Controller\:
-        resource: '../ui/back/Controller/'
+    UI\Http\Back\Controller\:
+        resource: '../ui/http/Back/*/*/Controller/'
         tags: [ 'controller.service_arguments' ]
 
-    UI\Front\Controller\:
-        resource: '../ui/front/Controller/'
+    UI\Http\Front\Controller\:
+        resource: '../ui/http/Front/*/*/Controller/'
         tags: [ 'controller.service_arguments' ]
 
     # add more service definitions when explicit configuration is needed
