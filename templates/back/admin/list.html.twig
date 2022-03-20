@@ -39,6 +39,7 @@
                         <th>{% trans from 'backoffice' %}Email{% endtrans %}</th>
                         <th>{% trans from 'backoffice' %}Created At{% endtrans %}</th>
                         <th>{% trans from 'backoffice' %}Updated At{% endtrans %}</th>
+                        <th></th>
                     </tr>
                 </thead>
 
@@ -49,6 +50,9 @@
                                 <td>{{ admin.email }}</td>
                                 <td>{{ admin.createdAt }}</td>
                                 <td>{{ admin.updatedAt ?? '-' }}</td>
+                                <td>
+                                    <a href="{{ path('backoffice.admin.edit', {uuid: admin.uuid}) }}" class="btn btn-ghost btn-xs">{% trans from 'backoffice' %}Edit{% endtrans %}</a>
+                                </td>
                             </tr>
                         {% endfor %}
                     {% else %}

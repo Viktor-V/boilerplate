@@ -34,6 +34,7 @@ final class ListHandler implements QueryHandlerInterface
 
         $queryBuilder->setFirstResult($query->offset->toNumber());
         $queryBuilder->setMaxResults($query->limit->toNumber());
+        $queryBuilder->orderBy('created_at', 'DESC');
 
         $rows = $queryBuilder->executeQuery()->fetchAllAssociative();
         foreach ($rows as $row) {
@@ -45,11 +46,14 @@ final class ListHandler implements QueryHandlerInterface
             );
         }
 
+        $queryBuilder
+            ->resetQueryPart('orderBy')
+            ->setFirstResult(null)
+            ->setMaxResults(null);
+
         return (int) $queryBuilder
             ->select('COUNT(*)')
             ->from('admin')
-            ->setFirstResult(null)
-            ->setMaxResults(null)
             ->executeQuery()
             ->fetchOne();
     }

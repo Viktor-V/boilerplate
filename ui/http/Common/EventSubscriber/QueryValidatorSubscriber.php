@@ -41,7 +41,7 @@ class QueryValidatorSubscriber implements EventSubscriberInterface
         $errors = $this->validator->validate($payload);
         if ($errors->count()) {
             $event->setController(function() use ($request) {
-                $request->getSession()->getFlashBag()->add('error', 'Invalid query data.');
+                $request->getSession()->getFlashBag()->add('error', 'Invalid query data.'); // TODO: add trans
 
                 return new RedirectResponse($this->router->generate($request->attributes->get('_route')));
             });
