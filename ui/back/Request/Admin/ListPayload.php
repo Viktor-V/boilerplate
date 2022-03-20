@@ -4,29 +4,15 @@ declare(strict_types=1);
 
 namespace UI\Back\Request\Admin;
 
-use Symfony\Component\Validator\Constraints as Assert;
-use UI\Common\Payload\AbstractQueryPayload;
+use UI\Common\Payload\AbstractPayload;
+use UI\Common\Payload\DefaultValue;
+use UI\Common\Payload\QueryPayloadInterface;
+use UI\Common\Payload\QueryPayloadTrait;
 
-class ListPayload extends AbstractQueryPayload
+class ListPayload extends AbstractPayload implements QueryPayloadInterface
 {
-    private ?string $likeEmail = null;
+    use QueryPayloadTrait;
 
-    public function getLikeEmail(): ?string
-    {
-        return $this->likeEmail;
-    }
-
-    public function fromArray(array $params): void
-    {
-        parent::fromArray($params);
-
-        if (isset($params['likeEmail'])) {
-            $this->likeEmail = $params['likeEmail'];
-        }
-    }
-
-    public function toArray(): array
-    {
-        return array_merge(parent::toArray(), ['likeEmail' => $this->getLikeEmail()]);
-    }
+    #[DefaultValue(null)]
+    public readonly ?string $likeEmail;
 }

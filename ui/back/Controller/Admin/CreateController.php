@@ -16,7 +16,7 @@ class CreateController extends AbstractController
     public function __invoke(CreatePayload $payload, FormInterface $form): Response
     {
         if ($form->isSubmitted() && $form->isValid()) {
-            dump('YAY');
+            
         }
 
         return $this->render('admin/create.html.twig', ['form' => $form->createView()]);

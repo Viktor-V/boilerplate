@@ -6,6 +6,6 @@ namespace UI\Common\Payload;
 
 interface PayloadInterface
 {
-    public function fromArray(array $params): void;
+    public function fromArray(array $params): self;
     public function toArray(): array;
 }

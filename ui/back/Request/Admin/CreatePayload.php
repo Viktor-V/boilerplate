@@ -7,53 +7,24 @@ namespace UI\Back\Request\Admin;
 use App\Admin\Domain\Entity\ValueObject\PlainPassword;
 use Symfony\Component\Validator\Constraints as Assert;
 use UI\Back\Form\Admin\CreateForm;
-use UI\Common\Payload\AbstractFormPayload;
+use UI\Common\Payload\AbstractPayload;
+use UI\Common\Payload\DefaultValue;
+use UI\Common\Payload\FormPayloadInterface;
+use UI\Common\Payload\FormPayloadTrait;
 
-/** TODO: remove getters? */
-
-class CreatePayload extends AbstractFormPayload
+class CreatePayload extends AbstractPayload implements FormPayloadInterface
 {
+    use FormPayloadTrait;
+
     public const PAYLOAD_FORM = CreateForm::class;
 
     #[Assert\NotBlank]
     #[Assert\Email]
-    public ?string $email = null;
+    #[DefaultValue(null)]
+    public readonly ?string $email;
 
     #[Assert\NotBlank]
     #[Assert\Length(min: PlainPassword::MIN_PASSWORD_LENGTH)]
-    public ?string $password = null;
-
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function getPassword(): ?string
-    {
-        return $this->password;
-    }
-
-    public function fromArray(array $params): void
-    {
-        parent::fromArray($params);
-
-        if (isset($params['email'])) {
-            $this->email = $params['email'];
-        }
-
-        if (isset($params['password'])) {
-            $this->password = $params['password'];
-        }
-    }
-
-    public function toArray(): array
-    {
-        return array_merge(
-            parent::toArray(),
-            [
-                'email' => $this->getEmail(),
-                'password' => $this->getPassword()
-            ]
-        );
-    }
+    #[DefaultValue(null)]
+    public readonly ?string $password;
 }

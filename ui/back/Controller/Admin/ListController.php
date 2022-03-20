@@ -15,10 +15,8 @@ class ListController extends AbstractController
     #[Route('/admin/list', name: 'admin.list')]
     public function __invoke(ListPayload $payload): Response
     {
-        //$this->addFlash();
-
         return $this->render('admin/list.html.twig', [
-            'pagination' => $this->paginate(new ListQuery($payload->getPage(), $payload->getLimit(), $payload->getLikeEmail()))
+            'pagination' => $this->paginate(new ListQuery($payload->page, $payload->limit, $payload->likeEmail))
         ]);
     }
 }
