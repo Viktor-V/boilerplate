@@ -19,6 +19,8 @@ class ListController extends AbstractController
             'pagination' => $this->paginate(new ListQuery(
                 $payload->page,
                 $payload->limit,
+                $payload->sort,
+                $payload->direction,
                 $payload->likeEmail,
                 $payload->startCreatedAt,
                 $payload->endCreatedAt

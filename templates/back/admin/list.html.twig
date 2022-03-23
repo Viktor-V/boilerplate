@@ -79,9 +79,9 @@
                         >
                     </div>
                 </div>
-                
+
                 {% for queryKey, queryValue in app.request.query.all %}
-                    {% if queryKey not in ['likeEmail', 'startCreatedAt', 'endCreatedAt']  %}
+                    {% if queryKey not in ['likeEmail', 'startCreatedAt', 'endCreatedAt'] %}
                         <input type="hidden" name="{{ queryKey }}" value="{{ queryValue }}">
                     {% endif %}
                 {% endfor %}
@@ -94,8 +94,32 @@
             <table class="table w-full">
                 <thead>
                     <tr>
-                        <th>{% trans from 'backoffice' %}Email{% endtrans %}</th>
-                        <th>{% trans from 'backoffice' %}Created At{% endtrans %}</th>
+                        <th>
+                            {{ knp_pagination_sortable(pagination, 'Email'|trans({}, 'backoffice'), 'email') }}
+                            {% if pagination.isSorted('email') %}
+                                {% if app.request.query.get('direction') is same as('asc') %}
+                                    <i class="fas fa-sort-alpha-down"></i>
+                                {% else %}
+                                    <i class="fas fa-sort-alpha-up"></i>
+                                {% endif %}
+                            {% else %}
+                                <i class="fas fa-sort-alpha-down text-gray-400"></i>
+                            {% endif %}
+                        </th>
+
+                        <th>
+                            {{ knp_pagination_sortable(pagination, 'Created At'|trans({}, 'backoffice'), 'created_at') }}
+                            {% if pagination.isSorted('created_at') %}
+                                {% if app.request.query.get('direction') is same as('asc') %}
+                                    <i class="fas fa-sort-alpha-down"></i>
+                                {% else %}
+                                    <i class="fas fa-sort-alpha-up"></i>
+                                {% endif %}
+                            {% else %}
+                                <i class="fas fa-sort-alpha-down text-gray-400"></i>
+                            {% endif %}
+                        </th>
+
                         <th>{% trans from 'backoffice' %}Updated At{% endtrans %}</th>
                         <th></th>
                     </tr>

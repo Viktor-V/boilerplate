@@ -16,4 +16,12 @@ trait QueryPayloadTrait
     #[Assert\Choice(choices: self::DEFAULT_LIMIT_CHOICE)]
     #[DefaultValue(self::DEFAULT_LIMIT)]
     public readonly int $limit;
+
+    #[Assert\Regex(self::AVAILABLE_CHARS)]
+    #[DefaultValue(null)]
+    public readonly ?string $sort;
+
+    #[Assert\Choice(choices: self::DEFAULT_DIRECTION)]
+    #[DefaultValue(null)]
+    public readonly ?string $direction;
 }

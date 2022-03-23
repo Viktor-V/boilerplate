@@ -38,9 +38,14 @@ final class ListHandler implements QueryHandlerInterface
             $queryBuilder->setParameter('endCreatedAt', $query->endCreatedAt->format('Y-m-d'));
         }
 
+        if ($query->sort && $query->direction) {
+            $queryBuilder->orderBy($query->sort, $query->direction);
+        } else {
+            $queryBuilder->orderBy('created_at', 'DESC');
+        }
+
         $queryBuilder->setFirstResult($query->offset->toNumber());
         $queryBuilder->setMaxResults($query->limit->toNumber());
-        $queryBuilder->orderBy('created_at', 'DESC');
 
         $rows = $queryBuilder->executeQuery()->fetchAllAssociative();
         foreach ($rows as $row) {
