@@ -1,7 +1,13 @@
 <div class="flex justify-between items-center mt-3">
-    <form action="{{ path(route, query) }}" method="get">
+    <form action="{{ path(route) }}" method="get">
+        {% for queryKey, queryValue in query %}
+            {% if queryKey not in ['page', 'limit']  %}
+                <input type="hidden" name="{{ queryKey }}" value="{{ queryValue }}">
+            {% endif %}
+        {% endfor %}
+
         <select class="select select-bordered" name="limit" onchange="this.form.submit()" aria-label="{% trans %}Limit{% endtrans %}">
-            <option {% if app.request.query.get('limit') == 10 %}selected{% endif %}>10</option>
+            <option {% if app.request.query.get('limit') == 1 %}selected{% endif %}>1</option>
             <option {% if app.request.query.get('limit') == 50 %}selected{% endif %}>50</option>
             <option {% if app.request.query.get('limit') == 100 %}selected{% endif %}>100</option>
         </select>

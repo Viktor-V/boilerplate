@@ -16,7 +16,13 @@ class ListController extends AbstractController
     public function __invoke(ListPayload $payload): Response
     {
         return $this->render('back/admin/list.html.twig', [
-            'pagination' => $this->paginate(new ListQuery($payload->page, $payload->limit, $payload->likeEmail))
+            'pagination' => $this->paginate(new ListQuery(
+                $payload->page,
+                $payload->limit,
+                $payload->likeEmail,
+                $payload->startCreatedAt,
+                $payload->endCreatedAt
+            ))
         ]);
     }
 }

@@ -8,6 +8,7 @@ use UI\Http\Common\Payload\AbstractPayload;
 use UI\Http\Common\Payload\DefaultValue;
 use UI\Http\Common\Payload\QueryPayloadInterface;
 use UI\Http\Common\Payload\QueryPayloadTrait;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class ListPayload extends AbstractPayload implements QueryPayloadInterface
 {
@@ -15,4 +16,12 @@ class ListPayload extends AbstractPayload implements QueryPayloadInterface
 
     #[DefaultValue(null)]
     public readonly ?string $likeEmail;
+
+    #[Assert\DateTime(format: 'd.m.Y')]
+    #[DefaultValue(null)]
+    public readonly ?string $startCreatedAt;
+
+    #[Assert\DateTime(format: 'd.m.Y')]
+    #[DefaultValue(null)]
+    public readonly ?string $endCreatedAt;
 }

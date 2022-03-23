@@ -27,9 +27,15 @@ final class ListHandler implements QueryHandlerInterface
             ->select('*')
             ->from('admin');
 
-        if ($query->likeEmail->toString()) {
+        if ($query->likeEmail) {
             $queryBuilder->andWhere('email LIKE :likeEmail');
             $queryBuilder->setParameter('likeEmail', $query->likeEmail->toString());
+        }
+
+        if ($query->startCreatedAt && $query->endCreatedAt) {
+            $queryBuilder->andWhere('created_at BETWEEN :startCreatedAt AND :endCreatedAt');
+            $queryBuilder->setParameter('startCreatedAt', $query->startCreatedAt->format('Y-m-d'));
+            $queryBuilder->setParameter('endCreatedAt', $query->endCreatedAt->format('Y-m-d'));
         }
 
         $queryBuilder->setFirstResult($query->offset->toNumber());

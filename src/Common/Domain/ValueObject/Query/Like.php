@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Common\Domain\ValueObject\Query;
 
-use App\Common\Domain\Assert\Assertion;
-
 final class Like
 {
     private ?string $like;
@@ -13,10 +11,6 @@ final class Like
     public function __construct(
         ?string $like
     ) {
-        if ($like !== null) {
-            Assertion::notEmpty($like);
-        }
-
         $this->like = $like;
     }
 

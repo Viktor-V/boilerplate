@@ -22,14 +22,72 @@
         {% endfor %}
     {% endfor %}
 
-    <div class="w-full">
+    <div class="w-full" x-data="{ isOpen: false }">
         <div class="flex justify-between items-center mb-3">
             <p class="text-xl flex items-center">
                 <i class="fas fa-list mr-3"></i>
                 {% trans from 'backoffice' %}Latest Admins{% endtrans %}
             </p>
 
-            <a href="{{ path('backoffice.admin.create') }}" class="btn btn-primary w-100">{% trans from 'backoffice' %}Create{% endtrans %}</a>
+            <div>
+                <button :class="isOpen ? 'btn-dark': 'btn-outline'" class="btn mr-2" @click="isOpen = !isOpen">
+                    {% trans from 'backoffice' %}Filter{% endtrans %}
+                    <i class="fas fa-filter ml-3"></i>
+                </button>
+
+                <a href="{{ path('backoffice.admin.create') }}" class="btn btn-primary w-100">
+                    {% trans from 'backoffice' %}Create{% endtrans %}
+                    <i class="fas fa-plus-circle ml-2"></i>
+                </a>
+            </div>
+        </div>
+
+        <div :class="isOpen ? 'block': 'hidden'" class="block mb-3 mt-3">
+            <form action="{{ path(app.request.get('_route')) }}" method="get">
+                <div class="relative z-0 mb-3 w-full group">
+                    <input type="text"
+                           name="likeEmail"
+                           placeholder="{% trans from 'backoffice' %}Search by email{% endtrans %}"
+                           title="{% trans from 'backoffice' %}Search by email{% endtrans %}"
+                           class="input input-bordered w-full"
+                           value="{{ app.request.query.get('likeEmail') }}"
+                    >
+                </div>
+
+                <div date-rangepicker datepicker-format="dd.mm.yyyy" class="grid md:grid-cols-2 md:gap-6">
+                    <div class="mb-3 w-full group">
+                        <input type="text"
+                               name="startCreatedAt"
+                               placeholder="{% trans from 'backoffice' %}Start created at{% endtrans %}"
+                               title="{% trans from 'backoffice' %}Start created at{% endtrans %}"
+                               class="input input-bordered w-full"
+                               value="{{ app.request.query.get('startCreatedAt') }}"
+                               autocomplete="off"
+                               list="autocompleteOff"
+                        >
+                    </div>
+
+                    <div class="mb-3 w-full group">
+                        <input type="text"
+                               name="endCreatedAt"
+                               placeholder="{% trans from 'backoffice' %}End created at{% endtrans %}"
+                               title="{% trans from 'backoffice' %}End created at{% endtrans %}"
+                               class="input input-bordered w-full"
+                               value="{{ app.request.query.get('endCreatedAt') }}"
+                               autocomplete="off"
+                               list="autocompleteOff"
+                        >
+                    </div>
+                </div>
+                
+                {% for queryKey, queryValue in app.request.query.all %}
+                    {% if queryKey not in ['likeEmail', 'startCreatedAt', 'endCreatedAt']  %}
+                        <input type="hidden" name="{{ queryKey }}" value="{{ queryValue }}">
+                    {% endif %}
+                {% endfor %}
+
+                <button type="submit" class="btn btn-primary">{% trans from 'backoffice' %}Find{% endtrans %}</button>
+            </form>
         </div>
 
         <div class="overflow-x-auto border">
