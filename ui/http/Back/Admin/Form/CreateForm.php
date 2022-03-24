@@ -31,7 +31,7 @@ class CreateForm extends AbstractType
         $builder->add('button', SubmitType::class);
     }
 
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return (string) null;
     }

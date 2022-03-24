@@ -6,7 +6,7 @@ namespace App\Admin\Domain\Specification;
 
 use App\Admin\Domain\Entity\ValueObject\Email;
 
-interface UniqueEmailInterface
+interface UniqueEmailSpecificationInterface
 {
-    public function isUnique(Email $email): bool;
+    public function isSatisfiedBy(Email $email): bool;
 }

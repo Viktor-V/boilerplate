@@ -4,7 +4,8 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="App\Admin\Domain\Entity\Admin" table="admin">
+    <entity name="App\Admin\Domain\Entity\Admin"
+            table="admin">
         <!--<id name="uuid" type="uuid">
             <generator strategy="CUSTOM"/>
         </id>-->

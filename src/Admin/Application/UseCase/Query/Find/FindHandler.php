@@ -8,7 +8,6 @@ use App\Admin\Application\UseCase\Query\DTO\AdminDTO;
 use App\Common\Application\Query\QueryHandlerInterface;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Exception;
-use Generator;
 
 final class FindHandler implements QueryHandlerInterface
 {

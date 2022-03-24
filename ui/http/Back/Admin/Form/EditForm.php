@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace UI\Http\Back\Admin\Form;
 
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -11,7 +12,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use UI\Http\Back\Admin\Request\EditPayload;
 
-class EditForm extends CreateForm
+class EditForm extends AbstractType
 {
     public function buildForm(
         FormBuilderInterface $builder,
@@ -30,7 +31,7 @@ class EditForm extends CreateForm
         $builder->add('button', SubmitType::class);
     }
 
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return (string) null;
     }

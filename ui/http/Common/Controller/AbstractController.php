@@ -10,6 +10,7 @@ use App\Common\Application\Query\QueryInterface;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use LogicException;
+use Psr\Log\LoggerInterface;
 
 abstract class AbstractController extends \Symfony\Bundle\FrameworkBundle\Controller\AbstractController
 {
@@ -41,6 +42,11 @@ abstract class AbstractController extends \Symfony\Bundle\FrameworkBundle\Contro
         return $this->container->get(PaginatorInterface::class);
     }
 
+    public function getLogger(): LoggerInterface
+    {
+        return $this->container->get(LoggerInterface::class);
+    }
+
     public static function getSubscribedServices(): array
     {
         return array_merge(
@@ -48,7 +54,8 @@ abstract class AbstractController extends \Symfony\Bundle\FrameworkBundle\Contro
             [
                 QueryBusInterface::class,
                 CommandBusInterface::class,
-                PaginatorInterface::class
+                PaginatorInterface::class,
+                LoggerInterface::class
             ]
         );
     }

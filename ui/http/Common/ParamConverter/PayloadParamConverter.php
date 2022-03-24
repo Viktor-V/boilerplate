@@ -31,7 +31,7 @@ class PayloadParamConverter implements ParamConverterInterface
         return true;
     }
 
-    public function supports(ParamConverter $configuration)
+    public function supports(ParamConverter $configuration): bool
     {
         $payloadClass = $configuration->getClass();
         if (!$payloadClass) {

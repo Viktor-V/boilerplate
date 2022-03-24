@@ -34,8 +34,6 @@ class FormSubscriber implements EventSubscriberInterface
             return;
         }
 
-        dump($payload);
-
         $form->submit($payload->toArray());
     }
 
