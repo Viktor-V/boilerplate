@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Common\Domain\ValueObject\Query;
 
-use App\Common\Domain\Assert\Assertion;
+use App\Common\Domain\Assert\QueryAssertion;
 
 abstract class Sort
 {
@@ -16,8 +16,8 @@ abstract class Sort
         ?string $sort
     ) {
         if ($sort !== null) {
-            Assertion::regex($sort, '/^[a-z_]+$/');
-            Assertion::inArray($sort, $this->availableFields());
+            QueryAssertion::regex($sort, '/^[a-z_]+$/');
+            QueryAssertion::inArray($sort, $this->availableFields());
         }
 
         $this->sort = $sort;

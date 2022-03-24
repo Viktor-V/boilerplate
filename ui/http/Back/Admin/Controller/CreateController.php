@@ -9,10 +9,10 @@ use Ramsey\Uuid\Uuid;
 use App\Admin\Application\UseCase\Command\Create\CreateCommand;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Messenger\Exception\HandlerFailedException;
 use Symfony\Component\Routing\Annotation\Route;
 use UI\Http\Back\Admin\Request\CreatePayload;
 use UI\Http\Common\Controller\AbstractController;
-use Throwable;
 
 class CreateController extends AbstractController
 {
@@ -30,12 +30,18 @@ class CreateController extends AbstractController
                 $this->addFlash('success', 'Admin successfully created.'); // TODO add trans
 
                 return $this->redirectToRoute('backoffice.admin.list');
-            } catch (EmailAlreadyExistException $e) {
-                $this->addFlash('error', $e->getMessage()); // TODO add trans;
-            } catch (Throwable $e) {
-                $this->getLogger()->error($e->getMessage());
+            } catch (HandlerFailedException $e) {
+                $message = null;
 
-                $this->addFlash('error', 'Something went wrong. Please, try latter.'); // TODO add trans;
+                if ($e->getPrevious() instanceof EmailAlreadyExistException) {
+                    $message = $e->getPrevious()->getMessage();
+                }
+
+                if ($message === null) {
+                    $this->getLogger()->error($e->getMessage());
+                }
+
+                $this->addFlash('error', $message ?? 'Something went wrong. Please, try latter.');
             }
         }
 

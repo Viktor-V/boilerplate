@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Common\Domain\ValueObject\Query;
 
-use App\Common\Domain\Assert\Assertion;
+use App\Common\Domain\Assert\QueryAssertion;
 
 final class Direction
 {
@@ -16,7 +16,7 @@ final class Direction
         ?string $direction
     ) {
         if ($direction !== null) {
-            Assertion::inArray($direction, self::DEFAULT_DIRECTION);
+            QueryAssertion::inArray($direction, self::DEFAULT_DIRECTION);
         }
 
         $this->direction = $direction;

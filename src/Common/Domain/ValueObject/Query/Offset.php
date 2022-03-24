@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Common\Domain\ValueObject\Query;
 
-use App\Common\Domain\Assert\Assertion;
+use App\Common\Domain\Assert\QueryAssertion;
 
 final class Offset
 {
@@ -14,7 +14,7 @@ final class Offset
         ?int $offset
     ) {
         if ($offset !== null) {
-            Assertion::positiveInteger($offset);
+            QueryAssertion::positiveInteger($offset);
         }
 
         $this->offset = $offset;

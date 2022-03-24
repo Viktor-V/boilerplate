@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Common\Domain\ValueObject\Query;
 
-use App\Common\Domain\Assert\Assertion;
+use App\Common\Domain\Assert\QueryAssertion;
 
 final class Limit
 {
@@ -17,7 +17,7 @@ final class Limit
         ?int $limit
     ) {
         if ($limit !== null) {
-            Assertion::inArray($limit, self::DEFAULT_LIMIT_CHOICE);
+            QueryAssertion::inArray($limit, self::DEFAULT_LIMIT_CHOICE);
         }
 
         $this->limit = $limit;
