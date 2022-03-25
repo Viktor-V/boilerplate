@@ -1,28 +1,90 @@
 {% extends 'back/layout/default.html.twig' %}
 
 {% block pageTitle %}
-    {% trans from 'backoffice' %}Admin{% endtrans %}
+    {% trans from 'backoffice' %}Admin List{% endtrans %}
 {% endblock %}
 
 {% block content %}
-    <h2 class="text-3xl text-black mb-10">{{ block('pageTitle') }}</h2>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-outline-primary mr-2">{% trans from 'backoffice' %}Filter{% endtrans %}</button>
+                        <a href="{{ path('backoffice.admin.create') }}" class="btn btn-primary">{% trans from 'backoffice' %}Create{% endtrans %}</a>
+                    </div>
+                </div>
 
-    {% for key, messages in app.flashes %}
-        {% for message in messages %}
-            <div class="alert alert-{{ key }} alert-dismissible" role="alert" data-controller="close">
-                {{ message }}
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th class="sorting">
+                                            {% trans from 'backoffice' %}Email{% endtrans %}
+                                        </th>
 
-                <button type="button"
-                        class="btn-close"
-                        data-bs-dismiss="alert"
-                        aria-label="{{ 'close' }}"
-                        data-action="click->close#close"
-                >{# empty #}</button>
+                                        <th class="sorting sorting-asc">
+                                            {% trans from 'backoffice' %}Created At{% endtrans %}
+                                        </th>
+
+                                        <th class="sorting">
+                                            {% trans from 'backoffice' %}Updated At{% endtrans %}
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    {% if pagination.getTotalItemCount %}
+                                        {% for admin in pagination %}
+                                            <tr>
+                                                <td>{{ admin.email }}</td>
+                                                <td>{{ admin.createdAt }}</td>
+                                                <td>{{ admin.updatedAt ?? '-' }}</td>
+                                                <td>
+                                                    <a href="{{ path('backoffice.admin.edit', {uuid: admin.uuid}) }}" class="btn btn-block btn-sm">
+                                                        <i class="fas fa-edit"></i>
+                                                        {% trans from 'backoffice' %}Edit{% endtrans %}
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="4">{% trans %}Not found.{% endtrans %}</td>
+                                        </tr>
+                                    {% endif %}
+                                </tbody>
+
+                                <tfoot>
+                                    <tr>
+                                        <th>
+                                            {% trans from 'backoffice' %}Email{% endtrans %}
+                                        </th>
+
+                                        <th>
+                                            {% trans from 'backoffice' %}Created At{% endtrans %}
+                                        </th>
+
+                                        <th>
+                                            {% trans from 'backoffice' %}Updated At{% endtrans %}
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+
+                    {{ knp_pagination_render(pagination) }}
+                </div>
             </div>
-        {% endfor %}
-    {% endfor %}
+        </div>
+    </div>
 
-    <div class="w-full" x-data="{ isOpen: false }">
+    {#<div class="w-full" x-data="{ isOpen: false }">
         <div class="flex justify-between items-center mb-3">
             <p class="text-xl flex items-center">
                 <i class="fas fa-list mr-3"></i>
@@ -49,7 +111,7 @@
                            name="likeEmail"
                            placeholder="{% trans from 'backoffice' %}Search by email{% endtrans %}"
                            title="{% trans from 'backoffice' %}Search by email{% endtrans %}"
-                           class="input input-bordered w-full"
+                           class="input w-full"
                            value="{{ app.request.query.get('likeEmail') }}"
                     >
                 </div>
@@ -60,7 +122,7 @@
                                name="startCreatedAt"
                                placeholder="{% trans from 'backoffice' %}Start created at{% endtrans %}"
                                title="{% trans from 'backoffice' %}Start created at{% endtrans %}"
-                               class="input input-bordered w-full"
+                               class="input w-full"
                                value="{{ app.request.query.get('startCreatedAt') }}"
                                autocomplete="off"
                                list="autocompleteOff"
@@ -72,7 +134,7 @@
                                name="endCreatedAt"
                                placeholder="{% trans from 'backoffice' %}End created at{% endtrans %}"
                                title="{% trans from 'backoffice' %}End created at{% endtrans %}"
-                               class="input input-bordered w-full"
+                               class="input w-full"
                                value="{{ app.request.query.get('endCreatedAt') }}"
                                autocomplete="off"
                                list="autocompleteOff"
@@ -93,59 +155,60 @@
         <div class="overflow-x-auto border">
             <table class="table w-full">
                 <thead>
-                    <tr>
-                        <th>
-                            {{ knp_pagination_sortable(pagination, 'Email'|trans({}, 'backoffice'), 'email') }}
-                            {% if pagination.isSorted('email') %}
-                                {% if app.request.query.get('direction') is same as('asc') %}
-                                    <i class="fas fa-sort-alpha-down"></i>
-                                {% else %}
-                                    <i class="fas fa-sort-alpha-up"></i>
-                                {% endif %}
+                <tr>
+                    <th>
+                        {{ knp_pagination_sortable(pagination, 'Email'|trans({}, 'backoffice'), 'email') }}
+                        {% if pagination.isSorted('email') %}
+                            {% if app.request.query.get('direction') is same as('asc') %}
+                                <i class="fas fa-sort-alpha-down"></i>
                             {% else %}
-                                <i class="fas fa-sort-alpha-down text-gray-400"></i>
+                                <i class="fas fa-sort-alpha-up"></i>
                             {% endif %}
-                        </th>
+                        {% else %}
+                            <i class="fas fa-sort-alpha-down text-gray-400"></i>
+                        {% endif %}
+                    </th>
 
-                        <th>
-                            {{ knp_pagination_sortable(pagination, 'Created At'|trans({}, 'backoffice'), 'created_at') }}
-                            {% if pagination.isSorted('created_at') %}
-                                {% if app.request.query.get('direction') is same as('asc') %}
-                                    <i class="fas fa-sort-alpha-down"></i>
-                                {% else %}
-                                    <i class="fas fa-sort-alpha-up"></i>
-                                {% endif %}
+                    <th>
+                        {{ knp_pagination_sortable(pagination, 'Created At'|trans({}, 'backoffice'), 'created_at') }}
+                        {% if pagination.isSorted('created_at') %}
+                            {% if app.request.query.get('direction') is same as('asc') %}
+                                <i class="fas fa-sort-alpha-down"></i>
                             {% else %}
-                                <i class="fas fa-sort-alpha-down text-gray-400"></i>
+                                <i class="fas fa-sort-alpha-up"></i>
                             {% endif %}
-                        </th>
+                        {% else %}
+                            <i class="fas fa-sort-alpha-down text-gray-400"></i>
+                        {% endif %}
+                    </th>
 
-                        <th>{% trans from 'backoffice' %}Updated At{% endtrans %}</th>
-                        <th></th>
-                    </tr>
+                    <th>{% trans from 'backoffice' %}Updated At{% endtrans %}</th>
+                    <th></th>
+                </tr>
                 </thead>
 
                 <tbody>
-                    {% if pagination.getTotalItemCount %}
-                        {% for admin in pagination %}
-                            <tr>
-                                <td>{{ admin.email }}</td>
-                                <td>{{ admin.createdAt }}</td>
-                                <td>{{ admin.updatedAt ?? '-' }}</td>
-                                <td>
-                                    <a href="{{ path('backoffice.admin.edit', {uuid: admin.uuid}) }}" class="btn btn-ghost btn-xs">{% trans from 'backoffice' %}Edit{% endtrans %}</a>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    {% else %}
+                {% if pagination.getTotalItemCount %}
+                    {% for admin in pagination %}
                         <tr>
-                            <td colspan="3">{% trans %}Not found.{% endtrans %}</td>
+                            <td>{{ admin.email }}</td>
+                            <td>{{ admin.createdAt }}</td>
+                            <td>{{ admin.updatedAt ?? '-' }}</td>
+                            <td>
+                                <a href="{{ path('backoffice.admin.edit', {uuid: admin.uuid}) }}"
+                                   class="btn btn-ghost btn-xs">{% trans from 'backoffice' %}Edit{% endtrans %}</a>
+                            </td>
                         </tr>
-                    {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="3">{% trans %}Not found.{% endtrans %}</td>
+                    </tr>
+                {% endif %}
                 </tbody>
             </table>
         </div>
 
         {{ knp_pagination_render(pagination) }}
-    </div>
+    </div>#}
 {% endblock %}

@@ -1,0 +1,55 @@
+@import "admin-lte/dist/css/adminlte.min.css";
+
+@import "component/noscript";
+
+.toggle-sidebar {
+    display: none;
+}
+
+.sidebar-collapse .toggle-sidebar {
+    display: block;
+}
+
+.pagination-wrapper {
+    .pagination {
+        margin: 0;
+        white-space: nowrap;
+        justify-content: flex-end;
+    }
+}
+
+.table {
+    .sorting {
+        position: relative;
+
+        &:before {
+            display: block;
+            position: absolute;
+            bottom: .9em;
+            right: 1em;
+            content: "↑";
+            opacity: 0.5;
+        }
+
+        &:after {
+            display: block;
+            position: absolute;
+            bottom: .9em;
+            right: .5em;
+            content: "↓";
+            opacity: 0.5;
+        }
+    }
+
+    .sorting-asc {
+        &:before {
+            opacity: 1.0;
+        }
+    }
+
+    .sorting-desc {
+        &:before {
+            opacity: 1.0;
+        }
+    }
+}

@@ -1,0 +1,59 @@
+<div class="row pagination-wrapper">
+    <div class="col-sm-12 col-md-5">
+        <form action="{{ path(route) }}" method="get">
+            {% for queryKey, queryValue in query %}
+                {% if queryKey not in ['page', 'limit'] %}
+                    <input type="hidden" name="{{ queryKey }}" value="{{ queryValue }}">
+                {% endif %}
+            {% endfor %}
+
+            <select class="custom-select rounded-0 w-auto"
+                    name="limit"
+                    aria-label="{% trans %}Limit{% endtrans %}"
+                    onchange="this.form.submit()"
+            >
+                <option {% if app.request.query.get('limit') == 1 %}selected{% endif %}>1</option>
+                <option {% if app.request.query.get('limit') == 50 %}selected{% endif %}>50</option>
+                <option {% if app.request.query.get('limit') == 100 %}selected{% endif %}>100</option>
+            </select>
+        </form>
+    </div>
+
+    {% if pageCount > 1 %}
+        <div class="col-sm-12 col-md-7">
+            <ul class="pagination">
+                {% if previous is defined %}
+                    <li class="page-item previous">
+                        <a class="page-link" rel="prev" href="{{ path(route, query|merge({(pageParameterName): previous})) }}">
+                            {% trans from 'backoffice' %}Previous{% endtrans %}
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="page-item previous disabled">
+                        <a class="page-link" rel="prev" href="#">
+                            {% trans from 'backoffice' %}Previous{% endtrans %}
+                        </a>
+                    </li>
+                {% endif %}
+
+                <li class="page-item disabled">
+                    <a href="#" class="page-link">{{ app.request.query.get('page', 1) }}</a>
+                </li>
+
+                {% if next is defined %}
+                    <li class="page-item next">
+                        <a class="page-link" rel="next" href="{{ path(route, query|merge({(pageParameterName): next})) }}">
+                            {% trans from 'backoffice' %}Next{% endtrans %}
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="page-item next disabled">
+                        <a class="page-link" rel="next" href="#">
+                            {% trans from 'backoffice' %}Next{% endtrans %}
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    {% endif %}
+</div>
