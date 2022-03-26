@@ -21,7 +21,25 @@
 
     <div class="wrapper">
         {% include 'back/partial/header.html.twig' %}
-        {% include 'back/partial/sidebar.html.twig' %}
+
+        {% block sidebar %}
+            {% include 'back/partial/sidebar/_sidebar_header.html.twig' %}
+
+            {% block dashboardNavItem %}
+                {% include 'back/partial/sidebar/dashboard.html.twig' %}
+            {% endblock %}
+
+            <li class="nav-header">
+                {% trans from 'backoffice' %}Users{% endtrans %}
+            </li>
+
+            {% block adminNavItem %}
+                {% include 'back/partial/sidebar/admin.html.twig' %}
+            {% endblock %}
+
+            {% include 'back/partial/sidebar/_sidebar_footer.html.twig' %}
+        {% endblock %}
+
 
         <div class="content-wrapper">
             <section class="content-header">

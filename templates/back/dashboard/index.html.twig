@@ -4,6 +4,10 @@
     {% trans from 'backoffice' %}Dashboard{% endtrans %}
 {% endblock %}
 
+{% block dashboardNavItem %}
+    {% include 'back/partial/sidebar/dashboard.html.twig' with {'active': true} %}
+{% endblock %}
+
 {% block content %}
     <h1 class="text-3xl text-black pb-6">Dashboard</h1>
 

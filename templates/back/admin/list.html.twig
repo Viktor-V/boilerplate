@@ -4,6 +4,13 @@
     {% trans from 'backoffice' %}Admin List{% endtrans %}
 {% endblock %}
 
+{% block adminNavItem %}
+    {% include 'back/partial/sidebar/admin.html.twig' with {
+        'active': true,
+        'activeList': true
+    } %}
+{% endblock %}
+
 {% block content %}
     <div class="row">
         <div class="col-12">
@@ -21,15 +28,19 @@
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th class="sorting">
-                                            {% trans from 'backoffice' %}Email{% endtrans %}
-                                        </th>
+                                        {% embed 'back/partial/table/th.html.twig' with {key: 'email'} %}
+                                            {% block title %}
+                                                {% trans from 'backoffice' %}Email{% endtrans %}
+                                            {% endblock %}
+                                        {% endembed %}
 
-                                        <th class="sorting sorting-asc">
-                                            {% trans from 'backoffice' %}Created At{% endtrans %}
-                                        </th>
+                                        {% embed 'back/partial/table/th.html.twig' with {key: 'created_at'} %}
+                                            {% block title %}
+                                                {% trans from 'backoffice' %}Created At{% endtrans %}
+                                            {% endblock %}
+                                        {% endembed %}
 
-                                        <th class="sorting">
+                                        <th>
                                             {% trans from 'backoffice' %}Updated At{% endtrans %}
                                         </th>
                                         <th></th>

@@ -21,6 +21,7 @@
 .table {
     .sorting {
         position: relative;
+        padding-right: 30px;
 
         &:before {
             display: block;
@@ -39,6 +40,13 @@
             content: "↓";
             opacity: 0.5;
         }
+
+        .sortable,
+        .asc,
+        .desc {
+            display: block;
+            color: #212529;
+        }
     }
 
     .sorting-asc {
@@ -48,7 +56,7 @@
     }
 
     .sorting-desc {
-        &:before {
+        &:after {
             opacity: 1.0;
         }
     }

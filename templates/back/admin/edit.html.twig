@@ -4,6 +4,12 @@
     {% trans from 'backoffice' %}Edit Admin{% endtrans %} - {{ admin.email }}
 {% endblock %}
 
+{% block adminNavItem %}
+    {% include 'back/partial/sidebar/admin.html.twig' with {
+        'active': true
+    } %}
+{% endblock %}
+
 {% block content %}
     {{ form_start(form) }}
         {{ form_row(form.email, {'value': admin.email}) }}
