@@ -8,24 +8,18 @@ use App\Common\Domain\Assert\QueryAssertion;
 
 final class Offset
 {
-    private ?int $offset;
+    private int $offset;
 
     public function __construct(
-        ?int $offset
+        int $offset
     ) {
-        if ($offset !== null) {
-            QueryAssertion::positiveInteger($offset);
-        }
+        QueryAssertion::positiveInteger($offset);
 
         $this->offset = $offset;
     }
 
-    public function toNumber(): ?int
+    public function toNumber(): int
     {
-        if (!$this->offset) {
-            return null;
-        }
-
         return $this->offset - 1;
     }
 }

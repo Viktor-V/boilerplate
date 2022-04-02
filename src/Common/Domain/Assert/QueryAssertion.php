@@ -6,7 +6,10 @@ namespace App\Common\Domain\Assert;
 
 class QueryAssertion extends Assertion
 {
-    protected static function reportInvalidArgument($message)
+    /**
+     * @psalm-pure this method is not supposed to perform side-effects
+     */
+    protected static function reportInvalidArgument($message): void
     {
         throw new InvalidQueryParamException($message);
     }

@@ -17,6 +17,10 @@ class LogEventHandler implements EventHandlerInterface
 
     public function __invoke(AdminCreatedEvent $event): void
     {
-        $this->logger->info(sprintf('Admin Created! Email: %s; Uuid: %s', $event->getEmail(), $event->getUuid()));
+        $this->logger->info(sprintf(
+            'Admin Created! Email: %s; Uuid: %s',
+            (string) $event->getEmail(),
+            (string) $event->getUuid()
+        ));
     }
 }

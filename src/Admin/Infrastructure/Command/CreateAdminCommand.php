@@ -43,12 +43,13 @@ class CreateAdminCommand extends Command
         $io = new SymfonyStyle($input, $output);
 
         try {
-            $password = $io->askHidden('Please enter admin password');
+            $email = (string) $input->getArgument('email');
+            $password = (string) $io->askHidden('Please enter admin password');
 
             $this->bus->dispatch(new CreateCommand(
                 Uuid::v4()->__toString(),
-                $input->getArgument('email'),
-                (string) $password
+                $email,
+                $password
             ));
         } catch (Throwable $e) {
             $io->error($e->getMessage());

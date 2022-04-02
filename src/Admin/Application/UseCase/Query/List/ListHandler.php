@@ -39,10 +39,11 @@ final class ListHandler implements QueryHandlerInterface
         }
 
         if ($query->sort && $query->direction) {
-            $queryBuilder->orderBy($query->sort, $query->direction);
+            $queryBuilder->orderBy((string) $query->sort, (string) $query->direction);
         } else {
             $queryBuilder->orderBy('created_at', 'DESC');
         }
+
 
         $queryBuilder->setFirstResult($query->offset->toNumber());
         $queryBuilder->setMaxResults($query->limit->toNumber());
@@ -50,16 +51,15 @@ final class ListHandler implements QueryHandlerInterface
         $rows = $queryBuilder->executeQuery()->fetchAllAssociative();
         foreach ($rows as $row) {
             yield new AdminDTO(
-                $row['uuid'],
-                $row['email'],
-                $row['created_at'],
-                $row['updated_at']
+                (string) $row['uuid'],
+                (string) $row['email'],
+                (string) $row['created_at'],
+                (string) $row['updated_at']
             );
         }
 
         $queryBuilder
             ->resetQueryPart('orderBy')
-            ->setFirstResult(null)
             ->setMaxResults(null);
 
         return (int) $queryBuilder

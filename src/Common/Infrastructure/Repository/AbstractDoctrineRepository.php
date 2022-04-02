@@ -13,6 +13,9 @@ abstract class AbstractDoctrineRepository
 
     protected ObjectRepository $objectRepository;
 
+    /**
+     * @psalm-suppress MixedArgument
+     */
     public function __construct(
         protected EntityManagerInterface $entityManager
     ) {

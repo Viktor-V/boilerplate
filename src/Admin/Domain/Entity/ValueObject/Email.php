@@ -16,7 +16,11 @@ final class Email
         string $email
     ) {
         Assertion::notEmpty($email, 'Email should not be empty.');
-        Assertion::maxLength($email, sprintf('Email must not exceed %d characters', self::MAX_EMAIL_LENGTH));
+        Assertion::maxLength(
+            $email,
+            self::MAX_EMAIL_LENGTH,
+            sprintf('Email must not exceed %d characters', self::MAX_EMAIL_LENGTH)
+        );
         Assertion::email($email);
 
         $this->email = $email;

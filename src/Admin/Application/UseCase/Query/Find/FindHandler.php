@@ -34,10 +34,10 @@ final class FindHandler implements QueryHandlerInterface
         }
 
         return new AdminDTO(
-            $row['uuid'],
-            $row['email'],
-            $row['created_at'],
-            $row['updated_at']
+            (string) $row['uuid'],
+            (string) $row['email'],
+            (string) $row['created_at'],
+            (string) $row['updated_at']
         );
     }
 }

@@ -16,7 +16,7 @@ use DateTimeImmutable;
 class Admin extends Aggregate
 {
     private DateTimeImmutable $createdAt;
-    private DateTimeImmutable $updatedAt;
+    private ?DateTimeImmutable $updatedAt;
 
     private function __construct(
         private Uuid $uuid,
@@ -31,6 +31,7 @@ class Admin extends Aggregate
         }
 
         $this->createdAt = new DateTimeImmutable();
+        $this->updatedAt = null;
     }
 
     public static function create(
