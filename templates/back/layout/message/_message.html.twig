@@ -1,5 +1,0 @@
-{% for key, messages in app.flashes %}
-    {% for message in messages %}
-        {% include ['back/layout/message/_' ~ key ~ '.html.twig', 'back/layout/message/_default.html.twig'] %}
-    {% endfor %}
-{% endfor %}
