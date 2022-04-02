@@ -26,7 +26,10 @@ class SendWelcomeEmailHandler implements EventHandlerInterface
             ->html(
                 <<<EOF
                     <h1>Welcome to the team!</h1>
-                    <p>A new user account has been created for you. Your new username is {$event->getEmail()->toString()}</p>
+                    <p>
+                        A new user account has been created for you. Your new username is
+                        {$event->getEmail()->toString()}
+                    </p>
                     <p>Please click <a href="#">here</a> to set your password and log in.</p>
                 EOF
             ); // TODO: trans

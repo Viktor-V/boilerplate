@@ -77,7 +77,9 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
-        ]
+        ],
+        "psalm": "vendor/bin/psalm --config=psalm.xml",
+        "phpcs": "vendor/bin/phpcs --standard=phpcs.xml.dist"
     },
     "conflict": {
         "symfony/symfony": "*"

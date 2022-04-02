@@ -25,7 +25,9 @@ class Admin extends Aggregate
         private UniqueEmailSpecificationInterface $uniqueEmailSpecification
     ) {
         if (!$uniqueEmailSpecification->isSatisfiedBy($email)) {
-            throw new EmailAlreadyExistException(sprintf('Admin already exists with such email %s.', $email->toString()));
+            throw new EmailAlreadyExistException(
+                sprintf('Admin already exists with such email %s.', $email->toString())
+            );
         }
 
         $this->createdAt = new DateTimeImmutable();
