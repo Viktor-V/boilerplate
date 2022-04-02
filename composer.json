@@ -22,7 +22,8 @@
         "symfony/runtime": "6.0.*",
         "symfony/security-bundle": "6.0.*",
         "symfony/uid": "6.0.*",
-        "symfony/yaml": "6.0.*"
+        "symfony/yaml": "6.0.*",
+        "webmozart/assert": "^1.10"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest"
