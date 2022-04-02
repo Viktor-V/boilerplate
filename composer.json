@@ -27,7 +27,11 @@
         "webmozart/assert": "^1.10"
     },
     "require-dev": {
-        "roave/security-advisories": "dev-latest"
+        "phpunit/phpunit": "^9.5",
+        "roave/security-advisories": "dev-latest",
+        "symfony/browser-kit": "6.0.*",
+        "symfony/css-selector": "6.0.*",
+        "symfony/phpunit-bridge": "^6.0"
     },
     "config": {
         "allow-plugins": {
